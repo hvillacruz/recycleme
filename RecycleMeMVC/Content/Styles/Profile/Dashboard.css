@@ -1,0 +1,24 @@
+﻿body{
+   
+    background:#3c3c3c;
+}
+.main-content{
+    padding:50px;
+}
+.container.main-container:after{
+    -webkit-box-shadow:0 0 0 0;
+    box-shadow:0 0 0 0;
+}
+
+.main-container:after{
+    background:#3c3c3c;
+    border:none;
+  
+}
+
+.navbar{
+    background:#4faf76;
+}
+
+
+

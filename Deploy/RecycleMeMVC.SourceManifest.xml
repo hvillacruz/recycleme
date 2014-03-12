@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\Development\Documents\visual studio 2013\Projects\RecycleMeMVC\RecycleMeMVC\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\Users\Development\Documents\visual studio 2013\Projects\RecycleMeMVC\RecycleMeMVC\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\Development\Documents\visual studio 2013\Projects\RecycleMeMVC\RecycleMeMVC\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

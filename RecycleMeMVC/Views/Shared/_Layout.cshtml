@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Recycle Me</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @Styles.Render("~/Content/Assets/Recycle")
+    @Styles.Render("~/Content/Styles/Recycle")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/knockout")
+
+
+    <!-- fonts -->
+    @Styles.Render("~/Content/Assets/Fonts")
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Ubuntu:500' type='text/css' media='all' />
+
+    @Styles.Render("~/Content/Styles/Main")
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-container" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <i class="icon-beer"></i>
+                        Recycle Me
+                    </small>
+                </a><!-- /.brand -->
+            </div><!-- /.navbar-header -->
+
+            <div class="navbar-header pull-right" role="navigation">
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+    </div>
+
+    @RenderBody()
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

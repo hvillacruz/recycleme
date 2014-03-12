@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeMVC", "RecycleMeMVC\RecycleMeMVC.csproj", "{1837E8AD-5283-46A2-A32B-F3CE253C301F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{553FB710-9C09-4F30-9D63-AA85AFE40DC2}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeDomainClasses", "RecycleMeDomainClasses\RecycleMeDomainClasses.csproj", "{A42E4E3A-F959-4876-B095-6A8B60F137CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeDataAccessLayer", "RecycleMeDataAccessLayer\RecycleMeDataAccessLayer.csproj", "{478A8D7A-3C5C-4B25-B1EF-21F35EF2136C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeBusinessLogicLayer", "RecycleMeBusinessLogicLayer\RecycleMeBusinessLogicLayer.csproj", "{29EAD1DE-6EBC-4E28-8610-663256F461A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeOdataWebApi", "RecycleMeOdataWebApi\RecycleMeOdataWebApi.csproj", "{24881255-EC12-4FFC-956B-B1E43EAE7CED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1837E8AD-5283-46A2-A32B-F3CE253C301F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1837E8AD-5283-46A2-A32B-F3CE253C301F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1837E8AD-5283-46A2-A32B-F3CE253C301F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1837E8AD-5283-46A2-A32B-F3CE253C301F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42E4E3A-F959-4876-B095-6A8B60F137CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42E4E3A-F959-4876-B095-6A8B60F137CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42E4E3A-F959-4876-B095-6A8B60F137CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42E4E3A-F959-4876-B095-6A8B60F137CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478A8D7A-3C5C-4B25-B1EF-21F35EF2136C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478A8D7A-3C5C-4B25-B1EF-21F35EF2136C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478A8D7A-3C5C-4B25-B1EF-21F35EF2136C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478A8D7A-3C5C-4B25-B1EF-21F35EF2136C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29EAD1DE-6EBC-4E28-8610-663256F461A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29EAD1DE-6EBC-4E28-8610-663256F461A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29EAD1DE-6EBC-4E28-8610-663256F461A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29EAD1DE-6EBC-4E28-8610-663256F461A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

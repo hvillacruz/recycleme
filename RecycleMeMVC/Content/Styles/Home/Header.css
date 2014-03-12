@@ -1,0 +1,58 @@
+﻿
+.ace-nav > li.light-yellow > a {
+    background-color: #f5da72;
+}
+
+    .ace-nav > li.light-yellow > a:hover,
+    .ace-nav > li.light-yellow > a:focus {
+        background-color: #f5df8d;
+    }
+
+.ace-nav > li.open.light-yellow > a {
+    background-color: #f6e7ae !important;
+}
+
+
+.ace-nav > li.light-blue-flat > a {
+    background-color: #3a92c8;
+}
+
+    .ace-nav > li.light-blue-flat > a:hover,
+    .ace-nav > li.light-blue-flat > a:focus {
+        background-color: #55a0cf;
+    }
+
+.ace-nav > li.open.light-blue-flat > a {
+    background-color: #72afd5 !important;
+}
+
+
+.ace-nav > li.light-purple-flat > a {
+    background-color: rgb(149, 133, 191);
+}
+
+    .ace-nav > li.light-purple-flat > a:hover,
+    .ace-nav > li.light-purple-flat > a:focus {
+        background-color: #55a0cf;
+    }
+
+.ace-nav > li.open.light-purple-flat > a {
+    background-color: #72afd5 !important;
+}
+
+.ace-nav > li {
+    height: 50px;
+    line-height: 50px;
+}
+
+.dropdown-menu {
+    min-width: 145px;
+}
+
+    .dropdown-menu.dropdown-close.pull-right {
+        right: 0px !important;
+    }
+
+.browndirt {
+    color: #4d4133 !important;
+}

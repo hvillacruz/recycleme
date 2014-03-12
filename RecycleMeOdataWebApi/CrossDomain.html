@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="datajs-1.1.2.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            //var jsonHandler = {
+            //    read: function (response, context) {
+            //        var contentType = response.headers["Content-Type"];
+            //        if (contentType && contentType.indexOf("application/json") === 0) {
+            //            response.data = response.body;
+            //        } else {
+            //            odata.defaultHandler.read(response, context);
+            //        }
+            //    },
+            //    write: function (request, context) { }
+            //}
+            //****************************************************
+            //*** Replace defaultHandler to handler we created ***
+            //****************************************************
+           // OData.defaultHandler = jsonHandler;
+
+           
+
+         
+            //OData.read({
+            //    requestUri: 'http://localhost:53184/odata/User',
+            //    headers: { Accept: "application/json" }
+            //},
+            //function (data, response) {
+            //    alert("Operation succeeded.");
+            //},
+            //function (err) {
+            //    alert("Error occurred: " + err.message);
+            //});
+
+        };
+
+
+        OData.read({
+            requestUri: "http://localhost:53184/odata/User",
+            headers: { 'Content-Type': "application/json" }
+        },
+         function (data, response) {
+             alert('Success');
+         },
+         function (err) {
+             alert(err.message);
+         }
+         );
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿.login-content {
+    margin: 100px auto 100px auto;
+    max-width: 301px;
+}
+
+
+body {
+    background: url(../../Assets/images/mushroom.jpg) no-repeat center 0px;
+    min-height: 662px;
+    background-size: 100% 100%;
+}
+
+a {
+    color: #000000;
+}
+
+.login-padding {
+    padding: 10px;
+}
+
+.login-top-padding {
+    padding-top: 20px;
+}
+
+.editable-clear-x {
+    background: none;
+}
+
+.well {
+    margin-bottom: 0px;
+    background-color: rgba(246,245,250,0.5);
+    border: none;
+}
+
+.login-shadow {
+    moz-box-shadow: 2px 2px 2px 2px rgba(68,68,68,0.6);
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(68,68,68,0.6);
+    box-shadow: 2px 2px 2px rgba(68,68,68,0.6);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+    zoom: 1;
+}
+
+.login-rm {
+    background-color: #f5da72;
+    width: 100%;
+    height: 50px;
+
+}
+
+.btn-reg{
+    background-color:#f5da72 !important;
+}
+
+.login-fb {
+    background-color: #6f8fad !important;
+    width: 100%;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.login-twt {
+    background-color: #3a92c8 !important;
+    width: 100%;
+}
+
+.social-padding {
+    padding: 5px;
+}
+
+.btn{
+    background-color:none;
+    border:none;
+}
+

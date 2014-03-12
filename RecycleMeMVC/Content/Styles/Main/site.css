@@ -1,0 +1,89 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.rm-light-blue {
+    background-color: #6f8fad !important;
+}
+
+.rm-light-blue2 {
+    background-color: #3a92c8 !important;
+}
+
+.rm-light-yellow {
+    background-color: #f5da72;
+}
+
+.rm-light-yellow2 {
+    background-color: rgba(255, 183, 82,1);
+}
+
+.rm-light-white {
+    background-color: rgba(255,255,255, 0.7);
+}
+
+.rm-light-green {
+    background-color: rgb(93, 196, 95);
+}
+
+.rm-light-black {
+    background-color: #555555;
+}
+
+.el-shadow {
+    moz-box-shadow: 2px 2px 2px 2px rgba(68,68,68,0.6);
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(68,68,68,0.6);
+    box-shadow: 2px 2px 2px rgba(68,68,68,0.6);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30)";
+}
+
+.icon-2xx {
+    font-size: 20px;
+}
+
+.icon-2xx.icon-border {
+    border-width: 2px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
