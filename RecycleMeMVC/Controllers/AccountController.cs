@@ -13,6 +13,7 @@ using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
 using Facebook;
 using RecycleMeBusinessLogicLayer;
+using System.Configuration;
 
 namespace RecycleMeMVC.Controllers
 {
@@ -210,7 +211,10 @@ namespace RecycleMeMVC.Controllers
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
             {
-                await StoreFacebookAuthToken(user);
+                if (loginInfo.Login.LoginProvider.Contains("Twitter"))
+                    await StoreTwitterkAuthToken(user);
+                if (loginInfo.Login.LoginProvider.Contains("Facebook"))
+                    await StoreFacebookAuthToken(user);
                 await SignInAsync(user, isPersistent: false);
                 return RedirectToLocal(returnUrl);
             }
@@ -219,7 +223,7 @@ namespace RecycleMeMVC.Controllers
                 // If the user does not have an account, then prompt the user to create an account
                 ViewBag.ReturnUrl = returnUrl;
                 ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-    
+
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
             }
         }
@@ -251,10 +255,12 @@ namespace RecycleMeMVC.Controllers
             {
                 // Retrieve the existing claims for the user and add the FacebookAccessTokenClaim
                 var currentClaims = await UserManager.GetClaimsAsync(user.Id);
-                var facebookAccessToken = claimsIdentity.FindAll("TwitterAccessToken").First();
+                var twitterAccessToken = claimsIdentity.FindAll("urn:twitter:access_token").First();
+                var twitterAccessTokenSecret = claimsIdentity.FindAll("urn:twitter:access_token_secret").First();
                 if (currentClaims.Count() <= 0)
                 {
-                    await UserManager.AddClaimAsync(user.Id, facebookAccessToken);
+                    await UserManager.AddClaimAsync(user.Id, twitterAccessToken);
+                    await UserManager.AddClaimAsync(user.Id, twitterAccessTokenSecret);
                 }
 
             }
@@ -313,8 +319,12 @@ namespace RecycleMeMVC.Controllers
             if (result.Succeeded)
             {
                 var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                //Add the Facebook Claim
-                await StoreFacebookAuthToken(currentUser);
+
+                if (loginInfo.Login.LoginProvider.Contains("Twitter"))
+                    await StoreTwitterkAuthToken(currentUser);
+                if (loginInfo.Login.LoginProvider.Contains("Facebook"))
+                    await StoreFacebookAuthToken(currentUser);
+
                 return RedirectToAction("Manage");
             }
             return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
@@ -341,7 +351,7 @@ namespace RecycleMeMVC.Controllers
                     return View("ExternalLoginFailure");
                 }
 
-             
+
                 var user = new AspNetUsers()
                 {
                     UserName = model.UserName,
@@ -354,9 +364,30 @@ namespace RecycleMeMVC.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await StoreFacebookAuthToken(user);
+                        if (info.Login.LoginProvider.Contains("Twitter"))
+                        {
+                            await StoreTwitterkAuthToken(user);
+
+                            var usermanager = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext()));
+                            var claimsforUser = usermanager.GetClaims(user.Id);
+                            var access_token = claimsforUser.FirstOrDefault(x => x.Type == "urn:twitter:access_token").Value;
+                            var access_token_secret = claimsforUser.FirstOrDefault(x => x.Type == "urn:twitter:access_token_secret").Value;
+
+
+                            Twitter twitter = new Twitter(ConfigurationManager.AppSettings["TweetConsumerKey"],
+                                                            ConfigurationManager.AppSettings["TweetConsumerSecret"], access_token, access_token_secret);
+                            var response = twitter.GetTweets("sunburnloco", 5);
+
+
+                            Users.Create(twitter.UserInfo(user.Id));
+                        }
+                        if (info.Login.LoginProvider.Contains("Facebook"))
+                        {
+                            await StoreFacebookAuthToken(user);
+                            Users.Create(FB.UserInfo(user.Id));
+                        }
                         await SignInAsync(user, isPersistent: false);
-                        Users.Create(FB.UserInfo(user.Id));
+                       
                         return RedirectToLocal(returnUrl);
                     }
                 }
