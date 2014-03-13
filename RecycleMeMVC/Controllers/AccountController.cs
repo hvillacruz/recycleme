@@ -376,9 +376,7 @@ namespace RecycleMeMVC.Controllers
 
                             Twitter twitter = new Twitter(ConfigurationManager.AppSettings["TweetConsumerKey"],
                                                             ConfigurationManager.AppSettings["TweetConsumerSecret"], access_token, access_token_secret);
-                            var response = twitter.GetTweets("sunburnloco", 5);
-
-
+                            
                             Users.Create(twitter.UserInfo(user.Id));
                         }
                         if (info.Login.LoginProvider.Contains("Facebook"))

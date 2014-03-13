@@ -8,13 +8,17 @@ namespace RecycleMeMVC.Models
         [Required]
         public string UserName { get; set; }
 
-        //[Required]
-        //[DataType(DataType.Date)]
-        //[Display(Name = "Birth Date")]
+        public string Avatar { get; set; }
+       
         public DateTime? BirthDate { get; set; }
 
     }
 
+    public class LoginPartialViewModel
+    {
+        public string UserId;
+        public string Avatar;
+    }
 
     public class DashboardViewModel
     {

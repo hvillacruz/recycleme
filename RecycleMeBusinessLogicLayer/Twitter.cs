@@ -35,17 +35,38 @@ namespace RecycleMeBusinessLogicLayer
 
         public UserViewModel UserInfo(string userId)
         {
-           
+
             string resourceUrl = string.Format("https://api.twitter.com/1.1/users/show.json");
-            UserViewModel user = new UserViewModel();
+
             var requestParameters = new SortedDictionary<string, string>();
             requestParameters.Add("screen_name", "sunburnloco");
             //requestParameters.Add("include_entities", "true");
             var response = GetResponse(resourceUrl, Method.GET, requestParameters);
-           // dynamic timeline = System.Web.Helpers.Json.Decode(response);
+            dynamic info = System.Web.Helpers.Json.Decode(response);
+            UserViewModel user = new UserViewModel();
+            try
+            {
 
+                user = new UserViewModel()
+                {
+                    UserId = userId,
+                    ExternalId = info.id_str,
+                    ExternalUserName = info.screen_name,
+                    FirstName = info.name,
+                    Email = "",
+                    LastName = "",
+                    BirthDate = null,
+                    Address = info.location,
+                    Avatar = info.profile_image_url
+                };
+                return user;
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+                return user;
+            }
 
-            return user;
         }
 
 
