@@ -11,6 +11,7 @@ using RecycleMeDomainClasses;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using RecycleMeDataAccessLayer;
+using System.Configuration;
 
 namespace RecycleMeBusinessLogicLayer
 {
@@ -33,14 +34,14 @@ namespace RecycleMeBusinessLogicLayer
         public string AccessTokenSecret { set; get; }
 
 
-        public UserViewModel UserInfo(string userId)
+        public UserViewModel UserInfo(AspNetUsers User)
         {
 
-            string resourceUrl = string.Format("https://api.twitter.com/1.1/users/show.json");
+            string resourceUrl = ConfigurationManager.AppSettings["TweeterShowApi"];
 
             var requestParameters = new SortedDictionary<string, string>();
-            requestParameters.Add("screen_name", "sunburnloco");
-            //requestParameters.Add("include_entities", "true");
+            requestParameters.Add("screen_name", User.UserName);
+            requestParameters.Add("include_entities", "true");
             var response = GetResponse(resourceUrl, Method.GET, requestParameters);
             dynamic info = System.Web.Helpers.Json.Decode(response);
             UserViewModel user = new UserViewModel();
@@ -49,7 +50,7 @@ namespace RecycleMeBusinessLogicLayer
 
                 user = new UserViewModel()
                 {
-                    UserId = userId,
+                    UserId = User.Id,
                     ExternalId = info.id_str,
                     ExternalUserName = info.screen_name,
                     FirstName = info.name,
@@ -59,6 +60,7 @@ namespace RecycleMeBusinessLogicLayer
                     Address = info.location,
                     Avatar = info.profile_image_url
                 };
+                user.Avatar = user.Avatar.Replace("_normal", "");
                 return user;
             }
             catch (Exception ex)

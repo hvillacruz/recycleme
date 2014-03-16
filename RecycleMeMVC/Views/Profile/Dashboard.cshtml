@@ -14,7 +14,10 @@
             <!-- .main-content -->
             <div class="row">
                 <div class="col-md-4">
+                    
                     @Html.Partial("_ProfileBarPartial")
+                    <div class="hr32"></div>
+                    @Html.Partial("_StatisticsPartial")
                 </div>
                 <div class="col-md-4">
 
@@ -27,8 +30,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    var UserId = "@ViewBag.UserId";
-    SetId(UserId);
-</script>

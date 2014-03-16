@@ -7,17 +7,17 @@
 <div class="login-content ">
 
     <div class="login-shadow text-center ">
-        <h4 class="text-center login-padding white smaller">Associate your @ViewBag.LoginProvider account.</h4>
+        <h1 class="text-center login-padding white smaller">Associate your @ViewBag.LoginProvider account.</h1>
     </div>
 
-    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new {  role = "form" }))
-{
+    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+    {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         <div class="well well-lg login-shadow">
             <div class="form-group">
                 <label class="block clearfix">
-                    <label for="UserName">Email</label>
+                    <label for="UserName">Profile Name</label>
                     <span class="block input-icon input-icon-left">
                         <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username" value="@Model.UserName">
                         <i class="icon-user"></i>
@@ -26,32 +26,7 @@
                     </span>
                 </label>
             </div>
-            @*<div class="form-group">
-                <label class="block clearfix">
-                    <label for="HomeTown">Address</label>
-                    <span class="block input-icon input-icon-left">
-                        <input type="text" id="HomeTown" name="HomeTown" class="form-control" placeholder="Address">
-                        <i class="icon-home"></i>
-                        @Html.ValidationMessageFor(m => m.HomeTown)
-                    </span>
-                </label>
-            </div>*@
-            @*<div class="form-group">
-                <div class="row">
-                    <div class="col-xs-8 col-sm-11">
-                        <div class="input-group">
-                            <input class="form-control date-picker" id="id-date-picker-1" type="text" data-date-format="dd-mm-yyyy" />
-                            <span class="input-group-addon">
-                                <i class="icon-calendar bigger-110"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
             <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="icon-circle-arrow-right"></i>Sign up</button>
-
-
-
         </div>
     }
 </div>

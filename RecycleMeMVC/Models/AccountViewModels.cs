@@ -9,7 +9,7 @@ namespace RecycleMeMVC.Models
         public string UserName { get; set; }
 
         public string Avatar { get; set; }
-       
+
         public DateTime? BirthDate { get; set; }
 
     }
@@ -75,6 +75,7 @@ namespace RecycleMeMVC.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [StringLength(15, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }
 
         [Required]
@@ -87,5 +88,26 @@ namespace RecycleMeMVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Birthday")]
+        public DateTime BirthDate { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
     }
 }

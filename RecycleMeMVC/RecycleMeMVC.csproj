@@ -225,12 +225,13 @@
     <Content Include="Content\Assets\css\bootstrap-editable.css" />
     <Content Include="Content\Assets\css\font-awesome.min.css" />
     <Content Include="Content\Assets\font\fontawesome-webfont.svg" />
-    <Content Include="Content\Assets\images\cat.jpg" />
+    <Content Include="Content\Assets\images\avatar.jpg" />
     <Content Include="Content\Assets\images\clear.png" />
     <Content Include="Content\Assets\images\glyphicons-halflings-white.png" />
     <Content Include="Content\Assets\images\glyphicons-halflings.png" />
     <Content Include="Content\Assets\images\loading.gif" />
     <Content Include="Content\Assets\images\mushroom.jpg" />
+    <Content Include="Content\Assets\images\stat.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -242,6 +243,7 @@
     <Content Include="Content\Styles\Home\Header.css" />
     <Content Include="Content\Styles\Profile\Dashboard.css" />
     <Content Include="Content\Styles\Profile\ProfileBar.css" />
+    <Content Include="Content\Styles\Profile\Statistics.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -279,6 +281,7 @@
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\Main\Config.js" />
+    <Content Include="Scripts\Main\Global.js" />
     <Content Include="Scripts\Main\LoginPartial.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
@@ -322,6 +325,7 @@
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Profile\_ProfileBarPartial.cshtml" />
     <Content Include="Views\Account\FacebookInfo.cshtml" />
+    <Content Include="Views\Profile\_StatisticsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

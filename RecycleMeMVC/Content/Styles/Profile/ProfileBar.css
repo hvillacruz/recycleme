@@ -2,7 +2,7 @@
 }
 
     .face div {
-       position: absolute;
+        position: absolute;
         z-index: 1;
         -moz-box-shadow: 0px 0px 0px 10px #FFFFF; /* Firefox */
         -webkit-box-shadow: 0px 0px 0px 10px #FFFFF; /* Safari, Chrome */
@@ -25,16 +25,12 @@
     height: 128px;
     width: 256px;
     background: #ffffff;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
 }
 
 .box-stat {
     background: #f6f1ed;
     height: 100%;
     border-left: solid 1px #FFFFFF;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
     padding: 5px;
 }
 
@@ -42,14 +38,17 @@
     font-size: 14px;
     padding: 5px;
 }
-.box-div-stat{
-    margin-bottom:0px;
+
+.box-div-stat {
+    margin-bottom: 0px;
 }
-.box-name{
-  height:95px;
-  font-size:20px;
-  padding:10px;
+
+.box-name {
+    height: 95px;
+    font-size: 20px;
+    padding: 10px;
 }
-.box-name-text{
-    color:#b1a598;
+
+.box-name-text {
+    color: #b1a598;
 }

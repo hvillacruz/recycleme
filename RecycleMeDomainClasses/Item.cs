@@ -16,6 +16,5 @@ namespace RecycleMeDomainClasses
         public string ItemName { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-
     }
 }

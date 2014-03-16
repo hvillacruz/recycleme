@@ -23,6 +23,10 @@ namespace RecycleMeMVC.Controllers
         public AccountController()
             : this(new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext())))
         {
+            UserManager.UserValidator = new UserValidator<AspNetUsers>(UserManager)
+            {
+                AllowOnlyAlphanumericUserNames = false
+            };
         }
 
         public AccountController(UserManager<AspNetUsers> userManager)
@@ -88,6 +92,16 @@ namespace RecycleMeMVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
+                    Users.Create(new UserViewModel
+                    {
+                        BirthDate = model.BirthDate,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        UserId = user.Id,
+                        Avatar = "/Content/Assets/Images/avatar.jpg"
+
+                    });
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -376,8 +390,8 @@ namespace RecycleMeMVC.Controllers
 
                             Twitter twitter = new Twitter(ConfigurationManager.AppSettings["TweetConsumerKey"],
                                                             ConfigurationManager.AppSettings["TweetConsumerSecret"], access_token, access_token_secret);
-                            
-                            Users.Create(twitter.UserInfo(user.Id));
+
+                            Users.Create(twitter.UserInfo(user));
                         }
                         if (info.Login.LoginProvider.Contains("Facebook"))
                         {
@@ -385,7 +399,7 @@ namespace RecycleMeMVC.Controllers
                             Users.Create(FB.UserInfo(user.Id));
                         }
                         await SignInAsync(user, isPersistent: false);
-                       
+
                         return RedirectToLocal(returnUrl);
                     }
                 }

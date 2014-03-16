@@ -3,6 +3,10 @@
     max-width: 301px;
 }
 
+.reg-content {
+    margin: 100px auto 100px auto;
+      max-width: 600px;
+}
 
 body {
     background: url(../../Assets/images/mushroom.jpg) no-repeat center 0px;
@@ -73,3 +77,6 @@ a {
     border:none;
 }
 
+.inputReg{
+    max-width:500px !important;
+}

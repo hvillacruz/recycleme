@@ -10,7 +10,7 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+
 select,
 textarea {
     max-width: 280px;
@@ -81,9 +81,31 @@ input[type="checkbox"].input-validation-error {
     font-size: 20px;
 }
 
-.icon-2xx.icon-border {
-    border-width: 2px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    .icon-2xx.icon-border {
+        border-width: 2px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+.radius-round-bottom {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.radius-round-top {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.theRed {
+    background-color: #e35619;
+}
+
+.theYellow {
+    background-color: #e9c62c;
+}
+
+.theGreen {
+    background-color: #3fa867;
 }

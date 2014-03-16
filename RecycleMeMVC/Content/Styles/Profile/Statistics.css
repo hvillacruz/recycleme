@@ -1,0 +1,16 @@
+﻿.stat-div{
+    height:190px;
+    width:256px;
+    background-color:#ffffff;
+}
+
+.stat-divider{
+    height:4px;
+}
+
+.stat-stat{
+    background-color:#f5f0ec;
+}
+.stat-percentage{
+    font-size:32px;
+}
