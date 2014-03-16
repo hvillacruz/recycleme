@@ -244,6 +244,7 @@
     <Content Include="Content\Styles\Profile\Dashboard.css" />
     <Content Include="Content\Styles\Profile\ProfileBar.css" />
     <Content Include="Content\Styles\Profile\Statistics.css" />
+    <Content Include="Content\Styles\Profile\Users.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -326,6 +327,7 @@
     <Content Include="Views\Profile\_ProfileBarPartial.cshtml" />
     <Content Include="Views\Account\FacebookInfo.cshtml" />
     <Content Include="Views\Profile\_StatisticsPartial.cshtml" />
+    <Content Include="Views\Profile\_UsersPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -93,6 +93,14 @@ input[type="checkbox"].input-validation-error {
     border-bottom-right-radius: 3px;
 }
 
+.radius-round-bottom-left {
+    border-bottom-left-radius: 3px;
+}
+
+.radius-round-bottom-right {
+    border-bottom-right-radius: 3px;
+}
+
 .radius-round-top {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
