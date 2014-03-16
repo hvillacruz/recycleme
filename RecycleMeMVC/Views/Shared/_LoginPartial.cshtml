@@ -9,12 +9,16 @@
             <ul class="nav ace-nav">
                 <li class="light-yellow">
                     <a data-toggle="dropdown" class="dropdown-toggle">
-                        <img class="nav-user-photo" data-bind="attr:{src: Profile.Avatar}" src="/Content/Assets/images/avatar.jpg" alt=@User.Identity.GetUserName() />
-                        <span class="user-info">
+                        <div class="avatar-face">
+                            <div class="img-circle">
+                                <img class="nav-user-photo" data-bind="attr:{src: Profile.Avatar}" src="/Content/Assets/images/avatar.jpg" alt=@User.Identity.GetUserName() />
+                                <span class="user-info">
 
-                            @User.Identity.GetUserName()
-                        </span>
-                        <i class="icon-caret-down browndirt"></i>
+                                    @User.Identity.GetUserName()
+                                </span>
+                                <i class="icon-caret-down browndirt"></i>
+                            </div>
+                        </div>
                     </a>
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
