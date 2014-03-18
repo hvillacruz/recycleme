@@ -70,6 +70,7 @@
     <Compile Include="Review.cs" />
     <Compile Include="User.cs" />
     <Compile Include="AspNetUsers.cs" />
+    <Compile Include="UserFollower.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

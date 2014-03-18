@@ -57,6 +57,8 @@ namespace RecycleMeDataAccessLayer
         public DbSet<Review> Review { get; set; }
 
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<UserFollower> UserFollower { get; set; }
        
     }
 }
