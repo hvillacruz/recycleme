@@ -14,11 +14,11 @@ namespace RecycleMeBusinessLogicLayer
     public class FB
     {
 
-        public static UserViewModel UserInfo(string userId)
+        public static UserViewModel UserInfo(string UserId)
         {
 
             var usermanager = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext()));
-            var claimsforUser = usermanager.GetClaims(userId);
+            var claimsforUser = usermanager.GetClaims(UserId);
             var access_token = claimsforUser.FirstOrDefault(x => x.Type == "FacebookAccessToken").Value;
             var fb = new FacebookClient(access_token);
 
@@ -28,7 +28,7 @@ namespace RecycleMeBusinessLogicLayer
          
                 user = new UserViewModel()
                   {
-                      UserId = userId,
+                      UserId = UserId,
                       ExternalId = info.id,
                       ExternalUserName = info.username,
                       FirstName = info.first_name,

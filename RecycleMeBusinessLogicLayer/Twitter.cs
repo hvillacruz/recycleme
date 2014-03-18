@@ -72,13 +72,13 @@ namespace RecycleMeBusinessLogicLayer
         }
 
 
-        public string GetMentions(int count)
+        public string GetMentions(int Count)
         {
             string resourceUrl =
                 string.Format("http://api.twitter.com/1/statuses/mentions.json");
 
             var requestParameters = new SortedDictionary<string, string>();
-            requestParameters.Add("count", count.ToString());
+            requestParameters.Add("count", Count.ToString());
             requestParameters.Add("include_entities", "true");
 
             var response = GetResponse(resourceUrl, Method.GET, requestParameters);
@@ -86,44 +86,44 @@ namespace RecycleMeBusinessLogicLayer
             return response;
         }
 
-        public string GetTweets(string screenName, int count)
+        public string GetTweets(string ScreenName, int Count)
         {
             string resourceUrl =
                 string.Format("https://api.twitter.com/1.1/statuses/user_timeline.json");
 
             var requestParameters = new SortedDictionary<string, string>();
-            requestParameters.Add("count", count.ToString());
-            requestParameters.Add("screen_name", screenName);
+            requestParameters.Add("count", Count.ToString());
+            requestParameters.Add("screen_name", ScreenName);
 
             var response = GetResponse(resourceUrl, Method.GET, requestParameters);
 
             return response;
         }
 
-        public string PostStatusUpdate(string status, double latitude, double longitude)
+        public string PostStatusUpdate(string Status, double Latitude, double Longitude)
         {
             const string resourceUrl = "http://api.twitter.com/1/statuses/update.json";
 
             var requestParameters = new SortedDictionary<string, string>();
-            requestParameters.Add("status", status);
-            requestParameters.Add("lat", latitude.ToString());
-            requestParameters.Add("long", longitude.ToString());
+            requestParameters.Add("status", Status);
+            requestParameters.Add("lat", Latitude.ToString());
+            requestParameters.Add("long", Longitude.ToString());
 
             return GetResponse(resourceUrl, Method.POST, requestParameters);
         }
 
-        private string GetResponse(string resourceUrl, Method method, SortedDictionary<string, string> requestParameters)
+        private string GetResponse(string ResourceUrl, Method Method, SortedDictionary<string, string> RequestParameters)
         {
             ServicePointManager.Expect100Continue = false;
             WebRequest request = null;
             string resultString = string.Empty;
 
-            if (method == Method.POST)
+            if (Method == Method.POST)
             {
-                var postBody = requestParameters.ToWebString();
+                var postBody = RequestParameters.ToWebString();
 
-                request = (HttpWebRequest)WebRequest.Create(resourceUrl);
-                request.Method = method.ToString();
+                request = (HttpWebRequest)WebRequest.Create(ResourceUrl);
+                request.Method = Method.ToString();
                 request.ContentType = "application/x-www-form-urlencoded";
 
                 using (var stream = request.GetRequestStream())
@@ -132,11 +132,11 @@ namespace RecycleMeBusinessLogicLayer
                     stream.Write(content, 0, content.Length);
                 }
             }
-            else if (method == Method.GET)
+            else if (Method == Method.GET)
             {
-                request = (HttpWebRequest)WebRequest.Create(resourceUrl + "?"
-                    + requestParameters.ToWebString());
-                request.Method = method.ToString();
+                request = (HttpWebRequest)WebRequest.Create(ResourceUrl + "?"
+                    + RequestParameters.ToWebString());
+                request.Method = Method.ToString();
             }
             else
             {
@@ -146,7 +146,7 @@ namespace RecycleMeBusinessLogicLayer
             if (request != null)
             {
 
-                var authHeader = CreateHeader(resourceUrl, method, requestParameters);
+                var authHeader = CreateHeader(ResourceUrl, Method, RequestParameters);
                 request.Headers.Add("Authorization", authHeader);
                 var response = request.GetResponse();
 
@@ -165,13 +165,13 @@ namespace RecycleMeBusinessLogicLayer
             return Convert.ToBase64String(new ASCIIEncoding().GetBytes(DateTime.Now.Ticks.ToString()));
         }
 
-        private string CreateHeader(string resourceUrl, Method method,
+        private string CreateHeader(string ResourceUrl, Method Method,
                                     SortedDictionary<string, string> requestParameters)
         {
             var oauthNonce = CreateOauthNonce();
             // Convert.ToBase64String(new ASCIIEncoding().GetBytes(DateTime.Now.Ticks.ToString()));
             var oauthTimestamp = CreateOAuthTimestamp();
-            var oauthSignature = CreateOauthSignature(resourceUrl, method, oauthNonce, oauthTimestamp, requestParameters);
+            var oauthSignature = CreateOauthSignature(ResourceUrl, Method, oauthNonce, oauthTimestamp, requestParameters);
 
             //The oAuth signature is then used to generate the Authentication header. 
             const string headerFormat = "OAuth oauth_nonce=\"{0}\", oauth_signature_method=\"{1}\", " +
@@ -192,20 +192,20 @@ namespace RecycleMeBusinessLogicLayer
             return authHeader;
         }
 
-        private string CreateOauthSignature(string resourceUrl, Method method, string oauthNonce, string oauthTimestamp,
+        private string CreateOauthSignature(string ResourceUrl, Method Method, string OAuthNonce, string OAuthTimestamp,
                                             SortedDictionary<string, string> requestParameters)
         {
             //firstly we need to add the standard oauth parameters to the sorted list
             requestParameters.Add("oauth_consumer_key", ConsumerKey);
-            requestParameters.Add("oauth_nonce", oauthNonce);
+            requestParameters.Add("oauth_nonce", OAuthNonce);
             requestParameters.Add("oauth_signature_method", OauthSignatureMethod);
-            requestParameters.Add("oauth_timestamp", oauthTimestamp);
+            requestParameters.Add("oauth_timestamp", OAuthTimestamp);
             requestParameters.Add("oauth_token", AccessToken);
             requestParameters.Add("oauth_version", OauthVersion);
 
             var sigBaseString = requestParameters.ToWebString();
 
-            var signatureBaseString = string.Concat(method.ToString(), "&", Uri.EscapeDataString(resourceUrl), "&",
+            var signatureBaseString = string.Concat(Method.ToString(), "&", Uri.EscapeDataString(ResourceUrl), "&",
                                                     Uri.EscapeDataString(sigBaseString.ToString()));
 
 
@@ -245,11 +245,11 @@ namespace RecycleMeBusinessLogicLayer
 
     public static class Extensions
     {
-        public static string ToWebString(this SortedDictionary<string, string> source)
+        public static string ToWebString(this SortedDictionary<string, string> Source)
         {
             var body = new StringBuilder();
 
-            foreach (var requestParameter in source)
+            foreach (var requestParameter in Source)
             {
                 body.Append(requestParameter.Key);
                 body.Append("=");
@@ -262,7 +262,7 @@ namespace RecycleMeBusinessLogicLayer
             return body.ToString();
         }
 
-        public static string PopulateTweetLinks(string tweetText)
+        public static string PopulateTweetLinks(string TweetText)
         {
             string regexHtHyperLink =
                 @"(http|ftp|https)://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?";
@@ -270,8 +270,8 @@ namespace RecycleMeBusinessLogicLayer
             var urlRx = new
                Regex(regexHtHyperLink, RegexOptions.IgnoreCase);
 
-            MatchCollection matches = urlRx.Matches(tweetText);
-            return matches.Cast<Match>().Aggregate(tweetText, (current, match) => current.Replace(match.Value, string.Format("({1})", match.Value, match.Value)));
+            MatchCollection matches = urlRx.Matches(TweetText);
+            return matches.Cast<Match>().Aggregate(TweetText, (current, match) => current.Replace(match.Value, string.Format("({1})", match.Value, match.Value)));
         }
     }
 

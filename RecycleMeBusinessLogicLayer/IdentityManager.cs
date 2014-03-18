@@ -12,50 +12,50 @@ namespace RecycleMeBusinessLogicLayer
 {
     public class IdentityManager
     {
-        public bool RoleExists(string name)
+        public bool RoleExists(string Name)
         {
             var rm = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(new RecycleMeContext()));
-            return rm.RoleExists(name);
+            return rm.RoleExists(Name);
         }
 
 
-        public bool CreateRole(string name )
+        public bool CreateRole(string Name)
         {
             var rm = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(new RecycleMeContext()));
-            var idResult = rm.Create(new IdentityRole(name));
+            var idResult = rm.Create(new IdentityRole(Name));
             return idResult.Succeeded;
         }
 
 
-        public bool CreateUser(AspNetUsers user, string password)
+        public bool CreateUser(AspNetUsers User, string Password)
         {
             var um = new UserManager<AspNetUsers>(
                 new UserStore<AspNetUsers>(new RecycleMeContext()));
-            var idResult = um.Create(user, password);
+            var idResult = um.Create(User, Password);
             return idResult.Succeeded;
         }
 
 
-        public bool AddUserToRole(string userId, string roleName)
+        public bool AddUserToRole(string UserId, string RoleName)
         {
-            var um = new UserManager<AspNetUsers>( new UserStore<AspNetUsers>(new RecycleMeContext()));
-            var idResult = um.AddToRole(userId, roleName);
+            var um = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext()));
+            var idResult = um.AddToRole(UserId, RoleName);
             return idResult.Succeeded;
         }
 
 
-        public void ClearUserRoles(string userId)
+        public void ClearUserRoles(string UserId)
         {
             var um = new UserManager<AspNetUsers>(
                 new UserStore<AspNetUsers>(new RecycleMeContext()));
-            var user = um.FindById(userId);
+            var user = um.FindById(UserId);
             var currentRoles = new List<IdentityUserRole>();
             currentRoles.AddRange(user.Roles);
             foreach (var role in currentRoles)
             {
-                um.RemoveFromRole(userId, role.Role.Name);
+                um.RemoveFromRole(UserId, role.Role.Name);
             }
         }
     }

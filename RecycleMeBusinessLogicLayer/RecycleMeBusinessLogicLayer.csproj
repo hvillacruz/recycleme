@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUser.cs" />
     <Compile Include="Facebook.cs" />
     <Compile Include="IdentityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

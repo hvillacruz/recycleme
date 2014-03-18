@@ -19,9 +19,9 @@ namespace RecycleMeDataAccessLayer.Migrations
 
 
 
-        protected override void Seed(RecycleMeDataAccessLayer.RecycleMeContext context)
+        protected override void Seed(RecycleMeDataAccessLayer.RecycleMeContext Context)
         {
-           this.AddUserAndRoles();
+            this.AddUserAndRoles();
         }
 
         bool AddUserAndRoles()
@@ -38,44 +38,37 @@ namespace RecycleMeDataAccessLayer.Migrations
 
             var newUser = new AspNetUsers()
             {
-                UserName = "ITMHAV",
-                //FirstName = "John",
-                //LastName = "Atten",
-                //Email = "jatten@typecastexception.com"
+                UserName = "Admin",
             };
 
-            // Be careful here - you  will need to use a password which will 
-            // be valid under the password rules for the application, 
-            // or the process will abort:
-            success = idManager.CreateUser(newUser, "Password1");
+
+            success = idManager.CreateUser(newUser, "Password@123");
             if (!success) return success;
 
             success = idManager.AddUserToRole(newUser.Id, "Admin");
             if (!success) return success;
 
-   
-
             return success;
         }
 
-     
+
     }
 
     public class IdentityManager
     {
-        public bool RoleExists(string name)
+        public bool RoleExists(string Name)
         {
             var rm = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(new RecycleMeContext()));
-            return rm.RoleExists(name);
+            return rm.RoleExists(Name);
         }
 
 
-        public bool CreateRole(string name)
+        public bool CreateRole(string Name)
         {
             var rm = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(new RecycleMeContext()));
-            var idResult = rm.Create(new IdentityRole(name));
+            var idResult = rm.Create(new IdentityRole(Name));
             return idResult.Succeeded;
         }
 
@@ -89,24 +82,24 @@ namespace RecycleMeDataAccessLayer.Migrations
         }
 
 
-        public bool AddUserToRole(string userId, string roleName)
+        public bool AddUserToRole(string UserId, string RoleName)
         {
             var um = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext()));
-            var idResult = um.AddToRole(userId, roleName);
+            var idResult = um.AddToRole(UserId, RoleName);
             return idResult.Succeeded;
         }
 
 
-        public void ClearUserRoles(string userId)
+        public void ClearUserRoles(string UserId)
         {
             var um = new UserManager<AspNetUsers>(
                 new UserStore<AspNetUsers>(new RecycleMeContext()));
-            var user = um.FindById(userId);
+            var user = um.FindById(UserId);
             var currentRoles = new List<IdentityUserRole>();
             currentRoles.AddRange(user.Roles);
             foreach (var role in currentRoles)
             {
-                um.RemoveFromRole(userId, role.Role.Name);
+                um.RemoveFromRole(UserId, role.Role.Name);
             }
         }
     }
