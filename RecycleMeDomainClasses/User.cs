@@ -28,8 +28,8 @@ namespace RecycleMeDomainClasses
         public DateTime? LastActivity { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public ICollection<Review> Reviews { get; set; }
-        public ICollection<UserFollower> UserFollowers { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<UserFollower> UserFollowers { get; set; }
       
     }
 
@@ -50,8 +50,8 @@ namespace RecycleMeDomainClasses
         public bool IsActive { get; set; }
         public DateTime? LastActivity { get; set; }
 
-        public virtual ICollection<Review> Reviews { get; set; }
-        public virtual ICollection<UserFollower> Followers { get; set; }
+        public  ICollection<Review> Reviews { get; set; }
+        public  ICollection<UserFollower> Followers { get; set; }
       
     }
 }
