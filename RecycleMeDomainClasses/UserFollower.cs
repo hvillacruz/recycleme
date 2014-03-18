@@ -13,7 +13,14 @@ namespace RecycleMeDomainClasses
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
-        public virtual User Follower { get; set; }
+
+        [Required]
+        public string FollowerId { get; set; }
+
+        [ForeignKey("FollowerId")]
         public virtual User User { get; set; }
+
+        [ForeignKey("FollowerId")]
+        public virtual User Follower { get; set; }
     }
 }

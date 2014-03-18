@@ -13,7 +13,6 @@ using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
-using RecycleMeOdataWebApi.Common;
 
 namespace RecycleMeOdataWebApi.Controllers
 {
@@ -25,9 +24,9 @@ namespace RecycleMeOdataWebApi.Controllers
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<User>("User");
     builder.EntitySet<Review>("Review"); 
+    builder.EntitySet<UserFollower>("UserFollower"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
-    
     public class UserController : ODataController
     {
         private RecycleMeContext db = new RecycleMeContext();
@@ -54,7 +53,7 @@ namespace RecycleMeOdataWebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (key != user.ExternalId)
+            if (key != user.UserId)
             {
                 return BadRequest();
             }
@@ -96,7 +95,7 @@ namespace RecycleMeOdataWebApi.Controllers
             }
             catch (DbUpdateException)
             {
-                if (UserExists(user.ExternalId))
+                if (UserExists(user.UserId))
                 {
                     return Conflict();
                 }
@@ -164,7 +163,14 @@ namespace RecycleMeOdataWebApi.Controllers
         [Queryable]
         public IQueryable<Review> GetReviews([FromODataUri] string key)
         {
-            return db.Users.Where(m => m.ExternalId == key).SelectMany(m => m.Reviews);
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Reviews);
+        }
+
+        // GET odata/User(5)/UserFollowers
+        [Queryable]
+        public IQueryable<UserFollower> GetUserFollowers([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowers);
         }
 
         protected override void Dispose(bool disposing)
@@ -178,7 +184,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
         private bool UserExists(string key)
         {
-            return db.Users.Count(e => e.ExternalId == key) > 0;
+            return db.Users.Count(e => e.UserId == key) > 0;
         }
     }
 }

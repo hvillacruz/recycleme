@@ -46,11 +46,10 @@ namespace RecycleMeDataAccessLayer
         }
 
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<IdentityUser>().Ignore(t => t.Claims);
-        //    base.OnModelCreating(modelBuilder);
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
 
         public DbSet<User> Users { get; set; }
 
@@ -59,6 +58,7 @@ namespace RecycleMeDataAccessLayer
         public DbSet<Item> Items { get; set; }
 
         public DbSet<UserFollower> UserFollower { get; set; }
-       
+
+
     }
 }

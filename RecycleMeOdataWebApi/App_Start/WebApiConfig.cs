@@ -36,6 +36,7 @@ namespace RecycleMeOdataWebApi
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<User>("User");
             builder.EntitySet<Review>("Review");
+            builder.EntitySet<UserFollower>("UserFollower");
             config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
 
             // To disable tracing in your application, please comment out or remove the following line of code
