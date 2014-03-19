@@ -71,6 +71,7 @@
     <Compile Include="User.cs" />
     <Compile Include="AspNetUsers.cs" />
     <Compile Include="UserFollower.cs" />
+    <Compile Include="UserFollowing.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

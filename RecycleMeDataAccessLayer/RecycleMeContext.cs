@@ -59,6 +59,8 @@ namespace RecycleMeDataAccessLayer
 
         public DbSet<UserFollower> UserFollower { get; set; }
 
+        public DbSet<UserFollowing> UserFollowing { get; set; }
+
 
     }
 }

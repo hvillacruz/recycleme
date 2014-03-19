@@ -30,6 +30,7 @@ namespace RecycleMeDomainClasses
 
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<UserFollower> UserFollowers { get; set; }
+        public virtual ICollection<UserFollowing> UserFollowing { get; set; }
       
     }
 

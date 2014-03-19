@@ -22,44 +22,42 @@ namespace RecycleMeOdataWebApi.Controllers
     using System.Web.Http.OData.Builder;
     using RecycleMeDomainClasses;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<User>("User");
-    builder.EntitySet<Review>("Review"); 
-    builder.EntitySet<UserFollower>("UserFollower"); 
-    builder.EntitySet<UserFollowing>("UserFollowing"); 
+    builder.EntitySet<UserFollower>("UserFollower");
+    builder.EntitySet<User>("Users"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class UserController : ODataController
+    public class UserFollowerController : ODataController
     {
         private RecycleMeContext db = new RecycleMeContext();
 
-        // GET odata/User
+        // GET odata/UserFollower
         [Queryable]
-        public IQueryable<User> GetUser()
+        public IQueryable<UserFollower> GetUserFollower()
         {
-            return db.Users;
+            return db.UserFollower;
         }
 
-        // GET odata/User(5)
+        // GET odata/UserFollower(5)
         [Queryable]
-        public SingleResult<User> GetUser([FromODataUri] string key)
+        public SingleResult<UserFollower> GetUserFollower([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.Users.Where(user => user.UserId == key));
+            return SingleResult.Create(db.UserFollower.Where(userfollower => userfollower.Id == key));
         }
 
-        // PUT odata/User(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] string key, User user)
+        // PUT odata/UserFollower(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, UserFollower userfollower)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (key != user.UserId)
+            if (key != userfollower.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(userfollower).State = EntityState.Modified;
 
             try
             {
@@ -67,7 +65,7 @@ namespace RecycleMeOdataWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!UserFollowerExists(key))
                 {
                     return NotFound();
                 }
@@ -77,54 +75,39 @@ namespace RecycleMeOdataWebApi.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(userfollower);
         }
 
-        // POST odata/User
-        public async Task<IHttpActionResult> Post(User user)
+        // POST odata/UserFollower
+        public async Task<IHttpActionResult> Post(UserFollower userfollower)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.UserFollower.Add(userfollower);
+            await db.SaveChangesAsync();
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (UserExists(user.UserId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return Created(user);
+            return Created(userfollower);
         }
 
-        // PATCH odata/User(5)
+        // PATCH odata/UserFollower(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] string key, Delta<User> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<UserFollower> patch)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            UserFollower userfollower = await db.UserFollower.FindAsync(key);
+            if (userfollower == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(user);
+            patch.Patch(userfollower);
 
             try
             {
@@ -132,7 +115,7 @@ namespace RecycleMeOdataWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(key))
+                if (!UserFollowerExists(key))
                 {
                     return NotFound();
                 }
@@ -142,43 +125,36 @@ namespace RecycleMeOdataWebApi.Controllers
                 }
             }
 
-            return Updated(user);
+            return Updated(userfollower);
         }
 
-        // DELETE odata/User(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] string key)
+        // DELETE odata/UserFollower(5)
+        public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
         {
-            User user = await db.Users.FindAsync(key);
-            if (user == null)
+            UserFollower userfollower = await db.UserFollower.FindAsync(key);
+            if (userfollower == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.UserFollower.Remove(userfollower);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET odata/User(5)/Reviews
+        // GET odata/UserFollower(5)/Follower
         [Queryable]
-        public IQueryable<Review> GetReviews([FromODataUri] string key)
+        public SingleResult<User> GetFollower([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Reviews);
+            return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.Follower));
         }
 
-        // GET odata/User(5)/UserFollowers
+        // GET odata/UserFollower(5)/User
         [Queryable]
-        public IQueryable<UserFollower> GetUserFollowers([FromODataUri] string key)
+        public SingleResult<User> GetUser([FromODataUri] Guid key)
         {
-            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowers);
-        }
-
-        // GET odata/User(5)/UserFollowing
-        [Queryable]
-        public IQueryable<UserFollowing> GetUserFollowing([FromODataUri] string key)
-        {
-            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowing);
+            return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.User));
         }
 
         protected override void Dispose(bool disposing)
@@ -190,9 +166,9 @@ namespace RecycleMeOdataWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(string key)
+        private bool UserFollowerExists(Guid key)
         {
-            return db.Users.Count(e => e.UserId == key) > 0;
+            return db.UserFollower.Count(e => e.Id == key) > 0;
         }
     }
 }
