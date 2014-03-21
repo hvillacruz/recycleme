@@ -1,28 +1,18 @@
-//var UserId = null;
+var ProfileBarViewModel = function () {
 
 
-//$(document).ready(function () {
-//    InitializeProfileBarViewModel();
-//});
+    this.ProfileBar = function () {
+        var self = this;
+        self.ProfileBar = ko.observableArray();
+        self.ProfileBar(global.Profile.slice());
 
+        ko.utils.arrayForEach(self.ProfileBar, function (feature) {
+            consol.write(feature);
+        });
+        ko.applyBindings(self, document.getElementById("ProfileBarDiv"));
+        
+    }
 
-//function InitializeProfileBarViewModel() {
-//    new ProfileBarViewModel();
-//}
-
-//function ProfileBarViewModel() {
-//    var self = this;
-//    self.Profile = ko.observableArray();
-
-//    ODataNinja.Read(ODataApi.ProfileBar + "('" +  UserId + "')", function (data) {
-//        self.Profile = data;
-//        ko.applyBindings(self);
-//    });
-
-
-//}
-
-//function SetId(id) {
-//    UserId = id;
-//}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+}
+var profileBar = new ProfileBarViewModel();
+profileBar.ProfileBar();

@@ -285,6 +285,7 @@
     <Content Include="Scripts\Main\Global.js" />
     <Content Include="Scripts\Main\LoginPartial.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
     <Content Include="Scripts\Profile\SideBar.js" />
     <Content Include="Scripts\Profile\TimeLine.js" />

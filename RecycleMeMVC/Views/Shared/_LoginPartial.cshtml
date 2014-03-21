@@ -52,9 +52,11 @@
 
     @Scripts.Render("~/bundles/header")
     <script>
+        alert('global');
         var global = new GlobalViewModel();
         global.User("@User.Identity.GetUserId()", "@User.Identity.GetUserName()")
         global.Profile();
+        //global.prototype = global;
     </script>
 }
 else
