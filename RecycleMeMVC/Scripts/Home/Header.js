@@ -1,6 +1,10 @@
-﻿
-$(".logout").click(function () {
-    $("#logoutForm").submit();
+﻿$(document).ready(function () {
+   
+    $("#logoutBtn").click(function () {
+        alert('ready');
+        $("#logoutForm").submit();
+    });
+
 });
 
 

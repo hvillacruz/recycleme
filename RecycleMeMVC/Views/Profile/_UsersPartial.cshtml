@@ -10,40 +10,24 @@
 </div>
 <div class="users-divider"></div>
 <div class="row users-box">
-    <div id="followersDiv" class="col-xs-6" data-bind="foreach: Users">
-        <div class="users-div ">
-            <div class="col-xs-5 left users-item users-item-left radius-round-bottom-left ">
-                <div class="users-face">
-                    <div class="img-circle">
-                        <img class="img-circle" data-bind="attr:{src: Avatar}" src="/Content/Assets/images/avatar.jpg" />
+    <div id="followersDiv" data-bind="foreach: Users">
+        <div class="col-xs-6">
+            <div class="users-div ">
+                <div class="col-xs-5 left users-item users-item-left radius-round-bottom-left ">
+                    <div class="users-face">
+                        <div class="img-circle">
+                            <img class="img-circle" data-bind="attr:{src: User.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-7 users-item  users-item-right radius-round-bottom-right">
-                <span class="users-div-text-top" data-bind="text: FirstName"></span>
-                <div class="hr-2"></div>
-                <span class="users-div-text-bottom">1230+ Followers</span>
+                <div class="col-xs-7 users-item  users-item-right radius-round-bottom-right">
+                    <span class="users-div-text-top" data-bind="text: User.FirstName"></span>
+                    <div class="hr-2"></div>
+                    <span class="users-div-text-bottom">1230+ Followers</span>
+                </div>
             </div>
         </div>
     </div>
-
-    @*<div class="col-xs-6">
-        <div class="users-div ">
-
-            <div class="col-xs-5 left users-item users-item-left radius-round-bottom-left ">
-                <div class="users-face">
-                    <div class="img-circle">
-                        <img class="img-circle" data-bind="attr:{src: Profile.Avatar}" src="/Content/Assets/images/avatar.jpg" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-7 users-item users-item-right radius-round-bottom-right">
-                <span class="users-div-text-top">MANUEL</span>
-                <div class="hr-2"></div>
-                <span class="users-div-text-bottom">1230+ Followers</span>
-            </div>
-        </div>
-    </div>*@
 
 
 
@@ -61,42 +45,26 @@
     </div>
 </div>
 <div class="users-divider"></div>
-@*<div class="row users-box">
-    <div class="col-xs-6">
-        <div class="users-div ">
-
-            <div class="col-xs-5 left users-item users-item-left radius-round-bottom-left ">
-                <div class="users-face">
-                    <div class="img-circle">
-                        <img class="img-circle" data-bind="attr:{src: Profile.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+<div class="row users-box">
+    <div id="followersDiv" data-bind="foreach: Users">
+        <div class="col-xs-6">
+            <div class="users-div ">
+                <div class="col-xs-5 left users-item users-item-left radius-round-bottom-left ">
+                    <div class="users-face">
+                        <div class="img-circle">
+                            <img class="img-circle" data-bind="attr:{src: User.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-7 users-item  users-item-right radius-round-bottom-right">
-                <span class="users-div-text-top">MANUEL</span>
-                <div class="hr-2"></div>
-                <span class="users-div-text-bottom">1230+ Followers</span>
+                <div class="col-xs-7 users-item  users-item-right radius-round-bottom-right">
+                    <span class="users-div-text-top" data-bind="text: User.FirstName"></span>
+                    <div class="hr-2"></div>
+                    <span class="users-div-text-bottom">1230+ Followers</span>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="col-xs-6">
-        <div class="users-div ">
-
-            <div class="col-xs-5 left users-item users-item-left radius-round-bottom-left ">
-                <div class="users-face">
-                    <div class="img-circle">
-                        <img class="img-circle" data-bind="attr:{src: Profile.Avatar}" src="/Content/Assets/images/avatar.jpg" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-7 users-item users-item-right radius-round-bottom-right">
-                <span class="users-div-text-top">MANUEL</span>
-                <div class="hr-2"></div>
-                <span class="users-div-text-bottom">1230+ Followers</span>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 <script src="@Url.Content("~/Scripts/Profile/Users.js")" type="text/javascript"></script>

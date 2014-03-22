@@ -1,16 +1,15 @@
-
 <link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/ProfileBar.css")" />
-<div id="ProfileBarDiv">
+<div id="profileBarDiv" data-bind="foreach: Bar">
     <div class="face">
         <div class="img-circle">
-            <img class="img-circle" data-bind="attr:{src: ProfileBar.Avatar}" />
+            <img class="img-circle" data-bind="attr:{src: Avatar}" />
         </div>
     </div>
     <div class="box radius-round-bottom">
         <div class="box-name">
             <div class="row">
                 <div class="col-xs-4"></div>
-                <div class="col-xs-8 margin-5"><span data-bind="text: ProfileBar.FirstName"></span></div>
+                <div class="col-xs-8 margin-5"><span data-bind="text: FirstName"></span></div>
             </div>
         </div>
         <div class="stat-stat">
