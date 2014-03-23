@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RecycleMeDomainClasses
 {
-    public class UserFollowing
+    public class UserFollowing : ILogInfo
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -22,5 +22,7 @@ namespace RecycleMeDomainClasses
 
         [ForeignKey("FollowingId")]
         public virtual User Following { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
     }
 }

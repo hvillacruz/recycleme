@@ -8,21 +8,27 @@ using System.Threading.Tasks;
 
 namespace RecycleMeDomainClasses
 {
-    public class UserFollower : ILogInfo
+    public class UserComment : ILogInfo
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         [Required]
-        public string FollowerId { get; set; }
+        public string Comment { get; set; }
 
-        [ForeignKey("FollowerId")]
+        [Required]
+        public string UserCommenterId { get; set; }
+
+        [ForeignKey("UserCommenterId")]
         public virtual User User { get; set; }
 
-        [ForeignKey("FollowerId")]
-        public virtual User Follower { get; set; }
+        [ForeignKey("UserCommenterId")]
+        public virtual User Commenter { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ModifiedDate { get; set; }
+
+
     }
 }

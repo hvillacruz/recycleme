@@ -23,7 +23,7 @@ namespace RecycleMeOdataWebApi.Controllers
     using RecycleMeDomainClasses;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<User>("User");
-    builder.EntitySet<Review>("Review"); 
+    builder.EntitySet<UserComment>("UserComment"); 
     builder.EntitySet<UserFollower>("UserFollower"); 
     builder.EntitySet<UserFollowing>("UserFollowing"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
@@ -160,11 +160,11 @@ namespace RecycleMeOdataWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET odata/User(5)/Reviews
+        // GET odata/User(5)/UserComments
         [Queryable]
-        public IQueryable<Review> GetReviews([FromODataUri] string key)
+        public IQueryable<UserComment> GetUserComments([FromODataUri] string key)
         {
-            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Reviews);
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserComments);
         }
 
         // GET odata/User(5)/UserFollowers
