@@ -4,7 +4,7 @@ var ProfileBarViewModel = function () {
     this.Bar = ko.observableArray();
     this.ProfileBar = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + "?$expand=UserFollowers,UserComments,UserFollowing", "GET", {}, function (data) {
             self.Bar(data);
         });
 
