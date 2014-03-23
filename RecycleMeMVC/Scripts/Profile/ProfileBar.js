@@ -4,17 +4,9 @@ var ProfileBarViewModel = function () {
     this.Bar = ko.observableArray();
     this.ProfileBar = function () {
 
-        if (BrowserDetect.browser != "Safari") {
-            ODataNinja.Read(ODataApi.ProfileBar + "('" + global.User.UserId() + "')", function (data) {
-                self.Bar(data);
-            });
-        } else {
-            AjaxNinja.Invoke(ODataApi.ProfileBar + "('" + global.User.UserId() + "')", "GET", {}, function (data) {
-                self.Bar(data);
-            });
-
-        }
-
+        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')", "GET", {}, function (data) {
+            self.Bar(data);
+        });
 
     }
 

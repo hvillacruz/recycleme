@@ -125,6 +125,7 @@
     <Compile Include="Common\AllowCrossSiteJsonAttribute.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserFollowerController.cs" />
+    <Compile Include="Controllers\UserFollowingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
