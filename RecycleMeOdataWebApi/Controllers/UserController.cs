@@ -13,6 +13,7 @@ using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
+using System.Web.Http.OData.Query;
 
 namespace RecycleMeOdataWebApi.Controllers
 {
@@ -33,7 +34,7 @@ namespace RecycleMeOdataWebApi.Controllers
         private RecycleMeContext db = new RecycleMeContext();
 
         // GET odata/User
-        [Queryable]
+         [Queryable(AllowedQueryOptions = AllowedQueryOptions.All)]
         public IQueryable<User> GetUser()
         {
             return db.Users;
@@ -83,6 +84,7 @@ namespace RecycleMeOdataWebApi.Controllers
         // POST odata/User
         public async Task<IHttpActionResult> Post(User user)
         {
+            user.UserId = Guid.NewGuid().ToString();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -94,7 +96,7 @@ namespace RecycleMeOdataWebApi.Controllers
             {
                 await db.SaveChangesAsync();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
                 if (UserExists(user.UserId))
                 {

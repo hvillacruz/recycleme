@@ -77,19 +77,44 @@ namespace RecycleMeOdataWebApi.Controllers
 
             return Updated(userfollower);
         }
+        [HttpPost]
+        public IHttpActionResult CallOnUserFollower([FromODataUri] int key, UserFollower userfollower)
+        {
+            var createdOrder = db.UserFollower.Add(userfollower);
+
+
+            return Created(createdOrder);
+        }
+
 
         // POST odata/UserFollower
         public async Task<IHttpActionResult> Post(UserFollower userfollower)
         {
+
+            var follower = db.Users.Where(m => m.UserId == userfollower.FollowerId).FirstOrDefault();
+            var user = db.Users.Where(m => m.UserId == userfollower.User.UserId).FirstOrDefault();
+
+
+ 
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            try
+            {
+               
+                db.UserFollower.Add(userfollower);
+                
+                await db.SaveChangesAsync();
+                return Created(userfollower);
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.Write(ex.Message);
+                return null;
+            }
 
-            db.UserFollower.Add(userfollower);
-            await db.SaveChangesAsync();
-
-            return Created(userfollower);
         }
 
         // PATCH odata/UserFollower(5)

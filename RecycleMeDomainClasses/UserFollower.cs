@@ -18,10 +18,12 @@ namespace RecycleMeDomainClasses
         public string FollowerId { get; set; }
 
         [ForeignKey("FollowerId")]
-        public virtual User User { get; set; }
+        public virtual User Follower { get; set; }
 
         [ForeignKey("FollowerId")]
-        public virtual User Follower { get; set; }
+        public virtual User User { get; set; }
+
+
 
         public DateTime ModifiedDate { get; set; }
     }
