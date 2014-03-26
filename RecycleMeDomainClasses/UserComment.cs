@@ -10,25 +10,22 @@ namespace RecycleMeDomainClasses
 {
     public class UserComment : ILogInfo
     {
-        [Key]
+        [Key, Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
-        public string Comment { get; set; }
+        [Column(Order = 1)]
+        public string CommenterId { get; set; }
 
-        [Required]
-        public string UserCommenterId { get; set; }
+        [Column(Order = 2)]
+        public string CommentedUserId { get; set; }
 
-        [ForeignKey("UserCommenterId")]
-        public virtual User User { get; set; }
-
-        [ForeignKey("UserCommenterId")]
         public virtual User Commenter { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public virtual User CommentedUser { get; set; }
+
         public DateTime ModifiedDate { get; set; }
 
-
+        public string Comment { get; set; }
     }
 }

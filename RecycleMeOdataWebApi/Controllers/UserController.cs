@@ -13,7 +13,6 @@ using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
-using System.Web.Http.OData.Query;
 
 namespace RecycleMeOdataWebApi.Controllers
 {
@@ -34,7 +33,7 @@ namespace RecycleMeOdataWebApi.Controllers
         private RecycleMeContext db = new RecycleMeContext();
 
         // GET odata/User
-         [Queryable(AllowedQueryOptions = AllowedQueryOptions.All)]
+        [Queryable]
         public IQueryable<User> GetUser()
         {
             return db.Users;
@@ -84,7 +83,6 @@ namespace RecycleMeOdataWebApi.Controllers
         // POST odata/User
         public async Task<IHttpActionResult> Post(User user)
         {
-            user.UserId = Guid.NewGuid().ToString();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -96,7 +94,7 @@ namespace RecycleMeOdataWebApi.Controllers
             {
                 await db.SaveChangesAsync();
             }
-            catch (DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 if (UserExists(user.UserId))
                 {
@@ -162,11 +160,18 @@ namespace RecycleMeOdataWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET odata/User(5)/UserComments
+        // GET odata/User(5)/UserCommented
         [Queryable]
-        public IQueryable<UserComment> GetUserComments([FromODataUri] string key)
+        public IQueryable<UserComment> GetUserCommented([FromODataUri] string key)
         {
-            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserComments);
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserCommented);
+        }
+
+        // GET odata/User(5)/UserCommenter
+        [Queryable]
+        public IQueryable<UserComment> GetUserCommenter([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserCommenter);
         }
 
         // GET odata/User(5)/UserFollowers
@@ -176,11 +181,25 @@ namespace RecycleMeOdataWebApi.Controllers
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowers);
         }
 
+        // GET odata/User(5)/UserFollowerUsers
+        [Queryable]
+        public IQueryable<UserFollower> GetUserFollowerUsers([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowerUsers);
+        }
+
         // GET odata/User(5)/UserFollowing
         [Queryable]
         public IQueryable<UserFollowing> GetUserFollowing([FromODataUri] string key)
         {
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowing);
+        }
+
+        // GET odata/User(5)/UserFollowingUsers
+        [Queryable]
+        public IQueryable<UserFollowing> GetUserFollowingUsers([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowingUsers);
         }
 
         protected override void Dispose(bool disposing)

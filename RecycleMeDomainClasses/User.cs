@@ -29,9 +29,13 @@ namespace RecycleMeDomainClasses
         public DateTime ModifiedDate { get; set; }
 
 
-        public virtual ICollection<UserComment> UserComments { get; set; }
+        public virtual ICollection<UserComment> UserCommenter { get; set; }
+        public virtual ICollection<UserComment> UserCommented { get; set; }
         public virtual ICollection<UserFollower> UserFollowers { get; set; }
+        public virtual ICollection<UserFollower> UserFollowerUsers { get; set; }
         public virtual ICollection<UserFollowing> UserFollowing { get; set; }
+        public virtual ICollection<UserFollowing> UserFollowingUsers { get; set; }
+
 
     }
 

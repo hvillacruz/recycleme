@@ -48,7 +48,44 @@ namespace RecycleMeDataAccessLayer
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<UserComment>()
+           .HasOptional(b => b.Commenter)
+           .WithMany(a => a.UserCommenter)
+           .HasForeignKey(k => k.CommenterId)
+           .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserComment>()
+            .HasOptional(b => b.CommentedUser)
+            .WithMany(a => a.UserCommented)
+            .HasForeignKey(k => k.CommentedUserId)
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserFollower>()
+            .HasOptional(b => b.Follower)
+            .WithMany(a => a.UserFollowers)
+            .HasForeignKey(k => k.FollowerId)
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserFollower>()
+            .HasOptional(b => b.FollowedUser)
+            .WithMany(a => a.UserFollowerUsers)
+            .HasForeignKey(k => k.FollowedUserId)
+            .WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<UserFollowing>()
+            .HasOptional(b => b.Follower)
+            .WithMany(a => a.UserFollowing)
+            .HasForeignKey(k => k.FollowedUserId)
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserFollowing>()
+           .HasOptional(b => b.FollowedUser)
+           .WithMany(a => a.UserFollowingUsers)
+           .HasForeignKey(k => k.FollowedUserId)
+           .WillCascadeOnDelete(false);
+
         }
 
         public DbSet<User> Users { get; set; }

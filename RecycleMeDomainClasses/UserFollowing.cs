@@ -10,19 +10,21 @@ namespace RecycleMeDomainClasses
 {
     public class UserFollowing : ILogInfo
     {
-        [Key]
+        [Key, Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        [Required]
-        public string FollowingId { get; set; }
+        [Column(Order = 1)]
+        public string FollowerId { get; set; }
 
-        [ForeignKey("FollowingId")]
-        public virtual User User { get; set; }
+        [Column(Order = 2)]
+        public string FollowedUserId { get; set; }
 
-        [ForeignKey("FollowingId")]
-        public virtual User Following { get; set; }
+        public virtual User Follower { get; set; }
+
+        public virtual User FollowedUser { get; set; }
 
         public DateTime ModifiedDate { get; set; }
+    
     }
 }

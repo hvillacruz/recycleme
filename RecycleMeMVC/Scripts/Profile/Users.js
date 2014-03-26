@@ -4,7 +4,7 @@ var UsersViewModel = function () {
     this.Following = ko.observableArray();
     this.UserFollower = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + "/UserFollowers?$expand=User", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + "/UserFollowers?$expand=FollowedUser", "GET", {}, function (data) {
             if (data.value.length != 0)
                 self.Followers(data.value);
         });
@@ -12,10 +12,10 @@ var UsersViewModel = function () {
     },
     this.UserFollowing = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + "/UserFollowing?$expand=User", "GET", {}, function (data) {
-            if (data.value.length != 0)
-                self.Following(data.value);
-        });
+        //AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + "/UserFollowing?$expand=FollowedUser", "GET", {}, function (data) {
+        //    if (data.value.length != 0)
+        //        self.Following(data.value);
+        //});
 
     }
 

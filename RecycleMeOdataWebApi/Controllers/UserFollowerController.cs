@@ -77,44 +77,19 @@ namespace RecycleMeOdataWebApi.Controllers
 
             return Updated(userfollower);
         }
-        [HttpPost]
-        public IHttpActionResult CallOnUserFollower([FromODataUri] int key, UserFollower userfollower)
-        {
-            var createdOrder = db.UserFollower.Add(userfollower);
-
-
-            return Created(createdOrder);
-        }
-
 
         // POST odata/UserFollower
         public async Task<IHttpActionResult> Post(UserFollower userfollower)
         {
-
-            var follower = db.Users.Where(m => m.UserId == userfollower.FollowerId).FirstOrDefault();
-            var user = db.Users.Where(m => m.UserId == userfollower.User.UserId).FirstOrDefault();
-
-
- 
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            try
-            {
-               
-                db.UserFollower.Add(userfollower);
-                
-                await db.SaveChangesAsync();
-                return Created(userfollower);
-            }
-            catch (DbUpdateException ex)
-            {
-                Console.Write(ex.Message);
-                return null;
-            }
 
+            db.UserFollower.Add(userfollower);
+            await db.SaveChangesAsync();
+
+            return Created(userfollower);
         }
 
         // PATCH odata/UserFollower(5)
@@ -168,18 +143,18 @@ namespace RecycleMeOdataWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // GET odata/UserFollower(5)/FollowedUser
+        [Queryable]
+        public SingleResult<User> GetFollowedUser([FromODataUri] Guid key)
+        {
+            return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.FollowedUser));
+        }
+
         // GET odata/UserFollower(5)/Follower
         [Queryable]
         public SingleResult<User> GetFollower([FromODataUri] Guid key)
         {
             return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.Follower));
-        }
-
-        // GET odata/UserFollower(5)/User
-        [Queryable]
-        public SingleResult<User> GetUser([FromODataUri] Guid key)
-        {
-            return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.User));
         }
 
         protected override void Dispose(bool disposing)
