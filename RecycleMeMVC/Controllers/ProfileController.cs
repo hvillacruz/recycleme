@@ -7,14 +7,19 @@ using Microsoft.AspNet.Identity;
 using RecycleMeMVC.Models;
 namespace RecycleMeMVC.Controllers
 {
+    [RoutePrefix("Profile")]
     public class ProfileController : Controller
     {
         //
         // GET: /Profile/
-        public ActionResult Dashboard()
+        [Route("Dashboard/{id?}")]
+        public ActionResult Dashboard(string id)
         {
-            ViewBag.UserId = User.Identity.GetUserId();
+
+            ViewBag.UserId = id == string.Empty ? User.Identity.GetUserId() : id;
             return View();
         }
+
+
     }
 }
