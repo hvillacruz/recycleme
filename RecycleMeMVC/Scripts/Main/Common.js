@@ -21,6 +21,7 @@ var AjaxNinja = {
             type: method,
             url: url,
             dataType: "json",
+            contentType: "application/json",
             data: data,
             processData: true,
             success: function (data) {
