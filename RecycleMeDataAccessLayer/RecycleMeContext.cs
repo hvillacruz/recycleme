@@ -75,15 +75,15 @@ namespace RecycleMeDataAccessLayer
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<UserFollowing>()
-            .HasOptional(b => b.Follower)
+            .HasOptional(b => b.Following)
             .WithMany(a => a.UserFollowing)
-            .HasForeignKey(k => k.FollowedUserId)
+            .HasForeignKey(k => k.FollowingId)
             .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserFollowing>()
-           .HasOptional(b => b.FollowedUser)
+           .HasOptional(b => b.FollowingUser)
            .WithMany(a => a.UserFollowingUsers)
-           .HasForeignKey(k => k.FollowedUserId)
+           .HasForeignKey(k => k.FollowingUserId)
            .WillCascadeOnDelete(false);
 
         }

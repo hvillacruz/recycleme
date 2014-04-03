@@ -16,7 +16,7 @@ namespace RecycleMeMVC.Controllers
         public ActionResult Dashboard(string id)
         {
 
-            ViewBag.UserId = id == string.Empty ? User.Identity.GetUserId() : id;
+            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
             return View();
         }
 

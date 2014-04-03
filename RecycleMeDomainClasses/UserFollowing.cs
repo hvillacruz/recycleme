@@ -15,14 +15,14 @@ namespace RecycleMeDomainClasses
         public Guid Id { get; set; }
 
         [Column(Order = 1)]
-        public string FollowerId { get; set; }
+        public string FollowingId { get; set; }
 
         [Column(Order = 2)]
-        public string FollowedUserId { get; set; }
+        public string FollowingUserId { get; set; }
 
-        public virtual User Follower { get; set; }
+        public virtual User Following { get; set; }
 
-        public virtual User FollowedUser { get; set; }
+        public virtual User FollowingUser { get; set; }
 
         public DateTime ModifiedDate { get; set; }
     

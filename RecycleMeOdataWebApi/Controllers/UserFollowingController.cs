@@ -143,18 +143,18 @@ namespace RecycleMeOdataWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET odata/UserFollowing(5)/FollowedUser
+        // GET odata/UserFollowing(5)/Following
         [Queryable]
-        public SingleResult<User> GetFollowedUser([FromODataUri] Guid key)
+        public SingleResult<User> GetFollowing([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.UserFollowing.Where(m => m.Id == key).Select(m => m.FollowedUser));
+            return SingleResult.Create(db.UserFollowing.Where(m => m.Id == key).Select(m => m.Following));
         }
 
-        // GET odata/UserFollowing(5)/Follower
+        // GET odata/UserFollowing(5)/FollowingUser
         [Queryable]
-        public SingleResult<User> GetFollower([FromODataUri] Guid key)
+        public SingleResult<User> GetFollowingUser([FromODataUri] Guid key)
         {
-            return SingleResult.Create(db.UserFollowing.Where(m => m.Id == key).Select(m => m.Follower));
+            return SingleResult.Create(db.UserFollowing.Where(m => m.Id == key).Select(m => m.FollowingUser));
         }
 
         protected override void Dispose(bool disposing)
