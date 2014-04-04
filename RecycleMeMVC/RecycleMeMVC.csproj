@@ -245,6 +245,7 @@
     <Content Include="Content\Styles\Profile\ProfileBar.css" />
     <Content Include="Content\Styles\Profile\Statistics.css" />
     <Content Include="Content\Styles\Profile\Users.css" />
+    <Content Include="Content\Styles\Profile\Wall.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -293,6 +294,7 @@
     <None Include="Properties\PublishProfiles\RecycleMe.pubxml" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\Profile\Wall.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -330,6 +332,7 @@
     <Content Include="Views\Account\FacebookInfo.cshtml" />
     <Content Include="Views\Profile\_StatisticsPartial.cshtml" />
     <Content Include="Views\Profile\_UsersPartial.cshtml" />
+    <Content Include="Views\Profile\_WallPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
