@@ -337,6 +337,7 @@
     <Content Include="Views\Profile\_UsersPartial.cshtml" />
     <Content Include="Views\Profile\_WallPartial.cshtml" />
     <Content Include="Views\Profile\_WallPartial2.cshtml" />
+    <Content Include="Views\Profile\_UserProfilePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

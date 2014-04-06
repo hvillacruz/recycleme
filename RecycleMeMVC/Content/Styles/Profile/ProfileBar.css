@@ -23,7 +23,8 @@
 
 .box {
     height: 128px;
-    width: 256px;
+    /*width: 256px;*/
+    width:100%;
     background: #ffffff;
 }
 

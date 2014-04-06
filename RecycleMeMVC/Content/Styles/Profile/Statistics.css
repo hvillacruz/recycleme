@@ -1,6 +1,7 @@
 ﻿.stat-div{
     height:190px;
-    width:256px;
+    /*width:256px;*/
+     width:100%;
     background-color:#ffffff;
 }
 
@@ -13,4 +14,9 @@
 }
 .stat-percentage{
     font-size:32px;
+}
+
+.stat-img{
+    width:100%;
+    height:108px;
 }
