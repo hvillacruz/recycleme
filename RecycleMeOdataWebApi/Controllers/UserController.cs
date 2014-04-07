@@ -23,6 +23,7 @@ namespace RecycleMeOdataWebApi.Controllers
     using RecycleMeDomainClasses;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<User>("User");
+    builder.EntitySet<Item>("Item"); 
     builder.EntitySet<UserComment>("UserComment"); 
     builder.EntitySet<UserFollower>("UserFollower"); 
     builder.EntitySet<UserFollowing>("UserFollowing"); 
@@ -158,6 +159,13 @@ namespace RecycleMeOdataWebApi.Controllers
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // GET odata/User(5)/Items
+        [Queryable]
+        public IQueryable<Item> GetItems([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
         }
 
         // GET odata/User(5)/UserCommented

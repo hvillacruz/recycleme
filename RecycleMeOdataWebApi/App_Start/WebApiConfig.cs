@@ -35,6 +35,7 @@ namespace RecycleMeOdataWebApi
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<User>("User");
+            builder.EntitySet<Item>("Item"); 
             builder.EntitySet<UserComment>("UserComment"); 
             builder.EntitySet<UserFollower>("UserFollower");
             builder.EntitySet<UserFollowing>("UserFollowing");

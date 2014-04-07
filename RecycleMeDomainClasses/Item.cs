@@ -10,11 +10,18 @@ namespace RecycleMeDomainClasses
 {
     public class Item : ILogInfo
     {
-        [Key]
+        [Key, Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ItemId { get; set; }
-        public string ItemName { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string ImagePath { get; set; }
+        public string Description { get; set; }
+        public bool IsDeleted { get; set; }
+        [Column(Order = 1)]
         public DateTime ModifiedDate { get; set; }
+        public string OwnerId { get; set; }
+
+        public virtual User Owner { get; set; }
 
     }
 }

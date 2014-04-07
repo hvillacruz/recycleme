@@ -13,7 +13,7 @@ namespace RecycleMeDataAccessLayer
 
     public class RecycleMeContext : IdentityDbContext<AspNetUsers>
     {
-        public RecycleMeContext() : base("RecycleMeContext") { }
+        public RecycleMeContext() : base("RecycleMeContext", throwIfV1Schema: false) { }
 
         public override int SaveChanges()
         {
@@ -85,6 +85,13 @@ namespace RecycleMeDataAccessLayer
            .WithMany(a => a.UserFollowingUsers)
            .HasForeignKey(k => k.FollowingUserId)
            .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<Item>()
+            .HasOptional(b => b.Owner)
+            .WithMany(a => a.Items)
+            .HasForeignKey(k => k.OwnerId)
+            .WillCascadeOnDelete(false);
 
         }
 

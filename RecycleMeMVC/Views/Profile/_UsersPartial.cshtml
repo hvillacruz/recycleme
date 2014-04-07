@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Users.css")" />
 <div id="usersDiv">
-    <div class="circleProfile">
+    <div class="circleProfile" >
         <div class="users-info-text">
             <div class="col-xs-6 users-item-left ">
                 <span class="users-followers">Followers</span>
@@ -11,25 +11,19 @@
         </div>
         <div class="users-divider"></div>
         <div class="containers">
-            <div class="profile">
+            <div class="profile" data-bind="foreach: Followers">
                 <div class="pro col-sm-6">
                     <div class="pic">
-                        <div class="img"><img src="/Content/Assets/Images/avatar.jpg" /></div>
-                        <i class="icon-plus"></i>
-                        <i class="icon-ok"></i>
+                        <div class="img"><img data-bind="attr:{src: Follower.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                  
+                        <i class="icon-plus"><span data-bind="text: Follower.FirstName"></span></i>
+                    
                     </div>
                 </div>
-                <div class="pro col-sm-6">
-                    <div class="pic">
-                        <div class="img"><img src="/Content/Assets/Images/avatar.jpg" /></div>
-                        <i class="icon-plus"></i>
-                        <i class="icon-ok"></i>
-                    </div>
-                </div>
-
+           
             </div>
         </div>
-        
+
     </div>
     <div class="divider"></div>
   
@@ -45,19 +39,13 @@
         </div>
         <div class="users-divider "></div>
         <div class="containers">
-            <div class="profile">
+            <div class="profile" data-bind="foreach: Following">
                 <div class="pro col-sm-6">
                     <div class="pic">
-                        <div class="img"><img src="/Content/Assets/Images/avatar.jpg" /></div>
-                        <i class="icon-plus"></i>
-                        <i class="icon-ok"></i>
-                    </div>
-                </div>
-                <div class="pro col-sm-6">
-                    <div class="pic">
-                        <div class="img"><img src="/Content/Assets/Images/avatar.jpg" /></div>
-                        <i class="icon-plus"></i>
-                        <i class="icon-ok"></i>
+                        <div class="img"><img data-bind="attr:{src: Following.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+
+                        <i class="icon-plus"><span data-bind="text: Following.FirstName"></span></i>
+
                     </div>
                 </div>
             </div>

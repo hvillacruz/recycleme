@@ -99,7 +99,7 @@ namespace RecycleMeDataAccessLayer.Migrations
             currentRoles.AddRange(user.Roles);
             foreach (var role in currentRoles)
             {
-                um.RemoveFromRole(UserId, role.Role.Name);
+                um.RemoveFromRole(UserId, role.RoleId);
             }
         }
     }
