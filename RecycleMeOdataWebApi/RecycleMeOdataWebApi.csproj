@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\AllowCrossSiteJsonAttribute.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\UserCommentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserFollowerController.cs" />
