@@ -17,7 +17,6 @@ namespace RecycleMeDomainClasses
         public string ImagePath { get; set; }
         public string Description { get; set; }
         public bool IsDeleted { get; set; }
-        [Column(Order = 1)]
         public DateTime ModifiedDate { get; set; }
         public string OwnerId { get; set; }
 
