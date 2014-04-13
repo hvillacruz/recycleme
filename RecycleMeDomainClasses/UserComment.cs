@@ -10,8 +10,12 @@ namespace RecycleMeDomainClasses
 {
     public class UserComment : ILogInfo
     {
+        public UserComment()
+        {
+            Id = GuidComb.Generate();
+        }
+
         [Key, Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         [Column(Order = 1)]

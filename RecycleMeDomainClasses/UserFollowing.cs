@@ -10,8 +10,13 @@ namespace RecycleMeDomainClasses
 {
     public class UserFollowing : ILogInfo
     {
+
+        public UserFollowing()
+        {
+            Id = GuidComb.Generate();
+        }
+
         [Key, Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         [Column(Order = 1)]
@@ -25,6 +30,6 @@ namespace RecycleMeDomainClasses
         public virtual User FollowingUser { get; set; }
 
         public DateTime ModifiedDate { get; set; }
-    
+
     }
 }
