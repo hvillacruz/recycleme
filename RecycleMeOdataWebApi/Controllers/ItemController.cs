@@ -15,6 +15,7 @@ using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
 using System.Web;
 using System.IO;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace RecycleMeOdataWebApi.Controllers
 {
@@ -189,7 +190,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
 
-        private const string CONTAINER = "documents";
+        private const string CONTAINER = "images";
 
         [HttpPost]
         public async Task<HttpResponseMessage> UploadFile()
@@ -204,7 +205,21 @@ namespace RecycleMeOdataWebApi.Controllers
 
             // Get and create the container 
             var blobContainer = context.BlobClient.GetContainerReference(CONTAINER);
-            blobContainer.CreateIfNotExists();
+          
+            // Create the "images" container if it doesn't already exist.
+            if (await blobContainer.CreateIfNotExistsAsync())
+            {
+                // Enable public access on the newly created "images" container
+                await blobContainer.SetPermissionsAsync(
+                    new BlobContainerPermissions
+                    {
+                        PublicAccess =
+                            BlobContainerPublicAccessType.Blob
+                    });
+
+               
+            }
+
 
             #region [MultipartMemoryStreamProvider]
             try
@@ -233,47 +248,19 @@ namespace RecycleMeOdataWebApi.Controllers
             }
             #endregion
 
-            #region [MultipartFormDataStreamProvider]
-            //string root = HttpContext.Current.Server.MapPath("~/App_Data");
-            //var provider = new MultipartFormDataStreamProvider(root);
-
-            //try
-            //{
-            //    // Read the form data and return an async task. 
-            //    await Request.Content.ReadAsMultipartAsync(provider);
-
-            //    // This illustrates how to get the file names for uploaded files. 
-            //    foreach (var fileData in provider.FileData)
-            //    {
-            //        var filename = fileData.LocalFileName;
-            //        var blob = blobContainer.GetBlockBlobReference(filename);
-
-            //        using (var filestream = File.OpenRead(fileData.LocalFileName))
-            //        {
-            //            blob.UploadFromStream(filestream);
-            //        }
-            //        File.Delete(fileData.LocalFileName);
-            //    }
-
-            //    return Request.CreateResponse(HttpStatusCode.OK);
-            //}
-            //catch (System.Exception e)
-            //{
-            //    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-            //}
-            #endregion
 
         }
 
-        public async Task<HttpResponseMessage> Get(string id)
+        [HttpPost]
+        public async Task<HttpResponseMessage> DownloadFile(ODataActionParameters parameters)
         {
             var context = new StorageContext();
 
             // Get and create the container 
             var blobContainer = context.BlobClient.GetContainerReference(CONTAINER);
             blobContainer.CreateIfNotExists();
-
-            var blob = blobContainer.GetBlockBlobReference(id);
+           
+            var blob = blobContainer.GetBlockBlobReference((string)parameters["name"]);
 
             var blobExists = await blob.ExistsAsync();
             if (!blobExists)

@@ -1,86 +1,74 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Wall3.css")" />
 <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/dropzone.css")" />
 <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/dropzone-ace.css")" />
-
 <div id="wallDiv" data-bind="foreach: Info">
-
-    @*<form id="formUpload" method="POST" enctype="multipart/form-data" action="http://localhost:53480/odata/Item/UploadFile">
-
-
-            <input type="file" name="files" multiple />
-
-            <input type="submit">
-        </form>*@
-
-
     <div class="row">
         <div class="col-xs-12">
-            <!-- PAGE CONTENT BEGINS -->
-
             <div id="dropzone">
                 <form class="dropzone" method="POST" enctype="multipart/form-data" action="http://localhost:53480/odata/Item/UploadFile">
                     <div class="fallback">
                         <input name="file" type="file" multiple="" />
                     </div>
                 </form>
-            </div><!-- PAGE CONTENT ENDS -->
-        </div><!-- /.col -->
-    </div><!-- /.row -->
-
-    <section id="timeline">
-        <article>
-            <div class="inner">
-                <span class="date text-center">
-                    <i class="icon-2x icon-bullseye"></i>
-                </span>
-                <h2>The Title</h2>
-                <img src="~/Content/Assets/images/test.jpg" />
-
             </div>
-        </article>
-        <article>
-            <div class="inner">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <section id="timeline">
+                <article>
+                    <div class="inner">
+                        <span class="date text-center">
+                            <i class="icon-2x icon-bullseye"></i>
+                        </span>
+                        <h2>The Title</h2>
+                        <img src="~/Content/Assets/images/test.jpg" />
 
-                <span class="date text-center">
+                    </div>
+                </article>
+                <article>
+                    <div class="inner">
 
-                    <i class="icon-2x icon-picture"></i>
-                </span>
-                <h2>The Title</h2>
-                <img src="~/Content/Assets/images/test2.jpg" />
+                        <span class="date text-center">
 
-            </div>
+                            <i class="icon-2x icon-picture"></i>
+                        </span>
+                        <h2>The Title</h2>
+                        <img src="~/Content/Assets/images/test2.jpg" />
 
-        </article>
-        <article>
-            <div class="inner">
-                <span class="date text-center">
-                    <i class="icon-2x icon-archive"></i>
-                </span>
-                <h2>The Title</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
-            </div>
-        </article>
-        <article>
-            <div class="inner">
-                <span class="date text-center">
-                    <i class="icon-2x icon-film"></i>
-                </span>
-                <h2>The Title</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
-            </div>
-        </article>
-        <article>
-            <div class="inner">
-                <span class="date text-center">
-                    <i class="icon-2x icon-music"></i>
-                </span>
-                <h2>The Title</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
-            </div>
-        </article>
-    </section>
+                    </div>
 
-
+                </article>
+                <article>
+                    <div class="inner">
+                        <span class="date text-center">
+                            <i class="icon-2x icon-archive"></i>
+                        </span>
+                        <h2>The Title</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                    </div>
+                </article>
+                <article>
+                    <div class="inner">
+                        <span class="date text-center">
+                            <i class="icon-2x icon-film"></i>
+                        </span>
+                        <h2>The Title</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                    </div>
+                </article>
+                <article>
+                    <div class="inner">
+                        <span class="date text-center">
+                            <i class="icon-2x icon-music"></i>
+                        </span>
+                        <h2>The Title</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis rutrum nunc, eget dictum massa. Nam faucibus felis nec augue adipiscing, eget commodo libero mattis.</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </div>
 
 
 </div>

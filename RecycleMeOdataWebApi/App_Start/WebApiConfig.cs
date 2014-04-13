@@ -40,6 +40,9 @@ namespace RecycleMeOdataWebApi
             builder.EntitySet<UserFollower>("UserFollower");
             builder.EntitySet<UserFollowing>("UserFollowing");
             builder.Entity<Item>().Collection.Action("UploadFile");
+            ActionConfiguration action = builder.Entity<Item>().Collection.Action("DownloadFile");
+            action.Parameter<string>("name");
+            
 
             //ActionConfiguration action = builder.Entity<Item>().Collection.Action("SetAlertFlag");
             //action.Parameter<string>("email");
