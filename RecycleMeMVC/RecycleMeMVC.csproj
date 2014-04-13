@@ -277,6 +277,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\RecycleMe.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -304,7 +305,6 @@
     <Content Include="Scripts\Profile\ProfileBar.js" />
     <Content Include="Scripts\Profile\SideBar.js" />
     <Content Include="Scripts\Profile\TimeLine.js" />
-    <None Include="Properties\PublishProfiles\RecycleMe.pubxml" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\Profile\Wall2.js" />
