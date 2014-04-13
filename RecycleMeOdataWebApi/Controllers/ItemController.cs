@@ -13,6 +13,8 @@ using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
+using System.Web;
+using System.IO;
 
 namespace RecycleMeOdataWebApi.Controllers
 {
@@ -171,5 +173,128 @@ namespace RecycleMeOdataWebApi.Controllers
         {
             return db.Items.Count(e => e.Id == key) > 0;
         }
+
+
+
+        [HttpPost]
+        public int SetAlertFlag()
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+
+            return 0;
+        }
+
+
+        private const string CONTAINER = "documents";
+
+        [HttpPost]
+        public async Task<HttpResponseMessage> UploadFile()
+        {
+            var context = new StorageContext();
+
+            // Check if the request contains multipart/form-data. 
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            // Get and create the container 
+            var blobContainer = context.BlobClient.GetContainerReference(CONTAINER);
+            blobContainer.CreateIfNotExists();
+
+            #region [MultipartMemoryStreamProvider]
+            try
+            {
+                if (Request.Content.IsMimeMultipartContent())
+                {
+                    var streamProvider = new MultipartMemoryStreamProvider();
+                    await Request.Content.ReadAsMultipartAsync(streamProvider).ContinueWith(t =>
+                    {
+                        foreach (var fileContent in streamProvider.Contents)
+                        {
+
+                            Stream stream = fileContent.ReadAsStreamAsync().Result;
+                            var fileName = fileContent.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+                            var blob = blobContainer.GetBlockBlobReference(fileName);
+                            blob.UploadFromStream(stream);
+
+                        }
+                    });
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (System.Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            }
+            #endregion
+
+            #region [MultipartFormDataStreamProvider]
+            //string root = HttpContext.Current.Server.MapPath("~/App_Data");
+            //var provider = new MultipartFormDataStreamProvider(root);
+
+            //try
+            //{
+            //    // Read the form data and return an async task. 
+            //    await Request.Content.ReadAsMultipartAsync(provider);
+
+            //    // This illustrates how to get the file names for uploaded files. 
+            //    foreach (var fileData in provider.FileData)
+            //    {
+            //        var filename = fileData.LocalFileName;
+            //        var blob = blobContainer.GetBlockBlobReference(filename);
+
+            //        using (var filestream = File.OpenRead(fileData.LocalFileName))
+            //        {
+            //            blob.UploadFromStream(filestream);
+            //        }
+            //        File.Delete(fileData.LocalFileName);
+            //    }
+
+            //    return Request.CreateResponse(HttpStatusCode.OK);
+            //}
+            //catch (System.Exception e)
+            //{
+            //    return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+            //}
+            #endregion
+
+        }
+
+        public async Task<HttpResponseMessage> Get(string id)
+        {
+            var context = new StorageContext();
+
+            // Get and create the container 
+            var blobContainer = context.BlobClient.GetContainerReference(CONTAINER);
+            blobContainer.CreateIfNotExists();
+
+            var blob = blobContainer.GetBlockBlobReference(id);
+
+            var blobExists = await blob.ExistsAsync();
+            if (!blobExists)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "File not found");
+            }
+
+            HttpResponseMessage message = new HttpResponseMessage(HttpStatusCode.OK);
+            Stream blobStream = await blob.OpenReadAsync();
+
+            message.Content = new StreamContent(blobStream);
+            message.Content.Headers.ContentLength = blob.Properties.Length;
+            message.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(blob.Properties.ContentType);
+            message.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment")
+            {
+                FileName = blob.Name,
+                Size = blob.Properties.Length
+            };
+
+            return message;
+        }
+
     }
 }

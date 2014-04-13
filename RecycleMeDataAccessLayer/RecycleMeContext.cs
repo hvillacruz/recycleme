@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using RecycleMeDomainClasses;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Validation;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Table;
 namespace RecycleMeDataAccessLayer
 {
-
 
     public class RecycleMeContext : IdentityDbContext<AspNetUsers>
     {
@@ -105,5 +107,25 @@ namespace RecycleMeDataAccessLayer
 
         public DbSet<UserComment> UserComment { get; set; }
 
+    }
+
+    public class StorageContext
+    {
+        private CloudStorageAccount _storageAccount;
+
+        public StorageContext()
+        {
+            _storageAccount = CloudStorageAccount.Parse(System.Configuration.ConfigurationManager.ConnectionStrings["Azure"].ConnectionString);
+        }
+
+        public CloudBlobClient BlobClient
+        {
+            get { return _storageAccount.CreateCloudBlobClient(); }
+        }
+
+        public CloudTableClient TableClient
+        {
+            get { return _storageAccount.CreateCloudTableClient(); }
+        }
     }
 }

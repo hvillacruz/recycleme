@@ -224,10 +224,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Assets\css\dropzone-ace.css" />
+    <Content Include="Content\Assets\css\dropzone.css" />
     <Content Include="Content\Assets\css\recycleme-fonts.css" />
     <Content Include="Content\Assets\css\bootstrap-editable.css" />
     <Content Include="Content\Assets\css\font-awesome.min.css" />
     <Content Include="Content\Assets\font\fontawesome-webfont.svg" />
+    <Content Include="Content\Assets\images\spritemap%402x.png" />
+    <Content Include="Content\Assets\images\spritemap.png" />
     <Content Include="Content\Assets\images\test2.jpg" />
     <Content Include="Content\Assets\images\test.jpg" />
     <Content Include="Content\Assets\images\avatar.jpg" />
@@ -295,6 +299,7 @@
     <Content Include="Scripts\Main\Global.js" />
     <Content Include="Scripts\Main\LoginPartial.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\dropzone.min.js" />
     <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
     <Content Include="Scripts\Profile\SideBar.js" />
@@ -321,6 +326,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Profile\Dashboard.cshtml" />
+    <Content Include="Views\Profile\dummy.html" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />

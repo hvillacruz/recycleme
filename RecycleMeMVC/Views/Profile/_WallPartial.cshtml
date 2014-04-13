@@ -1,7 +1,31 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Wall3.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/dropzone.css")" />
+<link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/dropzone-ace.css")" />
+
 <div id="wallDiv" data-bind="foreach: Info">
 
+    @*<form id="formUpload" method="POST" enctype="multipart/form-data" action="http://localhost:53480/odata/Item/UploadFile">
 
+
+            <input type="file" name="files" multiple />
+
+            <input type="submit">
+        </form>*@
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            <div id="dropzone">
+                <form class="dropzone" method="POST" enctype="multipart/form-data" action="http://localhost:53480/odata/Item/UploadFile">
+                    <div class="fallback">
+                        <input name="file" type="file" multiple="" />
+                    </div>
+                </form>
+            </div><!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
 
     <section id="timeline">
         <article>
@@ -60,4 +84,7 @@
 
 
 </div>
+<script src="@Url.Content("~/Scripts/dropzone.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Profile/Wall.js")" type="text/javascript"></script>
+
+
