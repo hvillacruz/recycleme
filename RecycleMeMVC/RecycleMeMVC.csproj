@@ -341,7 +341,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Profile\_ProfileBarPartial.cshtml" />
     <Content Include="Views\Account\FacebookInfo.cshtml" />
     <Content Include="Views\Profile\_StatisticsPartial.cshtml" />
