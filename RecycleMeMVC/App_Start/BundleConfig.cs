@@ -36,7 +36,8 @@ namespace RecycleMeMVC
 
             bundles.Add(new StyleBundle("~/Content/Assets/Recycle").Include(
                       "~/Content/Styles/Main/bootstrap.css",
-                      "~/Content/Styles/Main/site.css"));
+                      "~/Content/Styles/Main/site.css",
+                       "~/Content/Styles/Main/recycleme.css"));
 
             bundles.Add(new StyleBundle("~/Content/Styles/Recycle").Include(
                       "~/Content/Styles/Home/Header.css"));
@@ -45,8 +46,8 @@ namespace RecycleMeMVC
                      "~/Content/Assets/css/font-awesome.min.css",
                      "~/Content/Assets/css/recycleme-fonts.css"));
 
-            bundles.Add(new StyleBundle("~/Content/Styles/Main").Include(
-                   "~/Content/Styles/Main/recycleme.css"));
+            //bundles.Add(new StyleBundle("~/Content/Styles/RecycleMe").Include(
+            //       "~/Content/Styles/Main/recycleme.css"));
 
             //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
             //         "~/Content/Assets/js/ace-extra.min.js"));
@@ -56,7 +57,7 @@ namespace RecycleMeMVC
             //         "~/Content/Assets/js/ace-elements.min.js",
             //         "~/Content/Assets/js/ace.min.js"));
 
-
+            BundleTable.EnableOptimizations = true;
 
         }
     }
