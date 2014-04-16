@@ -10,13 +10,9 @@ namespace RecycleMeDomainClasses
 {
     public class Item : ILogInfo
     {
-        public Item()
-        {
-            Id = GuidComb.Generate();
-        }
-
         [Key, Column(Order = 0)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
@@ -26,9 +22,5 @@ namespace RecycleMeDomainClasses
 
         public virtual User Owner { get; set; }
 
-        
-
     }
-
-  
 }

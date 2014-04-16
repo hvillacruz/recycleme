@@ -11,13 +11,11 @@ namespace RecycleMeDomainClasses
     public class UserFollowing : ILogInfo
     {
 
-        public UserFollowing()
-        {
-            Id = GuidComb.Generate();
-        }
+       
 
         [Key, Column(Order = 0)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
 
         [Column(Order = 1)]
         public string FollowingId { get; set; }

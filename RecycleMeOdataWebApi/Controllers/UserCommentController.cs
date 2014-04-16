@@ -39,13 +39,13 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // GET odata/UserComment(5)
         [Queryable]
-        public SingleResult<UserComment> GetUserComment([FromODataUri] Guid key)
+        public SingleResult<UserComment> GetUserComment([FromODataUri] long key)
         {
             return SingleResult.Create(db.UserComment.Where(usercomment => usercomment.Id == key));
         }
 
         // PUT odata/UserComment(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, UserComment usercomment)
+        public async Task<IHttpActionResult> Put([FromODataUri] long key, UserComment usercomment)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // PATCH odata/UserComment(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<UserComment> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] long key, Delta<UserComment> patch)
         {
             if (!ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // DELETE odata/UserComment(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
+        public async Task<IHttpActionResult> Delete([FromODataUri] long key)
         {
             UserComment usercomment = await db.UserComment.FindAsync(key);
             if (usercomment == null)
@@ -145,14 +145,14 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // GET odata/UserComment(5)/CommentedUser
         [Queryable]
-        public SingleResult<User> GetCommentedUser([FromODataUri] Guid key)
+        public SingleResult<User> GetCommentedUser([FromODataUri] long key)
         {
             return SingleResult.Create(db.UserComment.Where(m => m.Id == key).Select(m => m.CommentedUser));
         }
 
         // GET odata/UserComment(5)/Commenter
         [Queryable]
-        public SingleResult<User> GetCommenter([FromODataUri] Guid key)
+        public SingleResult<User> GetCommenter([FromODataUri] long key)
         {
             return SingleResult.Create(db.UserComment.Where(m => m.Id == key).Select(m => m.Commenter));
         }
@@ -166,7 +166,7 @@ namespace RecycleMeOdataWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserCommentExists(Guid key)
+        private bool UserCommentExists(long key)
         {
             return db.UserComment.Count(e => e.Id == key) > 0;
         }

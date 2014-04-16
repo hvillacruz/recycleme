@@ -87,9 +87,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201404070806593_AddedModifiedDateColumn.cs" />
-    <Compile Include="Migrations\201404070806593_AddedModifiedDateColumn.Designer.cs">
-      <DependentUpon>201404070806593_AddedModifiedDateColumn.cs</DependentUpon>
+    <Compile Include="Migrations\201404161523378_AlterColumns.cs" />
+    <Compile Include="Migrations\201404161523378_AlterColumns.Designer.cs">
+      <DependentUpon>201404161523378_AlterColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,8 +112,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404070806593_AddedModifiedDateColumn.resx">
-      <DependentUpon>201404070806593_AddedModifiedDateColumn.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201404161523378_AlterColumns.resx">
+      <DependentUpon>201404161523378_AlterColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

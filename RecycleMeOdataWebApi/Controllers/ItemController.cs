@@ -42,13 +42,13 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // GET odata/Item(5)
         [Queryable]
-        public SingleResult<Item> GetItem([FromODataUri] Guid key)
+        public SingleResult<Item> GetItem([FromODataUri] long key)
         {
             return SingleResult.Create(db.Items.Where(item => item.Id == key));
         }
 
         // PUT odata/Item(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, Item item)
+        public async Task<IHttpActionResult> Put([FromODataUri] long key, Item item)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // PATCH odata/Item(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<Item> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] long key, Delta<Item> patch)
         {
             if (!ModelState.IsValid)
             {
@@ -140,7 +140,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // DELETE odata/Item(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
+        public async Task<IHttpActionResult> Delete([FromODataUri] long key)
         {
             Item item = await db.Items.FindAsync(key);
             if (item == null)
@@ -156,7 +156,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // GET odata/Item(5)/Owner
         [Queryable]
-        public SingleResult<User> GetOwner([FromODataUri] Guid key)
+        public SingleResult<User> GetOwner([FromODataUri] long key)
         {
             return SingleResult.Create(db.Items.Where(m => m.Id == key).Select(m => m.Owner));
         }
@@ -170,7 +170,7 @@ namespace RecycleMeOdataWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ItemExists(Guid key)
+        private bool ItemExists(long key)
         {
             return db.Items.Count(e => e.Id == key) > 0;
         }

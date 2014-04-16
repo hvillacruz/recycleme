@@ -39,13 +39,13 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // GET odata/UserFollower(5)
         [Queryable]
-        public SingleResult<UserFollower> GetUserFollower([FromODataUri] Guid key)
+        public SingleResult<UserFollower> GetUserFollower([FromODataUri] long key)
         {
             return SingleResult.Create(db.UserFollower.Where(userfollower => userfollower.Id == key));
         }
 
         // PUT odata/UserFollower(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] Guid key, UserFollower userfollower)
+        public async Task<IHttpActionResult> Put([FromODataUri] long key, UserFollower userfollower)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // PATCH odata/UserFollower(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] Guid key, Delta<UserFollower> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] long key, Delta<UserFollower> patch)
         {
             if (!ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // DELETE odata/UserFollower(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] Guid key)
+        public async Task<IHttpActionResult> Delete([FromODataUri] long key)
         {
             UserFollower userfollower = await db.UserFollower.FindAsync(key);
             if (userfollower == null)
@@ -145,14 +145,14 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // GET odata/UserFollower(5)/FollowedUser
         [Queryable]
-        public SingleResult<User> GetFollowedUser([FromODataUri] Guid key)
+        public SingleResult<User> GetFollowedUser([FromODataUri] long key)
         {
             return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.FollowedUser));
         }
 
         // GET odata/UserFollower(5)/Follower
         [Queryable]
-        public SingleResult<User> GetFollower([FromODataUri] Guid key)
+        public SingleResult<User> GetFollower([FromODataUri] long key)
         {
             return SingleResult.Create(db.UserFollower.Where(m => m.Id == key).Select(m => m.Follower));
         }
@@ -166,7 +166,7 @@ namespace RecycleMeOdataWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserFollowerExists(Guid key)
+        private bool UserFollowerExists(long key)
         {
             return db.UserFollower.Count(e => e.Id == key) > 0;
         }
