@@ -1,4 +1,11 @@
 /* The MIT License */
+
+div#dropzone {
+    overflow: auto;
+    position: relative;
+    height: 120px;
+    /*width: 94%;*/
+}
 .dropzone,
 .dropzone *,
 .dropzone-previews,
@@ -11,7 +18,7 @@
   position: relative;
   border: 1px solid rgba(0,0,0,0.08);
   background: rgba(0,0,0,0.02);
-  padding: 1em;
+  /*padding: 1em;*/
 }
 .dropzone.dz-clickable {
   cursor: pointer;
@@ -40,7 +47,7 @@
   background: rgba(255,255,255,0.8);
   position: relative;
   display: inline-block;
-  margin: 17px;
+  /*margin: 17px;*/
   vertical-align: top;
   border: 1px solid #acacac;
   padding: 6px 6px 6px 6px;
@@ -154,11 +161,11 @@
 }
 .dropzone {
   border: 1px solid rgba(0,0,0,0.03);
-  min-height: 150px;
+  min-height: 100px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
   background: rgba(0,0,0,0.03);
-  padding: 10px;
+  padding: 5px;
 }
 .dropzone .dz-default.dz-message {
   opacity: 1;

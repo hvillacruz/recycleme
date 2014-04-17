@@ -2,7 +2,7 @@
     Read: function (url, callbackFn) {
         OData.read({
             requestUri: url,
-            headers: { 'Content-Type': "application/json" }
+            headers: { "Content-Type": "application/json" }
         },
         function (data, response) {
             CoreNinja.CallBack(callbackFn, data);
