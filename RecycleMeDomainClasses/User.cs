@@ -36,7 +36,10 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<UserFollowing> UserFollowing { get; set; }
         public virtual ICollection<UserFollowing> UserFollowingUsers { get; set; }
         public virtual ICollection<Item> Items { get; set; }
-
+        public virtual ICollection<ItemComment> UserItemCommenter { get; set; }
+        public virtual ICollection<ItemFollowers> UserItemFollowers { get; set; }
+        
+        
 
     }
 

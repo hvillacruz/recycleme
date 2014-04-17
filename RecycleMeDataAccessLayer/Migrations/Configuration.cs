@@ -22,6 +22,15 @@ namespace RecycleMeDataAccessLayer.Migrations
         protected override void Seed(RecycleMeDataAccessLayer.RecycleMeContext Context)
         {
             this.AddUserAndRoles();
+            this.AddCategories(Context);
+        }
+
+        void AddCategories(RecycleMeContext context)
+        {
+            context.ItemCategory.AddOrUpdate(
+            new ItemCategory() { Name = "For Him", },
+            new ItemCategory() { Name = "For Her", }
+        );
         }
 
         bool AddUserAndRoles()

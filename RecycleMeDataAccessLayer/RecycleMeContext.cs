@@ -95,11 +95,50 @@ namespace RecycleMeDataAccessLayer
             .HasForeignKey(k => k.OwnerId)
             .WillCascadeOnDelete(false);
 
+           modelBuilder.Entity<Item>()
+           .HasRequired(t => t.Category)
+           .WithMany()
+           .Map(c => c.MapKey("ItemCategoryId"));
+
+           modelBuilder.Entity<ItemComment>()
+           .HasOptional(b => b.Commenter)
+           .WithMany(a => a.UserItemCommenter)
+           .HasForeignKey(k => k.CommenterId)
+           .WillCascadeOnDelete(false);
+
+             modelBuilder.Entity<ItemComment>()
+            .HasRequired(b => b.CommentedItem)
+            .WithMany(a => a.ItemCommented)
+            .HasForeignKey(k => k.CommentedItemId)
+            .WillCascadeOnDelete(false);
+
+
+             modelBuilder.Entity<ItemFollowers>()
+              .HasOptional(b => b.Follower)
+              .WithMany(a => a.UserItemFollowers)
+              .HasForeignKey(k => k.FollowerId)
+              .WillCascadeOnDelete(false);
+
+
+             modelBuilder.Entity<ItemFollowers>()
+            .HasRequired(b => b.FollowedItem)
+            .WithMany(a => a.ItemUserFollowers)
+            .HasForeignKey(k => k.FollowedItemId)
+            .WillCascadeOnDelete(false);
+             base.OnModelCreating(modelBuilder);
+
+ 
         }
 
         public DbSet<User> Users { get; set; }
 
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<ItemCategory> ItemCategory { get; set; }
+
+        public DbSet<ItemComment> ItemComment { get; set; }
+
+        public DbSet<ItemFollowers> ItemFollowers { get; set; }
 
         public DbSet<UserFollower> UserFollower { get; set; }
 

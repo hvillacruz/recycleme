@@ -13,17 +13,20 @@ namespace RecycleMeDomainClasses
         [Key, Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+        [Column(Order = 1)]
+        public string OwnerId { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
         public string ItemTag { get; set; }
         public string TradeTag { get; set; }
-        public string Category { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public string OwnerId { get; set; }
 
         public virtual User Owner { get; set; }
+        public virtual ItemCategory Category { get; set; }
+        public virtual ICollection<ItemComment> ItemCommented { get; set; }
+        public virtual ICollection<ItemFollowers> ItemUserFollowers { get; set; }
 
     }
 }
