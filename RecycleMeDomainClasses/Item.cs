@@ -16,6 +16,9 @@ namespace RecycleMeDomainClasses
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
+        public string ItemTag { get; set; }
+        public string TradeTag { get; set; }
+        public string Category { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string OwnerId { get; set; }

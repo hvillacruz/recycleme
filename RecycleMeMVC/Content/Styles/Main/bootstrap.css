@@ -5659,21 +5659,21 @@ a.list-group-item {
     }
 
 .panel-primary {
-    border-color: #428bca;
+    border-color: #4faf76;
 }
 
     .panel-primary > .panel-heading {
         color: #ffffff;
-        background-color: #428bca;
-        border-color: #428bca;
+        background-color: #4faf76;
+        border-color: #4faf76;
     }
 
         .panel-primary > .panel-heading + .panel-collapse .panel-body {
-            border-top-color: #428bca;
+            border-top-color: #4faf76;
         }
 
     .panel-primary > .panel-footer + .panel-collapse .panel-body {
-        border-bottom-color: #428bca;
+        border-bottom-color: #4faf76;
     }
 
 .panel-success {

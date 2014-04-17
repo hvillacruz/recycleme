@@ -250,14 +250,14 @@
     <Content Include="Content\Styles\Main\site.css" />
     <Content Include="Content\Styles\Account\LoginReg.css" />
     <Content Include="Content\Styles\Home\Header.css" />
+    <Content Include="Content\Styles\Profile\bootstrap-multiselect.css" />
+    <Content Include="Content\Styles\Profile\chosen.min.css" />
     <Content Include="Content\Styles\Profile\Dashboard.css" />
     <Content Include="Content\Styles\Profile\Pill.css" />
     <Content Include="Content\Styles\Profile\ProfileBar.css" />
     <Content Include="Content\Styles\Profile\Statistics.css" />
     <Content Include="Content\Styles\Profile\tag-basic-style.css" />
     <Content Include="Content\Styles\Profile\Users.css" />
-    <Content Include="Content\Styles\Profile\Wall3.css" />
-    <Content Include="Content\Styles\Profile\Wall2.css" />
     <Content Include="Content\Styles\Profile\Wall.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.svg" />
@@ -303,6 +303,8 @@
     <Content Include="Scripts\Main\LoginPartial.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\dropzone.min.js" />
+    <Content Include="Scripts\Profile\bootstrap-multiselect.js" />
+    <Content Include="Scripts\Profile\chosen.jquery.min.js" />
     <Content Include="Scripts\Profile\Pill.js" />
     <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
@@ -350,7 +352,6 @@
     <Content Include="Views\Profile\_StatisticsPartial.cshtml" />
     <Content Include="Views\Profile\_UsersPartial.cshtml" />
     <Content Include="Views\Profile\_WallPartial.cshtml" />
-    <Content Include="Views\Profile\_WallPartial2.cshtml" />
     <Content Include="Views\Profile\_UserProfilePartial.cshtml" />
     <Content Include="Views\Profile\_AdPartial.cshtml" />
     <Content Include="Views\Profile\_PillPartial.cshtml" />

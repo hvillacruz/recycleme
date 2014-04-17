@@ -44,8 +44,6 @@ jQuery(function ($) {
 
             addRemoveLinks: true,
             dictDefaultMessage:
-            //'<span class="bigger-150 bolder"><i class="icon-caret-right red"></i> Drop files</span> to upload \
-            //<span class="smaller-80 grey">(or click)</span> <br /> \
             '<br /><i class="upload-icon icon-cloud-upload blue icon-2x"></i>'
       ,
             dictResponseError: 'Error while uploading file!',
