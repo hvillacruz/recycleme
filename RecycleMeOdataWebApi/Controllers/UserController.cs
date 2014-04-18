@@ -27,6 +27,8 @@ namespace RecycleMeOdataWebApi.Controllers
     builder.EntitySet<UserComment>("UserComment"); 
     builder.EntitySet<UserFollower>("UserFollower"); 
     builder.EntitySet<UserFollowing>("UserFollowing"); 
+    builder.EntitySet<ItemComment>("ItemComment"); 
+    builder.EntitySet<ItemFollowers>("ItemFollowers"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
     public class UserController : ODataController
@@ -208,6 +210,20 @@ namespace RecycleMeOdataWebApi.Controllers
         public IQueryable<UserFollowing> GetUserFollowingUsers([FromODataUri] string key)
         {
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowingUsers);
+        }
+
+        // GET odata/User(5)/UserItemCommenter
+        [Queryable]
+        public IQueryable<ItemComment> GetUserItemCommenter([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserItemCommenter);
+        }
+
+        // GET odata/User(5)/UserItemFollowers
+        [Queryable]
+        public IQueryable<ItemFollowers> GetUserItemFollowers([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserItemFollowers);
         }
 
         protected override void Dispose(bool disposing)

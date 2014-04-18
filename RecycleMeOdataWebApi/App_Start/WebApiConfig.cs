@@ -34,19 +34,37 @@ namespace RecycleMeOdataWebApi
             config.EnableQuerySupport();
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-            builder.EntitySet<User>("User");
-            builder.EntitySet<Item>("Item");
+
+            //ItemCategoryController
             builder.EntitySet<ItemCategory>("ItemCategory");
-            builder.EntitySet<UserComment>("UserComment"); 
-            builder.EntitySet<UserFollower>("UserFollower");
-            builder.EntitySet<UserFollowing>("UserFollowing");
+
+            //ItemComment
+            builder.EntitySet<ItemComment>("ItemComment");
+
+            //ItemController
+            builder.EntitySet<Item>("Item");
             builder.Entity<Item>().Collection.Action("UploadFile");
             ActionConfiguration action = builder.Entity<Item>().Collection.Action("DownloadFile");
             action.Parameter<string>("name");
             
+            //ItemFollower
+            builder.EntitySet<ItemFollowers>("ItemFollower");
+        
+            
+            //UserComment
+            builder.EntitySet<UserComment>("UserComment");
+           
+            //UserFollower
+            builder.EntitySet<UserFollower>("UserFollower");
+            
+            //UserController
+            builder.EntitySet<User>("User");
+            
+            //UserFollowingController
+            builder.EntitySet<UserFollowing>("UserFollowing");
+          
 
-            //ActionConfiguration action = builder.Entity<Item>().Collection.Action("SetAlertFlag");
-            //action.Parameter<string>("email");
+            
             config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
 
             // To disable tracing in your application, please comment out or remove the following line of code

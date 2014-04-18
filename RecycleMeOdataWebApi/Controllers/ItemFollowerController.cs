@@ -22,45 +22,43 @@ namespace RecycleMeOdataWebApi.Controllers
     using System.Web.Http.OData.Builder;
     using RecycleMeDomainClasses;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<Item>("Item");
-    builder.EntitySet<ItemCategory>("ItemCategory"); 
-    builder.EntitySet<ItemComment>("ItemComment"); 
-    builder.EntitySet<ItemFollowers>("ItemFollowers"); 
+    builder.EntitySet<ItemFollowers>("ItemFollower");
+    builder.EntitySet<Item>("Items"); 
     builder.EntitySet<User>("Users"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
-    public partial class ItemController : ODataController
+    public class ItemFollowerController : ODataController
     {
         private RecycleMeContext db = new RecycleMeContext();
 
-        // GET odata/Item
+        // GET odata/ItemFollower
         [Queryable]
-        public IQueryable<Item> GetItem()
+        public IQueryable<ItemFollowers> GetItemFollower()
         {
-            return db.Items;
+            return db.ItemFollowers;
         }
 
-        // GET odata/Item(5)
+        // GET odata/ItemFollower(5)
         [Queryable]
-        public SingleResult<Item> GetItem([FromODataUri] long key)
+        public SingleResult<ItemFollowers> GetItemFollowers([FromODataUri] long key)
         {
-            return SingleResult.Create(db.Items.Where(item => item.Id == key));
+            return SingleResult.Create(db.ItemFollowers.Where(itemfollowers => itemfollowers.Id == key));
         }
 
-        // PUT odata/Item(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] long key, Item item)
+        // PUT odata/ItemFollower(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] long key, ItemFollowers itemfollowers)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (key != item.Id)
+            if (key != itemfollowers.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(item).State = EntityState.Modified;
+            db.Entry(itemfollowers).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +66,7 @@ namespace RecycleMeOdataWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ItemExists(key))
+                if (!ItemFollowersExists(key))
                 {
                     return NotFound();
                 }
@@ -78,39 +76,39 @@ namespace RecycleMeOdataWebApi.Controllers
                 }
             }
 
-            return Updated(item);
+            return Updated(itemfollowers);
         }
 
-        // POST odata/Item
-        public async Task<IHttpActionResult> Post(Item item)
+        // POST odata/ItemFollower
+        public async Task<IHttpActionResult> Post(ItemFollowers itemfollowers)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Items.Add(item);
+            db.ItemFollowers.Add(itemfollowers);
             await db.SaveChangesAsync();
 
-            return Created(item);
+            return Created(itemfollowers);
         }
 
-        // PATCH odata/Item(5)
+        // PATCH odata/ItemFollower(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] long key, Delta<Item> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] long key, Delta<ItemFollowers> patch)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Item item = await db.Items.FindAsync(key);
-            if (item == null)
+            ItemFollowers itemfollowers = await db.ItemFollowers.FindAsync(key);
+            if (itemfollowers == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(item);
+            patch.Patch(itemfollowers);
 
             try
             {
@@ -118,7 +116,7 @@ namespace RecycleMeOdataWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ItemExists(key))
+                if (!ItemFollowersExists(key))
                 {
                     return NotFound();
                 }
@@ -128,50 +126,36 @@ namespace RecycleMeOdataWebApi.Controllers
                 }
             }
 
-            return Updated(item);
+            return Updated(itemfollowers);
         }
 
-        // DELETE odata/Item(5)
+        // DELETE odata/ItemFollower(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] long key)
         {
-            Item item = await db.Items.FindAsync(key);
-            if (item == null)
+            ItemFollowers itemfollowers = await db.ItemFollowers.FindAsync(key);
+            if (itemfollowers == null)
             {
                 return NotFound();
             }
 
-            db.Items.Remove(item);
+            db.ItemFollowers.Remove(itemfollowers);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET odata/Item(5)/Category
+        // GET odata/ItemFollower(5)/FollowedItem
         [Queryable]
-        public SingleResult<ItemCategory> GetCategory([FromODataUri] long key)
+        public SingleResult<Item> GetFollowedItem([FromODataUri] long key)
         {
-            return SingleResult.Create(db.Items.Where(m => m.Id == key).Select(m => m.Category));
+            return SingleResult.Create(db.ItemFollowers.Where(m => m.Id == key).Select(m => m.FollowedItem));
         }
 
-        // GET odata/Item(5)/ItemCommented
+        // GET odata/ItemFollower(5)/Follower
         [Queryable]
-        public IQueryable<ItemComment> GetItemCommented([FromODataUri] long key)
+        public SingleResult<User> GetFollower([FromODataUri] long key)
         {
-            return db.Items.Where(m => m.Id == key).SelectMany(m => m.ItemCommented);
-        }
-
-        // GET odata/Item(5)/ItemUserFollowers
-        [Queryable]
-        public IQueryable<ItemFollowers> GetItemUserFollowers([FromODataUri] long key)
-        {
-            return db.Items.Where(m => m.Id == key).SelectMany(m => m.ItemUserFollowers);
-        }
-
-        // GET odata/Item(5)/Owner
-        [Queryable]
-        public SingleResult<User> GetOwner([FromODataUri] long key)
-        {
-            return SingleResult.Create(db.Items.Where(m => m.Id == key).Select(m => m.Owner));
+            return SingleResult.Create(db.ItemFollowers.Where(m => m.Id == key).Select(m => m.Follower));
         }
 
         protected override void Dispose(bool disposing)
@@ -183,9 +167,9 @@ namespace RecycleMeOdataWebApi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ItemExists(long key)
+        private bool ItemFollowersExists(long key)
         {
-            return db.Items.Count(e => e.Id == key) > 0;
+            return db.ItemFollowers.Count(e => e.Id == key) > 0;
         }
     }
 }
