@@ -5,5 +5,6 @@ var uri = window.location.host.indexOf("localhost") !== 0 ? "http://recyclemeoda
 var ODataApi = {
     User: uri + "User/",
     UserFollow: uri + "UserFollower/",
-    ItemCategory: uri + "ItemCategory/"
+    ItemCategory: uri + "ItemCategory/",
+    Item: uri + "Item/"
 }
