@@ -95,10 +95,10 @@ namespace RecycleMeDataAccessLayer
             .HasForeignKey(k => k.OwnerId)
             .WillCascadeOnDelete(false);
 
-           modelBuilder.Entity<Item>()
-           .HasRequired(t => t.Category)
-           .WithMany()
-           .Map(c => c.MapKey("ItemCategoryId"));
+           //modelBuilder.Entity<Item>()
+           //.HasRequired(t => t.Category)
+           //.WithMany()
+           //.Map(c => c.MapKey("ItemCategoryId"));
 
            modelBuilder.Entity<ItemComment>()
            .HasOptional(b => b.Commenter)

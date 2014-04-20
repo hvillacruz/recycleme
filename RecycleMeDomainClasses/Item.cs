@@ -24,7 +24,11 @@ namespace RecycleMeDomainClasses
         public DateTime ModifiedDate { get; set; }
 
         public virtual User Owner { get; set; }
+        
+        [ForeignKey("Category")]
+        public int ItemCategoryId { get; set; }
         public virtual ItemCategory Category { get; set; }
+       
         public virtual ICollection<ItemComment> ItemCommented { get; set; }
         public virtual ICollection<ItemFollowers> ItemUserFollowers { get; set; }
 

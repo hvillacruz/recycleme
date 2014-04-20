@@ -14,17 +14,17 @@ namespace RecycleMeOdataWebApi.Controllers
 {
     public partial class ItemController : ODataController
     {
-
-        // POST odata/Item
-        //{
-        //"Name":"Shoes",
-        //"ImagePath":"",
-        //"Description":"",
-        //"IsDeleted": false,
-        //"ModifiedDate":"2014-04-07T16:11:53.333",
-        //"OwnerId":"55fea526-02f2-4c1a-9ca4-ad47c8d717ae"
-        //}
-
+//        {
+//"OwnerId":"bc943640-22f8-42d3-8646-c9e40938f34b",
+//"Name":"Item 1",
+//"ImagePath":"item.jpg",
+//"Description":"",
+//"ItemTag":"test",
+//"TradeTag":"trade",
+//"IsDeleted":false,
+//"ModifiedDate":"2014-04-20T18:10:33.96",
+//"ItemCategoryId":1
+//}
 
         private const string CONTAINER = "images";
 

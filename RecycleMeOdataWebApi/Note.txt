@@ -1,6 +1,0 @@
-
-Following
-http://localhost:53480/odata/User/('0fecf5f4-b0f4-42be-b016-414df2bf76d6')/UserFollowers?$expand=FollowedUser
-
-Follower
-http://localhost:53480/odata/User/('0fecf5f4-b0f4-42be-b016-414df2bf76d6')/UserFollowerUsers?$expand=Follower

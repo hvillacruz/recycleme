@@ -174,9 +174,7 @@
     <Compile Include="Common\AllowCrossSiteJsonAttribute.cs" />
     <Compile Include="Controllers\ItemCategoryController.cs" />
     <Compile Include="Controllers\ItemCommentController.cs" />
-    <Compile Include="Controllers\ItemController.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemFollowerController.cs" />
     <Compile Include="Controllers\ItemPartialController.cs">
       <SubType>Code</SubType>

@@ -1,4 +1,4 @@
-﻿var Core = {
+﻿var Helper = {
 
     callLater: function (callback, data) {
 
@@ -88,7 +88,16 @@
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
 
+    },
+    time: function () {
+
+        var currentdate = new Date();
+        return currentdate.getFullYear() + "-"
+                        + ('0' + (currentdate.getMonth() + 1)).slice(-2) + "-"
+                        + ('0' + currentdate.getDate()).slice(-2) + "T"
+                        + ('0' + currentdate.getHours()).slice(-2) + ":"
+                        + ('0' + currentdate.getMinutes()).slice(-2) + ":"
+                        + ('0' + currentdate.getSeconds()).slice(-2);
+
     }
-
-
 };

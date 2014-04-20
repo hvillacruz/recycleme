@@ -28,7 +28,9 @@ namespace RecycleMeMVC
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
-                    "~/Scripts/knockout-3.1.0.js"));
+                    "~/Scripts/kendo.web.min.js",
+                    "~/Scripts/knockout-3.1.0.js",
+                    "~/Scripts/knockout-kendo.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -46,8 +48,10 @@ namespace RecycleMeMVC
                      "~/Content/Assets/css/font-awesome.min.css",
                      "~/Content/Assets/css/recycleme-fonts.css"));
 
-            //bundles.Add(new StyleBundle("~/Content/Styles/RecycleMe").Include(
-            //       "~/Content/Styles/Main/recycleme.css"));
+            bundles.Add(new StyleBundle("~/Content/knockout-kendo").Include(
+                   "~/Content/kendo.common.min.css",
+                   "~/Content/kendo.default.min.css",
+                   "~/Content/kendo.dataviz.min.css"));
 
             //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
             //         "~/Content/Assets/js/ace-extra.min.js"));
