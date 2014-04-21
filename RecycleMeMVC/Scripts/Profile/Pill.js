@@ -14,7 +14,7 @@
                 self.Category(data.value);
         });
 
-        var form = { Name: "", ItemTag: "", TradeTag: "", OwnerId: 0, ModifiedDate: Helper.time(), ItemCategoryId: 0 };
+        var form = { Name: "", ExchangeTag: "Exchange", TradeTag: "Trade", OwnerId: 0, ModifiedDate: Helper.time(), ItemCategoryId: 0 };
         self.PillView(form);
     }
 
@@ -23,10 +23,21 @@
         self.PillView().OwnerId = global.User.UserId();
         self.PillView().ModifiedDate = Helper.time();
         self.PillView().ItemCategoryId = this.SelectedChoice()[0];
+        self.PillView().TradeTag = $("#tagTrade").text().replace("×", "").replace("# ", "");
+        self.PillView().ExchangeTag = $("#tagExchange").text().replace("×", "").replace("# ", "");
 
         AjaxNinja.Invoke(ODataApi.Item, "POST", JSON.stringify(this.PillView()), function (data) {
-            alert(data);
+
+            $.each(ImageIdResult, function (key, value) {
+                var form = { Id: "" + value.Id + "", IsDeleted: false, ItemId: data.Id, Name: value.Name, Path: value.Path };
+                AjaxNinja.Invoke(ODataApi.ItemImage + "(" + value.Id + ")", "PUT", JSON.stringify(form), function (data) {
+                    ImageIdResult = [];
+                });
+            });
         });
+
+
+
 
     }
 

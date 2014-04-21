@@ -9,22 +9,53 @@ using RecycleMeDomainClasses;
 using RecycleMeDataAccessLayer;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System.IO;
+using System.Net.Http.Formatting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web.Script.Serialization;
+using ExtensionMethods;
+namespace ExtensionMethods
+{
+    public static class JSONHelper
+    {
+        public static string ToJSON(this object obj)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            return serializer.Serialize(obj);
+        }
 
+        public static string ToJSON(this object obj, int recursionDepth)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            serializer.RecursionLimit = recursionDepth;
+            return serializer.Serialize(obj);
+        }
+    }
+}
 namespace RecycleMeOdataWebApi.Controllers
 {
+    class ItemId
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public string Path { get; set; }
+    }
+    
     public partial class ItemController : ODataController
     {
-//        {
-//"OwnerId":"bc943640-22f8-42d3-8646-c9e40938f34b",
-//"Name":"Item 1",
-//"ImagePath":"item.jpg",
-//"Description":"",
-//"ItemTag":"test",
-//"TradeTag":"trade",
-//"IsDeleted":false,
-//"ModifiedDate":"2014-04-20T18:10:33.96",
-//"ItemCategoryId":1
-//}
+        //{
+        //"OwnerId":"bc943640-22f8-42d3-8646-c9e40938f34b",
+        //"Name":"Item 1",
+        //"ImagePath":"item.jpg",
+        //"Description":"",
+        //"ItemTag":"test",
+        //"TradeTag":"trade",
+        //"IsDeleted":false,
+        //"ModifiedDate":"2014-04-20T18:10:33.96",
+        //"ItemCategoryId":1
+        //}
 
         private const string CONTAINER = "images";
 
@@ -58,10 +89,12 @@ namespace RecycleMeOdataWebApi.Controllers
 
 
             #region [MultipartMemoryStreamProvider]
+            List<ItemId> id = new List<ItemId>();
             try
             {
                 if (Request.Content.IsMimeMultipartContent())
                 {
+               
                     var streamProvider = new MultipartMemoryStreamProvider();
                     await Request.Content.ReadAsMultipartAsync(streamProvider).ContinueWith(t =>
                     {
@@ -73,10 +106,29 @@ namespace RecycleMeOdataWebApi.Controllers
                             var blob = blobContainer.GetBlockBlobReference(fileName);
                             blob.UploadFromStream(stream);
 
+                            ItemImage image = new ItemImage
+                            {
+                                Name = fileName,
+                                Path = blob.StorageUri.PrimaryUri.AbsoluteUri
+                            };
+                           
+                            db.ItemImage.Add(image);
+                            db.SaveChanges();
+
+                            id.Add(new ItemId { 
+                                Id = image.Id,
+                                Name = image.Name,
+                                Path = image.Path
+                            });
                         }
                     });
                 }
-                return Request.CreateResponse(HttpStatusCode.OK);
+              
+                  
+                var response = this.Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent(id.ToJSON(), Encoding.UTF8, "application/json");
+           
+                return response;
             }
             catch (System.Exception e)
             {
@@ -120,5 +172,5 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
 
-	}
+    }
 }

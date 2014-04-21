@@ -6,5 +6,6 @@ var ODataApi = {
     User: uri + "User/",
     UserFollow: uri + "UserFollower/",
     ItemCategory: uri + "ItemCategory/",
-    Item: uri + "Item/"
+    Item: uri + "Item/",
+    ItemImage: uri + "ItemImage/"
 }

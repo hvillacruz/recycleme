@@ -71,6 +71,7 @@
     <Compile Include="ItemCategory.cs" />
     <Compile Include="ItemComment.cs" />
     <Compile Include="ItemFollowers.cs" />
+    <Compile Include="ItemImage.cs" />
     <Compile Include="LogInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />

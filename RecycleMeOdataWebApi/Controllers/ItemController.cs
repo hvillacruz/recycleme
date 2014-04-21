@@ -25,6 +25,7 @@ namespace RecycleMeOdataWebApi.Controllers
     builder.EntitySet<Item>("Item");
     builder.EntitySet<ItemCategory>("ItemCategory"); 
     builder.EntitySet<ItemComment>("ItemComment"); 
+    builder.EntitySet<ItemImage>("ItemImage"); 
     builder.EntitySet<ItemFollowers>("ItemFollowers"); 
     builder.EntitySet<User>("Users"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
@@ -158,6 +159,13 @@ namespace RecycleMeOdataWebApi.Controllers
         public IQueryable<ItemComment> GetItemCommented([FromODataUri] long key)
         {
             return db.Items.Where(m => m.Id == key).SelectMany(m => m.ItemCommented);
+        }
+
+        // GET odata/Item(5)/ItemImages
+        [Queryable]
+        public IQueryable<ItemImage> GetItemImages([FromODataUri] long key)
+        {
+            return db.Items.Where(m => m.Id == key).SelectMany(m => m.ItemImages);
         }
 
         // GET odata/Item(5)/ItemUserFollowers

@@ -18,8 +18,8 @@ namespace RecycleMeDomainClasses
         public string Name { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
-        public string ItemTag { get; set; }
         public string TradeTag { get; set; }
+        public string ExchangeTag { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime ModifiedDate { get; set; }
 
@@ -28,7 +28,9 @@ namespace RecycleMeDomainClasses
         [ForeignKey("Category")]
         public int ItemCategoryId { get; set; }
         public virtual ItemCategory Category { get; set; }
-       
+
+
+        public virtual ICollection<ItemImage> ItemImages { get; set; }
         public virtual ICollection<ItemComment> ItemCommented { get; set; }
         public virtual ICollection<ItemFollowers> ItemUserFollowers { get; set; }
 

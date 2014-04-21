@@ -35,6 +35,9 @@ namespace RecycleMeOdataWebApi
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
 
+            //ItemImageController
+            builder.EntitySet<ItemImage>("ItemImage"); 
+            
             //ItemCategoryController
             builder.EntitySet<ItemCategory>("ItemCategory");
 

@@ -2,6 +2,7 @@
 
     var self = this;
     this.Info = ko.observableArray();
+
     this.Wall = function () {
 
         //AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')" + "?$expand=UserFollowerUsers,UserCommenter,UserFollowing", "GET", {}, function (data) {
@@ -20,7 +21,7 @@
 var wall = new WallViewModel();
 ko.applyBindings(wall, document.getElementById("wallDiv"));
 wall.Wall();
-
+var ImageIdResult = [];
 
 
 jQuery(function ($) {
@@ -39,13 +40,26 @@ jQuery(function ($) {
 
 
             },
+            uploadMultiple: true,
+            successmultiple: function (file, result) {
+              
+
+                $.each(result, function (key, value) {
+                  
+                    ImageIdResult.push(value);
+                });
+            },
+            complete: function (file, result) {
+
+            },
+
             paramName: "file", // The name that will be used to transfer the file
             maxFilesize: 0.5, // MB
 
             addRemoveLinks: true,
             dictDefaultMessage:
             '<br /><i class="upload-icon icon-cloud-upload blue icon-2x"></i>'
-      ,
+            ,
             dictResponseError: 'Error while uploading file!',
 
             //change the previewTemplate to use Bootstrap progress bars

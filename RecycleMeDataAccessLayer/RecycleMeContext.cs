@@ -127,12 +127,21 @@ namespace RecycleMeDataAccessLayer
             .WillCascadeOnDelete(false);
              base.OnModelCreating(modelBuilder);
 
+
+             modelBuilder.Entity<ItemImage>()
+            .HasOptional(b => b.Item)
+            .WithMany(a => a.ItemImages)
+            .HasForeignKey(k => k.ItemId)
+            .WillCascadeOnDelete(false);
+
  
         }
 
         public DbSet<User> Users { get; set; }
 
         public DbSet<Item> Items { get; set; }
+
+        public DbSet<ItemImage> ItemImage { get; set; }
 
         public DbSet<ItemCategory> ItemCategory { get; set; }
 
