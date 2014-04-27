@@ -259,6 +259,7 @@
     <Content Include="Content\Styles\Profile\ProfileBar.css" />
     <Content Include="Content\Styles\Profile\Statistics.css" />
     <Content Include="Content\Styles\Profile\tag-basic-style.css" />
+    <Content Include="Content\Styles\Profile\TimeLine.css" />
     <Content Include="Content\Styles\Profile\Users.css" />
     <Content Include="Content\Styles\Profile\Wall.css" />
     <Content Include="favicon.ico" />
@@ -359,6 +360,7 @@
     <Content Include="Views\Profile\_AdPartial.cshtml" />
     <Content Include="Views\Profile\_PillPartial.cshtml" />
     <Content Include="Views\Profile\_DropZonePartial.cshtml" />
+    <Content Include="Views\Profile\_TimeLinePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
