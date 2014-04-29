@@ -29,7 +29,7 @@ namespace RecycleMeDomainClasses
         public int ItemCategoryId { get; set; }
         public virtual ItemCategory Category { get; set; }
 
-
+        
         public virtual ICollection<ItemImage> ItemImages { get; set; }
         public virtual ICollection<ItemComment> ItemCommented { get; set; }
         public virtual ICollection<ItemFollowers> ItemUserFollowers { get; set; }
