@@ -1,13 +1,14 @@
 ﻿var TimeLineViewModel = function () {
 
     var self = this;
-    this.Images = ko.observableArray();
+    this.Items = ko.observableArray();
+    
     this.ItemTimeline = function () {
          alert("ProfileBar-" + $("#currentUser").data("text"));
         
         //http://localhost:53480/odata/Item(6)/ItemImages?$expand=Item
          AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$expand=ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
-            self.Images(data);
+             self.Items(data.value);
         });
 
     }
@@ -26,6 +27,8 @@
         });
 
     }
+
+  
 
 }
 var timeline = new TimeLineViewModel();

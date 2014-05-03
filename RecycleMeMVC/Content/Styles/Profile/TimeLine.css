@@ -1,9 +1,11 @@
-﻿p{
-    color:white !important;
+﻿p {
+    color: white !important;
 }
-h4{
-     color:white !important;
+
+h4 {
+    color: white !important;
 }
+
 .timeline {
     list-style: none;
     padding: 20px 0 20px;
@@ -153,37 +155,115 @@ h4{
     }
 
 /*@media (max-width: 767px) {*/
-    ul.timeline:before {
-        left: 40px;
+ul.timeline:before {
+    left: 40px;
+}
+
+ul.timeline > li > .timeline-panel {
+    width: calc(100% - 90px);
+    width: -moz-calc(100% - 90px);
+    width: -webkit-calc(100% - 90px);
+}
+
+ul.timeline > li > .timeline-badge {
+    left: 15px;
+    margin-left: 0;
+    top: 16px;
+}
+
+ul.timeline > li > .timeline-panel {
+    float: right;
+}
+
+    ul.timeline > li > .timeline-panel:before {
+        border-left-width: 0;
+        border-right-width: 15px;
+        left: -15px;
+        right: auto;
     }
 
-    ul.timeline > li > .timeline-panel {
-        width: calc(100% - 90px);
-        width: -moz-calc(100% - 90px);
-        width: -webkit-calc(100% - 90px);
+    ul.timeline > li > .timeline-panel:after {
+        border-left-width: 0;
+        border-right-width: 14px;
+        left: -14px;
+        right: auto;
     }
-
-    ul.timeline > li > .timeline-badge {
-        left: 15px;
-        margin-left: 0;
-        top: 16px;
-    }
-
-    ul.timeline > li > .timeline-panel {
-        float: right;
-    }
-
-        ul.timeline > li > .timeline-panel:before {
-            border-left-width: 0;
-            border-right-width: 15px;
-            left: -15px;
-            right: auto;
-        }
-
-        ul.timeline > li > .timeline-panel:after {
-            border-left-width: 0;
-            border-right-width: 14px;
-            left: -14px;
-            right: auto;
-        }
 /*}*/
+
+
+
+
+.metro-social {
+    width: 285px;
+}
+
+    .metro-social li {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+        list-style: none;
+    }
+
+    .metro-social .box0, .box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9, .box10 {
+        z-index: 7;
+        float: left;
+        margin: 1px;
+        position: relative;
+        display: block;
+        background:#2e6da4;
+    }
+
+    .metro-social .box0 {
+        width: 140px;
+        height: 141px;
+    }
+
+    .metro-social .box1 {
+        width: 68px;
+        height: 70px;
+    }
+
+    .metro-social .box2 {
+        width: 69px;
+        height: 70px;
+    }
+
+    .metro-social .box3 {
+        width: 68px;
+        height: 69px;
+    }
+
+    .metro-social .box4 {
+        width: 69px;
+        height: 69px;
+    }
+
+    .metro-social .box5 {
+        width: 140px;
+        height: 69px;
+    }
+
+    .metro-social .box6 {
+        width: 140px;
+        height: 69px;
+    }
+
+    .metro-social .box7 {
+        width: 140px;
+        height: 141px;
+    }
+
+    .metro-social .box8 {
+        width: 68px;
+        height: 70px;
+    }
+
+    .metro-social .box9 {
+        width: 68px;
+        height: 69px;
+    }
+
+    .metro-social .box10 {
+        width: 69px;
+        height: 69px;
+    }
