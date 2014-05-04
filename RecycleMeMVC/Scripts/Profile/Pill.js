@@ -19,7 +19,7 @@
     }
 
     this.recycle = function () {
-
+     
         self.PillView().OwnerId = global.User.UserId();
         self.PillView().ModifiedDate = Helper.time();
         self.PillView().ItemCategoryId = this.SelectedChoice()[0];
