@@ -7,6 +7,10 @@
     width: 30px !important;
 }
 
+.imgTimeline{
+    z-index:0 !important;
+}
+
 .txtComment{
 
     margin-left:-20px !important;
@@ -203,7 +207,7 @@ ul.timeline > li > .timeline-panel {
 
 
 .metro-social {
-    width: 285px;
+    width: 100%;
  
 }
 

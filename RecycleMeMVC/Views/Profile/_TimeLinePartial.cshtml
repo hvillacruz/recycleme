@@ -14,9 +14,32 @@
                 <div class="timeline-body">
                     <p>
                         <div class="row">
-                            <ul data-bind="foreach: ItemImages" class='metro-social'>
+                            <ul data-bind="foreach: ItemImages" class='ace-thumbnails metro-social '>
                                 <!-- ko if: $index() < 7 -->
-                                <li><img data-bind="attr:{src: Path,class:'box'+$index() }" /></li>
+                                <li>
+
+                                    <img class="" data-bind="attr:{src: Path,class:'box'+$index() + ' imgTimeline ' }" />
+                                    <!-- ko if: $index() < 1 -->
+                                    <div class="tags">
+                                        <span class="label-holder">
+                                            <span class="label label-info">breakfast</span>
+                                        </span>
+
+                                        <span class="label-holder">
+                                            <span class="label label-danger">fruits</span>
+                                        </span>
+
+                                        <span class="label-holder">
+                                            <span class="label label-success">toast</span>
+                                        </span>
+
+                                        <span class="label-holder">
+                                            <span class="label label-warning arrowed-in">diet</span>
+                                        </span>
+                                    </div>
+                                    <!-- /ko -->
+
+                                </li>
                                 <!-- /ko -->
                             </ul>
 
@@ -33,11 +56,11 @@
                         <div class="right-inner-addon ">
                             <i class="icon-comments "></i>
                             <input type="text" class="form-control" data-bind="value:CommentText " placeholder=" write a comment..." />
-                            
-                        
-                         </div>
 
-                        
+
+                        </div>
+
+
 
                     </div>
                     <div class="col-xs-1 txtComment">

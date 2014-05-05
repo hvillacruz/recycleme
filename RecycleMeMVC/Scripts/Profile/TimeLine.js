@@ -5,7 +5,7 @@
 
     this.ItemTimeline = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {
@@ -33,7 +33,7 @@
 
         AjaxNinja.Invoke(ODataApi.ItemComment, "POST", JSON.stringify(data), function (data) {
 
-            alert('Success');
+            timeline.ItemTimeline();
         });
     }
 
