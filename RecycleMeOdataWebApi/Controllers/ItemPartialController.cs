@@ -104,7 +104,9 @@ namespace RecycleMeOdataWebApi.Controllers
                             Stream stream = fileContent.ReadAsStreamAsync().Result;
                             var fileName = fileContent.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
                             var blob = blobContainer.GetBlockBlobReference(fileName);
-                            blob.UploadFromStream(stream);
+
+                            var newResizeStream = ImageResize(stream, System.Drawing.Imaging.ImageFormat.Jpeg, 1400);
+                            blob.UploadFromStream(newResizeStream);
 
                             ItemImage image = new ItemImage
                             {
@@ -137,6 +139,22 @@ namespace RecycleMeOdataWebApi.Controllers
             #endregion
 
 
+        }
+
+
+
+        public static System.IO.Stream ImageResize(System.IO.Stream inputStream, System.Drawing.Imaging.ImageFormat contentType, Int32 maximumDimension)
+        {
+            System.IO.Stream result = new System.IO.MemoryStream();
+            System.Drawing.Image img = System.Drawing.Image.FromStream(inputStream);
+            Int32 thumbnailWidth = (img.Width > img.Height) ? maximumDimension : img.Width * maximumDimension / img.Height;
+            Int32 thumbnailHeight = (img.Width > img.Height) ? img.Height * maximumDimension / img.Width : maximumDimension;
+            System.Drawing.Image thumbnail = img.GetThumbnailImage(thumbnailWidth, thumbnailHeight, null, IntPtr.Zero);
+            thumbnail.Save(result, contentType);
+
+            result.Seek(0, 0);
+
+            return result;
         }
 
         [HttpPost]
