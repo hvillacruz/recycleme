@@ -9,7 +9,9 @@
 
             var result = [];
             $(data.value).each(function (index, value) {
-                var res = $.extend(value, { CommentText: "" });
+                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
+               // $.extend(res.ItemImages, { Class: "metro" - value.ItemImages.length });
+
                 result.push(res);
             });
             self.Items(result);

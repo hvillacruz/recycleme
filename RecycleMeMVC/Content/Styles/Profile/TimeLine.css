@@ -227,6 +227,18 @@ ul.timeline > li > .timeline-panel {
         background: #2e6da4;
     }
 
+    .metro-1{
+
+        width:100% !important;
+        height:300px !important;
+    }
+
+    .metro-2{
+
+        width:150px !important;
+        height:150px !important;
+    }
+
     .metro-social .box0 {
         width: 140px;
         height: 141px;
