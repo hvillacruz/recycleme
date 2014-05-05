@@ -37,8 +37,11 @@
         });
 
 
+    }
 
-
+    this.UploadUrl = function () {
+      
+        return ODataApi.Item + "UploadFile";
     }
 
 }
