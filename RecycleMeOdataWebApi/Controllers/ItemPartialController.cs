@@ -16,6 +16,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 using ExtensionMethods;
+using System.Drawing.Imaging;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+
 namespace ExtensionMethods
 {
     public static class JSONHelper
@@ -105,7 +109,9 @@ namespace RecycleMeOdataWebApi.Controllers
                             var fileName = fileContent.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
                             var blob = blobContainer.GetBlockBlobReference(fileName);
 
-                            var newResizeStream = ImageResize(stream, System.Drawing.Imaging.ImageFormat.Jpeg, 1400);
+                            //var newResizeStream = ImageResize(stream, System.Drawing.Imaging.ImageFormat.Jpeg, 1400);
+                            //var newResizeStream = ImageResize(stream);
+                            var newResizeStream = ImageResize(stream,550,500,false);
                             blob.UploadFromStream(newResizeStream);
 
                             ItemImage image = new ItemImage
@@ -156,6 +162,153 @@ namespace RecycleMeOdataWebApi.Controllers
 
             return result;
         }
+
+
+        public static System.IO.Stream ImageResize(System.IO.Stream inputStream, int Height, int Width, bool needToFill)
+        {
+            System.IO.Stream result = new System.IO.MemoryStream();
+            System.Drawing.Image img = System.Drawing.Image.FromStream(inputStream);
+
+            System.Drawing.Image thumbnail = FixedSize(img, Height, Width, needToFill);
+            thumbnail.Save(result,ImageFormat.Jpeg);
+
+
+            result.Seek(0, 0);
+
+            return result;
+        }
+
+
+        public static System.IO.Stream ImageResize(System.IO.Stream inputStream)
+        {
+
+            EncoderParameters encodingParameters = new EncoderParameters(1);
+            encodingParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 90L); // Set the JPG Quality percentage to 90%.
+            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);   
+            //ImageCodecInfo jpgEncoder = GetEncoderInfo("image/jpeg");
+
+            // Incoming! This is the original image. This line can effectively be anything, but in this example it's coming from a stream.
+            var image = System.Drawing.Image.FromStream(inputStream);
+
+            // Creating two blank canvas. One that the original image is placed into, the other for the resized version.
+            Bitmap originalImage = new Bitmap(image);
+            Bitmap newImage = new Bitmap(originalImage, 1024, (image.Height * 768 / image.Width));  // Width of 300 & maintain aspect ratio (let it be as high as it needs to be).
+
+            // We then do some funky voodoo with the newImage. Changing it to a graphic to allow us to set the HighQualityBilinear property and resize nicely.
+            Graphics g = Graphics.FromImage(newImage);
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
+            g.DrawImage(originalImage, 0, 0, newImage.Width, newImage.Height);
+
+            var streamLarge = new System.IO.MemoryStream();
+            newImage.Save(streamLarge, jpgEncoder, encodingParameters);
+
+            //// This is the line that returns the picture to the relevant part of the model.
+            //_event.Picture = streamLarge.ToArray();
+
+            //// No need for all that drama for the thumbnail, the loss of quality isn't noticable.
+            //var thumbnail = image.GetThumbnailImage(80, (image.Height * 80 / image.Width), null, new IntPtr(0));
+            //var streamThumbnail = new System.IO.MemoryStream();
+
+            //thumbnail.Save(streamThumbnail, jpgEncoder, encodingParameters);
+            //_event.ThumbnailPicture = streamThumbnail.ToArray();
+
+            // Good boy's tidy-up after themselves! :O
+           // originalImage.Dispose();
+           // newImage.Dispose();
+           // thumbnail.Dispose();
+           // streamLarge.Dispose();
+           // streamThumbnail.Dispose();
+            streamLarge.Seek(0, 0);
+            return streamLarge;
+        }
+
+
+        public static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
+        }
+
+
+        public static Image FixedSize(Image imgPhoto, int Height, int Width, bool needToFill)
+        {
+            int sourceWidth = imgPhoto.Width;
+            int sourceHeight = imgPhoto.Height;
+            int sourceX = 0;
+            int sourceY = 0;
+            int destX = 0;
+            int destY = 0;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)Width / (float)sourceWidth);
+            nPercentH = ((float)Height / (float)sourceHeight);
+            if (!needToFill)
+            {
+                if (nPercentH < nPercentW)
+                {
+                    nPercent = nPercentH;
+                }
+                else
+                {
+                    nPercent = nPercentW;
+                }
+            }
+            else
+            {
+                if (nPercentH > nPercentW)
+                {
+                    nPercent = nPercentH;
+                    destX = (int)Math.Round((Width -
+                        (sourceWidth * nPercent)) / 2);
+                }
+                else
+                {
+                    nPercent = nPercentW;
+                    destY = (int)Math.Round((Height -
+                        (sourceHeight * nPercent)) / 2);
+                }
+            }
+
+            if (nPercent > 1)
+                nPercent = 1;
+
+            int destWidth = (int)Math.Round(sourceWidth * nPercent);
+            int destHeight = (int)Math.Round(sourceHeight * nPercent);
+
+            Bitmap bmPhoto = new Bitmap(
+                destWidth <= Width ? destWidth : Width,
+                destHeight < Height ? destHeight : Height,
+                              PixelFormat.Format32bppRgb);
+
+            Graphics grPhoto = System.Drawing.Graphics.FromImage(bmPhoto);
+            grPhoto.Clear(System.Drawing.Color.White);
+            grPhoto.InterpolationMode = InterpolationMode.Default;
+            grPhoto.CompositingQuality = CompositingQuality.HighQuality;
+            grPhoto.SmoothingMode = SmoothingMode.HighQuality;
+
+            grPhoto.DrawImage(imgPhoto,
+                new System.Drawing.Rectangle(destX, destY, destWidth, destHeight),
+                new System.Drawing.Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
+                System.Drawing.GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+            return bmPhoto;
+        }
+
+
+
 
         [HttpPost]
         public async Task<HttpResponseMessage> DownloadFile(ODataActionParameters parameters)
