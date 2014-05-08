@@ -85,7 +85,7 @@ jQuery(function ($) {
             },
 
             paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 1, // MB
+            maxFilesize: 10, // MB
 
             addRemoveLinks: true,
             dictDefaultMessage:
