@@ -259,6 +259,7 @@
     <Content Include="Content\images\7.jpg" />
     <Content Include="Content\images\8.jpg" />
     <Content Include="Content\images\9.jpg" />
+    <Content Include="Scripts\Home\TradeItems.js" />
     <Content Include="Scripts\Main\images\1.jpg" />
     <Content Include="Scripts\Main\images\10.png" />
     <Content Include="Scripts\Main\images\11.png" />
