@@ -4,7 +4,7 @@
     this.Items = ko.observableArray();
     this.TradeItem = function () {
        
-        AjaxNinja.Invoke(ODataApi.Item + "?$expand=ItemImages", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages", "GET", {}, function (data) {
             self.Items(data.value);
         });
 
