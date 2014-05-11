@@ -23,8 +23,9 @@
         self.PillView().OwnerId = global.User.UserId();
         self.PillView().ModifiedDate = Helper.time();
         self.PillView().ItemCategoryId = this.SelectedChoice()[0];
-        self.PillView().TradeTag = $("#tagTrade").text().replace("×", "").replace("# ", "");
-        self.PillView().ExchangeTag = $("#tagExchange").text().replace("×", "").replace("# ", "");
+        self.PillView().TradeTag = S($("#tagTrade").text()).replaceAll('×', '').replaceAll('#', '').s;
+    
+        self.PillView().ExchangeTag = S($("#tagExchange").text()).replaceAll('×', '').replaceAll('#', '').s;
 
         AjaxNinja.Invoke(ODataApi.Item, "POST", JSON.stringify(this.PillView()), function (data) {
 
