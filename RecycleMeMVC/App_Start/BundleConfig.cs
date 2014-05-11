@@ -45,8 +45,10 @@ namespace RecycleMeMVC
                       "~/Content/Styles/Home/Header.css"));
 
             bundles.Add(new StyleBundle("~/Content/Assets/Fonts").Include(
-                     "~/Content/Assets/css/font-awesome.min.css",
-                     "~/Content/Assets/css/recycleme-fonts.css"));
+                     "~/Content/Assets/css/font-awesome.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Assets/MainFonts").Include(
+                    "~/Content/Assets/css/recycleme-fonts.css"));
 
             bundles.Add(new StyleBundle("~/Content/knockout-kendo").Include(
                    "~/Content/kendo.common.min.css",

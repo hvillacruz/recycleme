@@ -333,7 +333,7 @@ ul.timeline > li > .timeline-panel {
         display: block;
         margin: 10px 0px;
         text-align: center;
-        font-family: 'Open Sans', sans-serif;
+        /*font-family: 'Open Sans', sans-serif;*/
         font-size: 16px;
         font-weight: 300;
         color: #999;
