@@ -20,23 +20,51 @@
                                     <img data-bind="attr:{src: Path,class:'box'+$index() + ' imgTimeline ' + ' ' + $parent.ImageClass }" />
 
                                     <!-- ko if: $index() < 1 -->
-                                    <div class="tags" data-bind="foreach : Tag.split(',')">
+                                    <!-- ko if: $parent.TradeTag.length > 0 -->
+                                    <div class="tags" data-bind="foreach : $parent.TradeTag.split(' ')">
                                         <span class="label-holder">
-                                            <span class="label label-info" data-bind="text: $data"></span>
+                                            <!-- ko if: $index() == 0 -->
+                                            <span class="label label-info" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 1 -->
+                                            <span class="label label-danger" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 2 -->
+                                            <span class="label label-success" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 3 -->
+                                            <span class="label label-warning" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 4 -->
+                                            <span class="label label-info arrowed-in" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 5 -->
+                                            <span class="label label-danger arrowed-in" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 6 -->
+                                            <span class="label label-success arrowed-in" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 7 -->
+                                            <span class="label label-warning arrowed-in" data-bind="text:$data"></span>
+                                            <!-- /ko -->
+                                            <!-- ko if: $index() == 8 -->
+                                            <span class="label label-info arrowed-in-right" data-bind="text:$data"></span>
+                                            <!-- /ko -->
                                         </span>
 
                                         @*<span class="label-holder">
-                                                <span class="label label-danger">fruits</span>
-                                            </span>
+                                            <span class="label label-danger">fruits</span>
+                                        </span>
 
-                                            <span class="label-holder">
-                                                <span class="label label-success">toast</span>
-                                            </span>
+                                        <span class="label-holder">
+                                            <span class="label label-success">toast</span>
+                                        </span>
 
-                                            <span class="label-holder">
-                                                <span class="label label-warning arrowed-in">diet</span>
-                                            </span>*@
+                                        <span class="label-holder">
+                                            <span class="label label-warning arrowed-in">diet</span>
+                                        </span>*@
                                     </div>
+                                    <!-- /ko -->
                                     <!-- /ko -->
 
                                 </li>
