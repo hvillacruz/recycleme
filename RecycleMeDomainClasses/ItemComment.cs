@@ -28,6 +28,8 @@ namespace RecycleMeDomainClasses
 
         public string Comment { get; set; }
 
+        public bool IsDeleted { get; set; }
+
 
 
 

@@ -409,6 +409,11 @@
     <Content Include="Views\Profile\_TimeLinePartial.cshtml" />
     <Content Include="Views\Home\_TradePartial.cshtml" />
     <Content Include="Views\Home\_TradeItemsPartial.cshtml" />
+    <Content Include="Views\Profile\_ItemImagePartial.cshtml" />
+    <Content Include="Views\Profile\_ExchangeTagPartial.cshtml" />
+    <Content Include="Views\Profile\_ItemCommentsPartial.cshtml" />
+    <Content Include="Views\Profile\_ItemCommentPostPartial.cshtml" />
+    <Content Include="Views\Profile\_TradeTagPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

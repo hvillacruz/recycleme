@@ -1,0 +1,9 @@
+﻿<div data-bind="foreach: ItemImages">
+    <img data-bind="attr:{src: Path}" />
+    @Html.Partial("_TradeTagPartial")
+    <!-- ko if: $parent.TradeTag.length > 0 -->
+    <div class="tags tagExchange" data-bind="foreach : $parent.ExchangeTag.split(' ')">
+        @Html.Partial("_ExchangeTagPartial")
+    </div>
+    <!-- /ko -->
+</div>
