@@ -117,9 +117,11 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-1 txtComment">
-                                    <button class="btn btn-primary btn-xs" data-bind="click: $root.RecycleComment">
+                                    <button class="btn btn-primary btn-xs" data-bind="click: $root.SelectedRecycleComment.bind($data, $parent) ">
                                         <i class="icon-trash  bigger-110 icon-only"></i>
                                     </button>
+
+                                    
                                 </div>
                             </div>
                         </div>
@@ -240,7 +242,7 @@
                         </div>
                     </div>
                     <div class="col-xs-1 txtComment">
-                        <button class="btn btn-primary btn-xs" data-bind="click: $root.RecycleComment">
+                        <button class="btn btn-primary btn-xs" data-bind="click: $parent.RecycleComment">
                             <i class="icon-trash  bigger-110 icon-only"></i>
                         </button>
                     </div>
