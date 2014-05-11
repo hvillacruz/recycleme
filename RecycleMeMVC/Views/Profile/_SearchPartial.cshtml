@@ -1,0 +1,121 @@
+﻿<style>
+   
+
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    html {
+        background: #87CEFA;
+    }
+
+    /* entypo */
+    [class*="entypo-"]:before {
+        font-family: 'entypo', sans-serif;
+        font-size: 2.5em;
+        margin-top: 0px;
+        margin-left: 11px;
+        position: absolute;
+    }
+
+    .profile {
+        width: 500px;
+        background: #F7F7F7;
+        position: absolute;
+        overflow: hidden;
+        border-radius: 10px;
+        top: 10%;
+        left: 50%;
+        margin-top: 0px;
+        margin-left: -200px;
+    }
+
+    aside {
+        background: #FF6A6A;
+        float: left;
+        position: relative;
+        width: 70px;
+        height: 450px;
+        border-radius: 3px 0px 0px;
+        z-index: 10;
+    }
+
+    nav a {
+        display: block;
+        height: 50px;
+        padding-top: 20px;
+        border-bottom: 2px solid #F7F7F7;
+        opacity: 0.8;
+        color: #F7F7F7;
+    }
+
+    a:hover {
+        opacity: 1;
+    }
+
+    #home {
+        opacity: 1;
+    }
+
+    #search strong {
+        font-size: 0.7em;
+        display: inline-block;
+        color: #292929;
+        opacity: 0.8;
+        z-index: 0;
+        position: absolute;
+        float: right;
+        margin-top: 20px;
+        margin-left: 350px;
+    }
+
+        #search strong:hover {
+            opacity: 1;
+        }
+
+        #search strong:click {
+            opacity: 1;
+        }
+
+    #search-box {
+        vertical-align: middle;
+        width: 320px;
+        display: inline-block;
+        margin: 25px;
+        border: 0;
+        background: #F7F7F7;
+        font-size: 1.2em;
+    }
+
+        #search-box:focus {
+            outline: 0;
+        }
+
+    #search {
+        height: 70px;
+        border-bottom: 2px solid #C7C7C7;
+    }
+</style>
+<div class="profile">
+    <aside>
+        <nav role='navigation'>
+            <a id="home" href="#">
+                <strong class="entypo-home"></strong>
+            </a>
+            <a id="user" href="#">
+                <strong class="entypo-user"></strong>
+            </a>
+            <a id="photos" href="#">
+                <strong class="entypo-picture"></strong>
+            </a>
+            <a id="share" href="#">
+                <strong class="entypo-share"></strong>
+            </a>
+        </nav>
+    </aside>
+    <section id="search">
+        <strong class="entypo-search"></strong>
+        <input id="search-box" type="text" placeholder="Search for users" />
+    </section>
+</div>

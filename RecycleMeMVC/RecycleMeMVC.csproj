@@ -414,6 +414,8 @@
     <Content Include="Views\Profile\_ItemCommentsPartial.cshtml" />
     <Content Include="Views\Profile\_ItemCommentPostPartial.cshtml" />
     <Content Include="Views\Profile\_TradeTagPartial.cshtml" />
+    <Content Include="Views\Profile\_SearchPartial.cshtml" />
+    <Content Include="Views\Profile\_ModifyItemPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
