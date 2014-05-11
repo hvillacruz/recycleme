@@ -2,7 +2,7 @@
 
     var self = this;
     this.Items = ko.observableArray();
-
+    this.SelectedItem = ko.observableArray();
     this.ItemTimeline = function () {
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
@@ -18,6 +18,12 @@
 
         });
 
+    }
+
+
+    this.ShowComment = function (currentItem,selectedImage) {
+
+        self.SelectedItem(currentItem);
     }
 
 

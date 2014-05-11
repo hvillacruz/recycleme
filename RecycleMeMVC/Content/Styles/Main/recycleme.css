@@ -14088,11 +14088,11 @@ th[aria-selected=true] .ui-jqgrid-sortable {
 }
 .tags {
   display: inline-block;
-  padding: 4px 6px;
+  /*padding: 4px 6px;*/
   color: #777777;
   vertical-align: middle;
   background-color: #FFF;
-  border: 1px solid #d5d5d5;
+  border: 0px solid #d5d5d5;
   width: 206px;
 }
 .tags:hover {
