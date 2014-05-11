@@ -259,6 +259,7 @@
     <Content Include="Content\images\7.jpg" />
     <Content Include="Content\images\8.jpg" />
     <Content Include="Content\images\9.jpg" />
+    <Content Include="Content\Styles\Home\TradeItems.css" />
     <Content Include="Scripts\Home\TradeItems.js" />
     <Content Include="Scripts\Main\images\1.jpg" />
     <Content Include="Scripts\Main\images\10.png" />
@@ -322,6 +323,7 @@
     <Content Include="fonts\codropsicons.woff" />
     <Content Include="Scripts\Main\images\.DS_Store" />
     <Content Include="Content\images\.DS_Store" />
+    <Content Include="Content\Assets\font\OsJ2DjdpjqFRVUSto6IffD8E0i7KZn-EPnyo3HZu7kw.woff" />
     <None Include="Properties\PublishProfiles\RecycleMe.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\classie.js" />

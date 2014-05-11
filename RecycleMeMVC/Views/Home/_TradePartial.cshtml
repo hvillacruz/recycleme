@@ -1,179 +1,58 @@
-﻿<style>
-    html, body {
-        height: 100%;
-    }
+﻿
+<link href="~/Content/Styles/Home/default.css" rel="stylesheet" />
+<link href="~/Content/Styles/Home/component.css" rel="stylesheet" />
+<link href="~/Content/Styles/Home/TradeItems.css" rel="stylesheet" />
+<script src="~/Scripts/modernizr.custom.js"></script>
 
-    body {
-        background: #393939;
-        background-size: 100% 100%;
-    }
+<div class="container">
 
-    .stat-div {
-        height: 190px;
-        /*width:256px;*/
-        width: 100%;
-        background-color: #ffffff;
-    }
+    <ul class="grid effect-2" id="grid" data-bind="foreach: Items">
+        <!-- ko if: ItemImages.length > 0 -->
 
-    .box {
-        height: 128px;
-        /*width: 256px;*/
-        width: 100%;
-        background: #ffffff;
-    }
+        <li>
+            <div class="widget">
+                <div class="cover">
+                    <img data-bind="attr:{src: ItemImages[0].Path}" />
+                </div>
+
+                <h1>Ryan Boylett</h1>
+                <h2>Web Developer</h2>
+                <h3>Bristol, UK</h3>
 
 
-    .box-stat {
-        background: #f6f1ed;
-        height: 100%;
-        border-left: solid 1px #FFFFFF;
-        padding: 5px;
-    }
+                <div class="stat-stat">
+                    <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="icon-2xx icon-bullseye"><span class="box-stat-icon-text">0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom"><i class="icon-2xx icon-comments"><span class="box-stat-icon-text" @*data-bind="text:UserCommenter.length"*@>0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="icon-2xx icon-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
+                </div>
 
-    .box-stat-first {
-        border-left: solid 1px #f5f0ec;
-    }
-
-    .box-stat-icon-text {
-        font-size: 14px;
-        padding: 5px;
-    }
-
-    .box-div-stat {
-        margin-bottom: 0px;
-    }
-
-    .box-name {
-        height: 95px;
-        font-size: 20px;
-        padding: 10px;
-    }
-
-    .box-name-text {
-        color: #b1a598;
-    }
+            </div>
+            @*<a href="#"><img data-bind="attr:{src: ItemImages[0].Path}">
 
 
-    .stat-divider {
-        height: 4px;
-    }
 
-    .stat-stat {
-        background-color: #f5f0ec;
-        height: 30px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
+                </a>*@
+        </li>
 
-    .stat-percentage {
-        font-size: 32px;
-    }
-
-    .stat-img {
-        width: 100%;
-        height: 108px;
-    }
-
-    .widget {
-        position: relative;
-        width: 300px;
-        /*height: 350px;*/
-        margin: 50px auto;
-        background: #FFF;
-        border-radius: 6px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, .1);
-        padding-bottom: 0px;
-    }
-
-        .widget > .cover {
-            height: 160px;
-            overflow: hidden;
-        }
-
-            .widget > .cover > img {
-                width: 100%;
-                height: auto;
-                min-height: 160px;
-                border-radius: 6px 6px 0 0;
-            }
-
-        .widget > .photo {
-            position: absolute;
-            top: 85px;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            margin: 0 0 0 -55px;
-            border: 5px solid #FFF;
-            border-radius: 50%;
-        }
-
-        .widget > h1, .widget > h2, .widget > h3 {
-            display: block;
-            margin: 10px 0;
-            text-align: center;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 300;
-            color: #999;
-        }
-
-        .widget > h1 {
-            margin: 60px 0 20px;
-            font-size: 26px;
-            color: #000;
-        }
-
-        .widget > h3 {
-            font-size: 12px;
-        }
-
-        .widget > ul {
-            position: absolute;
-            top: 20px;
-            left: 100%;
-            background: #2CDFD3;
-            border-radius: 0 3px 3px 0;
-        }
-
-            .widget > ul > li > a {
-                display: block;
-                padding: 5px 6px;
-                color: #FFF;
-                cursor: pointer;
-                text-align: center;
-                border-bottom: 1px solid #2CD5CA;
-                transition: background-color .3s;
-            }
-
-            .widget > ul > li:hover > a {
-                background-color: #2CD5CA;
-            }
-
-            .widget > ul > li:first-child > a {
-                border-radius: 0 3px 0 0;
-            }
-
-            .widget > ul > li:last-child > a {
-                border: none;
-                border-radius: 0 0 3px 0;
-            }
-</style>
-
-<div class="widget">
-    <div class="cover">
-        <img src="http://25.media.tumblr.com/d55a509993790027240311c9f611aaf8/tumblr_n0hpzpKEfE1st5lhmo1_1280.jpg" />
-    </div>
-
-    <h1>Ryan Boylett</h1>
-    <h2>Web Developer</h2>
-    <h3>Bristol, UK</h3>
-
-
-    <div class="stat-stat">
-        <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="icon-2xx icon-bullseye"><span class="box-stat-icon-text">0</span></i></div>
-        <div class="col-xs-4 box-stat center radius-round-bottom"><i class="icon-2xx icon-comments"><span class="box-stat-icon-text" data-bind="text:UserCommenter.length">0</span></i></div>
-        <div class="col-xs-4 box-stat center radius-round-bottom " data-bind="click:  $parent.likeUser"><i class="icon-2xx icon-heart "><span class="box-stat-icon-text" data-bind="text:UserFollowerUsers.length">0</span></i></div>
-    </div>
-
+        <!-- /ko -->
+    </ul>
 </div>
+<script src="~/Scripts/Home/TradeItems.js"></script>
+
+
+
+<script src="~/Scripts/masonry.pkgd.min.js"></script>
+<script src="~/Scripts/imagesloaded.js"></script>
+<script src="~/Scripts/classie.js"></script>
+
+
+<script src="~/Scripts/AnimOnScroll.js"></script>
+<script>
+    setTimeout(function () {
+        var scroll = new AnimOnScroll(document.getElementById('grid'), {
+            minDuration: 0.4,
+            maxDuration: 0.7,
+            viewportFactor: 0.2
+        });
+    }, 2500);
+</script>
