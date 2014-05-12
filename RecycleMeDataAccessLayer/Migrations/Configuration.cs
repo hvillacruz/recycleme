@@ -28,9 +28,9 @@ namespace RecycleMeDataAccessLayer.Migrations
         void AddCategories(RecycleMeContext context)
         {
             context.ItemCategory.AddOrUpdate(
-            new ItemCategory() { Name = "For Him", },
-            new ItemCategory() { Name = "For Her", }
-        );
+            new ItemCategory() { Id = 1, Name = "For Him" },
+            new ItemCategory() { Id = 2, Name = "For Her" }
+            );
         }
 
         bool AddUserAndRoles()

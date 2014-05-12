@@ -230,6 +230,7 @@
     <Content Include="Content\Assets\css\bootstrap-editable.css" />
     <Content Include="Content\Assets\css\font-awesome.min.css" />
     <Content Include="Content\Assets\font\fontawesome-webfont.svg" />
+    <Content Include="Content\Assets\font\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Assets\images\spritemap%402x.png" />
     <Content Include="Content\Assets\images\spritemap.png" />
     <Content Include="Content\Assets\images\test2.jpg" />
@@ -421,7 +422,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Assets\font\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
