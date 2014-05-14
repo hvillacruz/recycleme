@@ -30,15 +30,44 @@
     this.SelectedRecycleComment = function (item, selectedImage) {
 
         PostComment(item, 0);
-   
+
     }
 
     this.RecycleComment = function (item) {
 
-        PostComment(item,1);
+        PostComment(item, 1);
     }
 
-    function PostComment(item,type) {
+    this.ModifyComment = function (item) {
+
+        var data = {
+            CommenterId: $("#currentUser").data("text"),
+            Comment: item.CommentText,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.ItemComment + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
+            alert(result);
+        });
+    }
+
+    this.DeleteComment = function (item) {
+
+        var data = {
+            CommenterId: $("#currentUser").data("text"),
+            IsDeleted: true,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.ItemComment + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
+            alert(result);
+        });
+    }
+
+
+    function PostComment(item, type) {
 
         var data = {
 
@@ -53,13 +82,13 @@
             if (type == 1)
                 timeline.ItemTimeline();
             else {
-              
+
                 //http://localhost:53480/odata/Item(3)?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers
-               // data.Id = result.Id;
-                AjaxNinja.Invoke(ODataApi.Item+ "("+ item.Id +")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
+                // data.Id = result.Id;
+                AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
 
                     var res = $.extend(current, { CommentText: "" });
-                   
+
 
                     $(current).push(res);
 
@@ -73,6 +102,42 @@
 var timeline = new TimeLineViewModel();
 ko.applyBindings(timeline, document.getElementById("timelineDiv"));
 timeline.ItemTimeline();
+
+
+
+//ko.bindingHandlers.hidden = {
+//    update: function (element, valueAccessor) {
+//        ko.bindingHandlers.visible.update(element, function () { return !ko.utils.unwrapObservable(valueAccessor()); });
+//    }
+//};
+
+//ko.bindingHandlers.clickToEdit = {
+//    init: function (element, valueAccessor) {
+//        var observable = valueAccessor(),
+//            link = document.createElement("a"),
+//            input = document.createElement("input");
+
+//        element.appendChild(link);
+//        element.appendChild(input);
+
+//        observable.editing = ko.observable(false);
+
+//        ko.applyBindingsToNode(link, {
+//            text: observable,
+//            hidden: observable.editing,
+//            click: function () { observable.editing(true); }
+//        });
+
+//        ko.applyBindingsToNode(input, {
+//            value: observable,
+//            visible: observable.editing,
+//            hasfocus: observable.editing
+//        });
+//    }
+//};
+
+//ko.applyBindings({ message: ko.observable("Welcome to camp!") });
+
 
 
 jQuery(function ($) {
