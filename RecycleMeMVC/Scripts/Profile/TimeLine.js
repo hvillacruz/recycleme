@@ -3,8 +3,9 @@
     var self = this;
     this.Items = ko.observableArray();
     this.SelectedItem = ko.observableArray();
+    this.message = ko.observable("Welcome to camp!");
     this.ItemTimeline = function () {
-
+        
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
@@ -83,7 +84,7 @@
                 timeline.ItemTimeline();
             else {
 
-                //http://localhost:53480/odata/Item(3)?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers
+                //http://localhost:53481/odata/Item(3)?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers
                 // data.Id = result.Id;
                 AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
 
@@ -99,44 +100,45 @@
     }
 
 }
+
+
+
+ko.bindingHandlers.hidden = {
+    update: function (element, valueAccessor) {
+        ko.bindingHandlers.visible.update(element, function () { return !ko.utils.unwrapObservable(valueAccessor()); });
+    }
+};
+
+ko.bindingHandlers.clickToEdit = {
+    init: function (element, valueAccessor) {
+        var observable = valueAccessor(),
+            link = document.createElement("a"),
+            input = document.createElement("input");
+
+        element.appendChild(link);
+        element.appendChild(input);
+
+        observable.editing = ko.observable(false);
+
+        ko.applyBindingsToNode(link, {
+            text: observable,
+            hidden: observable.editing,
+            click: function () { observable.editing(true); }
+        });
+
+        ko.applyBindingsToNode(input, {
+            value: observable,
+            visible: observable.editing,
+            hasfocus: observable.editing
+        });
+    }
+};
+
+
 var timeline = new TimeLineViewModel();
 ko.applyBindings(timeline, document.getElementById("timelineDiv"));
 timeline.ItemTimeline();
 
-
-
-//ko.bindingHandlers.hidden = {
-//    update: function (element, valueAccessor) {
-//        ko.bindingHandlers.visible.update(element, function () { return !ko.utils.unwrapObservable(valueAccessor()); });
-//    }
-//};
-
-//ko.bindingHandlers.clickToEdit = {
-//    init: function (element, valueAccessor) {
-//        var observable = valueAccessor(),
-//            link = document.createElement("a"),
-//            input = document.createElement("input");
-
-//        element.appendChild(link);
-//        element.appendChild(input);
-
-//        observable.editing = ko.observable(false);
-
-//        ko.applyBindingsToNode(link, {
-//            text: observable,
-//            hidden: observable.editing,
-//            click: function () { observable.editing(true); }
-//        });
-
-//        ko.applyBindingsToNode(input, {
-//            value: observable,
-//            visible: observable.editing,
-//            hasfocus: observable.editing
-//        });
-//    }
-//};
-
-//ko.applyBindings({ message: ko.observable("Welcome to camp!") });
 
 
 

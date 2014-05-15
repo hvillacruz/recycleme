@@ -16,12 +16,12 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myImageModalLabel"><span data-bind="text:Name"></span></h4>
                         </div>
-                        <div class="modal-body">                  
+                        <div class="modal-body">
                             @Html.Partial("_ItemImagePartial")
                             @Html.Partial("_ItemCommentsPartial")
                         </div>
                         <div class="modal-footer">
-                           @Html.Partial("_ItemCommentPostPartial")
+                            @Html.Partial("_ItemCommentPostPartial")
                         </div>
                     </div>
                 </div>
@@ -42,9 +42,9 @@
                                     <a data-bind="click: $root.ShowComment.bind($data, $parent)">
                                         <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,class:'box'+$index() + ' imgTimeline ' + ' ' + $parent.ImageClass }" />
                                     </a>
-                             
-                                        @Html.Partial("_TradeTagPartial")
-       
+
+                                    @Html.Partial("_TradeTagPartial")
+
                                 </li>
 
                                 <!-- /ko -->
@@ -76,7 +76,7 @@
                         <div class="right-inner-addon ">
                             <i class="icon-comments "></i>
                             <input type="text" class="form-control" data-bind="value:CommentText " placeholder=" write a comment..." />
-
+                            <div data-bind="clickToEdit:  $parent.message"></div>
                         </div>
                     </div>
                     <div class="col-xs-1 txtComment">

@@ -1,5 +1,5 @@
 ﻿
-var uri = window.location.host.indexOf("localhost") !== 0 ? "http://recyclemeodata.azurewebsites.net/odata/" : "http://localhost:53480/odata/"
+var uri = window.location.host.indexOf("localhost") !== 0 ? "http://recyclemeodata.azurewebsites.net/odata/" : "http://localhost:53481/odata/"
 
 var ODataApi = {
     User: uri + "User/",
