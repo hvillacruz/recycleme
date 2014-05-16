@@ -1,4 +1,5 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/TimeLine.css")" />
+
 <!-- Modal -->
 
 <div class="container">
@@ -62,12 +63,16 @@
                                 <div class="img imgComment"><img data-bind="attr:{src: $parent.Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                             </div>
                             <div class="col-xs-10 txtComment">
-                                <span data-bind="text:Comment"></span>
+                                @*<span data-bind="text:Comment"></span>*@
+                                @*<div data-bind="clickToEdit:  Comment"></div>*@
+                                <span data-bind="editable: Comment"></span>
                                 @Html.Partial("_ModifyItemPartial")
                             </div>
                         </li>
                     </ul>
                 </div>
+                @*<span data-bind="editable: $parent.message"></span>*@
+                @*<div data-bind="clickToEdit : $parent.message"> </div>*@
                 <div class="row">
                     <div class="col-xs-2">
                         <div class="img imgComment"><img data-bind="attr:{src: Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
@@ -76,7 +81,7 @@
                         <div class="right-inner-addon ">
                             <i class="icon-comments "></i>
                             <input type="text" class="form-control" data-bind="value:CommentText " placeholder=" write a comment..." />
-                            <div data-bind="clickToEdit:  $parent.message"></div>
+                           
                         </div>
                     </div>
                     <div class="col-xs-1 txtComment">

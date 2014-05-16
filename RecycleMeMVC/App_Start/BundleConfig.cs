@@ -34,10 +34,12 @@ namespace RecycleMeMVC
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-editable.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/Assets/Recycle").Include(
                       "~/Content/Styles/Main/bootstrap.css",
+                        "~/Content/Assets/css/bootstrap-editable.css",
                       "~/Content/Styles/Main/site.css",
                        "~/Content/Styles/Main/recycleme.css"));
 
