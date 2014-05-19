@@ -63,9 +63,9 @@
                                 <div class="img imgComment"><img data-bind="attr:{src: $parent.Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                             </div>
                             <div class="col-xs-10 txtComment">
-                                @*<span data-bind="text:Comment"></span>*@
+                                <span class="editable" data-bind="text:Comment"></span>
                                 @*<div data-bind="clickToEdit:  Comment"></div>*@
-                                <span data-bind="editable: Comment"></span>
+                                @*<span data-bind="editable: Comment , editableOptions: {mode: 'inline', url: 'http://localhost:53481/odata/ItemComment'} "></span>*@
                                 @Html.Partial("_ModifyItemPartial")
                             </div>
                         </li>

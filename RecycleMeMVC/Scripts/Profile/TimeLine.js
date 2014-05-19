@@ -5,7 +5,7 @@
     this.SelectedItem = ko.observableArray();
     this.message = ko.observable("Welcome to camp!");
     this.ItemTimeline = function () {
-        
+
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
@@ -16,11 +16,47 @@
                 result.push(res);
             });
             self.Items(result);
-
+            setEditable();
         });
 
     }
 
+    function setEditable() {
+        $.fn.editable.defaults.mode = 'inline';
+        $('.editable').editable('submit', {
+            url: '/newuser',
+            ajaxOptions: {
+                dataType: 'json' //assuming json response
+            },
+            success: function (data, config) {
+                alert('ss');
+                if (data && data.id) {  //record created, response like {"id": 2}
+                    //set pk
+                    $(this).editable('option', 'pk', data.id);
+                    //remove unsaved class
+                    $(this).removeClass('editable-unsaved');
+                    //show messages
+                    var msg = 'New user created! Now editables submit individually.';
+                    $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
+                    $('#save-btn').hide();
+                    $(this).off('save.newuser');
+                } else if (data && data.errors) {
+                    //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                    config.error.call(this, data.errors);
+                }
+            },
+            error: function (errors) {
+                alert('error');
+                var msg = '';
+                if (errors && errors.responseText) { //ajax error, errors = xhr object
+                    msg = errors.responseText;
+                } else { //validation error (client-side or server-side)
+                    $.each(errors, function (k, v) { msg += k + ": " + v + "<br>"; });
+                }
+                $('#msg').removeClass('alert-success').addClass('alert-error').html(msg).show();
+            }
+        });
+    }
 
     this.ShowComment = function (currentItem, selectedImage) {
 

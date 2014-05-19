@@ -264,6 +264,7 @@
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-editable.min.js" />
     <Content Include="Scripts\Home\TradeItems.js" />
+    <Content Include="Scripts\knockout.x-editable.js" />
     <Content Include="Scripts\knockout.x-editable.min.js" />
     <Content Include="Scripts\Main\images\1.jpg" />
     <Content Include="Scripts\Main\images\10.png" />
