@@ -62,10 +62,13 @@
                             <div class="col-xs-2">
                                 <div class="img imgComment"><img data-bind="attr:{src: $parent.Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                             </div>
-                            <div class="col-xs-10 txtComment">
-                                <span class="editable"  data-bind="text:Comment ,attr:{'data-pk': Id }"></span>
+                            <div class="col-xs-9 txtComment">
+                                <span class="editable" data-bind="text:Comment ,attr:{'data-pk': Id }"></span>
                                 @*<div data-bind="clickToEdit:  Comment"></div>*@
                                 @*<span data-bind="editable: Comment , editableOptions: {mode: 'inline', url: 'http://localhost:53481/odata/ItemComment'} "></span>*@
+
+                            </div>
+                            <div class="col-xs-1">
                                 @Html.Partial("_ModifyItemPartial")
                             </div>
                         </li>
@@ -81,7 +84,7 @@
                         <div class="right-inner-addon ">
                             <i class="icon-comments "></i>
                             <input type="text" class="form-control" data-bind="value:CommentText " placeholder=" write a comment..." />
-                           
+
                         </div>
                     </div>
                     <div class="col-xs-1 txtComment">

@@ -79,7 +79,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.ItemComment + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
-            alert(result);
+           // alert('success');
         });
     }
 
