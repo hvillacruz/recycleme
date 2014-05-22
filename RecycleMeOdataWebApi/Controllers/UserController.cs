@@ -167,7 +167,9 @@ namespace RecycleMeOdataWebApi.Controllers
         [Queryable]
         public IQueryable<Item> GetItems([FromODataUri] string key)
         {
-            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
+            var items =db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
+            return items;
+
         }
 
         // GET odata/User(5)/UserCommented
