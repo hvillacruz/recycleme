@@ -9,6 +9,7 @@
 
 
     <ul id="timelineDiv" class="timeline" data-bind="foreach: Items">
+        <!-- ko if: IsDeleted == false -->
         <li>
             <div data-bind="foreach: $parent.SelectedItem" class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -58,6 +59,7 @@
                 </div>
                 <div>
                     <ul class="row list-ul" data-bind="foreach: ItemCommented">
+                        <!-- ko if: IsDeleted == false -->
                         <li class="row list-li">
                             <div class="col-xs-2">
                                 <div class="img imgComment"><img data-bind="attr:{src: $parent.Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
@@ -72,6 +74,7 @@
                                 @Html.Partial("_ModifyItemPartial")
                             </div>
                         </li>
+                        <!-- /ko -->
                     </ul>
                 </div>
                 @*<span data-bind="editable: $parent.message"></span>*@
@@ -97,7 +100,7 @@
             </div>
 
         </li>
-
+        <!-- /ko -->
     </ul>
 </div>
 
