@@ -5,6 +5,7 @@ using RecycleMeDataAccessLayer;
 using RecycleMeDomainClasses;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,32 @@ namespace RecycleMeBusinessLogicLayer
             return user;
         }
 
+        
+        public static string FbAccess()
+        {
+
+            var facebookClient = new FacebookClient();
+            facebookClient.AppId = ConfigurationManager.AppSettings["FbAppId"];
+            facebookClient.AppSecret = ConfigurationManager.AppSettings["FbAppSecret"];
+
+            try
+            {
+                dynamic result = facebookClient.Get("oauth/access_token", new
+                {
+                    client_id = ConfigurationManager.AppSettings["FbAppId"],
+                    client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                    grant_type = "authorization_code"
+                });
+                return result.access_token;
+            }catch(Exception ex)
+            {
+
+                return ex.Message;
+            }
+         
+            
+        }
+
 
         public void Post(string UserId)
         {
@@ -53,20 +80,26 @@ namespace RecycleMeBusinessLogicLayer
             var access_token = claimsforUser.FirstOrDefault(x => x.Type == "FacebookAccessToken").Value;
             var client = new FacebookClient(access_token);
 
-            dynamic me = client.Get("me");
-            var id = me.id;
+            ////dynamic me = client.Get("me");
+            ////var id = me.id;
 
-            dynamic parameters = new ExpandoObject();
-            parameters.title = "test title";
-            parameters.message = "test message";
-            try
+            ////dynamic parameters = new ExpandoObject();
+            ////parameters.title = "test title";
+            ////parameters.message = "test message";
+            ////try
+            ////{
+            ////    var result = client.Post(id + "/feed", parameters);
+            ////}
+            //catch (Exception ex)
+            //{
+            //    Console.Write(ex.Message);
+            //}
+
+            dynamic result = client.Post("me/feed", new
             {
-                var result = client.Post(id + "/feed", parameters);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Message);
-            }
+                message = "My first wall post using Facebook SDK for .NET"
+            });
+            var newPostId = result.id;
 
         }
 
