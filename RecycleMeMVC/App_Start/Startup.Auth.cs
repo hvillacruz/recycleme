@@ -29,7 +29,7 @@ namespace RecycleMeMVC
             //    clientSecret: "");
 
 
-            List<string> scope = new List<string>() { "email", "user_about_me", "user_hometown", "friends_about_me", "friends_photos", "manage_pages", "publish_actions", "publish_stream" };
+            List<string> scope = new List<string>();// { "email", "user_about_me", "user_hometown", "friends_about_me", "friends_photos", "manage_pages", "publish_actions", "publish_stream" };
             var x = new FacebookAuthenticationOptions();
             x.Scope.Add("user_birthday");
             x.Scope.Add("user_location");

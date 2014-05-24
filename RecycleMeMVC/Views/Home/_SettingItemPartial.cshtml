@@ -4,11 +4,16 @@
         <i class="icon-cog"></i>
 
     </a>
-@Html.ActionLink("Login with Facebook", "Facebook")
+
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 
         <li>
-            <a data-bind="click: $root.PostFb">
+             @*@Html.ActionLink("<i class='icon-share-alt'></i>Share", "Facebook")*@
+            @*<a href='@(Url.Action("Facebook", "Profile", new { data_bind = "value: CourseId" }))'>
+                <i class="icon-share-alt"></i>
+                Share
+            </a>*@
+            <a data-bind="attr: { 'href': '@Url.Action("Facebook", "Profile")/' + Id }" class="cssClass">
                 <i class="icon-share-alt"></i>
                 Share
             </a>

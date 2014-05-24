@@ -35,7 +35,7 @@ namespace RecycleMeMVC.Controllers
             }
         }
 
-        public ActionResult Facebook()
+        public ActionResult Facebook(string id)
         {
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
@@ -82,14 +82,14 @@ namespace RecycleMeMVC.Controllers
             string email = me.email;
             dynamic res = fb.Post("me/feed", new
             {
-                message = "My first wall post using Facebook SDK for .NET"
+                message = "My first wall post using Facebook SDK for .NETs"
             });
             var newPostId = res.id;
 
             // Set the auth cookie
             //FormsAuthentication.SetAuthCookie(email, false);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard", "Profile");
         }
     }
 }
