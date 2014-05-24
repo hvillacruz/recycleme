@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using RecycleMeMVC.Models;
 using Facebook;
 using System.Configuration;
+using System.Net;
+using System.IO;
+using RecycleMeDataAccessLayer;
 namespace RecycleMeMVC.Controllers
 {
     [RoutePrefix("Profile")]
@@ -22,7 +25,7 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
-
+        private static long ItemId { get; set; }
         private Uri RedirectUri
         {
             get
@@ -37,13 +40,14 @@ namespace RecycleMeMVC.Controllers
 
         public ActionResult Facebook(string id)
         {
+            ItemId = long.Parse(id);
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
                 client_id = ConfigurationManager.AppSettings["FbAppId"],
                 client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
                 redirect_uri = RedirectUri.AbsoluteUri,
-                 grant_type = "authorization_code",
+                grant_type = "authorization_code",
                 response_type = "code",
                 scope = "email" // Add other permissions as needed
             });
@@ -52,14 +56,53 @@ namespace RecycleMeMVC.Controllers
         }
 
 
+        public System.Drawing.Image DownloadImageFromUrl(string imageUrl)
+        {
+            System.Drawing.Image image = null;
+
+            try
+            {
+                System.Net.HttpWebRequest webRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(imageUrl);
+                webRequest.AllowWriteStreamBuffering = true;
+                webRequest.Timeout = 30000;
+
+                System.Net.WebResponse webResponse = webRequest.GetResponse();
+
+                System.IO.Stream stream = webResponse.GetResponseStream();
+
+                image = System.Drawing.Image.FromStream(stream);
+
+                webResponse.Close();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return image;
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
+        }
 
         public ActionResult FacebookCallback(string code)
         {
             var fb = new FacebookClient();
             dynamic result = fb.Post("oauth/access_token", new
             {
-                client_id =  ConfigurationManager.AppSettings["FbAppId"],
-                client_secret =  ConfigurationManager.AppSettings["FbAppSecret"],
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
                 redirect_uri = RedirectUri.AbsoluteUri,
                 grant_type = "authorization_code",
                 code = code
@@ -80,16 +123,53 @@ namespace RecycleMeMVC.Controllers
             // Get the user's information
             dynamic me = fb.Get("me?fields=first_name,last_name,id,email");
             string email = me.email;
-            dynamic res = fb.Post("me/feed", new
-            {
-                message = "My first wall post using Facebook SDK for .NETs"
-            });
-            var newPostId = res.id;
+            //dynamic res = fb.Post("me/feed", new
+            //{
+            //    message = "My first wall post using Facebook SDK for .NETs"
+            //});
+            //var newPostId = res.id;
 
+            RecycleMeContext db = new RecycleMeContext();
+            var image = db.ItemImage.Where(a => a.ItemId == ItemId).FirstOrDefault();
+
+
+            WebRequest req = WebRequest.Create(image.Path);
+            WebResponse response = req.GetResponse();
+            Stream stream = response.GetResponseStream();
+
+
+            //dynamic res = fb.Post("/me/photos", new
+            //{
+
+            //    message = "",
+            //    file = new FacebookMediaStream
+            //    {
+            //        ContentType = "image/jpg",
+            //        FileName = "henry"
+
+            //    }.SetValue(stream)
+
+
+            //});
+
+            var media = new FacebookMediaObject
+            {
+                FileName = "henry",
+                ContentType = "image/jpeg"
+            };
+            byte[] img = ReadFully(stream);
+            media.SetValue(img);
+            var postparameters = new Dictionary<string, object>();
+
+            postparameters["source"] = media;
+            //postparameters["access_token"] = Session["access_token"].ToString();
+            var res = fb.Post("/me/photos", postparameters);
             // Set the auth cookie
             //FormsAuthentication.SetAuthCookie(email, false);
 
             return RedirectToAction("Dashboard", "Profile");
         }
     }
+
+
 }
