@@ -19,6 +19,7 @@ using ExtensionMethods;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using RecycleMeBusinessLogicLayer;
 
 namespace ExtensionMethods
 {
@@ -46,9 +47,28 @@ namespace RecycleMeOdataWebApi.Controllers
         public string Name { get; set; }
         public string Path { get; set; }
     }
-    
+
     public partial class ItemController : ODataController
     {
+
+        [HttpPost]
+        public async Task<HttpResponseMessage> PostFacebook(ODataActionParameters parameters)
+        {
+
+            User user = await db.Users.FindAsync((string)parameters["UserId"]);
+            if (user == null)
+            {
+                return this.Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            FB fb = new FB();
+            fb.Post((string)parameters["UserId"]);
+            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+
+            return response;
+        }
+
+
         //{
         //"OwnerId":"bc943640-22f8-42d3-8646-c9e40938f34b",
         //"Name":"Item 1",
@@ -98,7 +118,7 @@ namespace RecycleMeOdataWebApi.Controllers
             {
                 if (Request.Content.IsMimeMultipartContent())
                 {
-               
+
                     var streamProvider = new MultipartMemoryStreamProvider();
                     await Request.Content.ReadAsMultipartAsync(streamProvider).ContinueWith(t =>
                     {
@@ -111,7 +131,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
                             //var newResizeStream = ImageResize(stream, System.Drawing.Imaging.ImageFormat.Jpeg, 1400);
                             //var newResizeStream = ImageResize(stream);
-                            var newResizeStream = ImageResize(stream,550,500,false);
+                            var newResizeStream = ImageResize(stream, 550, 500, false);
                             blob.UploadFromStream(newResizeStream);
 
                             ItemImage image = new ItemImage
@@ -119,11 +139,12 @@ namespace RecycleMeOdataWebApi.Controllers
                                 Name = fileName,
                                 Path = blob.StorageUri.PrimaryUri.AbsoluteUri
                             };
-                           
+
                             db.ItemImage.Add(image);
                             db.SaveChanges();
 
-                            id.Add(new ItemId { 
+                            id.Add(new ItemId
+                            {
                                 Id = image.Id,
                                 Name = image.Name,
                                 Path = image.Path
@@ -131,11 +152,11 @@ namespace RecycleMeOdataWebApi.Controllers
                         }
                     });
                 }
-              
-                  
+
+
                 var response = this.Request.CreateResponse(HttpStatusCode.OK);
                 response.Content = new StringContent(id.ToJSON(), Encoding.UTF8, "application/json");
-           
+
                 return response;
             }
             catch (System.Exception e)
@@ -170,7 +191,7 @@ namespace RecycleMeOdataWebApi.Controllers
             System.Drawing.Image img = System.Drawing.Image.FromStream(inputStream);
 
             System.Drawing.Image thumbnail = FixedSize(img, Height, Width, needToFill);
-            thumbnail.Save(result,ImageFormat.Jpeg);
+            thumbnail.Save(result, ImageFormat.Jpeg);
 
 
             result.Seek(0, 0);
@@ -184,7 +205,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
             EncoderParameters encodingParameters = new EncoderParameters(1);
             encodingParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 90L); // Set the JPG Quality percentage to 90%.
-            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);   
+            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
             //ImageCodecInfo jpgEncoder = GetEncoderInfo("image/jpeg");
 
             // Incoming! This is the original image. This line can effectively be anything, but in this example it's coming from a stream.
@@ -213,11 +234,11 @@ namespace RecycleMeOdataWebApi.Controllers
             //_event.ThumbnailPicture = streamThumbnail.ToArray();
 
             // Good boy's tidy-up after themselves! :O
-           // originalImage.Dispose();
-           // newImage.Dispose();
-           // thumbnail.Dispose();
-           // streamLarge.Dispose();
-           // streamThumbnail.Dispose();
+            // originalImage.Dispose();
+            // newImage.Dispose();
+            // thumbnail.Dispose();
+            // streamLarge.Dispose();
+            // streamThumbnail.Dispose();
             streamLarge.Seek(0, 0);
             return streamLarge;
         }

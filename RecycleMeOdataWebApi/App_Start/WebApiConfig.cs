@@ -49,6 +49,10 @@ namespace RecycleMeOdataWebApi
             builder.Entity<Item>().Collection.Action("UploadFile");
             ActionConfiguration action = builder.Entity<Item>().Collection.Action("DownloadFile");
             action.Parameter<string>("name");
+
+            ActionConfiguration fbAction = builder.Entity<Item>().Collection.Action("PostFacebook");
+            fbAction.Parameter<string>("UserId");
+
             
             //ItemFollower
             builder.EntitySet<ItemFollowers>("ItemFollower");

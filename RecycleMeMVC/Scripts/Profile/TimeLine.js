@@ -84,6 +84,34 @@
     }
 
 
+
+    this.DeleteItem = function (item) {
+
+        var data = {
+            CommenterId: $("#currentUser").data("text"),
+            IsDeleted: true,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
+             alert('success');
+        });
+    }
+
+    this.PostFb = function (item) {
+
+        var data = {
+            UserId: $("#currentUser").data("text")
+        }
+
+        AjaxNinja.Invoke(ODataApi.Item + "PostFacebook", "POST", JSON.stringify(data), function (result) {
+             alert('success');
+        });
+    }
+
+
+
     function PostComment(item, type) {
 
         var data = {

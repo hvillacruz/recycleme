@@ -5,6 +5,7 @@ using RecycleMeDataAccessLayer;
 using RecycleMeDomainClasses;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,24 +26,49 @@ namespace RecycleMeBusinessLogicLayer
             dynamic info = fb.Get("me");
 
             UserViewModel user = new UserViewModel();
-         
-                user = new UserViewModel()
-                  {
-                      UserId = UserId,
-                      ExternalId = info.id,
-                      ExternalUserName = info.username,
-                      FirstName = info.first_name,
-                      Email = info.email,
-                      LastName = info.last_name,
-                      BirthDate = DateTime.ParseExact(info.birthday, "MM/dd/yyyy", null),
-                      Address = info.location.name,
-                      Avatar = @"https://graph.facebook.com/" + info.id + "/picture?type=large"
-                  };
-           
+
+            user = new UserViewModel()
+              {
+                  UserId = UserId,
+                  ExternalId = info.id,
+                  ExternalUserName = info.username,
+                  FirstName = info.first_name,
+                  Email = info.email,
+                  LastName = info.last_name,
+                  BirthDate = DateTime.ParseExact(info.birthday, "MM/dd/yyyy", null),
+                  Address = info.location.name,
+                  Avatar = @"https://graph.facebook.com/" + info.id + "/picture?type=large"
+              };
+
 
             return user;
         }
 
+
+        public void Post(string UserId)
+        {
+
+            var usermanager = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext()));
+            var claimsforUser = usermanager.GetClaims(UserId);
+            var access_token = claimsforUser.FirstOrDefault(x => x.Type == "FacebookAccessToken").Value;
+            var client = new FacebookClient(access_token);
+
+            dynamic me = client.Get("me");
+            var id = me.id;
+
+            dynamic parameters = new ExpandoObject();
+            parameters.title = "test title";
+            parameters.message = "test message";
+            try
+            {
+                var result = client.Post(id + "/feed", parameters);
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+
+        }
 
     }
 }
