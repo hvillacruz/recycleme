@@ -130,6 +130,7 @@ namespace RecycleMeMVC.Controllers
             //var newPostId = res.id;
 
             RecycleMeContext db = new RecycleMeContext();
+            var itemImage = db.Items.Where(a => a.Id == ItemId).FirstOrDefault();
             var image = db.ItemImage.Where(a => a.ItemId == ItemId).FirstOrDefault();
 
 
@@ -138,19 +139,7 @@ namespace RecycleMeMVC.Controllers
             Stream stream = response.GetResponseStream();
 
 
-            //dynamic res = fb.Post("/me/photos", new
-            //{
-
-            //    message = "",
-            //    file = new FacebookMediaStream
-            //    {
-            //        ContentType = "image/jpg",
-            //        FileName = "henry"
-
-            //    }.SetValue(stream)
-
-
-            //});
+          
 
             var media = new FacebookMediaObject
             {
@@ -162,7 +151,7 @@ namespace RecycleMeMVC.Controllers
             var postparameters = new Dictionary<string, object>();
 
             postparameters["source"] = media;
-            //postparameters["access_token"] = Session["access_token"].ToString();
+            postparameters["message"] = itemImage.Name;
             var res = fb.Post("/me/photos", postparameters);
             // Set the auth cookie
             //FormsAuthentication.SetAuthCookie(email, false);
