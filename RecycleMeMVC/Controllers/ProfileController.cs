@@ -10,6 +10,9 @@ using System.Configuration;
 using System.Net;
 using System.IO;
 using RecycleMeDataAccessLayer;
+using RecycleMeBusinessLogicLayer;
+using RecycleMeDomainClasses;
+using Microsoft.AspNet.Identity.EntityFramework;
 namespace RecycleMeMVC.Controllers
 {
     [RoutePrefix("Profile")]
@@ -36,6 +39,22 @@ namespace RecycleMeMVC.Controllers
                 uriBuilder.Path = Url.Action("FacebookCallback");
                 return uriBuilder.Uri;
             }
+        }
+
+        public ActionResult Twitter(string id)
+        {
+
+
+            var usermanager = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext()));
+            var claimsforUser = usermanager.GetClaims(User.Identity.GetUserId());
+            var access_token = claimsforUser.FirstOrDefault(x => x.Type == "urn:twitter:access_token").Value;
+            var access_token_secret = claimsforUser.FirstOrDefault(x => x.Type == "urn:twitter:access_token_secret").Value;
+
+            Twitter twitter = new Twitter(ConfigurationManager.AppSettings["TweetConsumerKey"],
+                                            ConfigurationManager.AppSettings["TweetConsumerSecret"], access_token, access_token_secret);
+
+            twitter.PostStatusUpdate("hello", 1, 2);
+            return null;
         }
 
         public ActionResult Facebook(string id)

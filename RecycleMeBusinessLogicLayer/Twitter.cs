@@ -106,22 +106,38 @@ namespace RecycleMeBusinessLogicLayer
 
             var requestParameters = new SortedDictionary<string, string>();
             requestParameters.Add("status", Status);
-            requestParameters.Add("lat", Latitude.ToString());
-            requestParameters.Add("long", Longitude.ToString());
+            //requestParameters.Add("lat", Latitude.ToString());
+            //requestParameters.Add("long", Longitude.ToString());
 
             return GetResponse(resourceUrl, Method.POST, requestParameters);
+        }
+
+         public string SendDirectMessage(string screenName, string text)
+        {
+            string resourceUrl =
+                string.Format("https://api.twitter.com/1.1/direct_messages/new.json");
+
+            var requestParameters = new SortedDictionary<string, string>();
+            requestParameters.Add("screen_name", screenName);
+            requestParameters.Add("text", text);
+
+            var response = GetResponse(resourceUrl, Method.POST, requestParameters);
+
+            return response;
+            
         }
 
         private string GetResponse(string ResourceUrl, Method Method, SortedDictionary<string, string> RequestParameters)
         {
             ServicePointManager.Expect100Continue = false;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             WebRequest request = null;
             string resultString = string.Empty;
 
             if (Method == Method.POST)
             {
                 var postBody = RequestParameters.ToWebString();
-
+               
                 request = (HttpWebRequest)WebRequest.Create(ResourceUrl);
                 request.Method = Method.ToString();
                 request.ContentType = "application/x-www-form-urlencoded";
