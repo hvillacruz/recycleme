@@ -167,7 +167,9 @@
     <Content Include="datajs-1.1.2.js" />
     <Content Include="datajs-1.1.2.min.js" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -191,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\RecycleMeApi.pubxml" />
     <None Include="Properties\PublishProfiles\RecycleMeOData.pubxml" />
     <None Include="Properties\PublishProfiles\recyclemesg.pubxml" />
     <None Include="Web.Debug.config">
@@ -234,8 +237,6 @@
           <DevelopmentServerPort>53480</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:53481/</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:53481/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

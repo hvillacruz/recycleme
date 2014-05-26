@@ -16,22 +16,12 @@ using RecycleMeDataAccessLayer;
 
 namespace RecycleMeOdataWebApi.Controllers
 {
-    /*
-    To add a route for this controller, merge these statements into the Register method of the WebApiConfig class. Note that OData URLs are case sensitive.
-
-    using System.Web.Http.OData.Builder;
-    using RecycleMeDomainClasses;
-    ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<Item>("Item");
-    builder.EntitySet<ItemCategory>("ItemCategory"); 
-    builder.EntitySet<ItemComment>("ItemComment"); 
-    builder.EntitySet<ItemImage>("ItemImage"); 
-    builder.EntitySet<ItemFollowers>("ItemFollowers"); 
-    builder.EntitySet<User>("Users"); 
-    config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
-    */
+   
     public partial class ItemController : ODataController
     {
+        public ItemController()
+        {
+        }
         private RecycleMeContext db = new RecycleMeContext();
 
         // GET odata/Item

@@ -130,7 +130,7 @@ namespace RecycleMeBusinessLogicLayer
         private string GetResponse(string ResourceUrl, Method Method, SortedDictionary<string, string> RequestParameters)
         {
             ServicePointManager.Expect100Continue = false;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             WebRequest request = null;
             string resultString = string.Empty;
 
