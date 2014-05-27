@@ -13,15 +13,15 @@
   line-height: 40px;
   font-weight: 100;
 }
-p {
+.p {
   margin-bottom: 1em;
 }
-a {
-  color: #61c7b3;
-  text-decoration: none;
-  transition-duration: .3s;
+.a {
+  color: #61c7b3 !important;
+  text-decoration: none !important;
+  transition-duration: .3s !important;
 }
-a:hover {
+.a:hover {
   color: #338f7d;
   transition-duration: .05s;
   text-decoration: none;
@@ -525,7 +525,7 @@ a:hover {
 #message {
   position: fixed;
   top: 0;
-  left: 60%;
+  left: 100%;
   bottom: 0;
   width: 40%;
   z-index: 5;
