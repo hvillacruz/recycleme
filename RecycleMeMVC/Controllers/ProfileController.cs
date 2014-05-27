@@ -28,6 +28,14 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
+        [Route("Message/{id?}")]
+        public ActionResult Message(string id)
+        {
+
+            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            return View();
+        }
+
         private static long ItemId { get; set; }
         private Uri RedirectUri
         {

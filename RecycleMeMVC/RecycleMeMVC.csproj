@@ -261,6 +261,7 @@
     <Content Include="Content\images\8.jpg" />
     <Content Include="Content\images\9.jpg" />
     <Content Include="Content\Styles\Home\TradeItems.css" />
+    <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-editable.min.js" />
     <Content Include="Scripts\Home\TradeItems.js" />
@@ -359,6 +360,7 @@
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\dropzone.min.js" />
     <Content Include="Scripts\modernizr.custom.js" />
+    <Content Include="Scripts\Profile\Message.js" />
     <Content Include="Scripts\Profile\Pill.js" />
     <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
@@ -422,6 +424,8 @@
     <Content Include="Views\Profile\_SearchPartial.cshtml" />
     <Content Include="Views\Profile\_ModifyItemPartial.cshtml" />
     <Content Include="Views\Home\_SettingItemPartial.cshtml" />
+    <Content Include="Views\Profile\_MessagePartial.cshtml" />
+    <Content Include="Views\Profile\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
