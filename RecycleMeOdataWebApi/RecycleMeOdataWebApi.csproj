@@ -182,6 +182,7 @@
     <Compile Include="Controllers\ItemPartialController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserCommentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserFollowerController.cs" />

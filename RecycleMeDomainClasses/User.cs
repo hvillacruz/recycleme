@@ -38,6 +38,8 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<ItemComment> UserItemCommenter { get; set; }
         public virtual ICollection<ItemFollowers> UserItemFollowers { get; set; }
+        public virtual ICollection<Message> UserSender { get; set; }
+        public virtual ICollection<Message> UserReceiver { get; set; }
         
         
 

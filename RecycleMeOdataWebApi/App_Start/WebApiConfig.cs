@@ -69,8 +69,9 @@ namespace RecycleMeOdataWebApi
             
             //UserFollowingController
             builder.EntitySet<UserFollowing>("UserFollowing");
-          
 
+            //MessageController
+            builder.EntitySet<Message>("Message"); 
             
             config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
 

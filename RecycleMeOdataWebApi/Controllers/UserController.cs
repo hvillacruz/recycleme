@@ -6,7 +6,6 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
@@ -29,6 +28,7 @@ namespace RecycleMeOdataWebApi.Controllers
     builder.EntitySet<UserFollowing>("UserFollowing"); 
     builder.EntitySet<ItemComment>("ItemComment"); 
     builder.EntitySet<ItemFollowers>("ItemFollowers"); 
+    builder.EntitySet<Message>("Message"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
     public class UserController : ODataController
@@ -50,7 +50,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // PUT odata/User(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] string key, User user)
+        public IHttpActionResult Put([FromODataUri] string key, User user)
         {
             if (!ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -84,7 +84,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // POST odata/User
-        public async Task<IHttpActionResult> Post(User user)
+        public IHttpActionResult Post(User user)
         {
             if (!ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -114,14 +114,14 @@ namespace RecycleMeOdataWebApi.Controllers
 
         // PATCH odata/User(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] string key, Delta<User> patch)
+        public IHttpActionResult Patch([FromODataUri] string key, Delta<User> patch)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            User user = await db.Users.FindAsync(key);
+            User user = db.Users.Find(key);
             if (user == null)
             {
                 return NotFound();
@@ -131,7 +131,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -149,16 +149,16 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // DELETE odata/User(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] string key)
+        public IHttpActionResult Delete([FromODataUri] string key)
         {
-            User user = await db.Users.FindAsync(key);
+            User user = db.Users.Find(key);
             if (user == null)
             {
                 return NotFound();
             }
 
             db.Users.Remove(user);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -167,9 +167,7 @@ namespace RecycleMeOdataWebApi.Controllers
         [Queryable]
         public IQueryable<Item> GetItems([FromODataUri] string key)
         {
-            var items =db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
-            return items;
-
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
         }
 
         // GET odata/User(5)/UserCommented
@@ -226,6 +224,20 @@ namespace RecycleMeOdataWebApi.Controllers
         public IQueryable<ItemFollowers> GetUserItemFollowers([FromODataUri] string key)
         {
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserItemFollowers);
+        }
+
+        // GET odata/User(5)/UserReceiver
+        [Queryable]
+        public IQueryable<Message> GetUserReceiver([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserReceiver);
+        }
+
+        // GET odata/User(5)/UserSender
+        [Queryable]
+        public IQueryable<Message> GetUserSender([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserSender);
         }
 
         protected override void Dispose(bool disposing)
