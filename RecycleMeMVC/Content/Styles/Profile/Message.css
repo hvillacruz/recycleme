@@ -1,14 +1,14 @@
 ﻿* {
   box-sizing: border-box;
 }
-body {
+.body {
   background: #FFF;
   font-family: Roboto, sans-serif;
   font-weight: 400;
   line-height: 1.5em;
   color: #888;
 }
-h1 {
+.h1 {
   font-size: 50px;
   line-height: 40px;
   font-weight: 100;

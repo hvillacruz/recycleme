@@ -1,4 +1,37 @@
-﻿
+﻿var MessageViewModel = function () {
+
+    var self = this;
+    this.Message = ko.observableArray();
+    this.PostMessage = function () {
+
+        var data = {
+
+            SenderId: $("#currentUser").data("text"),
+            ReceiverId: item.Receiver,
+            Heading: item.Heading,
+            Body:item.Body,
+            DateSent: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
+            alert('success');
+        });
+    }
+
+    this.GetMessage = function () {
+
+        AjaxNinja.Invoke(ODataApi.Message + "?$filter=SenderId eq '" + $("#currentUser").data("text"), +"'&$orderby=ReceivedDate desc&", "GET", {}, function (data) {
+            self.Message(data.value);
+        });
+
+    }
+}
+//var msg = new MessageViewModel();
+//ko.applyBindings(msg, document.getElementById("message"));
+//trade.GetMessage();
+
+
 
 jQuery(document).ready(function ($) {
 
@@ -7,29 +40,29 @@ jQuery(document).ready(function ($) {
 		messageIsOpen = false;
 
     cols.showOverlay = function () {
-        $('body').addClass('show-main-overlay');
+        $('.body').addClass('show-main-overlay');
     };
     cols.hideOverlay = function () {
-        $('body').removeClass('show-main-overlay');
+        $('.body').removeClass('show-main-overlay');
     };
 
 
     cols.showMessage = function () {
-        $('body').addClass('show-message');
+        $('.body').addClass('show-message');
         messageIsOpen = true;
     };
     cols.hideMessage = function () {
-        $('body').removeClass('show-message');
+        $('.body').removeClass('show-message');
         $('#main .message-list li').removeClass('active');
         messageIsOpen = false;
     };
 
 
     cols.showSidebar = function () {
-        $('body').addClass('show-sidebar');
+        $('.body').addClass('show-sidebar');
     };
     cols.hideSidebar = function () {
-        $('body').removeClass('show-sidebar');
+        $('.body').removeClass('show-sidebar');
     };
 
 

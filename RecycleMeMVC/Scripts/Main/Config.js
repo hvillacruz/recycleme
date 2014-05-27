@@ -7,6 +7,6 @@ var ODataApi = {
     ItemCategory: uri + "ItemCategory/",
     Item: uri + "Item/",
     ItemImage: uri + "ItemImage/",
-    ItemComment: uri + "ItemComment"
-
+    ItemComment: uri + "ItemComment",
+    Message: uri + "Message"
 }

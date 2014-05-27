@@ -367,6 +367,7 @@
     <Content Include="Scripts\Profile\SideBar.js" />
     <Content Include="Scripts\Profile\TimeLine.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Scripts\Profile\jquery.nanoscroller.js.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\Profile\Wall2.js" />
     <Content Include="Scripts\Profile\Wall.js" />
