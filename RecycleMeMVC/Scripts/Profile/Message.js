@@ -53,7 +53,7 @@ jQuery(document).ready(function ($) {
     };
     cols.hideMessage = function () {
         $('.body').removeClass('show-message');
-        $('#main .message-list li').removeClass('active');
+        $('#main .message-lists li').removeClass('active');
         messageIsOpen = false;
     };
 
@@ -82,7 +82,7 @@ jQuery(document).ready(function ($) {
 
     // When you click on a message, show it
 
-    $('#main .message-list li').on('click', function (e) {
+    $('#main .message-lists li').on('click', function (e) {
         var item = $(this),
 			target = $(e.target);
 
