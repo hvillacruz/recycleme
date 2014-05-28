@@ -282,7 +282,7 @@ ul {
 
 #main {
     position: fixed;
-    top: 0;
+    top: 40px;
     left: 300px;
     bottom: 0;
     right: 0;
@@ -312,7 +312,7 @@ ul {
 }
 
 #main .headers {
-    padding: 50px 60px;
+    padding: 40px 60px;
     border-bottom: 1px solid #efefef;
     overflow: hidden;
 }
@@ -440,7 +440,7 @@ ul {
     }
 
 #main .action-bar {
-    padding: 20px 60px;
+    padding: 10px 60px;
     border-bottom: 1px solid #efefef;
     overflow: hidden;
    
