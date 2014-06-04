@@ -361,6 +361,7 @@
     <Content Include="Scripts\dropzone.min.js" />
     <Content Include="Scripts\modernizr.custom.js" />
     <Content Include="Scripts\Profile\Message.js" />
+    <Content Include="Scripts\Profile\nanoScroll.js" />
     <Content Include="Scripts\Profile\Pill.js" />
     <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
