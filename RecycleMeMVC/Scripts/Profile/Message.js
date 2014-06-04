@@ -1,6 +1,7 @@
 ﻿var MessageViewModel = function () {
 
     var self = this;
+    this.SelectedItem = ko.observableArray();
     this.Message = ko.observableArray();
     this.PostMessage = function () {
 
@@ -21,11 +22,18 @@
 
     this.GetMessage = function () {
        
-        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
            
             self.Message(data.value);
             SetMsgEvents();
         });
+
+    }
+
+
+    this.ShowMessage = function (currentItem, selectedItem) {
+       
+        self.SelectedItem(selectedItem);
 
     }
 }
@@ -85,8 +93,9 @@ function SetMsgEvents() {
 
     $('#main .message-lists li').on('click', function (e) {
         var item = $(this),
-			target = $(e.target);
 
+			target = $(e.target);
+     
         if (target.is('label')) {
             item.toggleClass('selected');
         } else {

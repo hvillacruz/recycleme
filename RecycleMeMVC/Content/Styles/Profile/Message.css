@@ -26,11 +26,19 @@
     transition-duration: .3s !important;
 }
 
-    .a:hover {
-        color: #338f7d;
-        transition-duration: .05s;
-        text-decoration: none;
-    }
+.b {
+    color: #791C1E !important;
+    text-decoration: none !important;
+    transition-duration: .3s !important;
+}
+
+}
+
+.a:hover {
+    color: #338f7d;
+    transition-duration: .05s;
+    text-decoration: none;
+}
 
 .action-icon {
     width: 30px !important;
@@ -443,7 +451,6 @@ ul {
     padding: 10px 60px;
     border-bottom: 1px solid #efefef;
     overflow: hidden;
-   
 }
 
     #main .action-bar li {
