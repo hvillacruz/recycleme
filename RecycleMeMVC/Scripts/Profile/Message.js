@@ -20,21 +20,22 @@
     }
 
     this.GetMessage = function () {
-
-        AjaxNinja.Invoke(ODataApi.Message + "?$filter=SenderId eq '" + $("#currentUser").data("text"), +"'&$orderby=ReceivedDate desc&", "GET", {}, function (data) {
+       
+        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&", "GET", {}, function (data) {
+           
             self.Message(data.value);
+            SetMsgEvents();
         });
 
     }
 }
-//var msg = new MessageViewModel();
-//ko.applyBindings(msg, document.getElementById("message"));
-//trade.GetMessage();
+var msg = new MessageViewModel();
+ko.applyBindings(msg, document.getElementById("messageInbox"));
+msg.GetMessage();
 
 
 
-jQuery(document).ready(function ($) {
-
+function SetMsgEvents() {
     var cols = {},
 
 		messageIsOpen = false;
@@ -147,7 +148,8 @@ jQuery(document).ready(function ($) {
             cols.hideMessage();
         }
     });
-
+}
+jQuery(document).ready(function ($) {
 });
 
 
