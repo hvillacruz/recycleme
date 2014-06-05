@@ -36,11 +36,20 @@
         self.SelectedItem(selectedItem);
 
     }
+
+    this.SendMessage = function (item, selectedImage) {
+
+        PostComment(item, 0);
+
+    }
 }
 var msg = new MessageViewModel();
 ko.applyBindings(msg, document.getElementById("messageInbox"));
 msg.GetMessage();
 
+
+
+//$('#myMessageModal').modal()
 
 
 function SetMsgEvents() {

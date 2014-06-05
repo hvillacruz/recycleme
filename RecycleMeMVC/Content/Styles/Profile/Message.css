@@ -32,6 +32,9 @@
     transition-duration: .3s !important;
 }
 
+#form1 textarea{
+    width:100%;
+    max-width:100% !important;
 }
 
 .a:hover {
