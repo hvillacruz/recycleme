@@ -1,8 +1,26 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Message.css")" />
 <div class="body" id="messageInbox">
+    <div class="modal fade" id="myMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myImageModalLabel">Compose</h4>
+                </div>
+                <div class="modal-body">
+                   
+                        @Html.Partial("_ComposePartial")
+                  
+                </div>
+                <div class="modal-footer">
+                    @Html.Partial("_ComposeFooterPartial")
+                </div>
+            </div>
+        </div>
+    </div>
     <aside id="sidebar" class="nano">
         <div class="nano-content">
-            <div class="logo-container"><span class="logo icon icon-envelope"></span>Mail</div><a class="a compose-button">Compose</a>
+            <div class="logo-container"><span class="logo icon icon-envelope"></span>Mail</div><a data-toggle="modal" data-target="#myMessageModal" class="a compose-button">Compose</a>
             <menu class="menu-segment">
                 <ul>
                     <li class="active"><a class="a" href="#">Inbox<span> (43)</span></a></li>

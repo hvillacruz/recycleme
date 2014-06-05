@@ -428,6 +428,8 @@
     <Content Include="Views\Home\_SettingItemPartial.cshtml" />
     <Content Include="Views\Profile\_MessagePartial.cshtml" />
     <Content Include="Views\Profile\Message.cshtml" />
+    <Content Include="Views\Profile\_ComposePartial.cshtml" />
+    <Content Include="Views\Profile\_ComposeFooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
