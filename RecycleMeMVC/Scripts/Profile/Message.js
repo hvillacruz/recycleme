@@ -3,20 +3,26 @@
     var self = this;
     this.SelectedItem = ko.observableArray();
     this.Message = ko.observableArray();
-    this.PostMessage = function () {
+    this.Subject = ko.observable("");
+    this.Body = ko.observable("");
+    this.Recipient = ko.observable("");
+    this.SendMessage = function (item, selectedImage)
+    {
+
 
         var data = {
 
-            SenderId: $("#currentUser").data("text"),
-            ReceiverId: item.Receiver,
-            Heading: item.Heading,
-            Body:item.Body,
+            SenderId: global.User.UserId(),
+            ReceiverId: global.User.UserId(),
+            Subject: item.Subject(),
+            Body:item.Body(),
             DateSent: Helper.time()
 
         }
 
         AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
-            alert('success');
+            self.GetMessage();
+            $('#myMessageModal').modal('hide')
         });
     }
 
@@ -37,19 +43,27 @@
 
     }
 
-    this.SendMessage = function (item, selectedImage) {
 
-        PostComment(item, 0);
-
-    }
 }
 var msg = new MessageViewModel();
 ko.applyBindings(msg, document.getElementById("messageInbox"));
 msg.GetMessage();
 
-
+$('#myMessageModal').on('show.bs.modal', function (e) {
+     rescale();  
+})
 
 //$('#myMessageModal').modal()
+
+function rescale() {
+    var size = { width: $(window).width(), height: $(window).height() }
+    /*CALCULATE SIZE*/
+    var offset = 20;
+    var offsetBody = 150;
+    $('#myModal').css('height', size.height - offset);
+    $('.modal-body').css('height', (size.height/2) - (offset + offsetBody));
+    $('#myModal').css('top', 0);
+}
 
 
 function SetMsgEvents() {

@@ -1,3 +1,13 @@
 ﻿<form id="form1">
-    <textarea rows="3" class="form-control"></textarea>
+    <div class="col-xs-12 txtComment">
+        <div class="right-inner-addon ">
+            <i class="icon-comments"></i>
+            <input type="text" class="form-control" data-bind="value:Subject " placeholder=" write the subject..." />
+
+        </div>
+    </div>
+    <div class="splitter"></div>
+    <div class="col-xs-12 txtComment">
+        <textarea rows="3" class="form-control" data-bind="value:Body"></textarea>
+    </div>
 </form>
