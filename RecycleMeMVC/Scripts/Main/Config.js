@@ -4,6 +4,7 @@ var uri = window.location.host.indexOf("localhost") !== 0 ? "http://recyclemeapi
 var ODataApi = {
     User: uri + "User/",
     UserFollow: uri + "UserFollower/",
+    UserFollowing: uri + "UserFollowing/",
     ItemCategory: uri + "ItemCategory/",
     Item: uri + "Item/",
     ItemImage: uri + "ItemImage/",

@@ -2,7 +2,7 @@ var ProfileBarViewModel = function () {
 
     var self = this;
     this.Bar = ko.observableArray();
-    this.ViewUser = ko.observable();
+    this.ViewUser = ko.observable("Test");
     this.ProfileBar = function () {
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')" + "?$expand=UserFollowerUsers,UserCommenter,UserFollowing", "GET", {}, function (data) {
@@ -13,20 +13,27 @@ var ProfileBarViewModel = function () {
 
     this.likeUser = function () {
 
+        //var data = {
+        //    FollowerId: global.User.UserId(),
+        //    FollowedUserId: profileBar.ViewUser(),
+        //    ModifiedDate: Helper.time()
+        //}
+
         var data = {
-            FollowerId: global.User.UserId(),
-            FollowedUserId: self.ViewUser,
+            FollowingId: global.User.UserId(),
+            FollowingUserId: profileBar.ViewUser(),
             ModifiedDate: Helper.time()
         }
 
-        AjaxNinja.Invoke(ODataApi.UserFollow, "POST", JSON.stringify(data), function (data) {
+        AjaxNinja.Invoke(ODataApi.UserFollowing, "POST", JSON.stringify(data), function (data) {
 
-            if (data.value.length != 0)
-                self.Following(data.value);
+            //if (data.value.length != 0)
+                //self.Following(data);
         });
 
     }
 
+   
 }
 var profileBar = new ProfileBarViewModel();
 ko.applyBindings(profileBar, document.getElementById("profileBarDiv"));

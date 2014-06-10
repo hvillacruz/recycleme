@@ -1,4 +1,14 @@
-﻿.face {
+﻿ .redLike {
+        color: #000000;
+       
+    }  
+
+.redLike:hover {
+            color: #791C1E;
+            border-color: #791C1E;
+        }
+
+.face {
 }
 
     .face div {
