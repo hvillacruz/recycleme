@@ -15,7 +15,7 @@
         var data = {
 
             SenderId: global.User.UserId(),
-            ReceiverId: global.User.UserId(),
+            ReceiverId:this.SelectedChoice()[0],
             Subject: item.Subject(),
             Body:item.Body(),
             DateSent: Helper.time()
