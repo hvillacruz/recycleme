@@ -9,16 +9,15 @@
     this.Recipient = ko.observable("");
     this.RecipientList = ko.observableArray();
     this.SelectedChoice = ko.observable();
-    this.SendMessage = function (item, selectedImage)
-    {
+    this.SendMessage = function (item, selectedImage) {
 
 
         var data = {
 
             SenderId: global.User.UserId(),
-            ReceiverId:this.SelectedChoice()[0],
+            ReceiverId: this.SelectedChoice()[0],
             Subject: item.Subject(),
-            Body:item.Body(),
+            Body: item.Body(),
             DateSent: Helper.time()
 
         }
@@ -28,16 +27,29 @@
             $('#myMessageModal').modal('hide')
         });
 
-       
+
     }
 
     this.GetMessage = function () {
-       
+
 
 
         AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
             self.MessageCount("(" + data.value.length + ")");
-            self.Message(data.value);
+            var result = [];
+            $(data.value).each(function (i, value) {
+                var date = new Date(Date.parse(value.DateSent));
+                value.DateSent = date;
+                if (date != null)
+                    var res = $.extend(value, { Time: formatAMPM(date) });
+                // $.extend(res.ItemImages, { Class: "metro" - value.ItemImages.length });
+
+                result.push(res);
+
+                // alert(date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + (date.getUTCDate()));
+            });
+
+            self.Message(result);
             SetMsgEvents();
         });
 
@@ -50,22 +62,40 @@
 
 
     this.ShowMessage = function (currentItem, selectedItem) {
-       
+
         self.SelectedItem(selectedItem);
 
     }
 
 
 }
+
+
+
+
 var msg = new MessageViewModel();
 ko.applyBindings(msg, document.getElementById("messageInbox"));
 msg.GetMessage();
 
 $('#myMessageModal').on('show.bs.modal', function (e) {
-     rescale();  
+    rescale();
 })
 
 //$('#myMessageModal').modal()
+
+
+function formatAMPM(date) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+}
+
+
 
 function rescale() {
     var size = { width: $(window).width(), height: $(window).height() }
@@ -73,7 +103,7 @@ function rescale() {
     var offset = 20;
     var offsetBody = 150;
     $('#myModal').css('height', size.height - offset);
-    $('.modal-body').css('height', ((size.height/1.5) - (offset + offsetBody)));
+    $('.modal-body').css('height', ((size.height / 1.5) - (offset + offsetBody)));
     $('#myModal').css('top', 0);
 }
 
@@ -113,26 +143,26 @@ function SetMsgEvents() {
     // Show sidebar when trigger is clicked
 
     $('.trigger-toggle-sidebar').on('click', function () {
-      
+
         cols.showSidebar();
         cols.showOverlay();
     });
 
 
     $('.trigger-message-close').on('click', function () {
-      
+
         cols.hideMessage();
         cols.hideOverlay();
     });
 
-   
+
     // When you click on a message, show it
 
     $('#main .message-lists li').on('click', function (e) {
         var item = $(this),
 
 			target = $(e.target);
-     
+
         if (target.is('label')) {
             item.toggleClass('selected');
         } else {
@@ -167,7 +197,7 @@ function SetMsgEvents() {
     // When you click the overlay, close everything
 
     $('#main > .overlay').on('click', function () {
-     
+
         cols.hideOverlay();
         cols.hideMessage();
         cols.hideSidebar();
@@ -176,7 +206,7 @@ function SetMsgEvents() {
 
 
     // Enable sexy scrollbars
-  //  $('.nano').nanoScroller();
+    //  $('.nano').nanoScroller();
 
 
 

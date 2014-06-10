@@ -86,7 +86,7 @@
                             </div>
                             <div class="col col-2">
                                 <div class="subject"><span data-bind="text:Sender.FirstName"></span> has sent you a direct message! &nbsp;&ndash;&nbsp; <span class="teaser"><span data-bind="text:Body"></span></span></div>
-                                <div class="date">11:49 am</div>
+                                <div class="date"><span data-bind="text:Time"></span></div>
                             </div>
                         </a>
                     </li>
@@ -368,7 +368,7 @@
                     @*<a id="backBtn" class="b icon circle-icon icon icon-chevron-left trigger-message-close"></a>*@
                     <span data-bind="text:Subject"></span><span class="grey"></span>
                 </h1>
-                <p>From <a class="b" href="#">You</a> to <a class="b" href="#"><span data-bind="text:Sender.FirstName"></span></a>, started on <a class="b" href="#">March 2, 2014</a> at 2:14 pm est.</p>
+                <p>From <a class="b" href="#">You</a> to <a class="b" href="#"><span data-bind="text:Sender.FirstName"></span></a> <a class="b" href="#"></a> </p>
             </div>
             <div id="message-nano-wrapper" class="nano">
                 <div class="nano-content">
@@ -379,7 +379,7 @@
                                     You
                                     <div class="arrow"></div><span data-bind="text:Sender.FirstName"></span>
                                 </div>
-                                <div class="right">March 6, 2014, 20:08 pm</div>
+                                <div class="right"><span data-bind="text:DateSent"></span></div>
                             </div>
                             <div class="message">
                                 <p><span data-bind="text:Body"></span></p>
