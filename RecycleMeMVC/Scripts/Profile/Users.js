@@ -12,7 +12,7 @@ var UsersViewModel = function () {
     },
     this.UserFollowing = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')" + "/UserFollowingUsers?$expand=Following", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')" + "/UserFollowers?$expand=FollowedUser", "GET", {}, function (data) {
             if (data.value.length != 0)
                 self.Following(data.value);
         });

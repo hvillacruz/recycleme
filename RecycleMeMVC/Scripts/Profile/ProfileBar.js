@@ -13,22 +13,20 @@ var ProfileBarViewModel = function () {
 
     this.likeUser = function () {
 
-        //var data = {
-        //    FollowerId: global.User.UserId(),
-        //    FollowedUserId: profileBar.ViewUser(),
-        //    ModifiedDate: Helper.time()
-        //}
-
         var data = {
-            FollowingId: global.User.UserId(),
-            FollowingUserId: profileBar.ViewUser(),
+            FollowerId: global.User.UserId(),
+            FollowedUserId: profileBar.ViewUser(),
             ModifiedDate: Helper.time()
         }
 
-        AjaxNinja.Invoke(ODataApi.UserFollowing, "POST", JSON.stringify(data), function (data) {
+        //var data = {
+        //    FollowingId: global.User.UserId(),
+        //    FollowingUserId: profileBar.ViewUser(),
+        //    ModifiedDate: Helper.time()
+        //}
 
-            //if (data.value.length != 0)
-                //self.Following(data);
+        AjaxNinja.Invoke(ODataApi.UserFollow, "POST", JSON.stringify(data), function (data) {
+
         });
 
     }
