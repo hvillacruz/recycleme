@@ -72,7 +72,7 @@ function rescale() {
     var offset = 20;
     var offsetBody = 150;
     $('#myModal').css('height', size.height - offset);
-    $('.modal-body').css('height', (size.height/2) - (offset + offsetBody));
+    $('.modal-body').css('height', ((size.height/1.5) - (offset + offsetBody)));
     $('#myModal').css('top', 0);
 }
 
