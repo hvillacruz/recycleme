@@ -5,6 +5,7 @@
     this.Message = ko.observableArray();
     this.Subject = ko.observable("");
     this.Body = ko.observable("");
+    this.MessageCount = ko.observable("0");
     this.Recipient = ko.observable("");
     this.RecipientList = ko.observableArray();
     this.SelectedChoice = ko.observable();
@@ -35,7 +36,7 @@
 
 
         AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
-           
+            self.MessageCount("(" + data.value.length + ")");
             self.Message(data.value);
             SetMsgEvents();
         });
