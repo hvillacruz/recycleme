@@ -1,5 +1,10 @@
 ﻿<form id="form1">
     <div class="col-xs-12 txtComment">
+        <input type="text" data-placeholder="Recipients" data-bind="kendoMultiSelect: {  data: RecipientList, dataTextField:'FirstName', dataValueField:'UserId', value : SelectedChoice  }" />
+
+    </div>
+    <div class="splitter"></div>
+    <div class="col-xs-12 txtComment">
         <div class="right-inner-addon ">
             <i class="icon-comments"></i>
             <input type="text" class="form-control" data-bind="value:Subject " placeholder=" write the subject..." />

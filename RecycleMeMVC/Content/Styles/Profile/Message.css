@@ -32,7 +32,7 @@
 }
 
 .b {
-    color: #791C1E !important;
+    color: #338f7d !important;
     text-decoration: none !important;
     transition-duration: .3s !important;
 }
@@ -765,13 +765,13 @@ ul {
             }
 
         #message .message-container li:hover .tool-box .red-hover {
-            color: #d23b3d;
-            border-color: #d23b3d;
+            color: rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 0, 0, 0.15);
         }
 
             #message .message-container li:hover .tool-box .red-hover:hover {
-                color: #791C1E;
-                border-color: #791C1E;
+                color: rgba(0, 0, 0, 0.15);
+                border-color:rgba(0, 0, 0, 0.15);
             }
 
         #message .message-container li .tool-box {

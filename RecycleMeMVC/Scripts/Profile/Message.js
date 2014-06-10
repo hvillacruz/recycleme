@@ -6,6 +6,8 @@
     this.Subject = ko.observable("");
     this.Body = ko.observable("");
     this.Recipient = ko.observable("");
+    this.RecipientList = ko.observableArray();
+    this.SelectedChoice = ko.observable();
     this.SendMessage = function (item, selectedImage)
     {
 
@@ -24,16 +26,25 @@
             self.GetMessage();
             $('#myMessageModal').modal('hide')
         });
+
+       
     }
 
     this.GetMessage = function () {
        
+
+
         AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
            
             self.Message(data.value);
             SetMsgEvents();
         });
 
+
+        AjaxNinja.Invoke(ODataApi.User, "GET", {}, function (result) {
+            self.RecipientList(result.value);
+
+        });
     }
 
 
@@ -101,17 +112,19 @@ function SetMsgEvents() {
     // Show sidebar when trigger is clicked
 
     $('.trigger-toggle-sidebar').on('click', function () {
+      
         cols.showSidebar();
         cols.showOverlay();
     });
 
 
     $('.trigger-message-close').on('click', function () {
+      
         cols.hideMessage();
         cols.hideOverlay();
     });
 
-
+   
     // When you click on a message, show it
 
     $('#main .message-lists li').on('click', function (e) {
@@ -153,6 +166,7 @@ function SetMsgEvents() {
     // When you click the overlay, close everything
 
     $('#main > .overlay').on('click', function () {
+     
         cols.hideOverlay();
         cols.hideMessage();
         cols.hideSidebar();
@@ -161,15 +175,15 @@ function SetMsgEvents() {
 
 
     // Enable sexy scrollbars
-    $('.nano').nanoScroller();
+  //  $('.nano').nanoScroller();
 
 
 
     // Disable links
 
-    $('a').on('click', function (e) {
-        e.preventDefault();
-    });
+    //$('a').on('click', function (e) {
+    //    e.preventDefault();
+    //});
 
 
 
@@ -182,6 +196,7 @@ function SetMsgEvents() {
     });
 }
 jQuery(document).ready(function ($) {
+
 });
 
 
