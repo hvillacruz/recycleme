@@ -36,6 +36,26 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
+
+        [Route("Following/{id?}")]
+        public ActionResult Following(string id)
+        {
+
+            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            return View();
+        }
+
+
+
+        [Route("Followers/{id?}")]
+        public ActionResult Followers(string id)
+        {
+
+            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            return View();
+        }
+
+
         private static long ItemId { get; set; }
         private Uri RedirectUri
         {

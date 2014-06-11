@@ -242,6 +242,7 @@
     <Content Include="Content\Assets\images\loading.gif" />
     <Content Include="Content\Assets\images\mushroom.jpg" />
     <Content Include="Content\Assets\images\stat.png" />
+    <Content Include="Content\Assets\images\userBg.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -363,6 +364,7 @@
     <Content Include="Scripts\Profile\Message.js" />
     <Content Include="Scripts\Profile\nanoScroll.js" />
     <Content Include="Scripts\Profile\Pill.js" />
+    <Content Include="Scripts\Profile\UserList.js" />
     <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
     <Content Include="Scripts\Profile\SideBar.js" />
@@ -430,6 +432,8 @@
     <Content Include="Views\Profile\Message.cshtml" />
     <Content Include="Views\Profile\_ComposePartial.cshtml" />
     <Content Include="Views\Profile\_ComposeFooterPartial.cshtml" />
+    <Content Include="Views\Profile\Following.cshtml" />
+    <Content Include="Views\Profile\_UserListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
