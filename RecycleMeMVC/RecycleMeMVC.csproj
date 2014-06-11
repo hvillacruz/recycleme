@@ -434,6 +434,7 @@
     <Content Include="Views\Profile\_ComposeFooterPartial.cshtml" />
     <Content Include="Views\Profile\Following.cshtml" />
     <Content Include="Views\Profile\_UserListPartial.cshtml" />
+    <Content Include="Views\Profile\Followers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

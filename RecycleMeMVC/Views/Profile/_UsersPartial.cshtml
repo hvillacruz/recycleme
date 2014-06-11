@@ -1,12 +1,13 @@
 ﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Users.css")" />
 <div id="usersDiv">
-    <div class="circleProfile" >
+    <div class="circleProfile">
         <div class="users-info-text">
-            <div class="col-xs-6 users-item-left ">
-                <span class="users-followers">Followers</span>
+            <div class="col-xs-8 users-item-left ">
+                <span class="users-followers">Follower</span>
             </div>
-            <div class="col-xs-6 users-item-right ">
-                <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="icon-group"></i>See all</button>
+
+            <div class="col-xs-4 users-item-right ">
+                <span class="white"> <i class="icon-2x icon-group"></i><a class="white" href="@Url.Action("Followers", "Profile")">&nbsp;See All</a></span>
             </div>
         </div>
         <div class="users-divider"></div>
@@ -15,26 +16,26 @@
                 <div class="pro col-sm-6">
                     <div class="pic">
                         <div class="img"><img data-bind="attr:{src: Follower.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
-                  
-                        <i class="icon-plus"><span data-bind="text: Category.FirstName"></span></i>
-                    
+
+                        <i class="icon-plus"><span data-bind="text: Follower.FirstName"></span></i>
+
                     </div>
                 </div>
-           
+
             </div>
         </div>
 
     </div>
     <div class="dividerUser"></div>
-  
+
     <div class="circleProfile">
         <div class="users-info-text">
-            <div class="col-xs-6 users-item-left ">
+            <div class="col-xs-8 users-item-left ">
                 <span class="users-followers">Following</span>
             </div>
 
-            <div class="col-xs-6 users-item-right ">
-                <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="icon-group"></i>See all</button>
+            <div class="col-xs-4 users-item-right ">
+                <span class="white"> <i class="icon-2x icon-group"></i><a class="white" href="@Url.Action("Following", "Profile")">&nbsp;See All</a></span>
             </div>
         </div>
         <div class="users-divider "></div>
