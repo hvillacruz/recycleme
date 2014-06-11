@@ -6,15 +6,16 @@
 
 
 
-<div class="container">
+<div id="tradeContainer" class="container">
 
     <div class="search-box">
-        <input placeholder="Search..."><span class="icon icon icon-search"></span>
+        <input id="seachTxtBox" placeholder="Search..."><span class="icon icon icon-search" data-bind="click: Search.bind($data, $('#seachTxtBox').val())"></span>
+        
     </div>
 
 
     <ul class="grid effect-2" id="grid" data-bind="foreach: Items">
-        <!-- ko if: ItemImages.length > 0 -->
+
 
         <li>
             <div class="widget">
@@ -36,7 +37,7 @@
     
         </li>
 
-        <!-- /ko -->
+      
     </ul>
 </div>
 <script src="~/Scripts/Home/TradeItems.js"></script>
