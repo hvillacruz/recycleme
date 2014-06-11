@@ -8,7 +8,7 @@
     
     <ul class="grid effect-2" id="grid" data-bind="foreach: Items">
         <!-- ko if: $root.MessageCount != null -->
-       
+        <!-- ko if: $root.Type = "Following" -->
             <li>
               
                 <div class="widget">
@@ -18,7 +18,7 @@
                     </div>
 
                     <h1><span data-bind="text: FollowedUser.FirstName"></span></h1>
-                    <h2><span data-bind="text: FollowedUser.Birthdate"></span></h2>
+                    @*<h2><span data-bind="text: FollowedUser.Birthdate"></span></h2>*@
                     <img data-bind="attr:{src: FollowedUser.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
 
                     <div class="stat-stat">
@@ -30,8 +30,34 @@
                 </div>
 
             </li>
+        <!-- /ko -->
 
-            <!-- /ko -->
+        <!-- ko if: $root.Type = "Follower" -->
+        <li>
+
+            <div class="widget">
+                <div class="cover">
+
+                    <img src="~/Content/Assets/images/userBg.jpg" />
+                </div>
+
+                <h1><span data-bind="text: Follower.FirstName"></span></h1>
+                @*<h2><span data-bind="text: Follower.Birthdate"></span></h2>*@
+                <img data-bind="attr:{src: Follower.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
+
+                <div class="stat-stat">
+                    <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="icon-2xx icon-bullseye"><span class="box-stat-icon-text">0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom"><i class="icon-2xx icon-comments"><span class="box-stat-icon-text" @*data-bind="text:UserCommenter.length"*@>0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="icon-2xx icon-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
+                </div>
+
+            </div>
+
+        </li>
+        <!-- /ko -->
+
+
+        <!-- /ko -->
 </ul>
 </div>
 <script src="~/Scripts/Profile/UserList.js"></script>
