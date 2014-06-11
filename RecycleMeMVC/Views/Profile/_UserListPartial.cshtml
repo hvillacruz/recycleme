@@ -8,7 +8,7 @@
     
     <ul class="grid effect-2" id="grid" data-bind="foreach: Items">
         <!-- ko if: $root.MessageCount != null -->
-        <!-- ko if: $root.Type = "Following" -->
+        <!-- ko if: $root.Type() == "Following" -->
             <li>
               
                 <div class="widget">
@@ -32,7 +32,7 @@
             </li>
         <!-- /ko -->
 
-        <!-- ko if: $root.Type = "Follower" -->
+        <!-- ko if: $root.Type() == "Follower" -->
         <li>
 
             <div class="widget">
