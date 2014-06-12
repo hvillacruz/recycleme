@@ -116,5 +116,5 @@ jQuery(function ($) {
         myDropzoneInput.removeAllFiles();
     });
 
-
+    Dropzone.autoDiscover = false;
 });
