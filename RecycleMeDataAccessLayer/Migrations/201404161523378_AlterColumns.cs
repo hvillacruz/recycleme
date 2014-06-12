@@ -8,6 +8,7 @@ namespace RecycleMeDataAccessLayer.Migrations
         public override void Up()
         {
             AlterColumn("dbo.UserComments", "ModifiedDate", c => c.DateTime(defaultValueSql: "GETDATE()"));
+
         }
 
         public override void Down()

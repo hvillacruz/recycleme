@@ -10,14 +10,21 @@ namespace RecycleMeDataAccessLayer.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+
+    public class MyInitializer : DropCreateDatabaseAlways<RecycleMeDataAccessLayer.RecycleMeContext>
+    {
+       
+
+    }
+
     internal sealed class Configuration : DbMigrationsConfiguration<RecycleMeDataAccessLayer.RecycleMeContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+           
+           
         }
-
-
 
         protected override void Seed(RecycleMeDataAccessLayer.RecycleMeContext Context)
         {
@@ -29,7 +36,21 @@ namespace RecycleMeDataAccessLayer.Migrations
         {
             context.ItemCategory.AddOrUpdate(
             new ItemCategory() { Id = 1, Name = "For Him" },
-            new ItemCategory() { Id = 2, Name = "For Her" }
+            new ItemCategory() { Id = 2, Name = "For Her" },
+            new ItemCategory() { Id = 3, Name = "Beauty Products" },
+            new ItemCategory() { Id = 4, Name = "For Her" },
+            new ItemCategory() { Id = 5, Name = "Lifestyle Gadgets" },
+            new ItemCategory() { Id = 6, Name = "Photography" },
+            new ItemCategory() { Id = 7, Name = "Luxury" },
+            new ItemCategory() { Id = 8, Name = "Sporting Gears" },
+            new ItemCategory() { Id = 9, Name = "Game & Toys" },
+            new ItemCategory() { Id = 10, Name = "Furniture & Home" },
+            new ItemCategory() { Id = 11, Name = "Kitchen & Appliances" },
+            new ItemCategory() { Id = 12, Name = "Music Instruments" },
+            new ItemCategory() { Id = 13, Name = "Baby & Kids Stuff" },
+            new ItemCategory() { Id = 14, Name = "Pet Accessories" },
+            new ItemCategory() { Id = 15, Name = "Cars & Motors" },
+            new ItemCategory() { Id = 16, Name = "Looking For" }
             );
         }
 
@@ -60,6 +81,7 @@ namespace RecycleMeDataAccessLayer.Migrations
             return success;
         }
 
+       
 
     }
 

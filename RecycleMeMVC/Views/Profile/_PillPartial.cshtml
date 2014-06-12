@@ -20,7 +20,8 @@
 
 
                     <div class="modal-body">
-                        <input type="text" data-placeholder="Categories" data-bind="kendoMultiSelect: {  data: Category, dataTextField:'Name', dataValueField:'Id', value : SelectedChoice  }" />
+                        <input data-placeholder="Categories" data-bind="kendoDropDownList: { data: Category, dataTextField:'Name', dataValueField:'Id', value: SelectedChoice }" />
+                        @*<input type="text" data-placeholder="Categories" data-bind="kendoMultiSelect: {  data: Category, dataTextField:'Name', dataValueField:'Id', value : SelectedChoice  }" />*@
                         <div class="space-4"></div>
                         <div class="right-inner-addon ">
                             <i class="icon-user"></i>

@@ -48,7 +48,8 @@
 }
 var ImageIdResult = [];
 var pill = new PillViewModel();
-ko.bindingHandlers.kendoMultiSelect.options.filter = "contains";
+ko.bindingHandlers.kendoDropDownList.options.optionLabel = "choose a category...";
+//ko.bindingHandlers.kendoMultiSelect.options.filter = "contains";
 ko.applyBindings(pill, document.getElementById("pillbox"));
 pill.Pill();
 
