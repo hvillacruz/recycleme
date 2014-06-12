@@ -24,7 +24,7 @@
         self.PillView().ModifiedDate = Helper.time();
         self.PillView().ItemCategoryId = this.SelectedChoice()[0];
         self.PillView().TradeTag = S($("#tagTrade").text()).replaceAll('×', '').replaceAll('#', '').s;
-    
+
         self.PillView().ExchangeTag = S($("#tagExchange").text()).replaceAll('×', '').replaceAll('#', '').s;
 
         AjaxNinja.Invoke(ODataApi.Item, "POST", JSON.stringify(this.PillView()), function (data) {
@@ -41,7 +41,7 @@
     }
 
     this.UploadUrl = function () {
-      
+
         return ODataApi.Item + "UploadFile";
     }
 
@@ -57,11 +57,12 @@ pill.Pill();
 
 
 jQuery(function ($) {
-
+    var myDropzoneInput = null;
     try {
         $(".dropzone").dropzone({
             init: function () {
                 var that = this;
+                myDropzoneInput = this;
                 this.on("addedfile", function (file) {
                     $("#pillBox").animate({ "height": "280px" }, 500);
                 });
@@ -91,7 +92,7 @@ jQuery(function ($) {
             addRemoveLinks: true,
             dictDefaultMessage:
             '<br /><i class="upload-icon icon-cloud-upload blue icon-2x"></i>'
-            ,
+                  ,
             dictResponseError: 'Error while uploading file!',
 
             //change the previewTemplate to use Bootstrap progress bars
@@ -101,5 +102,19 @@ jQuery(function ($) {
     } catch (e) {
         alert('Dropzone.js does not support older browsers!');
     }
+
+    $('#clickMe').click(function () {
+        $('.dropzone').click();
+    });
+
+    $('#openDropZone').click(function () {
+        $('.dropzone').click();
+    });
+
+
+    $('#uploadOk').click(function () {
+        myDropzoneInput.removeAllFiles();
+    });
+
 
 });

@@ -231,10 +231,17 @@ p {
     -moz-transition: all .25s;
 }
 
+.circleProfile:first-child {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 45px;
+    padding-top: 5px;
+}
 .circleProfile {
     height: 100%;
     width: 100%;
     padding-bottom: 45px;
+    padding-top: 45px;
 }
 
 

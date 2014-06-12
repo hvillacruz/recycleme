@@ -19,6 +19,11 @@ var UsersViewModel = function () {
 
     }
 
+    this.SelectedUser = function (item) {
+
+        window.location.href = '/Profile/Dashboard/' + item.FollowedUserId;
+
+    }
 
 }
 

@@ -4,7 +4,7 @@
 
 
 <div class="panel panel-primary " id="pillbox">
-  
+
     <div class="panel-body">
 
         @Html.Partial("_DropZonePartial")
@@ -20,8 +20,6 @@
 
 
                     <div class="modal-body">
-
-
                         <input type="text" data-placeholder="Categories" data-bind="kendoMultiSelect: {  data: Category, dataTextField:'Name', dataValueField:'Id', value : SelectedChoice  }" />
                         <div class="space-4"></div>
                         <div class="right-inner-addon ">
@@ -40,24 +38,35 @@
 
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                        <button id="openDropZone" type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                     </div>
                 </div>
             </div>
         </div>
 
 
-        <button class="btn btn-warning btn-xs" data-toggle="modal" id="modalId" data-target="#myModal">
+        <span class="badge">1</span>
+        <button class="btn btn-xs" data-toggle="modal" id="modalId" data-target="#myModal">
             <i class="icon-wrench  bigger-110 icon-only"></i>
         </button>
-        <button class="btn btn-primary btn-xs" data-bind="click: Recycle">
+        <div class="arrow"></div>
+
+        <span class="badge badge-success">2</span>
+        <button id="clickMe" class="btn btn-success btn-xs">
             <i class="icon-cloud-upload  bigger-110 icon-only"></i>
         </button>
 
-        @*<div class="col-md-6 col-md-offset-6" style="margin-top:10px;">
-            <button class="btn btn-danger btn-sm btn-block" data-bind="click: recycle"><i class="icon-trash"></i>Recycle</button>
 
-        </div>*@
+        <div class="arrow"></div>
+        <span class="badge badge-warning">3</span>
+        <button id="uploadOk" class="btn btn-warning btn-xs" data-bind="click: Recycle">
+            <i class="icon-trash  bigger-110 icon-only"></i>
+        </button>
+
+        @*<div class="col-md-6 col-md-offset-6" style="margin-top:10px;">
+                <button class="btn btn-danger btn-sm btn-block" data-bind="click: recycle"><i class="icon-trash"></i>Recycle</button>
+
+            </div>*@
 
 
 
