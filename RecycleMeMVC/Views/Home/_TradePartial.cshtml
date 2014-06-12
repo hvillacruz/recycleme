@@ -10,7 +10,7 @@
 
     <div class="search-box">
         <input id="seachTxtBox" placeholder="Search..."><span class="icon icon icon-search" data-bind="click: Search.bind($data, $('#seachTxtBox').val())"></span>
-        
+
     </div>
 
 
@@ -24,17 +24,17 @@
                 </div>
 
                 <h1><span data-bind="text:Name"></span></h1>
-              
+
 
 
                 <div class="stat-stat">
-                    <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="icon-2xx icon-bullseye"><span class="box-stat-icon-text">0</span></i></div>
+                    <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="icon-2xx icon-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
                     <div class="col-xs-4 box-stat center radius-round-bottom"><i class="icon-2xx icon-comments"><span class="box-stat-icon-text" @*data-bind="text:UserCommenter.length"*@>0</span></i></div>
-                    <div class="col-xs-4 box-stat center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="icon-2xx icon-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom"><i class="icon-2xx icon-share-sign"><span class="box-stat-icon-text">0</span></i></div>
                 </div>
 
             </div>
-    
+
         </li>
 
         <!-- /ko -->
@@ -50,12 +50,3 @@
 
 
 <script src="~/Scripts/AnimOnScroll.js"></script>
-<script>
-    setTimeout(function () {
-        var scroll = new AnimOnScroll(document.getElementById('grid'), {
-            minDuration: 0.4,
-            maxDuration: 0.7,
-            viewportFactor: 0.2
-        });
-    }, 2500);
-</script>

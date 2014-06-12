@@ -11,6 +11,7 @@
         AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + type, "GET", {}, function (data) {
             self.MessageCount(data.value.length);
             self.Items(data.value);
+            self.Refresh();
         });
 
     }
@@ -20,6 +21,16 @@
         window.location.href = '/Profile/Dashboard/' + item.FollowedUserId;
 
     }
+
+    this.Refresh = function () {
+        setTimeout(function () {
+            var scroll = new AnimOnScroll(document.getElementById('grid'), {
+                minDuration: 0.4,
+                maxDuration: 0.7,
+                viewportFactor: 0.2
+            });
+        }, 100);
+    };
 
 
 }
