@@ -72,6 +72,7 @@
         <div id="fuelux-wizard" class="row-fluid" data-target="#step-container">
             <ul class="wizard-steps">
                 <li data-target="#step1" class="active">
+
                     <span class="step">1</span>
                     <span class="title">Start</span>
                 </li>
@@ -95,13 +96,13 @@
 
         <hr />
         <div class="row-fluid wizard-actions">
-            <button class="btn btn-prev">
+            <button class="btn btn-prev btn-xs">
                 <i class="icon-arrow-left"></i>
-                Prev
+
             </button>
 
-            <button class="btn btn-success btn-next" data-last="Finish ">
-                Next
+            <button class="btn btn-success btn-next btn-xs" data-last="Finish ">
+
                 <i class="icon-arrow-right icon-on-right"></i>
             </button>
         </div>
@@ -126,10 +127,18 @@
 
 
         var $validation = false;
-        $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
-            //if (info.step == 1 && $validation) {
+        var wiz = $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
+            if (info.step == 1) {
+                $('#myModal').modal('show');
             //    if (!$('#validation-form').valid()) return false;
-            //}
+            }
+            else if (info.step == 2) {
+                $('.dropzone').click();
+            }
+            else if (info.step == 3) {
+                pill.Recycle();
+            }
+           
         }).on('finished', function (e) {
             bootbox.dialog({
                 message: "Thank you! Your information was successfully saved!",
@@ -142,9 +151,12 @@
             });
         }).on('stepclick', function (e) {
             //return false;//prevent clicking on steps
+            
+            
         });
 
     });
+
 
 
 </script>

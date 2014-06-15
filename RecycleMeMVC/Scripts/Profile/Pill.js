@@ -45,6 +45,12 @@
         return ODataApi.Item + "UploadFile";
     }
 
+
+    //this.CallNext = function () {
+    //    alert('Next');
+    //    $('#fuelux-wizard').ace_wizard('selectItem', { step: 2 });
+            
+    //}
 }
 var ImageIdResult = [];
 var pill = new PillViewModel();
@@ -109,7 +115,7 @@ jQuery(function ($) {
     });
 
     $('#openDropZone').click(function () {
-        $('.dropzone').click();
+        //$('.dropzone').click();
     });
 
 
@@ -118,4 +124,5 @@ jQuery(function ($) {
     });
 
     Dropzone.autoDiscover = false;
+
 });
