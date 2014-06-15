@@ -38,7 +38,7 @@ namespace RecycleMeDataAccessLayer.Migrations
             new ItemCategory() { Id = 1, Name = "For Him" },
             new ItemCategory() { Id = 2, Name = "For Her" },
             new ItemCategory() { Id = 3, Name = "Beauty Products" },
-            new ItemCategory() { Id = 4, Name = "For Her" },
+            new ItemCategory() { Id = 4, Name = "Toys For The Big Boys" },
             new ItemCategory() { Id = 5, Name = "Lifestyle Gadgets" },
             new ItemCategory() { Id = 6, Name = "Photography" },
             new ItemCategory() { Id = 7, Name = "Luxury" },

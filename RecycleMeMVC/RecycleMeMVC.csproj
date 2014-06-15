@@ -261,6 +261,9 @@
     <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-editable.min.js" />
+    <Content Include="Scripts\External\ace-elements.min.js" />
+    <Content Include="Scripts\External\bootbox.min.js" />
+    <Content Include="Scripts\External\fuelux.wizard.min.js" />
     <Content Include="Scripts\Home\TradeItems.js" />
     <Content Include="Scripts\knockout.x-editable.js" />
     <Content Include="Scripts\knockout.x-editable.min.js" />

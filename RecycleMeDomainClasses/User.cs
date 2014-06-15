@@ -23,6 +23,7 @@ namespace RecycleMeDomainClasses
         public DateTime? BirthDate { get; set; }
         public string Mobile { get; set; }
         public string Avatar { get; set; }
+        public string BgPic { get; set; }
         public string ProfileStatus { get; set; }
         public bool IsActive { get; set; }
         public DateTime? LastActivity { get; set; }
