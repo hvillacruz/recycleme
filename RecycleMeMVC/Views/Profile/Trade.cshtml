@@ -9,7 +9,7 @@
 
 
 
-<div class="container">
+<div class="containers">
     <div id="multi" style="margin-left: 30px">
         <div><div data-force="5" class="layer title title_xl">Multi</div></div>
         <div class="layer tile" data-force="30">
@@ -54,10 +54,10 @@
 
 <script>
 
-    //new Sortable(multi, {
-    //    draggable: '.tile',
-    //    handle: '.tile__name'
-    //});
+    new Sortable(multi, {
+        draggable: '.tile',
+        handle: '.tile__name'
+    });
 
 
     [].forEach.call(multi.getElementsByClassName('tile__list'), function (el) {
