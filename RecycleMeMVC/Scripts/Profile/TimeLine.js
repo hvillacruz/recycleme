@@ -44,6 +44,13 @@
 
     }
 
+    this.ShowItemTrade = function (currentItem, selectedImage) {
+
+        self.SelectedItem(selectedImage);
+
+    }
+
+
     this.SelectedRecycleComment = function (item, selectedImage) {
 
         PostComment(item, 0);

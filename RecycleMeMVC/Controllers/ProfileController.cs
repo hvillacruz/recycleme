@@ -45,6 +45,14 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
+        [Route("Trade/{id?}")]
+        public ActionResult Trade(string id)
+        {
+
+            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            return View();
+        }
+
 
 
         [Route("Followers/{id?}")]

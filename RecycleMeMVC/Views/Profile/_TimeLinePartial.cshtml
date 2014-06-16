@@ -10,6 +10,7 @@
 
     <ul id="timelineDiv" class="timeline" data-bind="foreach: Items">
         <!-- ko if: IsDeleted == false -->
+        @Html.Partial("_ItemTradePartial")
         <li>
             <div data-bind="foreach: $parent.SelectedItem" class="modal fade" id="myImageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -39,7 +40,7 @@
                             </h4>
                         </div>
                         <div class="col-xs-1">
-                          @Html.Partial("~/Views/Home/_SettingItemPartial.cshtml")
+                            @Html.Partial("~/Views/Home/_SettingItemPartial.cshtml")
                         </div>
                         <div class="col-xs-12">
                             <p><small class="text-muted"><i class="icon icon-time"></i> <span data-bind="text:ModifiedDate"></span></small></p>
@@ -66,9 +67,22 @@
                         </div>
                     </p>
                 </div>
-                <div class="tags tagExchange" data-bind="foreach : ExchangeTag.split(' ')">
-                    @Html.Partial("_ExchangeTagPartial")
+                <div class="row">
+                    <div class="col-xs-10">
+
+                        <div class="tags tagExchange" data-bind="foreach : ExchangeTag.split(' ')">
+                            @Html.Partial("_ExchangeTagPartial")
+                        </div>
+                        
+                    </div>
+                
+                    <div class="col-xs-2 txtComment">
+                        <button class="btn btn-xs" data-toggle="modal" id="modalItemTradeId" data-target="#myItemTradeModal" data-bind="click: $root.ShowItemTrade.bind($data, $parent)">
+                            <i class="icon-time  bigger-110 icon-only"></i>
+                        </button>
+                    </div>
                 </div>
+                <hr />
                 <div>
                     <ul class="row list-ul" data-bind="foreach: ItemCommented">
                         <!-- ko if: IsDeleted == false -->
@@ -88,6 +102,7 @@
                         </li>
                         <!-- /ko -->
                     </ul>
+
                 </div>
                 @*<span data-bind="editable: $parent.message"></span>*@
                 @*<div data-bind="clickToEdit : $parent.message"> </div>*@

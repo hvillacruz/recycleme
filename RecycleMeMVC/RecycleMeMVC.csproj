@@ -259,11 +259,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Styles\Home\TradeItems.css" />
     <Content Include="Content\Styles\Profile\Message.css" />
+    <Content Include="Content\Styles\Profile\Trade.css" />
+    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-editable.min.js" />
     <Content Include="Scripts\External\ace-elements.min.js" />
     <Content Include="Scripts\External\bootbox.min.js" />
     <Content Include="Scripts\External\fuelux.wizard.min.js" />
+    <Content Include="Scripts\External\Sortable.js" />
+    <Content Include="Scripts\External\Sortable.min.js" />
     <Content Include="Scripts\Home\TradeItems.js" />
     <Content Include="Scripts\knockout.x-editable.js" />
     <Content Include="Scripts\knockout.x-editable.min.js" />
@@ -433,6 +437,9 @@
     <Content Include="Views\Profile\Following.cshtml" />
     <Content Include="Views\Profile\_UserListPartial.cshtml" />
     <Content Include="Views\Profile\Followers.cshtml" />
+    <Content Include="Views\Profile\_ItemTradePartial.cshtml" />
+    <Content Include="Views\Profile\_ItemDragPartial.cshtml" />
+    <Content Include="Views\Profile\Trade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
