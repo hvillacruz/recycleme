@@ -25,6 +25,8 @@
 img {
     border: 0;
     vertical-align: middle;
+    height:100px;
+    width:100px;
 }
 
 

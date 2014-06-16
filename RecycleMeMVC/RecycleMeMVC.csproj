@@ -367,6 +367,7 @@
     <Content Include="Scripts\Profile\nanoScroll.js" />
     <Content Include="Scripts\Profile\Pill.js" />
     <Content Include="Scripts\Profile\UserList.js" />
+    <Content Include="Scripts\Profile\Trade.js" />
     <Content Include="Scripts\Profile\Users.js" />
     <Content Include="Scripts\Profile\ProfileBar.js" />
     <Content Include="Scripts\Profile\SideBar.js" />
