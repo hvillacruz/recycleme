@@ -50,7 +50,7 @@ img {
     padding: 3px 10px;
     display: inline-block;
     position: relative;
-    background-color: #FF7373;
+    background-color: #3c3c3c;
     z-index: 1000;
 }
 
@@ -62,7 +62,7 @@ img {
 .itemSelected {
     width: 30%;
     min-width: 240px;
-    color: #FF7270;
+    color: #3c3c3c;
     text-align: center;
     display: inline-block;
     vertical-align: top;
@@ -72,7 +72,7 @@ img {
 .tile {
     width: 30%;
     min-width: 240px;
-    color: #FF7270;
+    color: #3c3c3c;
     padding: 10px 30px;
     text-align: center;
     margin-top: 15px;
@@ -81,12 +81,13 @@ img {
     background-color: #fff;
     display: inline-block;
     vertical-align: top;
+    border-radius: 3px;
 }
 
 .tile__name {
     cursor: move;
     padding-bottom: 10px;
-    border-bottom: 1px solid #FF7373;
+    border-bottom: 1px solid #3c3c3c;
 }
 
 .tile__list {

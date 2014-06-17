@@ -47,7 +47,7 @@
     this.ShowItemTrade = function (currentItem, selectedImage) {
 
         self.SelectedItem(selectedImage);
-
+        window.location.href = '/Profile/Trade/' + selectedImage.Id;
     }
 
 

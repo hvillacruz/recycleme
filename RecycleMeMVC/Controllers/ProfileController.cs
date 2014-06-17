@@ -48,8 +48,7 @@ namespace RecycleMeMVC.Controllers
         [Route("Trade/{id?}")]
         public ActionResult Trade(string id)
         {
-
-            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            ViewBag.ItemId = id == null ? String.Empty : id;
             return View();
         }
 
