@@ -1,30 +1,33 @@
-﻿
-
-
-<title>Sortable example</title>
-
-<script src="~/Scripts/External/Sortable.min.js"></script>
+﻿<link href="~/Content/Styles/Home/default.css" rel="stylesheet" />
+<link href="~/Content/Styles/Home/component.css" rel="stylesheet" />
+<link href="~/Content/Styles/Home/TradeItems.css" rel="stylesheet" />
 <link href="~/Content/Styles/Profile/Trade.css" rel="stylesheet" />
+<script src="~/Scripts/modernizr.custom.js"></script>
+<script src="~/Scripts/External/Sortable.min.js"></script>
 
 
 
-
-<div id="tradeItemContainer" class="containers">
+<div id="tradeItemContainer" class="container">
     <div id="multi" style="margin-left: 30px">
-        <div><div data-force="5" class="layer title title_xl">Multi</div></div>
-        <div class="layer tile" data-force="30">
-            <div class="tile__name">Group A</div>
-            <div class="tile__list">
-                <img src="//fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c9.9.113.113/s100x100/59436_1391411357920_1388516_s.jpg" />
-                <!--
-                -->
-                <img src="//fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c13.8.104.104/s100x100/941190_10151608397684663_1532692251_s.jpg" />
-                <!--
-                -->
-                <img src="//fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/c0.0.103.103/s100x100/382696_10150378364701671_1792621129_a.jpg" />
-                <!--
-                -->
-                <img src="//fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c44.10.116.116/s100x100/552948_430685950285752_1435082176_a.jpg" />
+        @*<div><div data-force="5" class="layer title title_xl">Trade Exchange</div></div>*@
+        <div class="itemSelected">
+            <div class="widget">
+                <div class="cover">
+
+                    <img src="~/Content/Assets/images/userBg.jpg" />
+                </div>
+
+                <h1><span @*data-bind="text: FollowedUser.FirstName"*@>Item</span></h1>
+
+                <img src="~/Content/Assets/images/avatar.jpg" class="userList" />
+
+
+                <div class="stat-stat">
+                    <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="icon-2xx icon-bullseye"><span class="box-stat-icon-text">0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom"><i class="icon-2xx icon-comments"><span class="box-stat-icon-text" @*data-bind="text:UserCommenter.length"*@>0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="icon-2xx icon-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
+                </div>
+
             </div>
         </div>
         <div class="layer tile" data-force="25">
@@ -53,9 +56,4 @@
 </div>
 
 <script src="~/Scripts/Profile/Trade.js"></script>
-<script>
-
-
-
-</script>
 
