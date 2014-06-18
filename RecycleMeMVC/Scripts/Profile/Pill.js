@@ -47,7 +47,7 @@
 
 
     this.RemoveFiles = function () {
-        alert('remove');
+
         clearFiles();
             
     }

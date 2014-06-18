@@ -153,8 +153,15 @@
                     }
                 }
             });
+            // optionally navigate back to 2nd step
+            //$('#btnStep2').on('click', function (e, data) {
+             //   $('[data-target=#step1]').trigger("click");
+            //});
+            //$('#fuelux-wizard').wizard('previous');
+            $('[data-target=#step1]').trigger("click");
+           
         }).on('stepclick', function (e) {
-            //return false;//prevent clicking on steps
+            //return false;
             
             
         });
