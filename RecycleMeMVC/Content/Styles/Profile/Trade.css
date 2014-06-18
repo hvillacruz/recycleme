@@ -86,17 +86,17 @@ img {
 
 .tile__name {
     cursor: move;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #3c3c3c;
+    /*padding-bottom: 10px;*/
+    /*border-bottom: 1px solid #3c3c3c;*/
 }
 
 .tile__list {
     margin-top: 10px;
+    min-height: 100px;
 }
 
     .tile__list:last-child {
         margin-right: 0;
-        min-height: 80px;
     }
 
     .tile__list img {
@@ -193,14 +193,14 @@ h1 {
 
 
 
-[class*="fontawesome-"]:before {
+/*[class*="fontawesome-"]:before {
     font-family: 'FontAwesome', sans-serif;
     color: #eee;
     margin-right: 12px;
 }
 
 [class="fontawesome-trash"]:before {
-}
+}*/
 
 p {
     background: rgba(255, 255, 255, .2);
@@ -221,5 +221,5 @@ p {
 
     .orange div {
         background: #e76f50;
-        color:#fff;
+        color: #fff;
     }
