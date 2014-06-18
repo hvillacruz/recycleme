@@ -10,16 +10,15 @@
 <div id="tradeItemContainer" class="container">
     <div id="multi" style="margin-left: 30px">
         @*<div><div data-force="5" class="layer title title_xl">Trade Exchange</div></div>*@
-        <div class="itemSelected">
+        <div class="itemSelected" data-bind="foreach: Selected">
             <div class="widget">
                 <div class="cover">
-
                     <img src="~/Content/Assets/images/userBg.jpg" />
                 </div>
 
-                <h1><span @*data-bind="text: FollowedUser.FirstName"*@>Item</span></h1>
+                <h1><span data-bind="text: Name">Item</span></h1>
 
-                <img src="~/Content/Assets/images/avatar.jpg" class="userList" />
+                <img data-bind="attr:{src: Owner.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
 
 
                 <div class="stat-stat">

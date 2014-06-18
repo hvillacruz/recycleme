@@ -1,7 +1,7 @@
 var TradeViewModel = function () {
     var self = this;
     this.Items = ko.observableArray();
-
+    this.Selected = ko.observableArray();
     this.CurrentItems = function () {
 
         AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
@@ -28,6 +28,15 @@ var TradeViewModel = function () {
 
     }
 
+    this.SelectedItem = function () {
+       
+        AjaxNinja.Invoke(ODataApi.Item + "('" + $("#currentItem").data("text") + "')?$expand=Owner,ItemImages", "GET", {}, function (data) {
+
+            self.Selected(data);
+
+        });
+
+    }
 
 
     this.SelectedUser = function (item) {
@@ -41,3 +50,4 @@ var TradeViewModel = function () {
 var items = new TradeViewModel();
 ko.applyBindings(items, document.getElementById("tradeItemContainer"));
 items.CurrentItems();
+items.SelectedItem();
