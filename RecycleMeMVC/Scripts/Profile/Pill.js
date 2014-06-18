@@ -46,11 +46,11 @@
     }
 
 
-    //this.CallNext = function () {
-    //    alert('Next');
-    //    $('#fuelux-wizard').ace_wizard('selectItem', { step: 2 });
+    this.RemoveFiles = function () {
+        alert('remove');
+        clearFiles();
             
-    //}
+    }
 }
 var ImageIdResult = [];
 var pill = new PillViewModel();
@@ -61,10 +61,12 @@ pill.Pill();
 
 
 
-
-
+var myDropzoneInput = null;
+function clearFiles() {
+    myDropzoneInput.removeAllFiles();
+}
 jQuery(function ($) {
-    var myDropzoneInput = null;
+  
     try {
         $(".dropzone").dropzone({
             init: function () {
@@ -120,8 +122,11 @@ jQuery(function ($) {
 
 
     $('#uploadOk').click(function () {
-        myDropzoneInput.removeAllFiles();
+        clearFiles();
     });
+
+   
+
 
     Dropzone.autoDiscover = false;
 

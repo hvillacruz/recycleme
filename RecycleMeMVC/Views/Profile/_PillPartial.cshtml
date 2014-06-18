@@ -74,12 +74,12 @@
                 <li data-target="#step1" class="active">
 
                     <span class="step">1</span>
-                    <span class="title">Start</span>
+                    <span class="title">Click Next Button</span>
                 </li>
 
                 <li data-target="#step2">
                     <span class="step">2</span>
-                    <span class="title">Create Item</span>
+                    <span class="title">Upload Image</span>
                 </li>
 
                 <li data-target="#step3">
@@ -87,22 +87,23 @@
                     <span class="title">Post Item</span>
                 </li>
 
-                <li data-target="#step4">
+                @*<li data-target="#step4">
                     <span class="step">4</span>
                     <span class="title">Finish</span>
-                </li>
+                </li>*@
             </ul>
         </div>
 
         <hr />
         <div class="row-fluid wizard-actions">
             <button class="btn btn-prev btn-xs">
+               
                 <i class="icon-arrow-left"></i>
-
+                Previous
             </button>
 
-            <button class="btn btn-success btn-next btn-xs" data-last="Finish ">
-
+            <button class="btn btn-success btn-next btn-xs" data-last="Finish" >
+                Next
                 <i class="icon-arrow-right icon-on-right"></i>
             </button>
         </div>
@@ -128,6 +129,7 @@
 
         var $validation = false;
         var wiz = $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
+           
             if (info.step == 1) {
                 $('#myModal').modal('show');
             //    if (!$('#validation-form').valid()) return false;
@@ -140,6 +142,8 @@
             }
            
         }).on('finished', function (e) {
+            pill.RemoveFiles();
+            pill.Recycle();
             bootbox.dialog({
                 message: "Thank you! Your information was successfully saved!",
                 buttons: {
