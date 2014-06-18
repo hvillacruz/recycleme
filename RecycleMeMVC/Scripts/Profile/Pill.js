@@ -35,6 +35,7 @@
                     timeline.ItemTimeline();
                 });
             });
+            ImageIdResult = [];
         });
 
 
