@@ -71,8 +71,17 @@ namespace RecycleMeOdataWebApi
             builder.EntitySet<UserFollowing>("UserFollowing");
 
             //MessageController
-            builder.EntitySet<Message>("Message"); 
-            
+            builder.EntitySet<Message>("Message");
+
+            //TradeController
+            builder.EntitySet<Trade>("Trade");
+
+            //TradeComment
+            builder.EntitySet<TradeComment>("TradeComment");
+
+            //TradeBuyerItem
+            builder.EntitySet<TradeBuyerItem>("TradeBuyerItem"); 
+
             config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
 
             // To disable tracing in your application, please comment out or remove the following line of code

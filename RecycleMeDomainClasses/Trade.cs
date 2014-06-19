@@ -31,5 +31,9 @@ namespace RecycleMeDomainClasses
         public virtual User Seller { get; set; }
 
         public DateTime ModifiedDate { get; set; }
+
+        public virtual ICollection<TradeBuyerItem> Trades { get; set; }
+
+        public virtual ICollection<TradeComment> TradeItem { get; set; }
     }
 }

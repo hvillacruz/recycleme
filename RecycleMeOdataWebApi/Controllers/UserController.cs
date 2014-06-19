@@ -23,12 +23,14 @@ namespace RecycleMeOdataWebApi.Controllers
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<User>("User");
     builder.EntitySet<Item>("Item"); 
+    builder.EntitySet<Trade>("Trade"); 
     builder.EntitySet<UserComment>("UserComment"); 
     builder.EntitySet<UserFollower>("UserFollower"); 
     builder.EntitySet<UserFollowing>("UserFollowing"); 
     builder.EntitySet<ItemComment>("ItemComment"); 
     builder.EntitySet<ItemFollowers>("ItemFollowers"); 
     builder.EntitySet<Message>("Message"); 
+    builder.EntitySet<TradeComment>("TradeComment"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
     public class UserController : ODataController
@@ -170,6 +172,13 @@ namespace RecycleMeOdataWebApi.Controllers
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
         }
 
+        // GET odata/User(5)/UserBuyer
+        [Queryable]
+        public IQueryable<Trade> GetUserBuyer([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserBuyer);
+        }
+
         // GET odata/User(5)/UserCommented
         [Queryable]
         public IQueryable<UserComment> GetUserCommented([FromODataUri] string key)
@@ -233,11 +242,25 @@ namespace RecycleMeOdataWebApi.Controllers
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserReceiver);
         }
 
+        // GET odata/User(5)/UserSeller
+        [Queryable]
+        public IQueryable<Trade> GetUserSeller([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserSeller);
+        }
+
         // GET odata/User(5)/UserSender
         [Queryable]
         public IQueryable<Message> GetUserSender([FromODataUri] string key)
         {
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserSender);
+        }
+
+        // GET odata/User(5)/UserTrade
+        [Queryable]
+        public IQueryable<TradeComment> GetUserTrade([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserTrade);
         }
 
         protected override void Dispose(bool disposing)

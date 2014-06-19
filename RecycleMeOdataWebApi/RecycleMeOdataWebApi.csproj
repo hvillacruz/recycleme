@@ -183,6 +183,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\TradeBuyerItemController.cs" />
+    <Compile Include="Controllers\TradeCommentController.cs" />
+    <Compile Include="Controllers\TradeController.cs" />
     <Compile Include="Controllers\UserCommentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserFollowerController.cs" />

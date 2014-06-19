@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RecycleMeDomainClasses
 {
-    public class TradeBuyerItem :ILogInfo
+    public class TradeComment: ILogInfo
     {
 
         [Key, Column(Order = 0)]
@@ -16,17 +16,19 @@ namespace RecycleMeDomainClasses
         public long Id { get; set; }
 
         [Column(Order = 1)]
-        public Nullable<long> ItemId { get; set; }
+        public string Comment { get; set; }
 
         [Column(Order = 2)]
         public Nullable<long> TradeId { get; set; }
 
+        [Column(Order = 3)]
+        public string TradeCommenterId { get; set; }
+
         public DateTime ModifiedDate { get; set; }
 
-        public virtual Item Item { get; set; }
+        public virtual User TradeCommenter { get; set; }
 
-        public virtual Trade Trade { get; set; }
+        public virtual Trade TradeItemCommented { get; set; }
 
-        
     }
 }

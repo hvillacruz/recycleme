@@ -17,7 +17,7 @@ using RecycleMeDataAccessLayer;
 namespace RecycleMeOdataWebApi.Controllers
 {
    
-    public partial class ItemController : ODataController
+    public partial  class ItemController : ODataController
     {
         public ItemController()
         {

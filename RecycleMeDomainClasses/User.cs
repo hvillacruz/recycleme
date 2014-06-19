@@ -43,6 +43,7 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<Message> UserReceiver { get; set; }
         public virtual ICollection<Trade> UserBuyer { get; set; }
         public virtual ICollection<Trade> UserSeller { get; set; }
+        public virtual ICollection<TradeComment> UserTrade { get; set; }
         
         
 

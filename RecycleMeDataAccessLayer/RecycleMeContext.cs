@@ -171,6 +171,26 @@ namespace RecycleMeDataAccessLayer
             .WillCascadeOnDelete(false);
 
 
+            modelBuilder.Entity<TradeBuyerItem>()
+            .HasOptional(b => b.Trade)
+            .WithMany(a => a.Trades)
+            .HasForeignKey(k => k.TradeId)
+            .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<TradeComment>()
+            .HasOptional(b => b.TradeCommenter)
+            .WithMany(a => a.UserTrade)
+            .HasForeignKey(k => k.TradeCommenterId)
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TradeComment>()
+           .HasOptional(b => b.TradeItemCommented)
+           .WithMany(a => a.TradeItem)
+           .HasForeignKey(k => k.TradeId)
+           .WillCascadeOnDelete(false);
+
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -194,6 +214,10 @@ namespace RecycleMeDataAccessLayer
         public DbSet<Message> Message { get; set; }
 
         public DbSet<Trade> Trade { get; set; }
+
+        public DbSet<TradeBuyerItem> TradeBuyerItem { get; set; }
+
+        public DbSet<TradeComment> TradeComment { get; set; }
 
     }
 
