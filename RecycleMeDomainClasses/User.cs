@@ -41,6 +41,8 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<ItemFollowers> UserItemFollowers { get; set; }
         public virtual ICollection<Message> UserSender { get; set; }
         public virtual ICollection<Message> UserReceiver { get; set; }
+        public virtual ICollection<Trade> UserBuyer { get; set; }
+        public virtual ICollection<Trade> UserSeller { get; set; }
         
         
 

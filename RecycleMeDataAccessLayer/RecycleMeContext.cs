@@ -146,6 +146,31 @@ namespace RecycleMeDataAccessLayer
             .WithMany(a => a.UserReceiver)
             .HasForeignKey(k => k.ReceiverId)
             .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<Trade>()
+           .HasOptional(b => b.Buyer)
+           .WithMany(a => a.UserBuyer)
+           .HasForeignKey(k => k.BuyerId)
+           .WillCascadeOnDelete(false);
+
+
+
+            modelBuilder.Entity<Trade>()
+            .HasOptional(b => b.Seller)
+            .WithMany(a => a.UserSeller)
+            .HasForeignKey(k => k.SellerId)
+            .WillCascadeOnDelete(false);
+
+
+
+            modelBuilder.Entity<Trade>()
+            .HasOptional(b => b.Item)
+            .WithMany(a => a.ItemTrades)
+            .HasForeignKey(k => k.ItemId)
+            .WillCascadeOnDelete(false);
+
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -167,6 +192,8 @@ namespace RecycleMeDataAccessLayer
         public DbSet<UserComment> UserComment { get; set; }
 
         public DbSet<Message> Message { get; set; }
+
+        public DbSet<Trade> Trade { get; set; }
 
     }
 

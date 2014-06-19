@@ -33,6 +33,7 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<ItemImage> ItemImages { get; set; }
         public virtual ICollection<ItemComment> ItemCommented { get; set; }
         public virtual ICollection<ItemFollowers> ItemUserFollowers { get; set; }
+        public virtual ICollection<Trade> ItemTrades { get; set; }
 
     }
 }
