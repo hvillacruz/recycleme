@@ -14,10 +14,51 @@ var TradeViewModel = function () {
             });
             self.Items(result);
 
-            new Sortable(multi, {
+            //new Sortable(destination, {
+            //    draggable: '.tile',
+            //    handle: '.tile__name',
+            //    onAdd: function (evt) {
+            //        alert("destination-add" + evt.item);
+            //    },
+            //    onRemove: function (evt) {
+            //        alert("destination-remove" + evt.item);
+            //    }
+            //});
+
+
+            // Grouping
+            var foo = document.getElementById("source");
+            //new Sortable(foo, { group: "photo" });
+
+            new Sortable(foo, {
                 draggable: '.tile',
-                handle: '.tile__name'
+                handle: '.tile__name',
+                onAdd: function (evt) {
+                      alert("source-add" +evt.item);
+                },
+                onRemove: function (evt) {
+                    alert("source-remove" + evt.item);
+                }
             });
+
+
+            
+            //var bar = document.getElementById("destination");
+            ////new Sortable(bar, { group: "photo" });
+
+
+            //new Sortable(bar, {
+            //    draggable: '.tile',
+            //    handle: '.tile__name',
+            //    onAdd: function (evt) {
+            //        alert("destination-add" + evt.item);
+            //    },
+            //    onRemove: function (evt) {
+            //        alert("destination-remove" + evt.item);
+            //    }
+            //});
+
+           
 
 
             [].forEach.call(multi.getElementsByClassName('tile__list'), function (el) {
@@ -85,7 +126,7 @@ var TradeViewModel = function () {
             }
 
             AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(items), function (data) {
-            
+
             });
 
         });
