@@ -29,7 +29,7 @@ var TradeViewModel = function () {
     }
 
     this.SelectedItem = function () {
-       
+
         AjaxNinja.Invoke(ODataApi.Item + "('" + $("#currentItem").data("text") + "')?$expand=Owner,ItemImages", "GET", {}, function (data) {
 
             self.Selected(data);
@@ -44,22 +44,49 @@ var TradeViewModel = function () {
         window.location.href = '/Profile/Dashboard/' + item.FollowedUserId;
 
     }
+    this.TradeComment = function (item) {
+
+        var data = {
+
+            TradeCommenterId: global.User.UserId(),
+            TradeId: "1",//item.Id,
+            Comment: "sample",//item.CommentText,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.TradeComment, "POST", JSON.stringify(data), function (data) {
+            alert('success');
+        });
+
+    }
+
+
 
     this.TradeItem = function (item) {
 
-        
+
         var data = {
 
             BuyerId: global.User.UserId(),
             SellerId: self.Selected().OwnerId,
-            ItemId:  $("#currentItem").data("text").toString() ,
+            ItemId: $("#currentItem").data("text").toString(),
             ModifiedDate: Helper.time()
 
         }
 
         AjaxNinja.Invoke(ODataApi.Trade, "POST", JSON.stringify(data), function (data) {
 
-            alert(data.Id);
+            var items = {
+                ItemId: $("#currentItem").data("text").toString(),
+                TradeId: data.Id,
+                ModifiedDate: Helper.time()
+
+            }
+
+            AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(items), function (data) {
+            
+            });
 
         });
     }
