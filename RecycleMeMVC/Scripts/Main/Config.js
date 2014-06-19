@@ -9,5 +9,6 @@ var ODataApi = {
     Item: uri + "Item/",
     ItemImage: uri + "ItemImage/",
     ItemComment: uri + "ItemComment",
-    Message: uri + "Message"
+    Message: uri + "Message",
+    Trade: uri + "Trade"
 }

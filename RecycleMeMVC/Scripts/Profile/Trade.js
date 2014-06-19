@@ -45,6 +45,24 @@ var TradeViewModel = function () {
 
     }
 
+    this.TradeItem = function (item) {
+
+        
+        var data = {
+
+            BuyerId: global.User.UserId(),
+            SellerId: self.Selected().OwnerId,
+            ItemId:  $("#currentItem").data("text").toString() ,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.Trade, "POST", JSON.stringify(data), function (data) {
+
+            alert(data.Id);
+
+        });
+    }
 }
 
 var items = new TradeViewModel();
