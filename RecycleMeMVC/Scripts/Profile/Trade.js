@@ -1,6 +1,7 @@
 var TradeViewModel = function () {
     var self = this;
     this.Items = ko.observableArray();
+    this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
     this.CurrentItems = function () {
 
@@ -105,8 +106,8 @@ var TradeViewModel = function () {
 
     this.TradeItem = function (){
      
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and STATUS eq 'OPEN'&$expand=Trades", "GET", {}, function (data) {
-
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Trades", "GET", {}, function (data) {
+            self.BuyersItem(data.value);
         });
     }
 
@@ -133,7 +134,7 @@ var TradeViewModel = function () {
                 ModifiedDate: Helper.time()
 
             }
-
+            
             AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(items), function (data) {
 
             });
