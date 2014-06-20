@@ -32,6 +32,8 @@ namespace RecycleMeDomainClasses
 
         public DateTime ModifiedDate { get; set; }
 
+        public string Status { get; set; }
+
         public virtual ICollection<TradeBuyerItem> Trades { get; set; }
 
         public virtual ICollection<TradeComment> TradeItem { get; set; }

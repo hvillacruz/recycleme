@@ -103,8 +103,16 @@ var TradeViewModel = function () {
     }
 
 
+    this.TradeItem = function (){
+     
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and STATUS eq 'OPEN'&$expand=Trades", "GET", {}, function (data) {
 
-    this.TradeItem = function (item) {
+        });
+    }
+
+
+
+    this.TradeItemPost = function (item) {
 
 
         var data = {
@@ -112,7 +120,8 @@ var TradeViewModel = function () {
             BuyerId: global.User.UserId(),
             SellerId: self.Selected().OwnerId,
             ItemId: $("#currentItem").data("text").toString(),
-            ModifiedDate: Helper.time()
+            ModifiedDate: Helper.time(),
+            Status: "OPEN"
 
         }
 
@@ -137,3 +146,4 @@ var items = new TradeViewModel();
 ko.applyBindings(items, document.getElementById("tradeItemContainer"));
 items.CurrentItems();
 items.SelectedItem();
+items.TradeItem();
