@@ -57,16 +57,12 @@
 
             </div>
             <hr />
-            <div class="tile__list">
-                @*<img src="//fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/c8.8.105.105/s100x100/558916_4874661741992_448469446_s.jpg" />
-                <!--
-                -->
-                <img src="//fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c29.9.117.117/s100x100/68347_385372304875713_1358705380_a.jpg" />
-                <!--
-                -->
-                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/c9.9.113.113/s100x100/424349_465457316812937_2106915541_s.jpg" />*@
+            <div class="tile__list" data-bind="foreach: BuyersItem">
+                <!-- ko foreach:Item.ItemImages  -->
 
+                <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
 
+                <!-- /ko -->
             </div>
 
             <hr />

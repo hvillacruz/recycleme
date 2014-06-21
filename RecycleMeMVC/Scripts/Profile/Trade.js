@@ -106,7 +106,7 @@ var TradeViewModel = function () {
 
     this.TradeItem = function (){
      
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Trades", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Item/ItemImages", "GET", {}, function (data) {
             self.BuyersItem(data.value);
         });
     }

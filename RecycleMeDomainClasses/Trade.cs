@@ -37,5 +37,6 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<TradeBuyerItem> Trades { get; set; }
 
         public virtual ICollection<TradeComment> TradeItem { get; set; }
+
     }
 }
