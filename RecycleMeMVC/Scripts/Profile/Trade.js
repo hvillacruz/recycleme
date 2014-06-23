@@ -24,7 +24,7 @@ var TradeViewModel = function () {
                 draggable: '.tile',
                 handle: '.tile__name',
                 onAdd: function (evt) {
-                    self.currentItems.splice($.inArray(evt.item.id, currentItems), 1);
+                    self.currentItems.splice($.inArray(evt.item.id, self.currentItems), 1);
                 },
                 onRemove: function (evt) {
                     self.currentItems.push(evt.item.id);
@@ -74,9 +74,9 @@ var TradeViewModel = function () {
     }
 
 
-    this.TradeItem = function (){
-     
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Item/ItemImages", "GET", {}, function (data) {
+    this.TradeItem = function () {
+
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Trades/Item/ItemImages", "GET", {}, function (data) {
             self.BuyersItem(data.value);
         });
     }
@@ -98,17 +98,20 @@ var TradeViewModel = function () {
 
         AjaxNinja.Invoke(ODataApi.Trade, "POST", JSON.stringify(data), function (data) {
 
-            var items = {
-                ItemId: $("#currentItem").data("text").toString(),
-                TradeId: data.Id,
-                ModifiedDate: Helper.time()
+            $(self.currentItems).each(function (index, value) {
 
-            }
-            
-            AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(items), function (data) {
 
+                var items = {
+                    ItemId: value,
+                    TradeId: data.Id,
+                    ModifiedDate: Helper.time()
+
+                }
+
+                AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(items), function (data) {
+
+                });
             });
-
         });
     }
 }

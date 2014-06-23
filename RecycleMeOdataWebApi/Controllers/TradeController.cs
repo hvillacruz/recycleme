@@ -33,7 +33,7 @@ namespace RecycleMeOdataWebApi.Controllers
         private RecycleMeContext db = new RecycleMeContext();
 
         // GET odata/Trade
-        [Queryable]
+        [Queryable(MaxExpansionDepth = 3)]
         public IQueryable<Trade> GetTrade()
         {
             return db.Trade;
