@@ -74,10 +74,11 @@
             <div class="tile__name source_name">Your Current Items</div>
             <hr />
             <div class="tile__list" data-bind="foreach: Items">
+                @*<span data-bind="text:Id">Test</span>*@
                 <!-- ko foreach:ItemImages  -->
-
-                <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
-
+                    <!-- ko if: $index() < 1 -->
+                        <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,id:$parent.Id}" />
+                    <!-- /ko -->
                 <!-- /ko -->
             </div>
         </div>

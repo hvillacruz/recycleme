@@ -3,6 +3,7 @@ var TradeViewModel = function () {
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
+    this.currentItems = [];
     this.CurrentItems = function () {
 
         AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
@@ -15,51 +16,20 @@ var TradeViewModel = function () {
             });
             self.Items(result);
 
-            //new Sortable(destination, {
-            //    draggable: '.tile',
-            //    handle: '.tile__name',
-            //    onAdd: function (evt) {
-            //        alert("destination-add" + evt.item);
-            //    },
-            //    onRemove: function (evt) {
-            //        alert("destination-remove" + evt.item);
-            //    }
-            //});
 
-
-            // Grouping
             var foo = document.getElementById("source");
-            //new Sortable(foo, { group: "photo" });
+
 
             new Sortable(foo, {
                 draggable: '.tile',
                 handle: '.tile__name',
                 onAdd: function (evt) {
-                      alert("source-add" +evt.item);
+                    self.currentItems.splice($.inArray(evt.item.id, currentItems), 1);
                 },
                 onRemove: function (evt) {
-                    alert("source-remove" + evt.item);
+                    self.currentItems.push(evt.item.id);
                 }
             });
-
-
-            
-            //var bar = document.getElementById("destination");
-            ////new Sortable(bar, { group: "photo" });
-
-
-            //new Sortable(bar, {
-            //    draggable: '.tile',
-            //    handle: '.tile__name',
-            //    onAdd: function (evt) {
-            //        alert("destination-add" + evt.item);
-            //    },
-            //    onRemove: function (evt) {
-            //        alert("destination-remove" + evt.item);
-            //    }
-            //});
-
-           
 
 
             [].forEach.call(multi.getElementsByClassName('tile__list'), function (el) {
