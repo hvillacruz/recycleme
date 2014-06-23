@@ -28,6 +28,24 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
+        [Route("Dashboard")]
+        public ActionResult Dashboard()
+        {
+
+            ViewBag.UserId = User.Identity.GetUserId();
+            return View();
+        }
+
+
+        [Route("Message")]
+        public ActionResult Message()
+        {
+
+            ViewBag.UserId = User.Identity.GetUserId();
+            return View();
+        }
+
+
         [Route("Message/{id?}")]
         public ActionResult Message(string id)
         {

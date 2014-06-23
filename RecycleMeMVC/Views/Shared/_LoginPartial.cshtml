@@ -6,56 +6,59 @@
     {
         @Html.AntiForgeryToken()
 
-    <div id="loginPartialDiv" data-bind="foreach: Login">
-        <ul class="nav ace-nav">
-            <li class="light-yellow">
-                <a data-toggle="dropdown" class="dropdown-toggle">
-                    <div class="avatar-face">
-                        <div class="img-circle">
-                            <img class="nav-user-photo" data-bind="attr:{src: Avatar}" src="/Content/Assets/images/avatar.jpg" alt=@User.Identity.GetUserName() />
-                            <span class="user-info">
+        <div id="loginPartialDiv" data-bind="foreach: Login">
+            <ul class="nav ace-nav">
+                <li class="light-yellow">
+                    <a data-toggle="dropdown" class="dropdown-toggle">
+                        <div class="avatar-face">
+                            <div class="img-circle">
+                                <img class="nav-user-photo" data-bind="attr:{src: Avatar}" src="/Content/Assets/images/avatar.jpg" alt=@User.Identity.GetUserName() />
+                                <span class="user-info">
 
-                                @User.Identity.GetUserName()
-                            </span>
-                            <i class="icon-caret-down browndirt"></i>
+                                    @User.Identity.GetUserName()
+                                </span>
+                                <i class="icon-caret-down browndirt"></i>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                    <li>
-                        <a href="@Url.Action("", "")">
-                            <i class="icon-cog"></i>
-                            Settings
-                        </a>
-                    </li>
+                    </a>
+                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="@Url.Action("", "")">
+                                <i class="icon-cog"></i>
+                                Settings
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="@Url.Action("Dashboard", "Profile")">
-                            <i class="icon-user"></i>
-                            Profile
-                        </a>
-                    </li>
+                        <li>
+                            <a href="@Url.Action("Dashboard", "Profile")">
+  
+                                <i class="icon-user"></i>
+                                Profile
+                            </a>
 
-                    <li>
-                        <a href="@Url.Action("Message", "Profile")">
-                            <i class="icon-envelope"></i>
-                            Message
-                        </a>
-                    </li>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Message", "Profile")">
+                                <i class="icon-envelope"></i>
+                                Message
+                            </a>
+
+                        </li>
 
 
-                    <li class="divider"></li>
+                        <li class="divider"></li>
 
-                    <li id="logoutBtn" class="logout">
-                        <a href="#">
-                            <i class="icon-off"></i>
-                            Logout
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+                        <li id="logoutBtn" class="logout">
+                            <a href="#">
+                                <i class="icon-off"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     }
 
 
