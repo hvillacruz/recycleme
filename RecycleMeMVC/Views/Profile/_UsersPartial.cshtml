@@ -7,7 +7,7 @@
             </div>
 
             <div class="col-xs-4 users-item-right ">
-                <span class="white"> <i class="icon-2x icon-group"></i><a class="white" href="@Url.Action("Followers", "Profile")">&nbsp;See All</a></span>
+                <span class="white"> <i class="fa icon-2x fa-group"></i><a class="white" href="@Url.Action("Followers", "Profile")">&nbsp;See All</a></span>
             </div>
         </div>
         <div class="users-divider"></div>
@@ -18,7 +18,7 @@
                     <div class="pic" data-bind="click: $root.SelectedUser">
                         <div class="img"><img data-bind="attr:{src: Follower.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
 
-                        <i class="icon-plus"><span data-bind="text: Follower.FirstName"></span></i>
+                        <i class="fa fa-plus"><span data-bind="text: Follower.FirstName"></span></i>
 
                     </div>
                 </div>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="col-xs-4 users-item-right ">
-                <span class="white"> <i class="icon-2x icon-group"></i><a class="white" href="@Url.Action("Following", "Profile")">&nbsp;See All</a></span>
+                <span class="white"> <i class="fa icon-2x fa-group"></i><a class="white" href="@Url.Action("Following", "Profile")">&nbsp;See All</a></span>
             </div>
         </div>
         <div class="users-divider"></div>
@@ -47,7 +47,7 @@
                     <div class="pic" data-bind="click: $root.SelectedUser">
                         <div class="img"><img data-bind="attr:{src: FollowedUser.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
 
-                        <i class="icon-plus"><span data-bind="text: FollowedUser.FirstName"></span></i>
+                        <i class="icon icon-plus"><span data-bind="text: FollowedUser.FirstName"></span></i>
 
                     </div>
                 </div>

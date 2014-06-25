@@ -101,7 +101,7 @@ jQuery(function ($) {
 
             addRemoveLinks: true,
             dictDefaultMessage:
-            '<br /><i class="upload-icon icon-cloud-upload blue icon-2x"></i>'
+            '<br /><i class="upload-icon fa fa-cloud-upload blue fa-2x"></i>'
                   ,
             dictResponseError: 'Error while uploading file!',
 

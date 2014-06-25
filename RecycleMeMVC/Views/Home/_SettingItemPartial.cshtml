@@ -1,7 +1,7 @@
 ﻿<div class="dropdown">
     <a class=" dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
 
-        <i class="icon-cog"></i>
+        <i class="fa fa-cog"></i>
 
     </a>
 
@@ -14,21 +14,21 @@
                 Share
             </a>*@
             <a data-bind="attr: { 'href': '@Url.Action("Facebook", "Profile")/' + Id }" class="cssClass">
-                <i class="icon-facebook"></i>
+                <i class="fa fa-facebook"></i>
                 Facebook
             </a>
         </li>
         <li>
       
             <a data-bind="attr: { 'href': '@Url.Action("Twitter", "Profile")/' + Id }" class="cssClass">
-                <i class="icon-twitter"></i>
+                <i class="fa fa-twitter"></i>
                 Twitter
             </a>
         </li>
         <li class="divider"></li>
         <li>
             <a data-bind="click: $root.DeleteItem">
-                <i class="icon-remove"></i>
+                <i class="fa fa-remove"></i>
                 Delete
             </a>
         </li>

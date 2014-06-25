@@ -20,7 +20,7 @@
     </div>
     <aside id="sidebar" class="nano">
         <div class="nano-content">
-            <div class="logo-container"><span class="logo icon icon-envelope"></span>Mail</div><a data-toggle="modal" data-target="#myMessageModal" class="a compose-button">Compose</a>
+            <div class="logo-container"><span class="logo fa fa-envelope"></span>Mail</div><a data-toggle="modal" data-target="#myMessageModal" class="a compose-button">Compose</a>
             <menu class="menu-segment">
                 <ul>
                     <li class="active"><a class="a" href="#">Inbox <span data-bind="text:MessageCount"> </span></a></li>
@@ -58,17 +58,17 @@
         <div class="overlay"></div>
         <header class="headers">
             <div class="search-box">
-                <input placeholder="Search..."><span class="icon icon icon-search"></span>
+                <input placeholder="Search..."><span class="icon fa fa-search"></span>
             </div>
-            <h1 class="page-title h1"><a class="sidebar-toggle-btn trigger-toggle-sidebar"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line line-angle1"></span><span class="line line-angle2"></span></a>Inbox<a><span class="icon icon icon-chevron-down"></span></a></h1>
+            <h1 class="page-title h1"><a class="sidebar-toggle-btn trigger-toggle-sidebar"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line line-angle1"></span><span class="line line-angle2"></span></a>Inbox<a><span class="fa fa-chevron-down icon-2xx"></span></a></h1>
         </header>
         <div class="action-bar">
             <ul>
-                <li><a class="icons circle-icon action-icon icon icon-chevron-down"></a></li>
-                <li><a class="icons circle-icon action-icon icon icon-refresh"></a></li>
-                <li><a class="icons circle-icon  action-icon icon icon-share-alt"></a></li>
-                <li><a class="icons circle-icon action-icon  red icon icon-remove"></a></li>
-                <li><a class="icons circle-icon  action-icon red icon icon-flag"></a></li>
+                <li><a class="icons circle-icon action-icon fa fa-chevron-down"></a></li>
+                <li><a class="icons circle-icon action-icon fa fa-refresh"></a></li>
+                <li><a class="icons circle-icon  action-icon fa fa-share-alt"></a></li>
+                <li><a class="icons circle-icon action-icon  red fa fa-times"></a></li>
+                <li><a class="icons circle-icon  action-icon red fa fa-flag"></a></li>
             </ul>
         </div>
         <div id="main-nano-wrapper" class="nano">
@@ -82,7 +82,7 @@
                                     <input type="checkbox" id="chk1">
                                     <label for="chk1" class="toggle"></label>
                                 </div>
-                                <p class="p title"><span data-bind="text:Subject"></span></p><span class="star-toggle icon icon-star-empty"></span>
+                                <p class="p title"><span data-bind="text:Subject"></span></p><span class="star-toggle fa fa-star-empty"></span>
                             </div>
                             <div class="col col-2">
                                 <div class="subject"><span data-bind="text:Sender.FirstName"></span> has sent you a direct message! &nbsp;&ndash;&nbsp; <span class="teaser"><span data-bind="text:Body"></span></span></div>
@@ -385,9 +385,9 @@
                                 <p><span data-bind="text:Body"></span></p>
                             </div>
                             <div class="tool-box">
-                                <a href="#" class="b circle-icon small icon icon-share-alt"></a>
-                                <a href="#" class="b circle-icon small red-hover icon icon-remove"></a>
-                                <a href="#" class="b circle-icon small red-hover icon icon-flag"></a>
+                                <a href="#" class="b circle-icon small fa fa-share-alt"></a>
+                                <a href="#" class="b circle-icon small red-hover fa fa-times"></a>
+                                <a href="#" class="b circle-icon small red-hover fa fa-flag"></a>
                             </div>
                         </li>
                         @*<li class="received">
