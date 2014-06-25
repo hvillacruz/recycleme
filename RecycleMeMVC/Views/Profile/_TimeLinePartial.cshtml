@@ -77,9 +77,15 @@
                     </div>
                 
                     <div class="col-xs-2 txtComment">
-                        <button class="btn btn-xs" data-toggle="modal" id="modalItemTradeId" @*data-target="#myItemTradeModal"*@ data-bind="click: $root.ShowItemTrade.bind($data, $parent)">
-                            <i class="fa fa-exchange  bigger-110 icon-only"></i>
-                        </button>
+                        @*<button class="btn btn-xs" data-toggle="modal" id="modalItemTradeId" data-bind="click: $root.ShowItemTrade.bind($data, $parent)">
+                            <i class="fa fa-exchange"></i>
+                        </button>*@
+
+                        <a class=" dropdown-toggle"  data-toggle="modal" id="modalItemTradeId" @*data-target="#myItemTradeModal"*@ data-bind="click: $root.ShowItemTrade.bind($data, $parent)">
+
+                            <i class="fa fa-recycle icon-2xx"></i>
+
+                        </a>
                     </div>
                 </div>
                 <hr />
