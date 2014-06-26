@@ -12,10 +12,13 @@
         @*<div><div data-force="5" class="layer title title_xl">Trade Exchange</div></div>*@
         <div class="itemSelected" data-bind="foreach: Selected">
             <div class="widget">
+                <!-- ko foreach:ItemImages  -->
+                <!-- ko if: $index() < 1 -->
                 <div class="cover">
-                    <img src="~/Content/Assets/images/userBg.jpg" />
+                    <img data-bind="attr:{src: Path}" src="~/Content/Assets/images/userBg.jpg" />
                 </div>
-
+                <!-- /ko -->
+                <!-- /ko -->
                 <h1><span data-bind="text: Name">Item</span></h1>
 
                 <img data-bind="attr:{src: Owner.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
@@ -39,13 +42,13 @@
                     </div>
                 </section>*@
 
-            <section class="sections orange">
+            <section class="sections orange" >
                 <div class="divs">
                     <h1>Looking for this items</h1>
-                    <span>#car</span>
-                    <span>#cash</span>
-                    <span>#condo</span>
-                    <span>#career</span>
+                    <div data-bind="foreach : ExchangeTag.split(' ')">
+
+                        #<span data-bind="text:$data"></span>
+                    </div>
                     <p>23.06</p>
                 </div>
             </section>
@@ -75,10 +78,10 @@
             <hr />
 
             @Html.Partial("_TradeCommentPartial")
-            
+
 
         </div>
-       
+
         <div id="source" class="layer tile source" data-force="20">
             <div class="tile__name source_name">Your Current Items</div>
             <hr />
