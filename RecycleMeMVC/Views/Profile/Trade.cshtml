@@ -71,7 +71,14 @@
             <button class="btn btn-md btn-warning" data-bind="click: $root.TradeItemPost">
                 <i class="fa fa-archive  bigger-110 icon-only icon-text">&nbsp;Trade</i>
             </button>
+
+            <hr />
+
+            @Html.Partial("_TradeCommentPartial")
+            
+
         </div>
+       
         <div id="source" class="layer tile source" data-force="20">
             <div class="tile__name source_name">Your Current Items</div>
             <hr />

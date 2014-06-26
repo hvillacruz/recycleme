@@ -42,12 +42,13 @@ var TradeViewModel = function () {
 
     this.SelectedItem = function () {
 
+        var result = [];
         AjaxNinja.Invoke(ODataApi.Item + "('" + $("#currentItem").data("text") + "')?$expand=Owner,ItemImages", "GET", {}, function (data) {
-
-            self.Selected(data);
-
+            var res = $.extend(data, { CommentText: "" });
+            result.push(res);
+            self.Selected(result);
         });
-
+      
     }
 
 
@@ -56,18 +57,31 @@ var TradeViewModel = function () {
         window.location.href = '/Profile/Dashboard/' + item.FollowedUserId;
 
     }
-    this.TradeComment = function (item) {
+
+
+    this.TradeCommentPost = function (data,item) {
 
         var data = {
 
             TradeCommenterId: global.User.UserId(),
-            TradeId: "1",//item.Id,
-            Comment: "sample",//item.CommentText,
+            TradeId: self.BuyersItem()[0].Id,
+            Comment: item.CommentText,
             ModifiedDate: Helper.time()
 
         }
 
         AjaxNinja.Invoke(ODataApi.TradeComment, "POST", JSON.stringify(data), function (data) {
+            self.SelectedItem();
+            self.TradeItem();
+        });
+
+    }
+
+
+    this.TradeComment = function (item) {
+
+
+        AjaxNinja.Invoke(ODataApi.TradeComment, "GET", {}, function (data) {
             alert('success');
         });
 
@@ -76,11 +90,13 @@ var TradeViewModel = function () {
 
     this.TradeItem = function () {
 
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Trades/Item/ItemImages", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
             self.BuyersItem(data.value);
         });
     }
 
+
+ 
 
 
     this.TradeItemPost = function (item) {

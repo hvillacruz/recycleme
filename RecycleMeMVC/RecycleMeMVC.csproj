@@ -260,6 +260,7 @@
     <Content Include="Content\Styles\Home\TradeItems.css" />
     <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Content\Styles\Profile\Trade.css" />
+    <Content Include="Content\Styles\Profile\TradeComment.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="index.html" />
     <Content Include="Scripts\bootstrap-editable.js" />
@@ -446,6 +447,7 @@
     <Content Include="Views\Profile\_ItemTradePartial.cshtml" />
     <Content Include="Views\Profile\_ItemDragPartial.cshtml" />
     <Content Include="Views\Profile\Trade.cshtml" />
+    <Content Include="Views\Profile\_TradeCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

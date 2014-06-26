@@ -1,0 +1,39 @@
+﻿
+<link href="~/Content/Styles/Profile/TradeComment.css" rel="stylesheet" />
+<div>
+    <ul class="row list-ul" data-bind="foreach: BuyersItem">
+        <!-- ko foreach:TradeItem -->
+        <li class="row list-li">
+            <div class="col-xs-2">
+                <div class="img imgComment"><img data-bind="attr:{src: TradeCommenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+            </div>
+            <div class="col-xs-10 txtComment">
+                <span data-bind="text:Comment"></span>
+            </div>
+        </li>
+        <!-- /ko -->
+    </ul>
+</div>
+<hr />
+<div>
+    <ul class="row list-ul" data-bind="foreach: Selected">
+        <li class="row list-li">
+            <div class="col-xs-2">
+                <div class="img imgComment"><img data-bind="attr:{src: Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+            </div>
+            <div class="col-xs-8 txtComment">
+                <div class="right-inner-addon ">
+                    <i class="fa fa-comments "></i>
+                    <input type="text" class="form-control" data-bind="value:CommentText " placeholder=" write a comment..." />
+
+                </div>
+            </div>
+            <div class="col-xs-2 txtComment">
+                <button class="btn btn-primary btn-xs" data-bind="click: $root.TradeCommentPost.bind($data, $parent) ">
+                    <i class="fa fa-comments  bigger-110 icon-only"></i>
+                </button>
+            </div>
+        </li>
+    </ul>
+</div>
+
