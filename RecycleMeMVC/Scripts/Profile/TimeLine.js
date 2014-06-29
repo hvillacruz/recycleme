@@ -95,7 +95,6 @@
     this.DeleteItem = function (item) {
 
         var data = {
-            CommenterId: $("#currentUser").data("text"),
             IsDeleted: true,
             ModifiedDate: Helper.time()
 
