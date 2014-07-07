@@ -15,7 +15,7 @@
             <div class="profile" data-bind="foreach: Followers">
                 <!-- ko if: $index() < 4 -->
                 <div class="pro col-sm-6">
-                    <div class="pic" data-bind="click: $root.SelectedUser">
+                    <div class="pic" data-bind="click: $root.SelectedUser.bind($data, $parent)">
                         <div class="img"><img data-bind="attr:{src: Follower.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
 
                         <i class="icon icon-plus"><span data-bind="text: Follower.FirstName"></span></i>
@@ -44,7 +44,7 @@
             <div class="profile" data-bind="foreach: Following">
                 <!-- ko if: $index() < 4 -->
                 <div class="pro col-sm-6">
-                    <div class="pic" data-bind="click: $root.SelectedUser">
+                    <div class="pic" data-bind="click: $root.SelectedUserFollowing.bind($data, $parent)">
                         <div class="img"><img data-bind="attr:{src: FollowedUser.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
 
                         <i class="icon icon-plus"><span data-bind="text: FollowedUser.FirstName"></span></i>

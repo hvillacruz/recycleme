@@ -19,10 +19,15 @@ var UsersViewModel = function () {
 
     }
 
-    this.SelectedUser = function (item) {
+    this.SelectedUser = function (item,parent) {
 
-        window.location.href = '/Profile/Dashboard/' + item.FollowedUserId;
+        window.location.href = '/Profile/Dashboard/' + parent.FollowerId;
 
+    }
+
+    this.SelectedUserFollowing = function (item, parent) {
+
+        window.location.href = '/Profile/Dashboard/' + parent.FollowedUserId;
     }
 
 }
