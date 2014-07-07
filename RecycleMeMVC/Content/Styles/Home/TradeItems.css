@@ -21,71 +21,74 @@ body {
 
 
 ::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #FFFFFF;
+    color: #FFFFFF;
 }
+
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #FFFFFF;
-    opacity:  1;
+    color: #FFFFFF;
+    opacity: 1;
 }
+
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #FFFFFF;
-    opacity:  1;
+    color: #FFFFFF;
+    opacity: 1;
 }
+
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #FFFFFF;
+    color: #FFFFFF;
 }
 
 
-    .search-box input,
-    .search-box .icon {
-        transition-duration: .3s;
+.search-box input,
+.search-box .icon {
+    transition-duration: .3s;
+}
+
+.search-box input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    text-indent: 15px;
+    height: 40px;
+    z-index: 2;
+    outline: none;
+    color: #000000;
+    background: transparent;
+    border: 2px solid #efefef;
+    border-radius: 5px;
+    transition-timing-function: cubic-bezier(0.3, 1.5, 0.6, 1);
+}
+
+    .search-box input:focus {
+        color: #333;
+        border-color: #d6d6d6;
+        width: 150%;
     }
 
-    .search-box input {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        border: 0;
-        padding: 0;
-        margin: 0;
-        text-indent: 15px;
-        height: 40px;
-        z-index: 2;
-        outline: none;
-        color: #000000;
-        background: transparent;
-        border: 2px solid #efefef;
-        border-radius: 5px;
-        transition-timing-function: cubic-bezier(0.3, 1.5, 0.6, 1);
-    }
-
-        .search-box input:focus {
-            color: #333;
-            border-color: #d6d6d6;
-            width: 150%;
+        .search-box input:focus ~ .icon {
+            opacity: 1;
+            z-index: 3;
+            color: #FFFFFF;
         }
 
-            .search-box input:focus ~ .icon {
-                opacity: 1;
-                z-index: 3;
-                color: #FFFFFF;
-            }
-
-    .search-box .icon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 40px;
-        text-align: center;
-        line-height: 40px;
-        z-index: 1;
-        cursor: pointer;
-        opacity: .5;
-        color: #FFFFFF;
-    }
+.search-box .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    z-index: 1;
+    cursor: pointer;
+    opacity: .5;
+    color: #FFFFFF;
+}
 
 
 
@@ -175,6 +178,9 @@ body {
         border-radius: 50%;
     }
 
+    .widget > .imgHidden {
+        display: none;
+    }
 
     .widget > .userList {
         position: absolute;
@@ -187,6 +193,9 @@ body {
         border-radius: 50%;
     }
 
+    .widget:hover .userList {
+        display: block;
+    }
 
     .widget > h1, .widget > h2, .widget > h3 {
         display: block;
