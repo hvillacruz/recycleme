@@ -191,6 +191,13 @@ namespace RecycleMeDataAccessLayer
            .WillCascadeOnDelete(false);
 
 
+            modelBuilder.Entity<Notification>()
+            .HasOptional(b => b.Owner)
+            .WithMany(a => a.Notifications)
+            .HasForeignKey(k => k.OwnerId)
+            .WillCascadeOnDelete(false);
+
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -218,6 +225,8 @@ namespace RecycleMeDataAccessLayer
         public DbSet<TradeBuyerItem> TradeBuyerItem { get; set; }
 
         public DbSet<TradeComment> TradeComment { get; set; }
+
+        public DbSet<Notification> Notification { get; set; }
 
     }
 

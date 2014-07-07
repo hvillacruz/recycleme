@@ -74,6 +74,7 @@
     <Compile Include="ItemImage.cs" />
     <Compile Include="LogInfo.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trade.cs" />
     <Compile Include="TradeBuyerItem.cs" />

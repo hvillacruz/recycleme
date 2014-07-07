@@ -44,6 +44,8 @@ namespace RecycleMeDomainClasses
         public virtual ICollection<Trade> UserBuyer { get; set; }
         public virtual ICollection<Trade> UserSeller { get; set; }
         public virtual ICollection<TradeComment> UserTrade { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
+
         
         
 

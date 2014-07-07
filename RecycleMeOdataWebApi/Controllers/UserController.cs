@@ -23,6 +23,7 @@ namespace RecycleMeOdataWebApi.Controllers
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
     builder.EntitySet<User>("User");
     builder.EntitySet<Item>("Item"); 
+    builder.EntitySet<Notification>("Notification"); 
     builder.EntitySet<Trade>("Trade"); 
     builder.EntitySet<UserComment>("UserComment"); 
     builder.EntitySet<UserFollower>("UserFollower"); 
@@ -170,6 +171,13 @@ namespace RecycleMeOdataWebApi.Controllers
         public IQueryable<Item> GetItems([FromODataUri] string key)
         {
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Items);
+        }
+
+        // GET odata/User(5)/Notifications
+        [Queryable]
+        public IQueryable<Notification> GetNotifications([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Notifications);
         }
 
         // GET odata/User(5)/UserBuyer
