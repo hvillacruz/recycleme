@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/jquery-2.1.0.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="http://localhost:49892/signalr/hubs"></script>
+    <script>
+        var post = $.connection.postHub;
+
+        post.client.addMessage = function (msg) {
+            alert(msg);
+        }
+
+
+        $.connection.hub.url = "http://localhost:49892/signalr";
+        $.connection.hub.start().done(function () {
+            console.log('Now connected, connection ID=' + $.connection.hub.id);
+            post.server.hello();
+        }).fail(function (error) {
+            console.log('Could not Connect!');
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
