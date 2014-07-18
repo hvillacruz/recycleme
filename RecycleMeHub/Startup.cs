@@ -9,10 +9,12 @@ using Microsoft.AspNet.SignalR;
 
 namespace RecycleMeHub
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+
+            ConfigureAuth(app);
             app.Map("/signalr", map =>
             {
                 // Setup the CORS middleware to run before SignalR.
@@ -25,12 +27,13 @@ namespace RecycleMeHub
                     // You can enable JSONP by uncommenting line below.
                     // JSONP requests are insecure but some older browsers (and some
                     // versions of IE) require JSONP to work cross domain
-                    // EnableJSONP = true
+                     EnableJSONP = true
                 };
                 // Run the SignalR pipeline. We're not using MapSignalR
                 // since this branch already runs under the "/signalr"
                 // path.
                 map.RunSignalR(hubConfiguration);
+                
             });
         }
     }
