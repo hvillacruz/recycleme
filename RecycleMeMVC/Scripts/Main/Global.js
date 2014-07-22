@@ -11,18 +11,18 @@
 
     this.Profile = function () {
 
-        if (BrowserDetect.browser != "Safari") {
-            ODataNinja.Read(ODataApi.User + "('" + this.User.UserId() + "')", function (data) {
-                self.Login(data);
-                self.AttachEvents();
-            });
-        } else {
+        //if (BrowserDetect.browser = "Safari") {
+        //    ODataNinja.Read(ODataApi.User + "('" + this.User.UserId() + "')", function (data) {
+        //        self.Login(data);
+        //        self.AttachEvents();
+        //    });
+        //} else {
             AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
                 self.Login(data);
                 self.AttachEvents();
             });
 
-        }
+       // }
 
     }
 

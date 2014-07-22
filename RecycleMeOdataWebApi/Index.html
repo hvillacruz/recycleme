@@ -8,7 +8,7 @@
     <script src="http://recyclemeapi.azurewebsites.net/signalr/hubs"></script>
 
     <script>
-
+        
 
 
         var ChatHubWrapper = function () {
@@ -62,22 +62,20 @@
             self.useBearerToken = function (token) {
                 var wasStarted = isStarted;
 
-
+                
                 if (isStarted)
-                    // restart, so that connection is assigned to correct group
+                // restart, so that connection is assigned to correct group
                     self.stop();
-
-
                 setTokenCookie(token);
 
 
                 if (wasStarted) {
-                    self.start();
+                     self.start();
 
-
-                    self.sendMessageNoAuth("Manuel-N");
-                    self.sendMessage("henry");
-
+                    setTimeout(function () {
+                        self.sendMessageNoAuth("Manuel-N");
+                        self.sendMessage("henry");
+                    }, 5000);
                 }
 
 
@@ -85,17 +83,8 @@
 
             function setTokenCookie(token) {
                 if (token) {
-
-                    var cookieName = 'BearerToken';
-                    var cookieValue = token;
-                    var myDate = new Date();
-                    myDate.setMonth(myDate.getMonth() + 12);
-
-                    document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.azurewebsites.net;path=/";
-                    alert(document.cookie);
-
-                    //document.cookie = "BearerToken=" + token + "; path=/";
-                    //alert(token);
+                    document.cookie = "BearerToken=" + token + "; path=/";
+                   
                 }
             }
 
@@ -115,14 +104,13 @@
                 //toastr.success("Connected to the hub");
                 //chatHub.sendMessageNoAuth("shit");
                 signIn("signalr", "Password1");
-
             });
 
             //signIn("signalr", "Password1");
 
         });
 
-
+      
         function signIn(userName, password) {
             //$.support.cors = true;
             //return AjaxNinja.Invoke("http://localhost:26264/token", "GET", {}, function (result) {
@@ -156,7 +144,7 @@
                         if (data && data.access_token) {
                             chatHub.useBearerToken(data.access_token);
                             bearerToken = data.access_token;
-
+                         
                         }
                     })
                     .fail(function (xhr) {

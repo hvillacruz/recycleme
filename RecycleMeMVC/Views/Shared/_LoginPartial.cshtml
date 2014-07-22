@@ -2,45 +2,6 @@
 
 @if (Request.IsAuthenticated)
 {
-
-    <script>
-
-       var connection = $.connection.hub,
-       hub = $.connection.postHub, message = "this is a test", userId = "signalr";
-
-        connection.url = "http://localhost:49892/signalr";
-        connection.logging = true;
-
-        hub.client.message = function (value) {
-            alert(value);
-        }
-
-        connection.start()
-            .done(function () {
-                console.log('Now connected, connection ID=' + $.connection.hub.id);
-                hub.server.sendToUser(userId, message);
-            })
-            .fail(function (error) {
-                console.log(value);
-            });
-
-
-        @*var post = $.connection.postHub;
-
-        post.client.addMessage = function (msg) {
-            alert(msg);
-        }
-
-
-        $.connection.hub.url = "http://localhost:49892/signalr";
-        $.connection.hub.start().done(function () {
-            console.log('Now connected, connection ID=' + $.connection.hub.id);
-            post.server.hello("@User.Identity.GetUserName()");
-        }).fail(function (error) {
-            console.log('Could not Connect!');
-        });*@
-    </script>
-
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
