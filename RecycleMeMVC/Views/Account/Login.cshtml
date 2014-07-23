@@ -19,60 +19,61 @@
             {*@
         @*@Html.AntiForgeryToken()
             @Html.ValidationSummary(true)*@
-        <form id="__AjaxAntiForgeryForm" action="#" method="post">
-            @Html.AntiForgeryToken()
-            <div class="well well-lg login-shadow">
-                <div class="form-group">
-                    <div class="left-inner-addon">
-                        <i class="fa fa-user"></i>
-                        <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
-                    </div>
-                    @*@Html.ValidationMessageFor(m => m.UserName)*@
-                    @*<label class="block clearfix">
-                            <label for="UserName">Email</label>
-                            <span class="block input-icon input-icon-left">
-
-                                  <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
-                                <i class="fa fa-user"></i>
-                                <span class="editable-clear-x"></span>
-                                @Html.ValidationMessageFor(m => m.UserName)
-                            </span>
-
-
-                        </label>*@
-                    @*<div class="input-group add-on">
-                            <input type="text" class="form-control" placeholder="" name="srch-term" id="srch-term">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit" disabled="disabled"><i class="fa fa-user"></i></button>
-                            </div>
-                        </div>*@
+        @*<form id="__AjaxAntiForgeryForm" action="#" method="post">
+            @Html.AntiForgeryToken()*@
+       
+        <div class="well well-lg login-shadow">
+            <div class="form-group">
+                <div class="left-inner-addon">
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
                 </div>
-                <div class="form-group">
-                    @*<label class="block clearfix">
-                            <label for="Password">Password</label>
-                            <span class="block input-icon input-icon-left">
-                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                                <i class="fa fa-lock"></i>
-                                @Html.ValidationMessageFor(m => m.Password)
-                            </span>
-                        </label>*@
-                    <div class="left-inner-addon">
-                        <i class="fa fa-lock"></i>
-                        <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                    </div>
-                    @Html.ValidationMessageFor(m => m.Password)
-                </div>
-                <div class="form-group">
-                    <div>
-                        <input name="RememberMe" class="ace" id="RememberMe" type="checkbox" value="true" />
-                        <span class="lbl"> Remember Me</span>
-                    </div>
-                </div>
-                <button type="submit" id="signInRecycle" class="btn btn-primary btn-lg btn-block"><i class="fa fa-key">&nbsp;</i>Sign in</button>
-                <h6 class="text-center login-top-padding"><a>Forgot Username or Password</a></h6>
+                @*@Html.ValidationMessageFor(m => m.UserName)*@
+                @*<label class="block clearfix">
+                        <label for="UserName">Email</label>
+                        <span class="block input-icon input-icon-left">
+
+                              <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
+                            <i class="fa fa-user"></i>
+                            <span class="editable-clear-x"></span>
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </span>
+
+
+                    </label>*@
+                @*<div class="input-group add-on">
+                        <input type="text" class="form-control" placeholder="" name="srch-term" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" disabled="disabled"><i class="fa fa-user"></i></button>
+                        </div>
+                    </div>*@
             </div>
-            @*}*@
-        </form>
+            <div class="form-group">
+                @*<label class="block clearfix">
+                        <label for="Password">Password</label>
+                        <span class="block input-icon input-icon-left">
+                            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                            <i class="fa fa-lock"></i>
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </span>
+                    </label>*@
+                <div class="left-inner-addon">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                </div>
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            <div class="form-group">
+                <div>
+                    <input name="RememberMe" class="ace" id="RememberMe" type="checkbox" value="true" />
+                    <span class="lbl"> Remember Me</span>
+                </div>
+            </div>
+            <button type="submit" id="signInRecycle" class="btn btn-primary btn-lg btn-block"><i class="fa fa-key">&nbsp;</i>Sign in</button>
+            <h6 class="text-center login-top-padding"><a>Forgot Username or Password</a></h6>
+        </div>
+        @*}*@
+        @*</form>*@
         @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0)
@@ -115,24 +116,17 @@
         @Scripts.Render("~/bundles/jqueryval")
     }
     <script>
-
+        AddAntiForgeryToken = function (data) {
+            data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
+            return data;
+        };
 
         $("#signInRecycle").click(function () {
+            SignIn($("#UserName").val(), $("#Password").val());
+
+
             // SignIn($("#UserName").val(), $("#Password").val());
 
-            AddAntiForgeryToken = function (data) {
-                data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
-                return data;
-            };
-            $.ajax({
-                url: '@Url.Action("Login","Account")',
-                type: 'POST',
-                //data: { model: { UserName: $("#UserName").val(), Password: $("#Password").val() }, returnUrl: '' },
-                data: AddAntiForgeryToken({ model: { UserName: $("#UserName").val(), Password: $("#Password").val() }, returnUrl: '' }),
-                success: function (result) {
-                    SignIn($("#UserName").val(), $("#Password").val());
-                }
-            });
         });
     </script>
 }

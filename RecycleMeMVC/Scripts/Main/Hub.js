@@ -15,11 +15,15 @@
 
         theHub.client.onMessage = onMessageCallback;
         theHub.client.recycleNotification = function (res) {
-            global.Notification(res, "Info");
+            toastr.info(res, "Info");
         }
         return $.connection.hub.start()
                 .done(function () {
                     isStarted = true;
+
+                    setTimeout(function () {
+                        recycleHub.sendNotification("Notification Activated");
+                    }, 2000)
                 });
 
     };
@@ -76,12 +80,22 @@ function SignIn(userName, password) {
 
     return $.post("http://recyclemeapi.azurewebsites.net/token", { grant_type: "password", username: userName, password: password })
             .done(function (data) {
-           
+
                 if (data && data.access_token) {
 
                     recycleHub.start(data.access_token).done(function () {
 
-                        recycleHub.sendNotification("welcome");
+
+                        $.ajax({
+                            url: 'Login',
+                            type: 'POST',
+                            //data: { model: { UserName: $("#UserName").val(), Password: $("#Password").val() }, returnUrl: '' },
+                            data: AddAntiForgeryToken({ UserName: userName, Password: password, returnUrl: '' }),
+                            success: function (result) {
+                                window.location.href = window.location.origin + "/";
+                            }
+                        });
+
 
                     });
 

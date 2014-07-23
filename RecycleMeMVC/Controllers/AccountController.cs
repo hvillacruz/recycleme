@@ -49,7 +49,7 @@ namespace RecycleMeMVC.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -58,8 +58,7 @@ namespace RecycleMeMVC.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    //return RedirectToLocal(returnUrl);
-                    return View(model);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
