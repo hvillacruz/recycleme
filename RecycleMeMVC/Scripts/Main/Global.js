@@ -4,6 +4,8 @@
     self.Login = ko.observableArray();
     self.Message = ko.observableArray();
     self.MessageCount = ko.observable(0);
+    self.WasNotified = ko.observable(false);
+
     this.User = function (UserId, UserName) {
 
         this.User.UserId = ko.observable(UserId);
@@ -19,12 +21,12 @@
         //        self.AttachEvents();
         //    });
         //} else {
-            AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
-                self.Login(data);
-                self.AttachEvents();
-            });
+        AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
+            self.Login(data);
+            self.AttachEvents();
+        });
 
-       // }
+        // }
 
     }
 
@@ -59,6 +61,42 @@
 
         var header = new Header();
         header.Logout();
+
+    }
+
+    this.Notification = function (msg, title, type) {
+
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-bottom-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "showMethod": "slideDown",
+            "hideMethod": "slideUp"
+        }
+
+        toastr.options.onShown = function () {
+
+        }
+
+        toastr.options.onHidden = function () {
+
+        }
+
+        switch (type) {
+
+            case "info": return toastr.info(msg, title);
+
+            case "success": return toastr.success(msg, title);
+
+            case "warning": return toastr.warning(msg, title);
+
+            case "error": return toastr.error(msg, title);
+
+            default: return toastr.info(msg, title);
+        }
 
     }
 

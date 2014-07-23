@@ -46,13 +46,13 @@
                 </div>
                 <div class="form-group">
                     @*<label class="block clearfix">
-                        <label for="Password">Password</label>
-                        <span class="block input-icon input-icon-left">
-                            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                            <i class="fa fa-lock"></i>
-                            @Html.ValidationMessageFor(m => m.Password)
-                        </span>
-                    </label>*@
+                            <label for="Password">Password</label>
+                            <span class="block input-icon input-icon-left">
+                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                                <i class="fa fa-lock"></i>
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </span>
+                        </label>*@
                     <div class="left-inner-addon">
                         <i class="fa fa-lock"></i>
                         <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
@@ -65,7 +65,7 @@
                         <span class="lbl"> Remember Me</span>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-key">&nbsp;</i>Sign in</button>
+                <button type="submit" id="signInRecycle" class="btn btn-primary btn-lg btn-block"><i class="fa fa-key">&nbsp;</i>Sign in</button>
                 <h6 class="text-center login-top-padding"><a>Forgot Username or Password</a></h6>
             </div>
         }
@@ -110,6 +110,11 @@
         @Scripts.Render("~/bundles/init")
         @Scripts.Render("~/bundles/jqueryval")
     }
+    <script>
+        //$("#signInRecycle").click(function () {
+        //    SignIn($("#UserName").val(), $("#Password").val());
+        //});
+    </script>
 }
 else
 {

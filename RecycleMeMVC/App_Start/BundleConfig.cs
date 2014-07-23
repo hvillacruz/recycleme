@@ -41,6 +41,7 @@ namespace RecycleMeMVC
                       "~/Content/Styles/Main/bootstrap.css",
                         "~/Content/Assets/css/bootstrap-editable.css",
                       "~/Content/Styles/Main/site.css",
+                      "~/Content/toastr.min.css",
                        "~/Content/Styles/Main/recycleme.css"));
 
             bundles.Add(new StyleBundle("~/Content/Styles/Recycle").Include(

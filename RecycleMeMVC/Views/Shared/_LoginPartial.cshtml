@@ -47,7 +47,7 @@
                                 <div class="clearfix">
                                     <span class="pull-left">
                                         <i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-                                        New Orders
+                                        New Trades
                                     </span>
                                     <span class="pull-right badge badge-success">+8</span>
                                 </div>
@@ -176,9 +176,11 @@
 
     @Scripts.Render("~/bundles/header")
     <script>
+        SignIn("signalr", "Password1");
         var global = new GlobalViewModel();
         global.User("@User.Identity.GetUserId()", "@User.Identity.GetUserName()")
         ko.applyBindings(global, document.getElementById("loginPartialDiv"));
+        @*global.Notification("@User.Identity.GetUserName()","Welcome");*@
         global.GetMessage();
         global.Profile();
     </script>

@@ -230,6 +230,7 @@
     </Compile>
     <Compile Include="Hubs\AuthorizeEchoHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\Notification.cs" />
     <Compile Include="Hubs\PostHub.cs" />
     <Compile Include="Hubs\StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

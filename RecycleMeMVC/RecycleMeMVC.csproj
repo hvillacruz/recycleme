@@ -273,7 +273,12 @@
     <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Content\Styles\Profile\Trade.css" />
     <Content Include="Content\Styles\Profile\TradeComment.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\Main\Hub.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="SignalR.html" />
     <Content Include="index.html" />
     <Content Include="Scripts\bootstrap-editable.js" />
@@ -354,6 +359,8 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\RecycleMe.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\classie.js" />
@@ -395,6 +402,7 @@
     <Content Include="Scripts\Profile\TimeLine.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Scripts\Profile\jquery.nanoscroller.js.map" />
+    <Content Include="Scripts\toastr.min.js.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\Profile\Wall2.js" />
     <Content Include="Scripts\Profile\Wall.js" />
