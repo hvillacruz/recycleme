@@ -1,5 +1,4 @@
-﻿alert(global.User.UserId());
-var MessageViewModel = function () {
+﻿var MessageViewModel = function () {
 
     var self = this;
     this.SelectedItem = ko.observableArray();
