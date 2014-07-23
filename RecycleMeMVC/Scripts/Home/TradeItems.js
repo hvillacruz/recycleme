@@ -1,7 +1,9 @@
-﻿var TradeItemsViewModel = function () {
+﻿
+var TradeItemsViewModel = function () {
 
     var self = this;
     this.Items = ko.observableArray();
+    this.Message = ko.observableArray();
     this.TradeItem = function () {
 
         AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner", "GET", {}, function (data) {
@@ -9,6 +11,7 @@
             self.Refresh();
         });
 
+        self.GetMessage();
     }
 
     this.Search = function (item, data) {
@@ -39,7 +42,31 @@
 
     }
 
+    this.GetMessage = function () {
 
+
+
+        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
+            self.MessageCount("(" + data.value.length + ")");
+            var result = [];
+            $(data.value).each(function (i, value) {
+                var date = new Date(Date.parse(value.DateSent));
+                value.DateSent = date;
+                if (date != null)
+                    var res = $.extend(value, { Time: formatAMPM(date) });
+
+                result.push(res);
+
+
+            });
+
+            self.Message(result);
+
+        });
+
+
+
+    }
 
 }
 var trade = new TradeItemsViewModel();
@@ -47,7 +74,7 @@ var trade = new TradeItemsViewModel();
 ko.bindingHandlers.button = {
     init: function (element) {
         $(element).click(function () {
-          
+
         });
     }
 

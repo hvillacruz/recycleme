@@ -1,4 +1,5 @@
-﻿var MessageViewModel = function () {
+﻿alert(global.User.UserId());
+var MessageViewModel = function () {
 
     var self = this;
     this.SelectedItem = ko.observableArray();
@@ -13,7 +14,7 @@
 
 
         var data = {
-
+            
             SenderId: global.User.UserId(),
             ReceiverId: this.SelectedChoice()[0],
             Subject: item.Subject(),
