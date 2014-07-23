@@ -110,9 +110,14 @@
         $(document).ready(function () {
 
 
+
+
+
             signIn("signalr", "Password1");
 
-
+            $("#btnSend").click(function () {
+                chatHub.sendMessage($("#txtMessage").val());
+            });
 
 
 
@@ -130,7 +135,7 @@
 
                             chatHub.start(data.access_token).done(function () {
 
-                                chatHub.sendMessage("henry");
+                                chatHub.sendMessage("connected");
 
                             });
 
@@ -150,6 +155,7 @@
 
 </head>
 <body>
-
+    <input type="text" id="txtMessage" />
+    <input type="button" id="btnSend" value="Send" />
 </body>
 </html>
