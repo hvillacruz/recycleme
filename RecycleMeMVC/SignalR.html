@@ -10,19 +10,23 @@
     <script>
 
 
-
+        var doc = document;
         var ChatHubWrapper = function () {
             var self = this;
             var chat = null;
             var isStarted = false;
             var onMessageCallback = function () { };
 
-            self.start = function () {
+            self.start = function (token) {
+
                 chat = $.connection.chatHub;
                 var connection = $.connection.hub;
                 connection.url = "http://recyclemeapi.azurewebsites.net/signalr";
                 //connection.url = "http://localhost:49892/signalr";
-
+                $.signalR.ajaxDefaults.headers =
+                    {
+                        Authorization: "Bearer " + token
+                    };
                 chat.client.onMessage = onMessageCallback;
                 chat.client.work = function (res) {
                     alert(res);
@@ -74,9 +78,11 @@
                 if (wasStarted) {
                     self.start();
 
+                    setTimeout(function () {
+                        self.sendMessageNoAuth("Manuel-N");
+                        self.sendMessage("henry");
+                    }, 10000);
 
-                    self.sendMessageNoAuth("Manuel-N");
-                    self.sendMessage("henry");
 
                 }
 
@@ -86,16 +92,8 @@
             function setTokenCookie(token) {
                 if (token) {
 
-                    var cookieName = 'BearerToken';
-                    var cookieValue = token;
-                    var myDate = new Date();
-                    myDate.setMonth(myDate.getMonth() + 12);
-
-                    document.cookie = cookieName + "=" + cookieValue + ";expires=" + myDate + ";domain=.azurewebsites.net;path=/";
-                    alert(document.cookie);
-
-                    //document.cookie = "BearerToken=" + token + "; path=/";
-                    //alert(token);
+                    doc.cookie = "BearerToken=" + token + "; path=/";
+                    document = doc;
                 }
             }
 
@@ -110,52 +108,31 @@
         // chatHub.clearAuthentication();
 
         $(document).ready(function () {
-            //chatHub.onMessage(appendMessage);
-            chatHub.start().done(function () {
-                //toastr.success("Connected to the hub");
-                //chatHub.sendMessageNoAuth("shit");
-                signIn("signalr", "Password1");
 
-            });
 
-            //signIn("signalr", "Password1");
+            signIn("signalr", "Password1");
+
+
+
+
 
         });
 
 
         function signIn(userName, password) {
-            //$.support.cors = true;
-            //return AjaxNinja.Invoke("http://localhost:26264/token", "GET", {}, function (result) {
 
-            //    AjaxNinja.Invoke("http://localhost:26264/api/Orders", "GET", {}, function (result) {
-
-            //        alert('success');
-
-            //    });
-
-            //});
 
 
             return $.post("http://recyclemeapi.azurewebsites.net/token", { grant_type: "password", username: userName, password: password })
                     .done(function (data) {
-                        //setTimeout(function () {
-                        //    var post = $.connection.postHub;
-                        //    //$.connection.hub.url = "http://recyclemesignalr.azurewebsites.net/signalr";
-                        //    post.client.addMessage = function (msg) {
-                        //        alert(msg);
-                        //    }
-
-                        //    $.connection.hub.start().done(function () {
-                        //        console.log('Now connected, connection ID=' + $.connection.hub.id);
-                        //        post.server.hello("Henry");
-                        //    }).fail(function (error) {
-                        //        console.log('Could not Connect!');
-                        //    });
-                        //},5000);
 
                         if (data && data.access_token) {
-                            chatHub.useBearerToken(data.access_token);
-                            bearerToken = data.access_token;
+
+                            chatHub.start(data.access_token).done(function () {
+
+                                chatHub.sendMessage("henry");
+
+                            });
 
                         }
                     })
