@@ -21,12 +21,12 @@
         //        self.AttachEvents();
         //    });
         //} else {
-        AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
-            self.Login(data);
-            self.AttachEvents();
-        });
+            AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
+                self.Login(data);
+                self.AttachEvents();
+            });
 
-        // }
+       // }
 
     }
 

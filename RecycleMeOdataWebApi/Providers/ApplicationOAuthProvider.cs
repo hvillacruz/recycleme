@@ -44,7 +44,8 @@ namespace RecycleMeOdataWebApi.Providers
 
 
                 //context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-                AspNetUsers user = await userManager.FindAsync(context.UserName, context.Password);
+                AspNetUsers user = context.Password == string.Empty ? await userManager.FindByIdAsync(context.UserName) : await userManager.FindAsync(context.UserName, context.Password);
+                
 
                 if (user == null)
                 {
@@ -52,6 +53,7 @@ namespace RecycleMeOdataWebApi.Providers
                     return;
                 }
 
+             
                 ClaimsIdentity oAuthIdentity = await userManager.CreateIdentityAsync(user,
                     context.Options.AuthenticationType);
                 ClaimsIdentity cookiesIdentity = await userManager.CreateIdentityAsync(user,

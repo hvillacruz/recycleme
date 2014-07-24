@@ -14,6 +14,9 @@ using RecycleMeDataAccessLayer;
 using Facebook;
 using RecycleMeBusinessLogicLayer;
 using System.Configuration;
+using RestSharp;
+using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace RecycleMeMVC.Controllers
 {
@@ -36,14 +39,19 @@ namespace RecycleMeMVC.Controllers
 
         public UserManager<AspNetUsers> UserManager { get; private set; }
 
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl, string token)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            //ViewBag.Bearer = token;
+            LoginViewModel model = new LoginViewModel();
+            model.Bearer = token;
+            return View(model);
         }
+
 
         //
         // POST: /Account/Login
@@ -58,7 +66,20 @@ namespace RecycleMeMVC.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToAction("Index", "Home");
+
+                    string result = await Task.Run(() => ExternalToken(model.UserName, model.Password));
+
+                    System.Web.HttpCookie myCookie = new System.Web.HttpCookie("MyTestCookie");
+                    DateTime now = DateTime.Now;
+                    myCookie.Name = "RecycleAccessToken";
+                    myCookie.Value = result;
+                    myCookie.Expires = now.AddMinutes(14);
+
+                    // Add the cookie.
+                    Response.Cookies.Add(myCookie);
+
+
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -203,13 +224,17 @@ namespace RecycleMeMVC.Controllers
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
+
+
+
+        public string BearerToken { get; set; }
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
@@ -230,7 +255,20 @@ namespace RecycleMeMVC.Controllers
                 if (loginInfo.Login.LoginProvider.Contains("Facebook"))
                     await StoreFacebookAuthToken(user);
                 await SignInAsync(user, isPersistent: false);
-                return RedirectToLocal(returnUrl);
+                //await ExternalToken(user.Id);
+                string result = await Task.Run(() => ExternalToken(user.Id,""));
+
+                System.Web.HttpCookie myCookie = new System.Web.HttpCookie("MyTestCookie");
+                DateTime now = DateTime.Now;
+                myCookie.Name = "RecycleAccessToken";
+                myCookie.Value = result;              
+                myCookie.Expires = now.AddMinutes(14);
+
+                // Add the cookie.
+                Response.Cookies.Add(myCookie);
+
+
+                return RedirectToAction("Login", "Account");
             }
             else
             {
@@ -240,6 +278,31 @@ namespace RecycleMeMVC.Controllers
 
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
             }
+        }
+
+
+        public Task<string> ExternalToken(string userId,string password)
+        {
+            var tcs = new TaskCompletionSource<string>();
+            var client = new RestClient(ConfigurationManager.AppSettings["RecycleMeAzureApi"]);
+
+
+            var request = new RestRequest(String.Format("{0}", "token"), RestSharp.Method.POST);
+            request.AddParameter("grant_type", "password", ParameterType.GetOrPost);
+            request.AddParameter("username", userId, ParameterType.GetOrPost);
+            request.AddParameter("password", password, ParameterType.GetOrPost);
+            client.ExecuteAsync(request, response =>
+            {
+
+                var result = JsonConvert.SerializeObject(response.Content);
+
+                string jsonInput = response.Content;
+                JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
+                RecycleToken token = jsonSerializer.Deserialize<RecycleToken>(jsonInput);
+                tcs.TrySetResult(token.access_token);
+            });
+            return tcs.Task;
+
         }
 
 
@@ -290,7 +353,7 @@ namespace RecycleMeMVC.Controllers
             var fb = new FacebookClient(access_token);
             dynamic myInfo = fb.Get("/me/friends");
 
-            dynamic data = fb.Get("me") as JsonObject;
+            dynamic data = fb.Get("me") as Facebook.JsonObject;
             foreach (dynamic item in data)
             {
 

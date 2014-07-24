@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Owin.Security
 @model RecycleMeMVC.Models.LoginViewModel
+
 @using Microsoft.AspNet.Identity
 
 <link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/bootstrap-editable.css")" />
@@ -15,97 +16,97 @@
         <div class="text-center ">
             <h1 class="text-center login-padding white smaller dark">Login to your account</h1>
         </div>
-        @*@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
-            {*@
-        @*@Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)*@
-        @*<form id="__AjaxAntiForgeryForm" action="#" method="post">
-            @Html.AntiForgeryToken()*@
-       
-        <div class="well well-lg login-shadow">
-            <div class="form-group">
-                <div class="left-inner-addon">
-                    <i class="fa fa-user"></i>
-                    <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
-                </div>
-                @*@Html.ValidationMessageFor(m => m.UserName)*@
-                @*<label class="block clearfix">
-                        <label for="UserName">Email</label>
-                        <span class="block input-icon input-icon-left">
-
-                              <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
-                            <i class="fa fa-user"></i>
-                            <span class="editable-clear-x"></span>
-                            @Html.ValidationMessageFor(m => m.UserName)
-                        </span>
-
-
-                    </label>*@
-                @*<div class="input-group add-on">
-                        <input type="text" class="form-control" placeholder="" name="srch-term" id="srch-term">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" disabled="disabled"><i class="fa fa-user"></i></button>
-                        </div>
-                    </div>*@
-            </div>
-            <div class="form-group">
-                @*<label class="block clearfix">
-                        <label for="Password">Password</label>
-                        <span class="block input-icon input-icon-left">
-                            <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                            <i class="fa fa-lock"></i>
-                            @Html.ValidationMessageFor(m => m.Password)
-                        </span>
-                    </label>*@
-                <div class="left-inner-addon">
-                    <i class="fa fa-lock"></i>
-                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                </div>
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
-            <div class="form-group">
-                <div>
-                    <input name="RememberMe" class="ace" id="RememberMe" type="checkbox" value="true" />
-                    <span class="lbl"> Remember Me</span>
-                </div>
-            </div>
-            <button type="submit" id="signInRecycle" class="btn btn-primary btn-lg btn-block"><i class="fa fa-key">&nbsp;</i>Sign in</button>
-            <h6 class="text-center login-top-padding"><a>Forgot Username or Password</a></h6>
-        </div>
-        @*}*@
-        @*</form>*@
-        @{
-    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-    if (loginProviders.Count() == 0)
-    {
-        <div>
-            <p>
-                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
-                for details on setting up this ASP.NET application to support logging in via external services.
-            </p>
-        </div>
-    }
-    else
-    {
-        string action = "ExternalLogin";
-        string returnUrl = ViewBag.ReturnUrl;
-        using (Html.BeginForm(action, "Account", new { ReturnUrl = returnUrl }))
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
         {
-            @Html.AntiForgeryToken()
-            <div class="login-shadow">
-                <div class="login-twt text-center ">
-                    <span class="white">
-                        <button id="Twitter" name="provider" value="Twitter" type="submit" class="btn login-twt  btn-sm btn-block"><i class="fa fa-twitter-square icon-2xxx">&nbsp;</i>Login with Twitter&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                    </span>
+            @*@Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)*@
+            @*<form id="__AjaxAntiForgeryForm" action="#" method="post">
+                @Html.AntiForgeryToken()*@
+
+            <div class="well well-lg login-shadow">
+                <div class="form-group">
+                    <div class="left-inner-addon">
+                        <i class="fa fa-user"></i>
+                        <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
+                    </div>
+                    @*@Html.ValidationMessageFor(m => m.UserName)*@
+                    @*<label class="block clearfix">
+                            <label for="UserName">Email</label>
+                            <span class="block input-icon input-icon-left">
+
+                                  <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
+                                <i class="fa fa-user"></i>
+                                <span class="editable-clear-x"></span>
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </span>
+
+
+                        </label>*@
+                    @*<div class="input-group add-on">
+                            <input type="text" class="form-control" placeholder="" name="srch-term" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit" disabled="disabled"><i class="fa fa-user"></i></button>
+                            </div>
+                        </div>*@
                 </div>
-                <div class="login-fb text-center">
-                    <span class="white">
-                        <button id="Facebook" name="provider" value="Facebook" type="submit" class="btn login-fb  btn-sm btn-block"><i class="fa fa-facebook-square icon-2xxx">&nbsp;</i>Login with Facebook</button>
-                    </span>
+                <div class="form-group">
+                    @*<label class="block clearfix">
+                            <label for="Password">Password</label>
+                            <span class="block input-icon input-icon-left">
+                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                                <i class="fa fa-lock"></i>
+                                @Html.ValidationMessageFor(m => m.Password)
+                            </span>
+                        </label>*@
+                    <div class="left-inner-addon">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Password)
                 </div>
+                <div class="form-group">
+                    <div>
+                        <input name="RememberMe" class="ace" id="RememberMe" type="checkbox" value="true" />
+                        <span class="lbl"> Remember Me</span>
+                    </div>
+                </div>
+                <button type="submit" id="signInRecycle" class="btn btn-primary btn-lg btn-block"><i class="fa fa-key">&nbsp;</i>Sign in</button>
+                <h6 class="text-center login-top-padding"><a>Forgot Username or Password</a></h6>
             </div>
         }
-    }
+        @*</form>*@
+        @{
+        var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+        if (loginProviders.Count() == 0)
+        {
+            <div>
+                <p>
+                    There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
+                    for details on setting up this ASP.NET application to support logging in via external services.
+                </p>
+            </div>
+        }
+        else
+        {
+            string action = "ExternalLogin";
+            string returnUrl = ViewBag.ReturnUrl;
+            using (Html.BeginForm(action, "Account", new { ReturnUrl = returnUrl }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="login-shadow">
+                    <div class="login-twt text-center ">
+                        <span class="white">
+                            <button id="Twitter" name="provider" value="Twitter" type="submit" class="btn login-twt  btn-sm btn-block"><i class="fa fa-twitter-square icon-2xxx">&nbsp;</i>Login with Twitter&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                        </span>
+                    </div>
+                    <div class="login-fb text-center">
+                        <span class="white">
+                            <button id="Facebook" name="provider" value="Facebook" type="submit" class="btn login-fb  btn-sm btn-block"><i class="fa fa-facebook-square icon-2xxx">&nbsp;</i>Login with Facebook</button>
+                        </span>
+                    </div>
+                </div>
+            }
+        }
         }
 
     </div>
@@ -122,15 +123,24 @@
         };
 
         $("#signInRecycle").click(function () {
-            SignIn($("#UserName").val(), $("#Password").val());
+            //SignIn($("#UserName").val(), $("#Password").val(), "login");
+        });
 
+        $("#Facebook").click(function () {
+            //ExternalLogin("Facebook");
+        });
 
-            // SignIn($("#UserName").val(), $("#Password").val());
-
+        $("#Twitter").click(function () {
+            //ExternalLogin("Twitter");
         });
     </script>
 }
 else
 {
-    <div>You are already loggedin</div>
+
+
+    <script>
+        toastr.info("@User.Identity.GetUserName()", "You are already logged in");
+
+    </script>
 }

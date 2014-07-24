@@ -69,7 +69,11 @@ namespace RecycleMeMVC.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Display(Name = "Bearer")]
+        public string Bearer { get; set; }
     }
+
 
     public class RegisterViewModel
     {

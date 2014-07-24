@@ -1,4 +1,5 @@
-﻿var HubWrapper = function () {
+﻿var recycleUri = window.location.host.indexOf("localhost") !== 0 ? "http://recyclemeapi.azurewebsites.net/" : "http://localhost:53481/"
+var HubWrapper = function () {
     var self = this;
     var theHub = null;
     var isStarted = false;
@@ -20,10 +21,7 @@
         return $.connection.hub.start()
                 .done(function () {
                     isStarted = true;
-
-                    setTimeout(function () {
-                        recycleHub.sendNotification("Notification Activated");
-                    }, 2000)
+                    recycleHub.sendNotification("Notification Activated");
                 });
 
     };
@@ -74,28 +72,40 @@
 
 };
 
+function InvokeHub(access_token) {
+    recycleHub.start(access_token).done(function () {
+    });
+}
 
+function SignIn(userName, password, type, provider) {
 
-function SignIn(userName, password) {
-
-    return $.post("http://recyclemeapi.azurewebsites.net/token", { grant_type: "password", username: userName, password: password })
+    return $.post(recycleUri + "token", { grant_type: "password", username: userName, password: password })
             .done(function (data) {
 
                 if (data && data.access_token) {
 
                     recycleHub.start(data.access_token).done(function () {
 
-
-                        $.ajax({
-                            url: 'Login',
-                            type: 'POST',
-                            //data: { model: { UserName: $("#UserName").val(), Password: $("#Password").val() }, returnUrl: '' },
-                            data: AddAntiForgeryToken({ UserName: userName, Password: password, returnUrl: '' }),
-                            success: function (result) {
-                                window.location.href = window.location.origin + "/";
-                            }
-                        });
-
+                        if (type == "login") {
+                            $.ajax({
+                                url: 'Login',
+                                type: 'POST',
+                                data: AddAntiForgeryToken({ UserName: userName, Password: password, returnUrl: '' }),
+                                success: function (result) {
+                                    window.location.href = window.location.origin + "/";
+                                }
+                            });
+                        }
+                        else {
+                            $.ajax({
+                                url: 'ExternalLogin',
+                                type: 'POST',
+                                data: AddAntiForgeryToken({ provider: provider, returnUrl: '' }),
+                                success: function (result) {
+                                    //window.location.href = window.location.origin + "/";
+                                }
+                            });
+                        }
 
                     });
 
@@ -111,5 +121,15 @@ function SignIn(userName, password) {
 
 }
 
+
+function ExternalLogin(provider, returnUrl) {
+
+
+    AjaxNinja.Invoke('ExternalLogin', "POST", JSON.stringify({ provider: provider, returnUrl: returnUrl }), function (data) {
+        alert(data);
+    });
+
+
+}
 
 var recycleHub = new HubWrapper();

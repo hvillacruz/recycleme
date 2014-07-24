@@ -177,6 +177,7 @@
     @Scripts.Render("~/bundles/header")
     <script>
         //SignIn("signalr", "Password1");
+        //InvokeHub(getCookie("RecycleAccessToken"));
         var global = new GlobalViewModel();
         global.User("@User.Identity.GetUserId()", "@User.Identity.GetUserName()")
         ko.applyBindings(global, document.getElementById("loginPartialDiv"));

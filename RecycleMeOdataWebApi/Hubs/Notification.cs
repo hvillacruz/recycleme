@@ -27,8 +27,8 @@ namespace RecycleMeOdataWebApi.Hubs
         [Authorize]
         public void SendNotification(string message)
         {
-            var excerpt = message.Length <= 10 ? message : message.Substring(0, 10) + "...";
-            Clients.All.RecycleNotification(excerpt);
+            var excerpt = message.Length <= 30 ? message : message.Substring(0, 30) + "...";
+            Clients.Caller.RecycleNotification(excerpt);
         }
 
     }

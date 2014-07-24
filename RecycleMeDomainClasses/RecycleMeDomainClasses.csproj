@@ -76,6 +76,7 @@
     <Compile Include="Message.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecycleToken.cs" />
     <Compile Include="Trade.cs" />
     <Compile Include="TradeBuyerItem.cs" />
     <Compile Include="TradeComment.cs" />
