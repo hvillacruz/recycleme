@@ -105,7 +105,7 @@ var TradeViewModel = function () {
         var data = {
 
             BuyerId: global.User.UserId(),
-            SellerId: self.Selected().OwnerId,
+            SellerId: self.Selected()[0].OwnerId,
             ItemId: $("#currentItem").data("text").toString(),
             ModifiedDate: Helper.time(),
             Status: "OPEN"

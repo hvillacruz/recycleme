@@ -141,6 +141,8 @@ else
 
     <script>
         toastr.info("@User.Identity.GetUserName()", "You are already logged in");
+        //alert(getCookie("RecycleAccessToken"));
         InvokeHub(getCookie("RecycleAccessToken"));
+        
     </script>
 }

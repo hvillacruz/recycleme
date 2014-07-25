@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeBusinessLogicLayer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecycleMeOdataWebApi", "RecycleMeOdataWebApi\RecycleMeOdataWebApi.csproj", "{24881255-EC12-4FFC-956B-B1E43EAE7CED}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RecyleMeDatabase", "RecyleMeDatabase\RecyleMeDatabase.sqlproj", "{2D70E099-6334-4669-B01D-FD92F185E353}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,12 @@ Global
 		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24881255-EC12-4FFC-956B-B1E43EAE7CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D70E099-6334-4669-B01D-FD92F185E353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D70E099-6334-4669-B01D-FD92F185E353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D70E099-6334-4669-B01D-FD92F185E353}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2D70E099-6334-4669-B01D-FD92F185E353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D70E099-6334-4669-B01D-FD92F185E353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D70E099-6334-4669-B01D-FD92F185E353}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
