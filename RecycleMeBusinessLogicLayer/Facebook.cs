@@ -31,21 +31,26 @@ namespace RecycleMeBusinessLogicLayer
             user = new UserViewModel()
               {
                   UserId = UserId,
-                  ExternalId = info.id,
-                  ExternalUserName = info.username,
-                  FirstName = info.first_name,
-                  Email = info.email,
-                  LastName = info.last_name,
+                  ExternalId = GetValidValue(info.id),
+                  ExternalUserName = GetValidValue(info.username),
+                  FirstName = GetValidValue(info.first_name),
+                  Email = GetValidValue(info.email),
+                  LastName = GetValidValue(info.last_name),
                   BirthDate = DateTime.ParseExact(info.birthday, "MM/dd/yyyy", null),
-                  Address = info.location.name,
-                  Avatar = @"https://graph.facebook.com/" + info.id + "/picture?type=large"
+                  Address = info.location == null ? "" : info.location.name,
+                  Avatar = @"https://graph.facebook.com/" + GetValidValue(info.id) + "/picture?type=large"
               };
 
 
             return user;
         }
 
-        
+        private static string GetValidValue(string value)
+        {
+            return value == null ? "" : value;
+        }
+
+
         public static string FbAccess()
         {
 
@@ -62,13 +67,14 @@ namespace RecycleMeBusinessLogicLayer
                     grant_type = "authorization_code"
                 });
                 return result.access_token;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
                 return ex.Message;
             }
-         
-            
+
+
         }
 
 

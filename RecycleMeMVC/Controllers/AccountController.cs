@@ -46,9 +46,7 @@ namespace RecycleMeMVC.Controllers
         public ActionResult Login(string returnUrl, string token)
         {
             ViewBag.ReturnUrl = returnUrl;
-            //ViewBag.Bearer = token;
             LoginViewModel model = new LoginViewModel();
-            model.Bearer = token;
             return View(model);
         }
 
@@ -66,19 +64,8 @@ namespace RecycleMeMVC.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-
                     string result = await Task.Run(() => ExternalToken(model.UserName, model.Password));
-
-                    System.Web.HttpCookie myCookie = new System.Web.HttpCookie("MyTestCookie");
-                    DateTime now = DateTime.Now;
-                    myCookie.Name = "RecycleAccessToken";
-                    myCookie.Value = result;
-                    myCookie.Expires = now.AddMinutes(14);
-
-                    // Add the cookie.
-                    Response.Cookies.Add(myCookie);
-
-
+                    SetCookies(result);
                     return RedirectToAction("Login", "Account");
                 }
                 else
@@ -90,6 +77,16 @@ namespace RecycleMeMVC.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        private void SetCookies(string token)
+        {
+            System.Web.HttpCookie myCookie = new System.Web.HttpCookie("RecycleAccessToken");
+            DateTime now = DateTime.Now;
+            myCookie.Value = token;
+            myCookie.Expires = now.AddMinutes(14);
+            Response.Cookies.Add(myCookie);
+        }
+
 
         //
         // GET: /Account/Register
@@ -123,7 +120,10 @@ namespace RecycleMeMVC.Controllers
                         Avatar = "/Content/Assets/Images/avatar.jpg"
 
                     });
-                    return RedirectToAction("Index", "Home");
+                    string res = await Task.Run(() => ExternalToken(model.UserName, model.Password));
+                    SetCookies(res);
+
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -255,18 +255,8 @@ namespace RecycleMeMVC.Controllers
                 if (loginInfo.Login.LoginProvider.Contains("Facebook"))
                     await StoreFacebookAuthToken(user);
                 await SignInAsync(user, isPersistent: false);
-                //await ExternalToken(user.Id);
-                string result = await Task.Run(() => ExternalToken(user.Id,""));
-
-                System.Web.HttpCookie myCookie = new System.Web.HttpCookie("MyTestCookie");
-                DateTime now = DateTime.Now;
-                myCookie.Name = "RecycleAccessToken";
-                myCookie.Value = result;              
-                myCookie.Expires = now.AddMinutes(14);
-
-                // Add the cookie.
-                Response.Cookies.Add(myCookie);
-
+                string result = await Task.Run(() => ExternalToken(user.Id, ""));
+                SetCookies(result);
 
                 return RedirectToAction("Login", "Account");
             }
@@ -281,7 +271,7 @@ namespace RecycleMeMVC.Controllers
         }
 
 
-        public Task<string> ExternalToken(string userId,string password)
+        public Task<string> ExternalToken(string userId, string password)
         {
             var tcs = new TaskCompletionSource<string>();
             var client = new RestClient(ConfigurationManager.AppSettings["RecycleMeAzureApi"]);
@@ -464,8 +454,10 @@ namespace RecycleMeMVC.Controllers
                             Users.Create(FB.UserInfo(user.Id));
                         }
                         await SignInAsync(user, isPersistent: false);
-
-                        return RedirectToLocal(returnUrl);
+                        string res = await Task.Run(() => ExternalToken(user.Id,""));
+                        SetCookies(res);
+                        return RedirectToAction("Login", "Account");
+                       
                     }
                 }
                 AddErrors(result);
