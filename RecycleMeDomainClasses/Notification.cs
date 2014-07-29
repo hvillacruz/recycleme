@@ -18,6 +18,9 @@ namespace RecycleMeDomainClasses
         [Column(Order = 1)]
         public string OwnerId { get; set; }
 
+        [Column(Order = 2)]
+        public string SenderId { get; set; }
+
         public string Title { get; set; }
 
         public int Type { get; set; }
@@ -31,5 +34,7 @@ namespace RecycleMeDomainClasses
         public DateTime ModifiedDate { get; set; }
 
         public virtual User Owner { get; set; }
+
+        public virtual User Sender { get; set; }
     }
 }

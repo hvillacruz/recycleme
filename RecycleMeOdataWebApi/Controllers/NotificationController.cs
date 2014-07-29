@@ -149,6 +149,13 @@ namespace RecycleMeOdataWebApi.Controllers
             return SingleResult.Create(db.Notification.Where(m => m.Id == key).Select(m => m.Owner));
         }
 
+        // GET odata/Notification(5)/Sender
+        [Queryable]
+        public SingleResult<User> GetSender([FromODataUri] long key)
+        {
+            return SingleResult.Create(db.Notification.Where(m => m.Id == key).Select(m => m.Sender));
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -3,7 +3,9 @@
     var self = this;
     self.Login = ko.observableArray();
     self.Message = ko.observableArray();
+    self.Notification = ko.observableArray();
     self.MessageCount = ko.observable(0);
+    self.NotificationCount = ko.observable(0);
     self.WasNotified = ko.observable(false);
 
     this.User = function (UserId, UserName) {
@@ -21,18 +23,16 @@
         //        self.AttachEvents();
         //    });
         //} else {
-            AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
-                self.Login(data);
-                self.AttachEvents();
-            });
+        AjaxNinja.Invoke(ODataApi.User + "('" + this.User.UserId() + "')", "GET", {}, function (data) {
+            self.Login(data);
+            self.AttachEvents();
+        });
 
-       // }
+        // }
 
     }
 
     this.GetMessage = function () {
-
-
 
         AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
             self.MessageCount(data.value.length);
@@ -47,13 +47,28 @@
 
 
             });
-
             self.Message(result);
-
         });
+    }
 
 
+    this.GetNotifications = function () {
 
+        AjaxNinja.Invoke(ODataApi.Notification + "?$filter=OwnerId eq '" + global.User.UserId() + "'&$orderby=ModifiedDate desc&$expand=Owner", "GET", {}, function (data) {
+            self.NotificationCount(data.value.length);
+            var result = [];
+            $(data.value).each(function (i, value) {
+                var date = new Date(Date.parse(value.ModifiedDate));
+                value.ModifiedDate = date;
+                if (date != null)
+                    var res = $.extend(value, { Time: formatAMPM(date) });
+
+                result.push(res);
+
+
+            });
+            self.Notification(result);
+        });
     }
 
 

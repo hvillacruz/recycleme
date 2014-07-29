@@ -180,6 +180,13 @@ namespace RecycleMeOdataWebApi.Controllers
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.Notifications);
         }
 
+        // GET odata/User(5)/NotificationsSender
+        [Queryable]
+        public IQueryable<Notification> GetNotificationsSender([FromODataUri] string key)
+        {
+            return db.Users.Where(m => m.UserId == key).SelectMany(m => m.NotificationsSender);
+        }
+
         // GET odata/User(5)/UserBuyer
         [Queryable]
         public IQueryable<Trade> GetUserBuyer([FromODataUri] string key)

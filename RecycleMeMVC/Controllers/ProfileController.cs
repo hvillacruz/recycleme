@@ -71,6 +71,14 @@ namespace RecycleMeMVC.Controllers
         }
 
 
+        [Route("Exchange/{id?}")]
+        public ActionResult Exchange(string id)
+        {
+            ViewBag.ItemId = id == null ? String.Empty : id;
+            return View();
+        }
+
+
 
         [Route("Followers/{id?}")]
         public ActionResult Followers(string id)

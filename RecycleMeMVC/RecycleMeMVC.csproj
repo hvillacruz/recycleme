@@ -474,6 +474,7 @@
     <Content Include="Views\Profile\_ItemDragPartial.cshtml" />
     <Content Include="Views\Profile\Trade.cshtml" />
     <Content Include="Views\Profile\_TradeCommentPartial.cshtml" />
+    <Content Include="Views\Profile\Exchange.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

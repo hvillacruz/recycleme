@@ -17,12 +17,14 @@
                         <span class="badge badge-important">8</span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Notification">
+
+                        <!-- ko if: $index() < 1 -->
                         <li class="dropdown-header">
                             <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
+                            <span data-bind="text: $root.NotificationCount"></span>  Notification
                         </li>
-
+                        <!-- /ko -->
                         <li>
                             <a href="#">
                                 <div class="clearfix">

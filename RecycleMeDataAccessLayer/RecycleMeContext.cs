@@ -197,6 +197,11 @@ namespace RecycleMeDataAccessLayer
             .HasForeignKey(k => k.OwnerId)
             .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Notification>()
+            .HasOptional(b => b.Sender)
+            .WithMany(a => a.NotificationsSender)
+            .HasForeignKey(k => k.SenderId)
+            .WillCascadeOnDelete(false);
 
         }
 

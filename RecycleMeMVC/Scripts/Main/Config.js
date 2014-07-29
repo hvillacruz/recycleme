@@ -13,5 +13,6 @@ var ODataApi = {
     Message: uri + "Message",
     Trade: uri + "Trade",
     TadeBuyerItem: uri + "TradeBuyerItem",
-    TradeComment: uri + "TradeComment"
+    TradeComment: uri + "TradeComment",
+    Notification: uri + "Notification"
 }
