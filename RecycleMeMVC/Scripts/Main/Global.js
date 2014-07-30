@@ -3,7 +3,7 @@
     var self = this;
     self.Login = ko.observableArray();
     self.Message = ko.observableArray();
-    self.Notification = ko.observableArray();
+    self.Notifications = ko.observableArray();
     self.MessageCount = ko.observable(0);
     self.NotificationCount = ko.observable(0);
     self.WasNotified = ko.observable(false);
@@ -54,7 +54,7 @@
 
     this.GetNotifications = function () {
 
-        AjaxNinja.Invoke(ODataApi.Notification + "?$filter=OwnerId eq '" + global.User.UserId() + "'&$orderby=ModifiedDate desc&$expand=Owner", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Notification + "?$filter=OwnerId eq '" + global.User.UserId() + "'&$orderby=ModifiedDate desc&$expand=Owner,Sender", "GET", {}, function (data) {
             self.NotificationCount(data.value.length);
             var result = [];
             $(data.value).each(function (i, value) {
@@ -67,7 +67,7 @@
 
 
             });
-            self.Notification(result);
+            self.Notifications(result);
         });
     }
 

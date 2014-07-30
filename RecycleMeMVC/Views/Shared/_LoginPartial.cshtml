@@ -14,10 +14,10 @@
                 <li class="grey">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
+                        <span class="badge badge-important" data-bind="text: $root.NotificationCount"></span>
                     </a>
 
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Notification">
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Notifications">
 
                         <!-- ko if: $index() < 1 -->
                         <li class="dropdown-header">
@@ -25,54 +25,59 @@
                             <span data-bind="text: $root.NotificationCount"></span>  Notification
                         </li>
                         <!-- /ko -->
+                        <!-- ko if: Type == 1 -->
                         <li>
                             <a href="#">
                                 <div class="clearfix">
                                     <span class="pull-left">
                                         <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-                                        New Comments
+                                        <span data-bind="text: Title"></span> 
                                     </span>
-                                    <span class="pull-right badge badge-info">+12</span>
+                                    @*<span class="pull-right badge badge-info">+12</span>*@
                                 </div>
                             </a>
                         </li>
+                        <!-- /ko -->
+                        <!-- ko if: Type == 1 -->
+                            <li>
+                                <a href="#">
+                                    <i class="btn btn-xs btn-primary fa fa-user"></i>
+                                    <span data-bind="text: Sender.FirstName"></span> started following you! 
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="#">
-                                <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                Bob just signed up as an editor ...
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="clearfix">
-                                    <span class="pull-left">
-                                        <i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-                                        New Trades
-                                    </span>
-                                    <span class="pull-right badge badge-success">+8</span>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <div class="clearfix">
-                                    <span class="pull-left">
-                                        <i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-                                        Followers
-                                    </span>
-                                    <span class="pull-right badge badge-info">+11</span>
-                                </div>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="#">
+                                    <div class="clearfix">
+                                        <span class="pull-left">
+                                            <i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
+                                            New Trades
+                                        </span>
+                                        <span class="pull-right badge badge-success">+8</span>
+                                    </div>
+                                </a>
+                            </li>
+                        <!-- /ko -->
+@*
+    <li>
+        <a href="#">
+            <div class="clearfix">
+                <span class="pull-left">
+                    <i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
+                    Followers
+                </span>
+                <span class="pull-right badge badge-info">+11</span>
+            </div>
+        </a>
+    </li>*@
 
                         <li class="dropdown-footer">
+                            <!-- ko if: $index() > 1 -->
                             <a href="#">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
+                            <!-- /ko -->
                         </li>
                     </ul>
                 </li>
@@ -185,6 +190,7 @@
         ko.applyBindings(global, document.getElementById("loginPartialDiv"));
         @*global.Notification("@User.Identity.GetUserName()","Welcome");*@
         global.GetMessage();
+        global.GetNotifications();
         global.Profile();
     </script>
 }
