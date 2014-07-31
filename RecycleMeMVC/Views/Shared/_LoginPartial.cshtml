@@ -25,54 +25,85 @@
                             <span data-bind="text: $root.NotificationCount"></span>  Notification
                         </li>
                         <!-- /ko -->
-                        <!-- ko if: Type == 1 -->
-                        <li>
-                            <a href="#">
-                                <div class="clearfix">
-                                    <span class="pull-left">
-                                        <i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-                                        <span data-bind="text: Title"></span> 
-                                    </span>
-                                    @*<span class="pull-right badge badge-info">+12</span>*@
-                                </div>
-                            </a>
-                        </li>
-                        <!-- /ko -->
-                        <!-- ko if: Type == 1 -->
-                            <li>
-                                <a href="#">
-                                    <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                    <span data-bind="text: Sender.FirstName"></span> started following you! 
-                                </a>
-                            </li>
 
-                            <li>
-                                <a href="#">
-                                    <div class="clearfix">
-                                        <span class="pull-left">
-                                            <i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-                                            New Trades
-                                        </span>
-                                        <span class="pull-right badge badge-success">+8</span>
-                                    </div>
-                                </a>
-                            </li>
-                        <!-- /ko -->
-@*
-    <li>
-        <a href="#">
-            <div class="clearfix">
-                <span class="pull-left">
-                    <i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-                    Followers
-                </span>
-                <span class="pull-right badge badge-info">+11</span>
-            </div>
-        </a>
-    </li>*@
+                        <li>
+                            <!-- ko if: Type == 2 -->
+                            <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + UrlId }">
+                                <span class="avatar-face">
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                                </span>
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue" data-bind="text:Sender.FirstName"></span>
+                                        <span>Started following you</span>
+                                    </span>
+
+                                    <span class="msg-time">
+                                        <i class="ace-icon fa fa-clock-o"></i>
+                                        <span data-bind="text:Time"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- /ko -->
+                            <!-- ko if: Type == 3 -->
+                            <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + UrlId }">
+                                <span class="avatar-face">
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                                </span>
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue" data-bind="text:Sender.FirstName"></span>
+                                        <span>Commented on your post</span>
+                                    </span>
+
+                                    <span class="msg-time">
+                                        <i class="ace-icon fa fa-clock-o"></i>
+                                        <span data-bind="text:Time"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- /ko -->
+                            <!-- ko if: Type == 4 -->
+                            <a data-bind="attr: { 'href': '@Url.Action("Trade", "Profile")/' + UrlId }">
+                                <span class="avatar-face">
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                                </span>
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue" data-bind="text:Sender.FirstName"></span>
+                                        <span>Wants to trade with you</span>
+                                    </span>
+
+                                    <span class="msg-time">
+                                        <i class="ace-icon fa fa-clock-o"></i>
+                                        <span data-bind="text:Time"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- /ko -->
+                            <!-- ko if: Type == 5 -->
+                            <a data-bind="attr: { 'href': '@Url.Action("Trade", "Profile")/' + UrlId }">
+                                <span class="avatar-face">
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                                </span>
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue" data-bind="text:Sender.FirstName"></span>
+                                        <span>Commented on the trade item</span>
+                                    </span>
+
+                                    <span class="msg-time">
+                                        <i class="ace-icon fa fa-clock-o"></i>
+                                        <span data-bind="text:Time"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- /ko -->
+                        </li>
+
 
                         <li class="dropdown-footer">
-                            <!-- ko if: $index() > 1 -->
+                            <!-- ko if: $index()  -->
                             <a href="#">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
@@ -98,7 +129,9 @@
                         <!-- /ko -->
                         <li>
                             <a href="#">
-                                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" alt="Alex's Avatar" />
+                                <span class="avatar-face">
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" alt="Alex's Avatar" />
+                                </span>
                                 <span class="msg-body">
                                     <span class="msg-title">
                                         <span class="blue" data-bind="text:Sender.FirstName"></span>
@@ -114,7 +147,7 @@
                         </li>
 
                         <li class="dropdown-footer">
-                            <!-- ko if: $index() > 1 -->
+                            <!-- ko if: $index()  -->
                             <a href="@Url.Action("Message", "Profile")">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
