@@ -15,8 +15,25 @@ var HubWrapper = function () {
 
         theHub.client.onMessage = onMessageCallback;
 
-        theHub.client.recycleNotification = function (res) {
+        theHub.client.recycleNotification = function (res, type) {
 
+            switch (type) {
+
+                case 2: if (window.location.href.toUpperCase().indexOf("DASHBOARD") > 0) {
+                    profileBar.ProfileBar();
+                    users.UserFollower();
+                }
+                    break;
+                case 3: if (window.location.href.toUpperCase().indexOf("DASHBOARD") > 0)
+                    timeline.ItemTimeline();
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                    break;
+            }
             global.GetNotifications();
             global.Notification(res, "Notification");
             $("#notificationBell").addClass("icon-animated-bell");
@@ -56,19 +73,19 @@ var HubWrapper = function () {
         return $.connection.hub.stop();
     };
 
-    self.sendNotification = function (type, message, user) {
+    self.sendNotification = function (type, message, user, cat) {
         if (isStarted) {
             switch (type) {
                 case "MSG": theHub.server.messageNotification(message, user);
                     break;
-                default: theHub.server.sendNotification(message, user);
+                default: theHub.server.sendNotification(message, user, cat);
 
             }
         }
     };
 
 
-   
+
 
 
     self.onMessage = function (callback) {

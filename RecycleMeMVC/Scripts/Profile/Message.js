@@ -22,7 +22,7 @@
 
         }
 
-        recycleHub.sendNotification("MSG", item.Subject(), this.SelectedChoice()[0]);
+        recycleHub.sendNotification("MSG", item.Subject(), this.SelectedChoice()[0],1);
 
         AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
             self.GetMessage();

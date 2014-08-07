@@ -130,8 +130,19 @@
         }
 
         AjaxNinja.Invoke(ODataApi.ItemComment, "POST", JSON.stringify(data), function (result) {
-            if (type == 1)
+
+         
+
+            if (type == 1) {
+
+                AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
+
+                    recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId,3);
+                });
+
                 timeline.ItemTimeline();
+
+            }
             else {
 
                 //http://localhost:53481/odata/Item(3)?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers
@@ -144,6 +155,8 @@
                     $(current).push(res);
 
                     self.SelectedItem(current);
+
+                    recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId,3);
                 });
             }
         });

@@ -48,7 +48,7 @@ var TradeViewModel = function () {
             result.push(res);
             self.Selected(result);
         });
-      
+
     }
 
 
@@ -59,7 +59,7 @@ var TradeViewModel = function () {
     }
 
 
-    this.TradeCommentPost = function (data,item) {
+    this.TradeCommentPost = function (data, item) {
 
         var data = {
 
@@ -73,6 +73,7 @@ var TradeViewModel = function () {
         AjaxNinja.Invoke(ODataApi.TradeComment, "POST", JSON.stringify(data), function (data) {
             self.SelectedItem();
             self.TradeItem();
+            recycleHub.sendNotification("", global.User.UserName() + " Commented on your trade", self.Selected()[0].OwnerId, 4);
         });
 
     }
@@ -96,7 +97,7 @@ var TradeViewModel = function () {
     }
 
 
- 
+
 
 
     this.TradeItemPost = function (item) {
@@ -125,7 +126,7 @@ var TradeViewModel = function () {
                 }
 
                 AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(items), function (data) {
-
+                    recycleHub.sendNotification("", global.User.UserName() + " Wants to trade", self.Selected()[0].OwnerId, 4);
                 });
             });
         });
