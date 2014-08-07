@@ -273,6 +273,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Styles\Home\TradeItems.css" />
+    <Content Include="Content\Styles\Profile\Exchange.css" />
     <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Content\Styles\Profile\Trade.css" />
     <Content Include="Content\Styles\Profile\TradeComment.css" />
@@ -281,6 +282,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\Main\HubNotification.js" />
     <Content Include="Scripts\Main\Hub.js" />
+    <Content Include="Scripts\Profile\Exchange.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="SignalR.html" />
