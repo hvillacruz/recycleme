@@ -25,8 +25,10 @@ var ProfileBarViewModel = function () {
         //    ModifiedDate: Helper.time()
         //}
 
-        AjaxNinja.Invoke(ODataApi.UserFollow, "POST", JSON.stringify(data), function (data) {
 
+
+        AjaxNinja.Invoke(ODataApi.UserFollow, "POST", JSON.stringify(data), function (data) {
+            recycleHub.sendNotification("",global.User.UserName() + " Starts following you.", profileBar.ViewUser());
         });
 
     }

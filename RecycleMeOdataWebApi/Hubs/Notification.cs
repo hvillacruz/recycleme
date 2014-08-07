@@ -29,14 +29,20 @@ namespace RecycleMeOdataWebApi.Hubs
 
 
         [Authorize]
-        public void SendNotification(string message)
+        public void SendNotification(string message,string id)
         {
-            var excerpt = message.Length <= 30 ? message : message.Substring(0, 30) + "...";
-            Clients.Caller.RecycleNotification(excerpt);
+            using (UserManager<AspNetUsers> userManager = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext())))
+            {
+                var user = userManager.Users.Where(a => a.Id == id).Select(a => a.UserName).FirstOrDefault();
+
+                var excerpt = message.Length <= 30 ? message : message.Substring(0, 30) + "...";
+                Clients.User(user).RecycleNotification(excerpt);
+
+            }
         }
 
         [Authorize]
-        public void SendNotification(string message, string id)
+        public void MessageNotification(string message, string id)
         {
             using (UserManager<AspNetUsers> userManager = new UserManager<AspNetUsers>(new UserStore<AspNetUsers>(new RecycleMeContext())))
             {

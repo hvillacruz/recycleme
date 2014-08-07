@@ -17,25 +17,29 @@ var HubWrapper = function () {
 
         theHub.client.recycleNotification = function (res) {
 
+            global.GetNotifications();
             global.Notification(res, "Notification");
             $("#notificationBell").addClass("icon-animated-bell");
 
             setTimeout(function () {
                 $("#notificationBell").removeClass("icon-animated-bell");
-            }, 4000);
+            }, 10000);
 
         }
 
         theHub.client.messageNotification = function (res) {
-           
-            global.AddMsgCount();
+
+            //global.AddMsgCount();
+            global.GetMessage();
             global.Notification(res, "Message");
 
             $("#msgBell").addClass("icon-animated-vertical");
 
             setTimeout(function () {
                 $("#msgBell").removeClass("icon-animated-vertical");
-            }, 4000);
+            }, 10000);
+
+
 
         }
 
@@ -55,13 +59,17 @@ var HubWrapper = function () {
     self.sendNotification = function (type, message, user) {
         if (isStarted) {
             switch (type) {
-                case "MSG": theHub.server.sendNotification(message, user);
+                case "MSG": theHub.server.messageNotification(message, user);
                     break;
-                default: theHub.server.sendNotification(message);
+                default: theHub.server.sendNotification(message, user);
 
             }
         }
     };
+
+
+   
+
 
     self.onMessage = function (callback) {
         onMessageCallback = callback;
