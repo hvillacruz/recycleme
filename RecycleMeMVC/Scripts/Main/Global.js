@@ -1,11 +1,40 @@
 ﻿var GlobalViewModel = function () {
 
+    ko.extenders.numeric = function (target, precision) {
+        //create a writeable computed observable to intercept writes to our observable
+        var result = ko.computed({
+            read: target,  //always return the original observables value
+            write: function (newValue) {
+                var current = target(),
+                    roundingMultiplier = Math.pow(10, precision),
+                    newValueAsNum = isNaN(newValue) ? 0 : parseFloat(+newValue),
+                    valueToWrite = Math.round(newValueAsNum * roundingMultiplier) / roundingMultiplier;
+
+                //only write if it changed
+                if (valueToWrite !== current) {
+                    target(valueToWrite);
+                } else {
+                    //if the rounded value is the same, but a different value was written, force a notification for the current field
+                    if (newValue !== current) {
+                        target.notifySubscribers(valueToWrite);
+                    }
+                }
+            }
+        }).extend({ notify: 'always' });
+
+        //initialize with current value to make sure it is rounded appropriately
+        result(target());
+
+        //return the new computed observable
+        return result;
+    };
+
     var self = this;
     self.Login = ko.observableArray();
     self.Message = ko.observableArray();
     self.Notifications = ko.observableArray();
     self.MessageCount = ko.observable(0);
-    self.NotificationCount = ko.observable(0);
+    self.NotificationCount = ko.observable(0).extend({ numeric: 0 });
     self.WasNotified = ko.observable(false);
 
     this.User = function (UserId, UserName) {
@@ -115,4 +144,17 @@
 
     }
 
+    this.AddMsgCount = function () {
+
+        var total = self.MessageCount() + 1;
+        self.MessageCount(total);
+    }
+
+    this.AddNotificationCount = function () {
+
+        var total = self.NotificationCount() + 1;
+        self.NotificationCount(total);
+    }
 }
+
+

@@ -13,7 +13,7 @@
 
 
         var data = {
-            
+
             SenderId: global.User.UserId(),
             ReceiverId: this.SelectedChoice()[0],
             Subject: item.Subject(),
@@ -21,6 +21,8 @@
             DateSent: Helper.time()
 
         }
+
+        recycleHub.sendNotification("MSG", item.Subject(), this.SelectedChoice()[0]);
 
         AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
             self.GetMessage();

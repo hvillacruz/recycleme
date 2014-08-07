@@ -13,15 +13,15 @@
 
                 <li class="grey">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                        <i id="notificationBell" class="ace-icon fa fa-bell bell-ring"></i>
                         <span class="badge badge-important" data-bind="text: $root.NotificationCount"></span>
                     </a>
 
                     <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Notifications">
-
+                        <!-- ko if: $index() < 4 -->
                         <!-- ko if: $index() < 1 -->
                         <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
+                            <i id="notificationCount" class="ace-icon fa fa-exclamation-triangle"></i>
                             <span data-bind="text: $root.NotificationCount"></span>  Notification
                         </li>
                         <!-- /ko -->
@@ -102,25 +102,26 @@
                         </li>
 
 
-                        <li class="dropdown-footer">
-                            <!-- ko if: $index()  -->
-                            <a href="#">
+                        <li class="dropdown-footer">     
+                            <!-- ko if: $index() >= 3  -->
+                            <a href="@Url.Action("Notification", "Profile")">
                                 See all notifications
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                             <!-- /ko -->
                         </li>
+                        <!-- /ko -->
                     </ul>
                 </li>
 
                 <li class="green">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+                        <i id="msgBell" class="ace-icon fa fa-envelope envelope-ring"></i>
                         <span class="badge badge-success"><span data-bind="text: $root.MessageCount"></span></span>
                     </a>
 
                     <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Message">
-
+                        <!-- ko if: $index() < 4 -->
                         <!-- ko if: $index() < 1 -->
                         <li class="dropdown-header">
                             <i class="ace-icon fa fa-envelope-o"></i>
@@ -147,14 +148,14 @@
                         </li>
 
                         <li class="dropdown-footer">
-                            <!-- ko if: $index()  -->
+                            <!-- ko if: $index() >= 3  -->
                             <a href="@Url.Action("Message", "Profile")">
                                 See all messages
                                 <i class="ace-icon fa fa-arrow-right"></i>
                             </a>
                             <!-- /ko -->
                         </li>
-
+                        <!-- /ko -->
                     </ul>
                 </li>
 
@@ -215,9 +216,11 @@
 
 
     @Scripts.Render("~/bundles/header")
+    <script src="@Url.Content("~/Scripts/Main/HubNotification.js")" type="text/javascript"></script>
+
     <script>
         //SignIn("signalr", "Password1");
-        //InvokeHub(getCookie("RecycleAccessToken"));
+        InvokeHub(getCookie("RecycleAccessToken"));
         var global = new GlobalViewModel();
         global.User("@User.Identity.GetUserId()", "@User.Identity.GetUserName()")
         ko.applyBindings(global, document.getElementById("loginPartialDiv"));

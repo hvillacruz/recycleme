@@ -9,8 +9,8 @@ var HubWrapper = function () {
 
         theHub = $.connection.notificationHub;
         var connection = $.connection.hub;
-        connection.url = "http://recyclemeapi.azurewebsites.net/signalr";
-        //connection.url = "http://localhost:49892/signalr";
+        connection.url = recycleUri + "signalr";
+        
 
         $.signalR.ajaxDefaults.headers = { Authorization: "Bearer " + token };
 

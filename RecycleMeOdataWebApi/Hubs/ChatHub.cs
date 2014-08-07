@@ -31,6 +31,7 @@ namespace RecycleMeOdataWebApi
                 Context.User.Identity.Name :
                 "anonymous";
 
+            
             Clients.Client(Context.ConnectionId).OnMessage(
                 "[server]", "Welcome to the chat room, " + greetedUserName);
         }

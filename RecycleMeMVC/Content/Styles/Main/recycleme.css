@@ -13363,18 +13363,29 @@ th[aria-selected=true] .ui-jqgrid-sortable {
 }
 /* custom animated icons */
 .icon-animated-bell {
-  display: inline-block;
-  -moz-animation: ringing 2.0s 5 ease 1.0s;
-  -webkit-animation: ringing 2.0s 5 ease 1.0s;
-  -o-animation: ringing 2.0s 5 ease 1.0s;
-  -ms-animation: ringing 2.0s 5 ease 1.0s;
-  animation: ringing 2.0s 5 ease 1.0s;
-  -moz-transform-origin: 50% 0%;
-  -webkit-transform-origin: 50% 0%;
-  -o-transform-origin: 50% 0%;
-  -ms-transform-origin: 50% 0%;
-  transform-origin: 50% 0%;
+  display: inline-block !important;
+  -moz-animation: ringing 2.0s 5 ease 1.0s !important;
+  -webkit-animation: ringing 2.0s 5 ease 1.0s !important;
+  -o-animation: ringing 2.0s 5 ease 1.0s !important;
+  -ms-animation: ringing 2.0s 5 ease 1.0s !important;
+  animation: ringing 2.0s 5 ease 1.0s !important;
+  -moz-transform-origin: 50% 0% !important;
+  -webkit-transform-origin: 50% 0% !important;
+  -o-transform-origin: 50% 0% !important;
+  -ms-transform-origin: 50% 0% !important;
+  transform-origin: 50% 0% !important;
 }
+
+.bell-ring {
+  color:#FFF;
+  font-size:16px;
+}
+
+.envelope-ring {
+  color:#FFF;
+  font-size:16px;
+}
+
 @-moz-keyframes ringing {
   0% {
     -moz-transform: rotate(-15deg);
