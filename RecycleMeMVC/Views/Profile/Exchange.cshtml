@@ -1,19 +1,19 @@
 ﻿<link href="~/Content/Styles/Profile/Exchange.css" rel="stylesheet" />
 <link href="~/Content/Chart.css" rel="stylesheet" />
+<span id="currentItem" data-text="@ViewBag.ItemId"></span>
 <div id="panelContainer" class="container">
     <div class="col-xs-3">
-        <div class="itemSelected">
-            <div class="widget">
-                <!-- ko foreach:ItemImages  -->
-                <!-- ko if: $index() < 1 -->
-                <div class="cover">
-                    <img data-bind="attr:{src: Path}" src="~/Content/Assets/images/userBg.jpg" />
-                </div>
-                <!-- /ko -->
-                <!-- /ko -->
-                <h1><span data-bind="text: Name">Manuel Henry</span></h1>
+        <div class="itemSelected" data-bind="foreach:Trade">
 
-                <img data-bind="attr:{src: Owner.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
+            <div class="widget">
+
+                <div class="cover">
+                    <img src="~/Content/Assets/images/userBg.jpg" />
+                </div>
+
+                <h1><span data-bind="text: Buyer.FirstName">Manuel Henry</span></h1>
+
+                <img data-bind="attr:{src: Buyer.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
 
 
                 <div class="stat-stat">
@@ -23,9 +23,10 @@
                 </div>
 
             </div>
+
         </div>
 
-        <div class="serviceBox">
+        <div class="serviceBox curyBottom">
 
             <div class="main">
                 <div class="info">
@@ -113,42 +114,30 @@
                                     <div class="widget-main">
                                         <div class="section">
 
-                                            <!-- Add Comment -->
-                                            @*<div id="add">
-                                                    <p>
-                                                        2
-                                                        <span>
-                                                            Comments
-                                                        </span>
-                                                    </p>
-
-
-                                                </div>*@
-                                            <!-- Break line -->
-                                            <!-- Comments -->
                                             <div id="comments">
-                                                <div class="section">
-                                                    <!-- 1-->
-                                                    <img src="http://www.codepen.kamilczujowski.de/images/person1.jpg" alt="© Kamil Czujowski" />
-                                                    <article>
-                                                        <h1>
-                                                            Jannik Paare
-                                                        </h1>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                                                        </p>
-                                                    </article>
+                                                <div class="section" data-bind="foreach:Trade">
 
-                                                    <!-- 2-->
-                                                    <img src="http://www.codepen.kamilczujowski.de/images/person2.jpg" alt="© Kamil Czujowski " />
-                                                    <article>
-                                                        <h1>
-                                                            Kamil Czujowski
-                                                        </h1>
-                                                        <p>
-                                                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                                                        </p>
-                                                    </article>
+                                                    <!-- 1-->
+                                                    <div>
+                                                        <!-- ko foreach: TradeItem -->
+                                                        <img data-bind="attr:{src: TradeCommenter.Avatar}" src="http://www.codepen.kamilczujowski.de/images/person1.jpg" alt="© Kamil Czujowski" />
+
+                                                        <article>
+                                                            <h1>
+
+                                                                <span data-bind="text: TradeCommenter.FirstName"></span>
+
+                                                            </h1>
+
+                                                            <p>
+
+                                                                <span data-bind="text: Comment"></span>
+
+                                                            </p>
+                                                        </article>
+                                                        <!-- /ko -->
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

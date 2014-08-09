@@ -1,13 +1,11 @@
 ﻿var ExchangeViewModel = function () {
 
     var self = this;
-    this.Comment = ko.observableArray();
-    this.Comments = function () {
+    this.Trade = ko.observableArray();
+    this.TradeItem = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')" + type, "GET", {}, function (data) {
-
-            self.Comment(data.value);
-
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=Id eq " + $("#currentItem").data("text") + "&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
+            self.Trade(data.value);
         });
 
     }
@@ -19,4 +17,4 @@
 }
 var exchange = new ExchangeViewModel();
 ko.applyBindings(exchange, document.getElementById("panelContainer"));
-exchange.Comments();
+exchange.TradeItem();
