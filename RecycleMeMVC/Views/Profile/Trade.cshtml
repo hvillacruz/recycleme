@@ -1,27 +1,22 @@
-﻿<link href="~/Content/Styles/Home/default.css" rel="stylesheet" />
-<link href="~/Content/Styles/Home/component.css" rel="stylesheet" />
-<link href="~/Content/Styles/Home/TradeItems.css" rel="stylesheet" />
+﻿<link href="~/Content/Styles/Profile/Exchange.css" rel="stylesheet" />
+<link href="~/Content/Chart.css" rel="stylesheet" />
 <link href="~/Content/Styles/Profile/Trade.css" rel="stylesheet" />
 <script src="~/Scripts/modernizr.custom.js"></script>
 <script src="~/Scripts/External/Sortable.min.js"></script>
-
-
 <span id="currentItem" data-text="@ViewBag.ItemId"></span>
-<div id="tradeItemContainer" class="container">
-    <div id="multi" style="margin-left: 30px">
-        @*<div><div data-force="5" class="layer title title_xl">Trade Exchange</div></div>*@
-        <div class="itemSelected" data-bind="foreach: Selected">
-            <div class="widget">
-                <!-- ko foreach:ItemImages  -->
-                <!-- ko if: $index() < 1 -->
-                <div class="cover">
-                    <img data-bind="attr:{src: Path}" src="~/Content/Assets/images/userBg.jpg" />
-                </div>
-                <!-- /ko -->
-                <!-- /ko -->
-                <h1><span data-bind="text: Name">Item</span></h1>
+<div id="panelContainer" class="container">
+    <div class="col-xs-3">
+        <div class="itemSelected" data-bind="foreach:Trade">
 
-                <img data-bind="attr:{src: Owner.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
+            <div class="widget">
+
+                <div class="cover">
+                    <img src="~/Content/Assets/images/userBg.jpg" />
+                </div>
+
+                <h1><span data-bind="text: Buyer.FirstName">Manuel Henry</span></h1>
+
+                <img data-bind="attr:{src: Buyer.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
 
 
                 <div class="stat-stat">
@@ -31,71 +26,202 @@
                 </div>
 
             </div>
-            <hr />
-            @*<section class="sections">
-                    <div class="divs">
-                        <h1>See a sunset this summer</h1>
-                        <span class="icon-pencil"></span>
-                        <span class="icon-calendar"></span>
-                        <span class="icon-trash"></span>
-                        <p>23.06</p>
-                    </div>
-                </section>*@
 
-            <section class="sections orange" >
-                <div class="divs">
-                    <h1>Looking for this items</h1>
-                    <div data-bind="foreach : ExchangeTag.split(' ')">
+        </div>
 
-                        #<span data-bind="text:$data"></span>
+        <div class="serviceBox curyBottom">
+
+            <div class="main">
+                <div class="info">
+                    <div class="view">
+
+                        <i class="prev fa faIcon fa-chevron-left"></i>
+                        <i class="next fa faIcon fa-chevron-right"></i>
+                        <div class="holder">
+                            <div class="slide">
+                                <canvas id='day' width='150'></canvas>
+                                @*<div class="stats">
+                                        <h1 class="good">7.25</h1>
+                                        <h2 class="good">103.0%</h2>
+                                        <p>Today</p>
+                                    </div>*@
+                            </div>
+                            <div class="slide">
+                                <canvas id='week' width='150'></canvas>
+                                @*<div class="stats">
+                                        <h1 class="bad">7.25</h1>
+                                        <h2 class="bad">20.7%</h2>
+                                        <p>This Week</p>
+                                    </div>*@
+                            </div>
+                            <div class="slide">
+                                <canvas id='month' width='150'></canvas>
+                                @*<div class="stats">
+                                        <h1 class="bad">49.71</h1>
+                                        <h2 class="bad">35.5%</h2>
+                                        <p>This Month</p>
+                                    </div>*@
+                            </div>
+                        </div>
                     </div>
-                    <p>23.06</p>
                 </div>
-            </section>
-
-        </div>
-        <div id="destination" class="layer tile destination" data-force="25">
-            <div class="tile__name destination_name">
-                Drag Items Here
+                <canvas height='272' id='weekView'></canvas>
 
             </div>
-            <hr />
-            <div class="tile__list" data-bind="foreach: BuyersItem">
-                <!-- ko foreach:Trades -->
-                <!-- ko foreach:Item.ItemImages  -->
-                <!-- ko if: $index() < 1 -->
-                <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
-                <!-- /ko -->
-                <!-- /ko -->
-                <!-- /ko -->
+        </div>
+    </div>
+    <div class="col-xs-9">
+        <div class="widget-box widget-color-dark">
+            <div class="widget-header">
+                <h5 class="widget-title smaller"></h5>
+
+                <div class="widget-toolbar">
+                    <span class="badge badge-danger">Pending</span>
+                </div>
             </div>
 
-            <hr />
-            <button class="btn btn-md btn-warning" data-bind="click: $root.TradeItemPost">
-                <i class="fa fa-archive  bigger-110 icon-only icon-text">&nbsp;Trade</i>
-            </button>
+            <div class="widget-body">
+                <div class="widget-main padding-6">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="widget-box">
+                                <div class="widget-header widget-header-small">
+                                    <h5 class="widget-title lighter">Comment</h5>
+                                </div>
 
-            <hr />
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <form class="form-search">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control search-query" placeholder="Write your comment" />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-purple btn-sm">
+                                                                <i class="ace-icon fa fa-comments icon-on-right bigger-110"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="widget-box">
+                                <div class="widget-header widget-header-small">
+                                    <h5 class="widget-title lighter"></h5>
+                                </div>
 
-            @Html.Partial("_TradeCommentPartial")
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <div class="section">
+
+                                            <div id="comments">
+                                                <div class="section" data-bind="foreach:Trade">
+
+
+
+                                                    <!-- ko foreach: TradeItem -->
+                                                    <div class="pClass">
+                                                        <img data-bind="attr:{src: TradeCommenter.Avatar}" src="http://www.codepen.kamilczujowski.de/images/person1.jpg" alt="© Kamil Czujowski" />
+
+                                                        <article>
+                                                            <h1>
+
+                                                                <span data-bind="text: TradeCommenter.FirstName"></span>
+
+                                                            </h1>
+
+                                                            <p class="pClass">
+
+                                                                <span data-bind="text: Comment"></span>
+
+                                                            </p>
+
+                                                        </article>
+                                                      
+                                                    </div>
+                                                    <!-- /ko -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6" id="tradeItemContainer">
+
+                            <div id="destination" class="layer tile destination" data-force="25">
+                                <div class="tile__name destination_name">
+                                    Drag Items Here
+
+                                </div>
+                                <hr />
+                                <div class="tile__list" data-bind="foreach: BuyersItem">
+                                    <!-- ko foreach:Trades -->
+                                    <!-- ko foreach:Item.ItemImages  -->
+                                    <!-- ko if: $index() < 1 -->
+                                    <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                </div>
+
+                               
+
+
+                            </div>
+
+                            <div id="source" class="layer tile source" data-force="20">
+                                <div class="tile__name source_name">Your Current Items</div>
+                                <hr />
+                                <div class="tile__list" data-bind="foreach: Items">
+                                    @*<span data-bind="text:Id">Test</span>*@
+                                    <!-- ko foreach:ItemImages  -->
+                                    <!-- ko if: $index() < 1 -->
+                                    <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,id:$parent.Id}" />
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
         </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="align-right">
+                    <div class="btn-group align-left">
+                        <button class="btn btn-info btn-white">Status</button>
 
-        <div id="source" class="layer tile source" data-force="20">
-            <div class="tile__name source_name">Your Current Items</div>
-            <hr />
-            <div class="tile__list" data-bind="foreach: Items">
-                @*<span data-bind="text:Id">Test</span>*@
-                <!-- ko foreach:ItemImages  -->
-                <!-- ko if: $index() < 1 -->
-                <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,id:$parent.Id}" />
-                <!-- /ko -->
-                <!-- /ko -->
+                        <button data-toggle="dropdown" class="btn btn-info btn-white dropdown-toggle">
+                            <span class="ace-icon fa fa-caret-down icon-only"></span>
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-info dropdown-menu-right">
+                            <li>
+                                <a href="#">Approve</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Reject</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.btn-group -->
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Profile/Chart.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Scripts/Profile/Exchange.js")" type="text/javascript"></script>*@
 <script src="~/Scripts/Profile/Trade.js"></script>
 

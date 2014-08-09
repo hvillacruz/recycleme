@@ -482,6 +482,7 @@
     <Content Include="Views\Profile\Trade.cshtml" />
     <Content Include="Views\Profile\_TradeCommentPartial.cshtml" />
     <Content Include="Views\Profile\Exchange.cshtml" />
+    <Content Include="Views\Profile\TradeOld.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

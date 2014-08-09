@@ -89,14 +89,25 @@ var TradeViewModel = function () {
     }
 
 
-    this.TradeItem = function () {
+    this.TradeItemBuyer = function () {
 
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
             self.BuyersItem(data.value);
         });
     }
 
+    this.Trade = ko.observableArray();
+    this.TradeItem = function () {
 
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=Id eq " + $("#currentItem").data("text") + "&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
+            self.Trade(data.value);
+        });
+
+    }
+
+    this.Buyer = function () {
+
+    }
 
 
 
@@ -134,7 +145,7 @@ var TradeViewModel = function () {
 }
 
 var items = new TradeViewModel();
-ko.applyBindings(items, document.getElementById("tradeItemContainer"));
+ko.applyBindings(items, document.getElementById("panelContainer"));
 items.CurrentItems();
 items.SelectedItem();
 items.TradeItem();

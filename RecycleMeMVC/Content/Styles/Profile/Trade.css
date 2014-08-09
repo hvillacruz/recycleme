@@ -5,7 +5,7 @@
 #tradeItemContainer {
     margin: auto;
     position: relative;
-    padding-top: 50px;
+    
 }
 
 .containers {
@@ -59,7 +59,7 @@ img {
     font-size: 40px;
 }
 
-.itemSelected {
+/*.itemSelected {
     width: 30%;
     min-width: 240px;
     color: #3c3c3c;
@@ -67,11 +67,11 @@ img {
     display: inline-block;
     vertical-align: top;
     padding: 10px 30px;
-}
+}*/
 
 .tile {
-    width: 30%;
-    min-width: 240px;
+    width: 100%;
+    /*min-width: 240px;
     color: #3c3c3c;
     padding: 10px 30px;
     text-align: center;
@@ -81,7 +81,7 @@ img {
     background-color: #fff;
     display: inline-block;
     vertical-align: top;
-    border-radius: 3px;
+    border-radius: 3px;*/
 }
 
 .tile__name {
@@ -187,12 +187,12 @@ img {
     border-top-right-radius:3px;
 }
 
-h1 {
+/*h1 {
     font-size: 1.5em;
     color: #eee;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
-}
+}*/
 
 
 
@@ -205,7 +205,7 @@ h1 {
 [class="fontawesome-trash"]:before {
 }*/
 
-p {
+/*p {
     background: rgba(255, 255, 255, .2);
     margin: 35px 0 0 80px;
     width: 90px;
@@ -215,7 +215,7 @@ p {
     font-size: .7em;
     padding: 8px 0px 8px 14px;
     border-radius: 50px 0 0 50px;
-}
+}*/
 
 .orange {
     background: url(http://digital-photography-school.com/wp-content/uploads/2007/08/movement-blur-1.jpg) -90px 0;

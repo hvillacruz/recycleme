@@ -345,3 +345,6 @@
                 }
 
 /* @end */
+.pClass{
+    min-height:100px;
+}

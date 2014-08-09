@@ -1,0 +1,101 @@
+﻿<link href="~/Content/Styles/Home/default.css" rel="stylesheet" />
+<link href="~/Content/Styles/Home/component.css" rel="stylesheet" />
+<link href="~/Content/Styles/Home/TradeItems.css" rel="stylesheet" />
+<link href="~/Content/Styles/Profile/Trade.css" rel="stylesheet" />
+<script src="~/Scripts/modernizr.custom.js"></script>
+<script src="~/Scripts/External/Sortable.min.js"></script>
+
+
+<span id="currentItem" data-text="@ViewBag.ItemId"></span>
+<div id="tradeItemContainer" class="container">
+    <div id="multi" style="margin-left: 30px">
+        @*<div><div data-force="5" class="layer title title_xl">Trade Exchange</div></div>*@
+        <div class="itemSelected" data-bind="foreach: Selected">
+            <div class="widget">
+                <!-- ko foreach:ItemImages  -->
+                <!-- ko if: $index() < 1 -->
+                <div class="cover">
+                    <img data-bind="attr:{src: Path}" src="~/Content/Assets/images/userBg.jpg" />
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <h1><span data-bind="text: Name">Item</span></h1>
+
+                <img data-bind="attr:{src: Owner.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
+
+
+                <div class="stat-stat">
+                    <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="fa icon-2xx fa-bullseye"><span class="box-stat-icon-text">0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-comments"><span class="box-stat-icon-text" @*data-bind="text:UserCommenter.length"*@>0</span></i></div>
+                    <div class="col-xs-4 box-stat center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="fa icon-2xx fa-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
+                </div>
+
+            </div>
+            <hr />
+            @*<section class="sections">
+                    <div class="divs">
+                        <h1>See a sunset this summer</h1>
+                        <span class="icon-pencil"></span>
+                        <span class="icon-calendar"></span>
+                        <span class="icon-trash"></span>
+                        <p>23.06</p>
+                    </div>
+                </section>*@
+
+            <section class="sections orange">
+                <div class="divs">
+                    <h1>Looking for this items</h1>
+                    <div data-bind="foreach : ExchangeTag.split(' ')">
+
+                        #<span data-bind="text:$data"></span>
+                    </div>
+                    <p>23.06</p>
+                </div>
+            </section>
+
+        </div>
+        <div id="destination" class="layer tile destination" data-force="25">
+            <div class="tile__name destination_name">
+                Drag Items Here
+
+            </div>
+            <hr />
+            <div class="tile__list" data-bind="foreach: BuyersItem">
+                <!-- ko foreach:Trades -->
+                <!-- ko foreach:Item.ItemImages  -->
+                <!-- ko if: $index() < 1 -->
+                <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+
+            <hr />
+            <button class="btn btn-md btn-warning" data-bind="click: $root.TradeItemPost">
+                <i class="fa fa-archive  bigger-110 icon-only icon-text">&nbsp;Trade</i>
+            </button>
+
+            <hr />
+
+            @Html.Partial("_TradeCommentPartial")
+
+
+        </div>
+
+        <div id="source" class="layer tile source" data-force="20">
+            <div class="tile__name source_name">Your Current Items</div>
+            <hr />
+            <div class="tile__list" data-bind="foreach: Items">
+                @*<span data-bind="text:Id">Test</span>*@
+                <!-- ko foreach:ItemImages  -->
+                <!-- ko if: $index() < 1 -->
+                <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,id:$parent.Id}" />
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Profile/Trade.js"></script>
+
