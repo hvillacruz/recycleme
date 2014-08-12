@@ -348,3 +348,14 @@
 .pClass{
     min-height:100px;
 }
+
+.itemimg{
+    border-radius:100%;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+    height: 50px;
+    width: 50px;
+}

@@ -483,6 +483,7 @@
     <Content Include="Views\Profile\_TradeCommentPartial.cshtml" />
     <Content Include="Views\Profile\Exchange.cshtml" />
     <Content Include="Views\Profile\TradeOld.cshtml" />
+    <Content Include="Views\Profile\_BarterCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

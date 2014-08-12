@@ -1,0 +1,26 @@
+﻿<div class="section" data-bind="foreach:Trade">
+
+
+
+    <!-- ko foreach: TradeItem -->
+    <div class="pClass">
+        <img data-bind="attr:{src: TradeCommenter.Avatar}" src="http://www.codepen.kamilczujowski.de/images/person1.jpg" alt="© Kamil Czujowski" />
+
+        <article>
+            <h1>
+
+                <span data-bind="text: TradeCommenter.FirstName"></span>
+
+            </h1>
+
+            <p class="pClass">
+
+                <span data-bind="text: Comment"></span>
+
+            </p>
+
+        </article>
+
+    </div>
+    <!-- /ko -->
+</div>
