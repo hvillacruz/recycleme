@@ -29,7 +29,12 @@ var HubWrapper = function () {
                     break;
                 case 4:
                     break;
-                case 5:
+                case 5: if (window.location.href.toUpperCase().indexOf("EXCHANGE") > 0 || (window.location.href.toUpperCase().indexOf("TRADE") > 0)) {
+                    if (window.location.href.toUpperCase().indexOf("TRADE") > 0)
+                        items.TradeItem();
+                    if (window.location.href.toUpperCase().indexOf("EXCHANGE") > 0)
+                        exchange.TradeItem();
+                }
                     break;
                 default:
                     break;

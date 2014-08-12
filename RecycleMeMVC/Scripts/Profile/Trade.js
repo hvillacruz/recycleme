@@ -3,6 +3,7 @@ var TradeViewModel = function () {
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
+    this.SortedTrade = ko.observableArray();
     this.currentItems = [];
     this.CurrentItems = function () {
 
@@ -73,7 +74,7 @@ var TradeViewModel = function () {
         AjaxNinja.Invoke(ODataApi.TradeComment, "POST", JSON.stringify(data), function (data) {
             self.SelectedItem();
             self.TradeItem();
-            recycleHub.sendNotification("", global.User.UserName() + " Commented on your trade", self.Selected()[0].OwnerId, 4);
+            recycleHub.sendNotification("", global.User.UserName() + " Commented on your trade", self.Selected()[0].OwnerId, 5);
         });
 
     }
@@ -101,6 +102,13 @@ var TradeViewModel = function () {
 
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text")  + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
             self.Trade(data.value);
+
+            var item = items.Trade()[0].TradeItem.sort(function (left, right) {
+                return left.Id == right.Id ? 0 : (left.Id > right.Id ? -1 : 1);
+            });
+
+            items.SortedTrade(item);
+
         });
 
     }

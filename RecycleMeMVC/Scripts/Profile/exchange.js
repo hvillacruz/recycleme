@@ -46,7 +46,7 @@
         AjaxNinja.Invoke(ODataApi.TradeComment, "POST", JSON.stringify(data), function (data) {
 
             self.TradeItem();
-            recycleHub.sendNotification("", global.User.UserName() + " Commented on your trade", self.Trade()[0].BuyerId, 4);
+            recycleHub.sendNotification("", global.User.UserName() + " Commented on your trade", self.Trade()[0].BuyerId, 5);
         });
 
     }
