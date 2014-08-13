@@ -24,10 +24,9 @@
     }
 }
 
-.curyBottom{
-
-    border-bottom-left-radius:4px;
-    border-bottom-right-radius:4px;
+.curyBottom {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .box-stat {
@@ -306,7 +305,7 @@
 
     .section #comments {
         height: 100%;
-        max-height: 300px;
+        max-height: 202px;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
     }
@@ -345,12 +344,12 @@
                 }
 
 /* @end */
-.pClass{
-    min-height:100px;
+.pClass {
+    min-height: 100px;
 }
 
-.itemimg{
-    border-radius:100%;
+.itemimg {
+    border-radius: 100%;
 }
 
 img {
@@ -358,4 +357,12 @@ img {
     vertical-align: middle;
     height: 50px;
     width: 50px;
+}
+
+.buyerImg {
+    margin-top:5px;
+    margin-left:-10px;
+    max-height:490px;
+    width: 100% !important;
+    height: 100% !important;
 }

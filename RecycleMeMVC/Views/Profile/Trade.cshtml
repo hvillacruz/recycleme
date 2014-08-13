@@ -6,7 +6,7 @@
 <span id="currentItem" data-text="@ViewBag.ItemId"></span>
 <div id="panelContainer" class="container">
     <div class="col-xs-3">
-        <div class="itemSelected" data-bind="foreach:Trade">
+        <div class="itemSelected" data-bind="foreach:Selected">
 
             <div class="widget">
 
@@ -14,9 +14,9 @@
                     <img src="~/Content/Assets/images/userBg.jpg" />
                 </div>
 
-                <h1><span data-bind="text: Seller.FirstName">Manuel Henry</span></h1>
+                <h1><span data-bind="text: Owner.FirstName">Manuel Henry</span></h1>
 
-                <img data-bind="attr:{src: Seller.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
+                <img data-bind="attr:{src: Owner.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
 
 
                 <div class="stat-stat">

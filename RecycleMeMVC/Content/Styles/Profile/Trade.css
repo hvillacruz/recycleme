@@ -91,7 +91,7 @@ img {
 }
 
 .tile__list {
-    height:212px;
+    height:200px;
     overflow:auto;
 }
 
@@ -228,7 +228,7 @@ img {
     }
 
 .commentBox{
-    height:320px;
+    height:300px;
 }
 
 .itemimg{

@@ -2,6 +2,7 @@
 
     var self = this;
     this.Trade = ko.observableArray();
+    this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
     this.SortedTrade = ko.observableArray();
     this.TradeItem = function () {
@@ -29,7 +30,17 @@
             self.Selected(result);
         });
 
+        self.TradeItemBuyer(id, self.Trade()[0].BuyerId);
+
     }
+
+    this.TradeItemBuyer = function (id,buyer) {
+
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + id + " and BuyerId eq '" + buyer + "' and Status eq 'OPEN'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
+            self.BuyersItem(data.value);
+        });
+    }
+
 
 
     this.TradeCommentPost = function (data, item) {

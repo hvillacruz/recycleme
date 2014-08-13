@@ -169,7 +169,15 @@
 
                         </div>
                         <div class="col-xs-6">
-
+                            <div data-bind="foreach: BuyersItem">
+                                <!-- ko foreach:Trades -->
+                                <!-- ko foreach:Item.ItemImages  -->
+                                <!-- ko if: $index() < 1 -->
+                                <img class="buyerImg" data-bind="attr:{src: Path}" />
+                                <!-- /ko -->
+                                <!-- /ko -->
+                                <!-- /ko -->
+                            </div>
                         </div>
                     </div>
 

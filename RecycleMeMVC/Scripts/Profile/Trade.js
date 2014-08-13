@@ -100,15 +100,15 @@ var TradeViewModel = function () {
     this.Trade = ko.observableArray();
     this.TradeItem = function () {
 
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text")  + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status eq 'OPEN'&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
             self.Trade(data.value);
+            if (items.Trade().length > 0) {
+                var item = items.Trade()[0].TradeItem.sort(function (left, right) {
+                    return left.Id == right.Id ? 0 : (left.Id > right.Id ? -1 : 1);
+                });
 
-            var item = items.Trade()[0].TradeItem.sort(function (left, right) {
-                return left.Id == right.Id ? 0 : (left.Id > right.Id ? -1 : 1);
-            });
-
-            items.SortedTrade(item);
-
+                items.SortedTrade(item);
+            }
         });
 
     }
