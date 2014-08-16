@@ -1,5 +1,7 @@
 var TradeViewModel = function () {
     var self = this;
+    this.Status = ko.observable("Pending");
+    this.HasNotTraded = ko.observable(false);
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
@@ -101,14 +103,20 @@ var TradeViewModel = function () {
     this.TradeItem = function () {
 
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'OPEN'&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
-            self.Trade(data.value);
-            if (items.Trade().length > 0) {
-                var item = items.Trade()[0].TradeItem.sort(function (left, right) {
-                    return left.Id == right.Id ? 0 : (left.Id > right.Id ? -1 : 1);
-                });
+            if (data.value.length > 0) {
+                self.HasNotTraded(false);
+                self.Trade(data.value);
+                self.Status(data.value[0].Status);
+                if (items.Trade().length > 0) {
+                    var item = items.Trade()[0].TradeItem.sort(function (left, right) {
+                        return left.Id == right.Id ? 0 : (left.Id > right.Id ? -1 : 1);
+                    });
 
-                items.SortedTrade(item);
+                    items.SortedTrade(item);
+                }
             }
+            else
+                self.HasNotTraded(true);
         });
 
     }
