@@ -73,7 +73,7 @@
                 <h5 class="widget-title smaller"></h5>
 
                 <div class="widget-toolbar">
-                    <span class="badge badge-danger">Pending</span>
+                    <span class="badge badge-danger" data-bind="text: $root.Status">Pending</span>
                 </div>
             </div>
 
@@ -140,7 +140,7 @@
 
 
 
-                                                  
+
                                                     <div class="pClass">
                                                         <img data-bind="attr:{src: TradeCommenter.Avatar}" src="http://www.codepen.kamilczujowski.de/images/person1.jpg" alt="© Kamil Czujowski" />
 
@@ -159,7 +159,7 @@
                                                         </article>
 
                                                     </div>
-                                                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -170,10 +170,11 @@
                         </div>
                         <div class="col-xs-6">
                             <div data-bind="foreach: BuyersItem">
+
                                 <!-- ko foreach:Trades -->
                                 <!-- ko foreach:Item.ItemImages  -->
                                 <!-- ko if: $index() < 1 -->
-                                <img class="buyerImg" data-bind="attr:{src: Path}" />
+                                <img class="buyerImg imgborder" data-bind="attr:{src: Path}" />
                                 <!-- /ko -->
                                 <!-- /ko -->
                                 <!-- /ko -->
@@ -190,13 +191,13 @@
             <div class="panel-body">
                 <div class="align-right">
                     <div class="btn-group align-left">
-                        <button class="btn btn-info btn-white">Status</button>
+                        <button class="status btn btn-info btn-white" data-bind="click: $root.ChangeStatus"><span data-bind="text: $root.Status"></span></button>
 
                         <button data-toggle="dropdown" class="btn btn-info btn-white dropdown-toggle">
                             <span class="ace-icon fa fa-caret-down icon-only"></span>
                         </button>
 
-                        <ul class="dropdown-menu dropdown-info dropdown-menu-right">
+                        <ul id="status" class="dropdown-menu dropdown-info dropdown-menu-right">
                             <li>
                                 <a href="#">Approve</a>
                             </li>

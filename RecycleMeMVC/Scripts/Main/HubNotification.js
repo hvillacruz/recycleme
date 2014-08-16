@@ -36,6 +36,8 @@ var HubWrapper = function () {
                         exchange.TradeItem();
                 }
                     break;
+                case 6:
+                    break;
                 default:
                     break;
             }
