@@ -256,7 +256,17 @@ function formatAMPM(date) {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
     var strTime = hours + ':' + minutes + ' ' + ampm;
+
     return strTime;
+}
+
+
+function formatMoment(date) {
+
+    var cd = moment(date);
+    var strTime = cd.fromNow();
+    return strTime;
+
 }
 
 BrowserDetect.init();

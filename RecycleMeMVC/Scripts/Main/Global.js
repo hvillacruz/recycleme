@@ -33,7 +33,7 @@
     self.Login = ko.observableArray();
     self.Message = ko.observableArray();
     self.Notifications = ko.observableArray();
-    self.MessageCount = ko.observable(0);
+    self.MessageCount = ko.observable(0).extend({ numeric: 0 });
     self.NotificationCount = ko.observable(0).extend({ numeric: 0 });
     self.WasNotified = ko.observable(false);
 
@@ -63,14 +63,14 @@
 
     this.GetMessage = function () {
 
-        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateSent desc&$expand=Sender", "GET", {}, function (data) {
             self.MessageCount(data.value.length);
             var result = [];
             $(data.value).each(function (i, value) {
-                var date = new Date(Date.parse(value.DateSent));
+                var date = new Date(Date.parse(value.DateSent.replace("T"," ")));
                 value.DateSent = date;
                 if (date != null)
-                    var res = $.extend(value, { Time: formatAMPM(date) });
+                    var res = $.extend(value, { Time: formatMoment(date) });
 
                 result.push(res);
 
@@ -87,10 +87,10 @@
             self.NotificationCount(data.value.length);
             var result = [];
             $(data.value).each(function (i, value) {
-                var date = new Date(Date.parse(value.ModifiedDate));
+                var date = new Date(Date.parse(value.ModifiedDate.replace("T", " ")));
                 value.ModifiedDate = date;
                 if (date != null)
-                    var res = $.extend(value, { Time: formatAMPM(date) });
+                    var res = $.extend(value, { Time: formatMoment(date)  });
 
                 result.push(res);
 

@@ -285,6 +285,10 @@
     <Content Include="Scripts\Main\Hub.js" />
     <Content Include="Content\chart.css" />
     <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\Profile\Chart.js" />
     <Content Include="Scripts\Profile\Exchange.js" />
     <Content Include="Scripts\toastr.js" />

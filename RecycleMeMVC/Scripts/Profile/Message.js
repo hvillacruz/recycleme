@@ -36,14 +36,14 @@
 
 
 
-        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateReceived desc&$expand=Sender", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Message + "?$filter=ReceiverId eq '" + global.User.UserId() + "'&$orderby=DateSent desc&$expand=Sender", "GET", {}, function (data) {
             self.MessageCount("(" + data.value.length + ")");
             var result = [];
             $(data.value).each(function (i, value) {
-                var date = new Date(Date.parse(value.DateSent));
+                var date = new Date(Date.parse(value.DateSent.replace("T"," ")));
                 value.DateSent = date;
                 if (date != null)
-                    var res = $.extend(value, { Time: formatAMPM(date) });
+                    var res = $.extend(value, { Time: formatMoment(date) });
                 // $.extend(res.ItemImages, { Class: "metro" - value.ItemImages.length });
 
                 result.push(res);
@@ -86,16 +86,16 @@ $('#myMessageModal').on('show.bs.modal', function (e) {
 //$('#myMessageModal').modal()
 
 
-function formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return strTime;
-}
+//function formatAMPM(date) {
+//    var hours = date.getHours();
+//    var minutes = date.getMinutes();
+//    var ampm = hours >= 12 ? 'pm' : 'am';
+//    hours = hours % 12;
+//    hours = hours ? hours : 12; // the hour '0' should be '12'
+//    minutes = minutes < 10 ? '0' + minutes : minutes;
+//    var strTime = hours + ':' + minutes + ' ' + ampm;
+//    return strTime;
+//}
 
 
 

@@ -94,7 +94,7 @@ var TradeViewModel = function () {
 
     this.TradeItemBuyer = function () {
 
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'OPEN'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'Deleted'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
             self.BuyersItem(data.value);
         });
     }
@@ -102,7 +102,7 @@ var TradeViewModel = function () {
     this.Trade = ko.observableArray();
     this.TradeItem = function () {
 
-        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'OPEN'&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'Deleted'&$expand=Seller,Buyer,TradeItem/TradeCommenter", "GET", {}, function (data) {
             if (data.value.length > 0) {
                 self.HasNotTraded(false);
                 self.Trade(data.value);

@@ -16,7 +16,7 @@
                         <i id="notificationBell" class="ace-icon fa fa-bell bell-ring"></i>
                         <span class="badge badge-important" data-bind="text: $root.NotificationCount"></span>
                     </a>
-
+                    <!--ko if: $root.NotificationCount == 0-->
                     <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Notifications">
                         <!-- ko if: $index() < 4 -->
                         <!-- ko if: $index() < 1 -->
@@ -102,7 +102,7 @@
                         </li>
 
 
-                        <li class="dropdown-footer">     
+                        <li class="dropdown-footer">
                             <!-- ko if: $index() >= 3  -->
                             <a href="@Url.Action("Notification", "Profile")">
                                 See all notifications
@@ -112,6 +112,7 @@
                         </li>
                         <!-- /ko -->
                     </ul>
+                    <!--/ko-->
                 </li>
 
                 <li class="green">
@@ -119,7 +120,7 @@
                         <i id="msgBell" class="ace-icon fa fa-envelope envelope-ring"></i>
                         <span class="badge badge-success"><span data-bind="text: $root.MessageCount"></span></span>
                     </a>
-
+                    <!--ko if: $root.MessageCount != 0-->
                     <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Message">
                         <!-- ko if: $index() < 4 -->
                         <!-- ko if: $index() < 1 -->
@@ -157,6 +158,7 @@
                         </li>
                         <!-- /ko -->
                     </ul>
+                    <!--/ko-->
                 </li>
 
                 <li class="light-yellow">
