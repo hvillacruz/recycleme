@@ -16,7 +16,7 @@
                         <i id="notificationBell" class="ace-icon fa fa-bell bell-ring"></i>
                         <span class="badge badge-important" data-bind="text: $root.NotificationCount"></span>
                     </a>
-                    <!--ko if: $root.NotificationCount == 0-->
+                    <!--ko if: $root.NotificationCount > 0-->
                     <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close" data-bind="foreach: $root.Notifications">
                         <!-- ko if: $index() < 4 -->
                         <!-- ko if: $index() < 1 -->

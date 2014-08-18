@@ -280,6 +280,7 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\Main\HubNotification.js" />
     <Content Include="Scripts\Main\Hub.js" />

@@ -21,6 +21,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using RecycleMeBusinessLogicLayer;
 using System.Web.Http.Filters;
+using System.Configuration;
 
 namespace ExtensionMethods
 {
@@ -81,7 +82,7 @@ namespace RecycleMeOdataWebApi.Controllers
         //"ModifiedDate":"2014-04-20T18:10:33.96",
         //"ItemCategoryId":1
         //}
-     
+
         private const string CONTAINER = "images";
 
         [HttpPost]
@@ -132,8 +133,13 @@ namespace RecycleMeOdataWebApi.Controllers
 
                             //var newResizeStream = ImageResize(stream, System.Drawing.Imaging.ImageFormat.Jpeg, 1400);
                             //var newResizeStream = ImageResize(stream);
-                            var newResizeStream = ImageResize(stream, 550, 500, false);
-                            blob.UploadFromStream(newResizeStream);
+                            if (bool.Parse(ConfigurationManager.AppSettings["ResizeImage"]))
+                            {
+                                var newResizeStream = ImageResize(stream, int.Parse(ConfigurationManager.AppSettings["ImageHeight"]), int.Parse(ConfigurationManager.AppSettings["ImageWidth"]), false);
+                                blob.UploadFromStream(newResizeStream);
+                            }
+                            else
+                                blob.UploadFromStream(stream);
 
                             ItemImage image = new ItemImage
                             {
