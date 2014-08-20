@@ -294,7 +294,7 @@
                     resizedWidth: 400,
                     resizedHeight: 300,
                     method: "post",
-                    urlUploader: "http://recyclemeapi.azurewebsites.net/odata/" + "UploadFile",
+                    urlUploader: ODataApi.Item + "UploadFile",
                     withCredentials: false,
                     parallelUploads: 2,
                     uploadMultiple: false,
@@ -1568,7 +1568,7 @@
                                             response = JSON.parse(response);
                                         }
 
-                                        return _this.finished(file, response, e);
+                                        return _this._finished(file, response, e);
                                     }
                                 };
 
@@ -1585,7 +1585,7 @@
                                 xhr.setRequestHeader("Accept", "application/json");
                                 xhr.setRequestHeader("Cache-Control", "no-cache");
                                 xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-                                xhr.setRequestHeader("X-File-Name", file.name);
+                                //xhr.setRequestHeader("X-File-Name", file.name);
 
                                 formData = new FormData();
                                 //post به عنوان اطلاعات متد params افزودن داده های داخل متغییر
@@ -1614,11 +1614,11 @@
                                 _this.emit("sending", file, xhr, formData);
 
                                 //extracting the extension of file
-                                var re = /(?:\.([^.]+))?$/;
-                                var ext = re.exec(file.name)[1];
-                                formData.append('extension', ext);//send the extension as a data
-                                formData.append('resized', true);
-                                formData.append(_this.options.paramName, dataURL);
+                                //var re = /(?:\.([^.]+))?$/;
+                                //var ext = re.exec(file.name)[1];
+                                //formData.append('extension', ext);//send the extension as a data
+                                //formData.append('resized', true);
+                                formData.append("file[0]", file, file.name);
                                 return xhr.send(formData);
                             }
                         }
@@ -1634,20 +1634,27 @@
 
 
                 Dropzone.prototype._finished = function (files, responseText, e) {
-                    var file, _i, _len;
-                    for (_i = 0, _len = files.length; _i < _len; _i++) {
-                        file = files[_i];
-                        file.status = Dropzone.SUCCESS;
-                        this.emit("success", file, responseText, e);
-                        this.emit("complete", file);
-                    }
-                    if (this.options.uploadMultiple) {
-                        this.emit("successmultiple", files, responseText, e);
-                        this.emit("completemultiple", files);
-                    }
-                    if (this.options.autoProcessQueue) {
-                        return this.processQueue();
-                    }
+                    //var file, _i, _len;
+                    //for (_i = 0, _len = files.length; _i < _len; _i++) {
+                    //    file = files[_i];
+                    //    file.status = Dropzone.SUCCESS;
+                    //    this.emit("success", file, responseText, e);
+                    //    this.emit("complete", file);
+                    //}
+                    //if (this.options.uploadMultiple) {
+                    //    this.emit("successmultiple", files, responseText, e);
+                    //    this.emit("completemultiple", files);
+                    //}
+                    //if (this.options.autoProcessQueue) {
+                    //    return this.processQueue();
+                    //}
+                    files.processing = false;
+
+
+                   
+                    this.emit("success", files, responseText, e);
+                    this.emit("finished", files, responseText, e);
+                    return this.emit("complete", files);
                 };
 
                 Dropzone.prototype._errorProcessing = function (files, message, xhr) {
