@@ -297,7 +297,7 @@
                     urlUploader: ODataApi.Item + "UploadFile",
                     withCredentials: false,
                     parallelUploads: 2,
-                    uploadMultiple: false,
+                    uploadMultiple: true,
                     maxFilesize: 256,
                     paramName: "file",
                     createImageThumbnails: true,
@@ -1218,7 +1218,7 @@
                 };
 
 
-               
+
                 Dropzone.prototype.createThumbnail = function (file, callback) {
                     var fileReader;
                     fileReader = new FileReader;
@@ -1283,7 +1283,7 @@
                     return this.processFiles([file]);
                 };
 
-             
+
                 Dropzone.prototype.processFiles = function (files) {
                     var file = files[0];
                     //var file, _i, _len;
@@ -1614,11 +1614,23 @@
                                 _this.emit("sending", file, xhr, formData);
 
                                 //extracting the extension of file
-                                //var re = /(?:\.([^.]+))?$/;
-                                //var ext = re.exec(file.name)[1];
+                                var re = /(?:\.([^.]+))?$/;
+                                var ext = re.exec(file.name)[1];
                                 //formData.append('extension', ext);//send the extension as a data
                                 //formData.append('resized', true);
-                                formData.append("file[0]", file, file.name);
+                                //var newData= dataURL.replace(file.name,"");
+                                //newData = newData.replace("data:image/jpeg;base64", "file[0];Content-Type: image/jpeg;filename=" + file.name );
+
+
+                                //formData.append("Content-Type", "image/jpeg");
+
+                                //formData.append('extension', ext);//send the extension as a data
+                                //formData.append('resized', true);
+                                //formData.append(_this.options.paramName, dataURL.replace("data:image/jpeg;base64,",""));
+
+                                //formData.append("file[0]", dataURL.replace("data:image/jpeg;base64,", ""));
+                                //formData.append(file.name,"name");
+                                formData.append(file.name, dataURL);
                                 return xhr.send(formData);
                             }
                         }
@@ -1653,7 +1665,9 @@
 
                    
                     this.emit("success", files, responseText, e);
+                    this.emit("successmultiple", files, responseText, e);
                     this.emit("finished", files, responseText, e);
+            
                     return this.emit("complete", files);
                 };
 

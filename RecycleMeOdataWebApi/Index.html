@@ -25,7 +25,7 @@
 
                 chat.client.onMessage = onMessageCallback;
                 chat.client.work = function (res) {
-                    alert(res);
+                    console.log(res);
                 }
                 return $.connection.hub.start()
                         .done(function () {

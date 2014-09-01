@@ -85,6 +85,21 @@ namespace RecycleMeOdataWebApi.Controllers
 
         private const string CONTAINER = "images";
 
+
+        private byte[] ToByteArray(Stream stream)
+        {
+            byte[] buffer = new byte[32768];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                while (true)
+                {
+                    int read = stream.Read(buffer, 0, buffer.Length);
+                    if (read <= 0)
+                        return ms.ToArray();
+                    ms.Write(buffer, 0, read);
+                }
+            }
+        }
         [HttpPost]
         public async Task<HttpResponseMessage> UploadFile()
         {
@@ -114,6 +129,7 @@ namespace RecycleMeOdataWebApi.Controllers
             }
 
 
+
             #region [MultipartMemoryStreamProvider]
             List<ItemId> id = new List<ItemId>();
             try
@@ -126,20 +142,30 @@ namespace RecycleMeOdataWebApi.Controllers
                     {
                         foreach (var fileContent in streamProvider.Contents)
                         {
-
+                          
                             Stream stream = fileContent.ReadAsStreamAsync().Result;
-                            var fileName = fileContent.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+
+                            byte[] dataStream = ToByteArray(stream);
+
+
+                            
+                            Encoding encoding = Encoding.UTF8;
+                            string fromBase64 = encoding.GetString(dataStream).Replace("data:image/jpeg;base64,", "");
+                            byte[] data = System.Convert.FromBase64String(fromBase64);
+                            MemoryStream ms = new MemoryStream(data);
+                           
+
+                            var fileName = fileContent.Headers.ContentDisposition.Name.Replace("\"", string.Empty);
                             var blob = blobContainer.GetBlockBlobReference(fileName);
 
-                            //var newResizeStream = ImageResize(stream, System.Drawing.Imaging.ImageFormat.Jpeg, 1400);
-                            //var newResizeStream = ImageResize(stream);
+                            
                             if (bool.Parse(ConfigurationManager.AppSettings["ResizeImage"]))
                             {
                                 var newResizeStream = ImageResize(stream, int.Parse(ConfigurationManager.AppSettings["ImageHeight"]), int.Parse(ConfigurationManager.AppSettings["ImageWidth"]), false);
                                 blob.UploadFromStream(newResizeStream);
                             }
                             else
-                                blob.UploadFromStream(stream);
+                                blob.UploadFromStream(ms);
 
                             ItemImage image = new ItemImage
                             {
