@@ -22,6 +22,7 @@ using System.Drawing.Drawing2D;
 using RecycleMeBusinessLogicLayer;
 using System.Web.Http.Filters;
 using System.Configuration;
+using AntsCode.Util;
 
 namespace ExtensionMethods
 {
@@ -142,48 +143,56 @@ namespace RecycleMeOdataWebApi.Controllers
                     {
                         foreach (var fileContent in streamProvider.Contents)
                         {
-                          
-                            Stream stream = fileContent.ReadAsStreamAsync().Result;
 
-                            byte[] dataStream = ToByteArray(stream);
-
-
-                            
-                            Encoding encoding = Encoding.UTF8;
-                            string fromBase64 = encoding.GetString(dataStream).Replace("data:image/jpeg;base64,", "");
-                            byte[] data = System.Convert.FromBase64String(fromBase64);
-                            MemoryStream ms = new MemoryStream(data);
-                           
-
-                            var fileName = fileContent.Headers.ContentDisposition.Name.Replace("\"", string.Empty);
-                            var blob = blobContainer.GetBlockBlobReference(fileName);
-
-                            
-                            if (bool.Parse(ConfigurationManager.AppSettings["ResizeImage"]))
+                            if (fileContent.Headers.ContentDisposition.Name.Contains("file"))
                             {
-                                var newResizeStream = ImageResize(stream, int.Parse(ConfigurationManager.AppSettings["ImageHeight"]), int.Parse(ConfigurationManager.AppSettings["ImageWidth"]), false);
-                                blob.UploadFromStream(newResizeStream);
+
+                                Stream stream = fileContent.ReadAsStreamAsync().Result;
+                                byte[] dataStream = ToByteArray(stream);
+
+
+
+                                Encoding encoding = Encoding.UTF8;
+                                string fromBase64 = encoding.GetString(dataStream).Replace("data:image/jpeg;base64,", "");
+                                byte[] data = System.Convert.FromBase64String(fromBase64);
+                                MemoryStream ms = new MemoryStream(data);
+
+
+                                Guid file = Guid.NewGuid();
+                                var fileName = file.ToString() + ".jpg";//fileContent.Headers.ContentDisposition.Name.Replace("\"", string.Empty);
+                                var blob = blobContainer.GetBlockBlobReference(fileName);
+
+
+                                if (bool.Parse(ConfigurationManager.AppSettings["ResizeImage"]))
+                                {
+                                    var newResizeStream = ImageResize(stream, int.Parse(ConfigurationManager.AppSettings["ImageHeight"]), int.Parse(ConfigurationManager.AppSettings["ImageWidth"]), false);
+                                    blob.UploadFromStream(newResizeStream);
+                                }
+                                else
+                                    blob.UploadFromStream(ms);
+
+
+
+
+                                ItemImage image = new ItemImage
+                                {
+                                    Name = fileName,
+                                    Path = blob.StorageUri.PrimaryUri.AbsoluteUri
+                                };
+
+                                db.ItemImage.Add(image);
+                                db.SaveChanges();
+
+                                id.Add(new ItemId
+                                {
+                                    Id = image.Id,
+                                    Name = image.Name,
+                                    Path = image.Path
+                                });
                             }
-                            else
-                                blob.UploadFromStream(ms);
-
-                            ItemImage image = new ItemImage
-                            {
-                                Name = fileName,
-                                Path = blob.StorageUri.PrimaryUri.AbsoluteUri
-                            };
-
-                            db.ItemImage.Add(image);
-                            db.SaveChanges();
-
-                            id.Add(new ItemId
-                            {
-                                Id = image.Id,
-                                Name = image.Name,
-                                Path = image.Path
-                            });
                         }
                     });
+
                 }
 
 

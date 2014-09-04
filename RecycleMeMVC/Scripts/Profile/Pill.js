@@ -50,7 +50,7 @@
     this.RemoveFiles = function () {
 
         clearFiles();
-            
+
     }
 }
 var ImageIdResult = [];
@@ -67,68 +67,75 @@ function clearFiles() {
     myDropzoneInput.removeAllFiles();
 }
 jQuery(function ($) {
-  
-    try {
-        $(".dropzone").dropzone({
-            init: function () {
-                var that = this;
-                myDropzoneInput = this;
-                this.on("addedfile", function (file) {
-                    $("#pillBox").animate({ "height": "280px" }, 500);
-                });
-                this.on("removedfile", function (file) {
-                    if (that.getAcceptedFiles().length <= 0)
-                        $("#pillBox").animate({ "height": "230px" }, 500);
-                });
+
+    //try {
+    //    $(".dropzone").dropzone({
+    //        init: function () {
+    //            var that = this;
+    //            myDropzoneInput = this;
+    //            this.on("addedfile", function (file) {
+    //                $("#pillBox").animate({ "height": "280px" }, 500);
+    //            });
+    //            this.on("removedfile", function (file) {
+    //                if (that.getAcceptedFiles().length <= 0)
+    //                    $("#pillBox").animate({ "height": "230px" }, 500);
+    //            });
 
 
-            },
-            uploadMultiple: true,
-            successmultiple: function (file, result) {
+    //        },
+    //        uploadMultiple: true,
+    //        successmultiple: function (file, result) {
 
 
-                $.each(result, function (key, value) {
+    //            $.each(result, function (key, value) {
 
-                    ImageIdResult.push(value);
-                });
-            },
-            complete: function (file, result) {
+    //                ImageIdResult.push(value);
+    //            });
+    //        },
+    //        complete: function (file, result) {
 
-            },
+    //        },
 
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 10, // MB
+    //        paramName: "file", // The name that will be used to transfer the file
+    //        maxFilesize: 10, // MB
 
-            addRemoveLinks: true,
-            dictDefaultMessage:
-            '<br /><i class="upload-icon fa fa-cloud-upload blue fa-2x"></i>'
-                  ,
-            dictResponseError: 'Error while uploading file!',
+    //        addRemoveLinks: true,
+    //        dictDefaultMessage:
+    //        '<br /><i class="upload-icon fa fa-cloud-upload blue fa-2x"></i>'
+    //              ,
+    //        dictResponseError: 'Error while uploading file!',
 
-            //change the previewTemplate to use Bootstrap progress bars
-            previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
-        });
+    //        //change the previewTemplate to use Bootstrap progress bars
+    //        previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+    //    });
 
-    } catch (e) {
-        alert('Dropzone.js does not support older browsers!');
-    }
+    //} catch (e) {
+    //    alert('Dropzone.js does not support older browsers!');
+    //}
 
-    $('#clickMe').click(function () {
-        $('.dropzone').click();
-    });
+    Dropzone.options.myFormDropzone = {
 
-    $('#openDropZone').click(function () {
-        //$('.dropzone').click();
-    });
+        urlUploader: "http://localhost:53481/odata/Item/UploadFile",//MJZEdit
+        urlDownloader: "",//MJZEdit
+        urlDeleter: "",//MJZEdit
+        urlFileInfo: "",//MJZEdit
+        paramName: "file", // The name that will be used to transfer the file
+        maxFilesize: 5,
+        maxThumbnailFilesize: 100,
+        showTopPanel: false,
+        createResizedImage: true,
+        resizedWidth: 800,//MJZEdit
+        resizedHeight: 600,//MJZEdit
+        enqueueForUpload: true //It must be true, is you put false here, it cause to crash upload and will not appload file.
+        //previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>",
+        //dictDefaultMessage: '<br /><i class="upload-icon fa fa-cloud-upload blue fa-2x"></i>'
+        };
 
 
-    $('#uploadOk').click(function () {
-        clearFiles();
-    });
-
-   
 
 
-    Dropzone.autoDiscover = false;
+
+
+    //Dropzone.autoDiscover = false;
 
 });
