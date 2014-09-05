@@ -64,7 +64,7 @@ pill.Pill();
 
 var myDropzoneInput = null;
 function clearFiles() {
-    myDropzoneInput.removeAllFiles();
+    //myDropzoneInput.removeAllFiles();
 }
 jQuery(function ($) {
 
@@ -126,10 +126,19 @@ jQuery(function ($) {
         createResizedImage: true,
         resizedWidth: 800,//MJZEdit
         resizedHeight: 600,//MJZEdit
-        enqueueForUpload: true //It must be true, is you put false here, it cause to crash upload and will not appload file.
+        enqueueForUpload: true, //It must be true, is you put false here, it cause to crash upload and will not appload file.
+        success: function (file, result) {
+
+            $.each(result, function (key, value) {
+
+                ImageIdResult.push(value);
+            });
+
+            return file.previewTemplate.classList.add("success");
+        }
         //previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>",
         //dictDefaultMessage: '<br /><i class="upload-icon fa fa-cloud-upload blue fa-2x"></i>'
-        };
+    };
 
 
 
