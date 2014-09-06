@@ -64,7 +64,7 @@ pill.Pill();
 
 var myDropzoneInput = null;
 function clearFiles() {
-    //myDropzoneInput.removeAllFiles();
+    myDropzoneInput.removeAllFiles();
 }
 jQuery(function ($) {
 
@@ -122,11 +122,18 @@ jQuery(function ($) {
         paramName: "file", // The name that will be used to transfer the file
         maxFilesize: 5,
         maxThumbnailFilesize: 100,
+        clickable:true,
         showTopPanel: false,
         createResizedImage: true,
         resizedWidth: 800,//MJZEdit
-        resizedHeight: 600,//MJZEdit
+        resizedHeight: 600,//MJZEdit,
         enqueueForUpload: true, //It must be true, is you put false here, it cause to crash upload and will not appload file.
+        dictDefaultMessage:'<br/><i class="upload-icon fa fa-cloud-upload blue fa-2x"></i>',
+                 
+        init: function () {
+            var that = this;
+            myDropzoneInput = this;
+        },
         success: function (file, result) {
 
             $.each(result, function (key, value) {

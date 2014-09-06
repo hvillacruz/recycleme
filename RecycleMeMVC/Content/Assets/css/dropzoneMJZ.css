@@ -1,0 +1,605 @@
+﻿/* The MJZSoft License */
+.dropzone,
+.dropzone *,
+.dropzone-previews,
+.dropzone-previews * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div#dropzone {
+    overflow: auto;
+    position: relative;
+    height: 122px;
+    /*width: 94%;*/
+}
+
+.dropzone {
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.02);
+    padding: 1em;
+    padding-bottom: 0;
+}
+    /*MJZedit star*/
+    .dropzone span.triangle-topleft-shadow,
+    .dropzone-previews span.triangle-topleft-shadow {
+        position: absolute;
+        top: 0;
+        right: 2%;
+        width: 0;
+        height: 0;
+        border-top: 40px solid #9a9a9a;
+        border-right: 40px solid #f8f8f8;
+        z-index: 490;
+    }
+
+    .dropzone span.triangle-topleft,
+    .dropzone-previews span.triangle-topleft {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 36px solid #333333;
+        border-right: 36px solid transparent;
+        z-index: 495;
+    }
+
+    .dropzone span.topPanel,
+    .dropzone-previews span.topPanel {
+        position: absolute;
+        top: 0;
+        width: auto;
+        height: 40px;
+        background-color: #333333;
+        border: 1px solid #333333;
+        z-index: 485;
+        border-bottom: outset;
+        alignment-adjust: central;
+    }
+
+    .dropzone span.triangle-topright,
+    .dropzone-previews span.triangle-topright {
+        position: absolute;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-top: 36px solid #333333;
+        border-left: 36px solid transparent;
+        z-index: 495;
+    }
+
+    .dropzone span.triangle-topright-shadow,
+    .dropzone-previews span.triangle-topright-shadow {
+        position: absolute;
+        top: 0;
+        left: 2%;
+        width: 0;
+        height: 0;
+        border-top: 40px solid #9a9a9a;
+        border-left: 40px solid #f8f8f8;
+        z-index: 490;
+    }
+
+#DeleteAllFilesButton {
+    background-image: url("../images/spritemapEN.png");
+    background-position: -265px -243px;
+    width: 37px;
+    height: 37px;
+    display: block;
+    position: relative;
+    float: left;
+}
+
+    #DeleteAllFilesButton:hover {
+        background-position: -306px -244px;
+        border: 1px solid #9a9a9a !important;
+        cursor: pointer;
+    }
+
+.WLabel {
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #FFFFFF;
+    font-size: 1em;
+}
+
+.linebreak {
+    line-height: 6px;
+}
+
+.dropzone .numberInput,
+.dropzone-previews .numberInput {
+    max-width: 30px;
+    direction: ltr;
+    text-align: center;
+}
+/*MJZedit end*/
+.dropzone.clickable {
+    cursor: pointer;
+}
+
+    .dropzone.clickable .message,
+    .dropzone.clickable .message span {
+        cursor: pointer;
+    }
+
+    .dropzone.clickable * {
+        cursor: default;
+    }
+
+.dropzone .message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+
+.dropzone.drag-hover {
+    border-color: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.04);
+    border-color: #000;
+}
+
+.dropzone.started .message {
+    display: none;
+}
+
+.dropzone .preview,
+.dropzone-previews .preview {
+    background: rgba(255,255,255,0.8);
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom:5px;
+    vertical-align: top;
+    border: 1px solid #acacac;
+    padding: 6px 6px 6px 6px;
+}
+
+    .dropzone .preview .details,
+    .dropzone-previews .preview .details {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        background: #ebebeb;
+        padding: 5px;
+        padding-top: 0;
+        margin-bottom: 22px;
+        direction: ltr !important; /*MJZedit to set the position of files' icons*/
+    }
+
+        .dropzone .preview .details .filename,
+        .dropzone-previews .preview .details .filename {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            z-index: 100;
+            color: #090;
+            direction: ltr !important; /*MJZedit to set the direction of file name*/
+            /*to rotate the file name from up to down*/
+            -ms-transform: rotate(90deg); /*for IE*/
+            -moz-transform: rotate(90deg); /* FF3.5+ */
+            -o-transform: rotate(90deg); /* Opera 10.5 */
+            -webkit-transform: rotate(90deg); /* Saf3.1+, Chrome */
+        }
+
+        .dropzone .preview .details .imagecontainer img,
+        .dropzone-previews .preview .details .imagecontainer img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            z-index: 600;
+        }
+
+            .dropzone .preview .details .imagecontainer img.icon,
+            .dropzone-previews .preview .details .imagecontainer img.icon {
+                position: absolute;
+                top: 0;
+                left: -10px;
+                width: 80px;
+                height: 80px;
+            }
+
+        .dropzone .preview .details .footer,
+        .dropzone-previews .preview .details .footer {
+            position: relative;
+        }
+
+            .dropzone .preview .details .footer .size,
+            .dropzone-previews .preview .details .footer .size {
+                position: absolute;
+                bottom: -28px;
+                left: 0px;
+                height: 28px;
+                min-width: 100% !important;
+                line-height: 28px;
+                direction: ltr;
+            }
+
+            .dropzone .preview .details .footer .chBox,
+            .dropzone-previews .preview .details .footer .chBox {
+                visibility: hidden;
+                position: absolute;
+                top: -10%;
+                left: 90%;
+                height: 28px;
+                line-height: 28px;
+            }
+
+    .dropzone .preview.error .error-mark,
+    .dropzone-previews .preview.error .error-mark {
+        z-index: 600;
+        display: block;
+    }
+
+    .dropzone .preview.success .success-mark,
+    .dropzone-previews .preview.success .success-mark {
+        z-index: 600;
+        display: block;
+    }
+
+    .dropzone .preview:hover .details .imagecontainer img,
+    .dropzone-previews .preview:hover .details .imagecontainer img {
+        display: none;
+    }
+
+    /*
+.dropzone .preview:hover .success-mark,
+.dropzone-previews .preview:hover .success-mark,
+.dropzone .preview:hover .error-mark,
+.dropzone-previews .preview:hover .error-mark {
+  display: none;
+}
+*/
+    .dropzone .preview .success-mark,
+    .dropzone-previews .preview .success-mark,
+    .dropzone .preview .error-mark,
+    .dropzone-previews .preview .error-mark {
+        display: none;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+        text-align: center;
+        left: -5px;
+        top: -5px
+    }
+
+    .dropzone .preview .success-mark,
+    .dropzone-previews .preview .success-mark {
+        color: #8cc657;
+    }
+
+    .dropzone .preview .error-mark,
+    .dropzone-previews .preview .error-mark {
+        color: #ee162d;
+    }
+
+    .dropzone .preview .progress,
+    .dropzone-previews .preview .progress {
+        position: absolute;
+        top: 100px;
+        left: 6px;
+        right: 6px;
+        height: 6px;
+        background: #d7d7d7;
+        display: none;
+    }
+
+        .dropzone .preview .progress .upload,
+        .dropzone-previews .preview .progress .upload {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            background-color: #8cc657;
+        }
+
+    .dropzone .preview.processing .progress,
+    .dropzone-previews .preview.processing .progress {
+        display: block;
+        z-index: 650; /*mjzedit*/
+    }
+
+    .dropzone .preview .error-message,
+    .dropzone-previews .preview .error-message {
+        display: none;
+        position: absolute;
+        top: -5px;
+        left: 0px;
+        background: rgba(245,245,245,0.8);
+        padding: 8px 10px;
+        color: #800;
+        min-width: 100px;
+        max-width: 500px;
+        z-index: 500;
+        text-align: justify;
+    }
+
+    .dropzone .preview:hover.error .error-message,
+    .dropzone-previews .preview:hover.error .error-message {
+        display: block;
+    }
+
+.dropzone {
+    border: 1px solid rgba(0,0,0,0.03);
+    min-height: 360px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.03);
+    padding: 3px;
+}
+
+    /*.dropzone .default.message {
+        background-image: none;
+        font-size: 24px;
+        text-align: center;
+        line-height: 32px;
+        left: 0;
+        width: 100%;
+        margin-left: auto;
+    }*/
+
+    .dropzone .default.message {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+        -webkit-transition: opacity 0.3s ease-in-out;
+        -moz-transition: opacity 0.3s ease-in-out;
+        -o-transition: opacity 0.3s ease-in-out;
+        -ms-transition: opacity 0.3s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
+        background-image: url("../images/spritemapEN.png");
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        position: absolute;
+        width: 428px;
+        height: 123px;
+        margin-left: -214px;
+        margin-top: -61.5px;
+        top: 50%;
+        left: 50%;
+    }
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5) {
+    .dropzone .default.message {
+        background-image: url("../images/spritemap@2x.png");
+        -webkit-background-size: 428px 406px;
+        -moz-background-size: 428px 406px;
+        background-size: 428px 406px;
+    }
+}
+
+.dropzone .default.message span {
+    display: none;
+}
+
+.dropzone.square .default.message {
+    background-position: 0 -123px;
+    width: 268px;
+    margin-left: -134px;
+    height: 174px;
+    margin-top: -87px;
+}
+
+.dropzone.drag-hover .message {
+    opacity: 0.15;
+    filter: alpha(opacity=15);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
+}
+
+.dropzone.started .message {
+    display: block;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+
+.dropzone .preview,
+.dropzone-previews .preview {
+    -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.16);
+    font-size: 14px;
+}
+
+    .dropzone .preview .details .imagecontainer img,
+    .dropzone-previews .preview .details .imagecontainer img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .dropzone .preview.image-preview:hover .details .imagecontainer img,
+    .dropzone-previews .preview.image-preview:hover .details .imagecontainer img {
+        display: block;
+        opacity: 0.1;
+        filter: alpha(opacity=10);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    }
+
+    .dropzone .preview.success .success-mark,
+    .dropzone-previews .preview.success .success-mark {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+
+    .dropzone .preview.error .error-mark,
+    .dropzone-previews .preview.error .error-mark {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+
+    .dropzone .preview.error .progress .upload,
+    .dropzone-previews .preview.error .progress .upload {
+        background: #ee1e2d;
+    }
+
+    .dropzone .preview .error-mark,
+    .dropzone-previews .preview .error-mark,
+    .dropzone .preview .success-mark,
+    .dropzone-previews .preview .success-mark {
+        background-image: none;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 100%;
+        text-align: center;
+        line-height: 20px;
+    }
+
+
+
+.dropzone .preview .error-mark span,
+.dropzone-previews .preview .error-mark span,
+.dropzone .preview .success-mark span,
+.dropzone-previews .preview .success-mark span {
+    display: none;
+}
+
+.dropzone .preview .error-mark:before,
+.dropzone-previews .preview .error-mark:before {
+    font-family: FontAwesome;
+    font-size: 15px;
+    color: #DB6262;
+    content: "\f00d";
+}
+
+    .dropzone .preview .error-mark:hover,
+    .dropzone-previews .preview .error-mark:hover {
+        background-position: -268px -123px;
+        cursor: pointer;
+    }
+
+.dropzone .preview .success-mark:before,
+.dropzone-previews .preview .success-mark:before {
+    /*background-position: -268px -163px;*/
+    font-family: FontAwesome;
+    font-size: 15px;
+    color: #6DA552;
+    content: "\f00c";
+}
+
+
+.dropzone .preview .progress .upload,
+.dropzone-previews .preview .progress .upload {
+    -webkit-animation: loading 0.4s linear infinite;
+    -moz-animation: loading 0.4s linear infinite;
+    -o-animation: loading 0.4s linear infinite;
+    -ms-animation: loading 0.4s linear infinite;
+    animation: loading 0.4s linear infinite;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    -ms-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-image: url("../images/spritemapEN.png");
+    background-repeat: repeat-x;
+    background-position: 0px -400px;
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5) {
+    .dropzone .preview .progress .upload,
+    .dropzone-previews .preview .progress .upload {
+        background-image: url("../images/spritemap@2xEN.png");
+        -webkit-background-size: 428px 406px;
+        -moz-background-size: 428px 406px;
+        background-size: 428px 406px;
+    }
+}
+
+.dropzone .preview.success .progress,
+.dropzone-previews .preview.success .progress {
+    display: block;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    -ms-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.dropzone .preview .error-message,
+.dropzone-previews .preview .error-message {
+    display: block;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dropzone .preview:hover.error .error-message,
+.dropzone-previews .preview:hover.error .error-message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+
+.img_download_link {
+    text-decoration: none;
+}
+
+@-moz-keyframes loading {
+    0% {
+        background-position: 0 -400px;
+    }
+
+    100% {
+        background-position: -7px -400px;
+    }
+}
+
+@-webkit-keyframes loading {
+    0% {
+        background-position: 0 -400px;
+    }
+
+    100% {
+        background-position: -7px -400px;
+    }
+}
+
+@-o-keyframes loading {
+    0% {
+        background-position: 0 -400px;
+    }
+
+    100% {
+        background-position: -7px -400px;
+    }
+}
+
+@-ms-keyframes loading {
+    0% {
+        background-position: 0 -400px;
+    }
+
+    100% {
+        background-position: -7px -400px;
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-position: 0 -400px;
+    }
+
+    100% {
+        background-position: -7px -400px;
+    }
+}
