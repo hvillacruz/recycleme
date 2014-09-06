@@ -83,7 +83,7 @@
 
     this.GetNotifications = function () {
 
-        AjaxNinja.Invoke(ODataApi.Notification + "?$filter=OwnerId eq '" + global.User.UserId() + "'&$orderby=ModifiedDate desc&$expand=Owner,Sender", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Notification + "?$filter=OwnerId eq '" + global.User.UserId() + "' and Type gt " + 1 + "&$orderby=ModifiedDate desc&$expand=Owner,Sender", "GET", {}, function (data) {
             self.NotificationCount(data.value.length);
             var result = [];
             $(data.value).each(function (i, value) {
