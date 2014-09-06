@@ -15,6 +15,10 @@
 
 
 
+
+
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_CommenterId]
     ON [dbo].[ItemComments]([CommenterId] ASC);

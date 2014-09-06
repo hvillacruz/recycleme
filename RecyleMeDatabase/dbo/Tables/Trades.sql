@@ -1,15 +1,17 @@
 ﻿CREATE TABLE [dbo].[Trades] (
     [Id]           BIGINT         IDENTITY (1, 1) NOT NULL,
     [ItemId]       BIGINT         NULL,
-    [ModifiedDate] DATETIME       NOT NULL,
     [BuyerId]      NVARCHAR (128) NULL,
     [SellerId]     NVARCHAR (128) NULL,
+    [ModifiedDate] DATETIME       NOT NULL,
     [Status]       NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_dbo.Trades] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_dbo.Trades_dbo.Items_ItemId] FOREIGN KEY ([ItemId]) REFERENCES [dbo].[Items] ([Id]),
-    CONSTRAINT [FK_dbo.Trades_dbo.Users_Buyer_UserId] FOREIGN KEY ([BuyerId]) REFERENCES [dbo].[Users] ([UserId]),
-    CONSTRAINT [FK_dbo.Trades_dbo.Users_Seller_UserId] FOREIGN KEY ([SellerId]) REFERENCES [dbo].[Users] ([UserId])
+    CONSTRAINT [FK_dbo.Trades_dbo.Users_BuyerId] FOREIGN KEY ([BuyerId]) REFERENCES [dbo].[Users] ([UserId]),
+    CONSTRAINT [FK_dbo.Trades_dbo.Users_SellerId] FOREIGN KEY ([SellerId]) REFERENCES [dbo].[Users] ([UserId])
 );
+
+
 
 
 

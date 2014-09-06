@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Messages] (
+CREATE TABLE [dbo].[Messages] (
     [Id]           BIGINT         IDENTITY (1, 1) NOT NULL,
     [SenderId]     NVARCHAR (128) NULL,
     [ReceiverId]   NVARCHAR (128) NULL,
@@ -15,6 +15,8 @@
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_SenderId]
     ON [dbo].[Messages]([SenderId] ASC);
@@ -27,3 +29,13 @@ CREATE NONCLUSTERED INDEX [IX_ReceiverId]
 
 GO
 
+
+CREATE TRIGGER [DBO].[INSERTMESSAGESTRIGGER] ON [DBO].[MESSAGES]
+FOR INSERT
+AS
+
+INSERT INTO NOTIFICATIONS
+       (OWNERID,SenderId,TYPE,TITLE,URLID,ISDELETED,ISREAD,MODIFIEDDATE)
+    SELECT
+        ReceiverId,SENDERID,1,SUBJECT,ID,0,0,DateSent
+        FROM INSERTED

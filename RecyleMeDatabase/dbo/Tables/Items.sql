@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Items] (
+CREATE TABLE [dbo].[Items] (
     [Id]             BIGINT         IDENTITY (1, 1) NOT NULL,
     [OwnerId]        NVARCHAR (128) NULL,
     [Name]           NVARCHAR (MAX) NULL,
@@ -17,6 +17,8 @@
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [IX_OwnerId]
     ON [dbo].[Items]([OwnerId] ASC);
@@ -29,3 +31,14 @@ CREATE NONCLUSTERED INDEX [IX_ItemCategoryId]
 
 GO
 
+
+
+CREATE TRIGGER [dbo].[InsertItemTrigger] ON [dbo].[Items]
+FOR INSERT
+AS
+
+INSERT INTO Notifications
+       (OwnerId,SenderId,Type,IsDeleted,IsRead,ModifiedDate)
+    SELECT
+        OwnerId,OwnerId,1,0,0,GETDATE()
+        FROM inserted

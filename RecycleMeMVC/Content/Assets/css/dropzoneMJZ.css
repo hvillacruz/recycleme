@@ -150,7 +150,7 @@ div#dropzone {
     position: relative;
     display: inline-block;
     margin-left: 10px;
-    margin-bottom:5px;
+    margin-bottom: 5px;
     vertical-align: top;
     border: 1px solid #acacac;
     padding: 6px 6px 6px 6px;
@@ -264,7 +264,7 @@ div#dropzone {
         font-size: 20px;
         text-align: center;
         left: -5px;
-        top: -5px
+        top: -5px;
     }
 
     .dropzone .preview .success-mark,
@@ -344,7 +344,7 @@ div#dropzone {
     }*/
 
     .dropzone .default.message {
-        opacity: 1;
+        /*opacity: 1;
         -ms-filter: none;
         filter: none;
         -webkit-transition: opacity 0.3s ease-in-out;
@@ -361,7 +361,16 @@ div#dropzone {
         margin-left: -214px;
         margin-top: -61.5px;
         top: 50%;
-        left: 50%;
+        left: 50%;*/
+        background-image: none;
+        font-size: 24px;
+        text-align: center;
+        line-height: 32px;
+        left: 0;
+        width: 100%;
+        margin-left: auto;
+        position: absolute;
+        top: 10px;
     }
 
 @media all and (-webkit-min-device-pixel-ratio: 1.5) {
@@ -374,7 +383,7 @@ div#dropzone {
 }
 
 .dropzone .default.message span {
-    display: none;
+    display: block;
 }
 
 .dropzone.square .default.message {
@@ -452,60 +461,60 @@ div#dropzone {
 
 
 
-.dropzone .preview .error-mark span,
-.dropzone-previews .preview .error-mark span,
-.dropzone .preview .success-mark span,
-.dropzone-previews .preview .success-mark span {
-    display: none;
-}
+        .dropzone .preview .error-mark span,
+        .dropzone-previews .preview .error-mark span,
+        .dropzone .preview .success-mark span,
+        .dropzone-previews .preview .success-mark span {
+            display: none;
+        }
 
-.dropzone .preview .error-mark:before,
-.dropzone-previews .preview .error-mark:before {
-    font-family: FontAwesome;
-    font-size: 15px;
-    color: #DB6262;
-    content: "\f00d";
-}
+        .dropzone .preview .error-mark:before,
+        .dropzone-previews .preview .error-mark:before {
+            font-family: FontAwesome;
+            font-size: 15px;
+            color: #DB6262;
+            content: "\f00d";
+        }
 
-    .dropzone .preview .error-mark:hover,
-    .dropzone-previews .preview .error-mark:hover {
-        background-position: -268px -123px;
-        cursor: pointer;
+        .dropzone .preview .error-mark:hover,
+        .dropzone-previews .preview .error-mark:hover {
+            background-position: -268px -123px;
+            cursor: pointer;
+        }
+
+        .dropzone .preview .success-mark:before,
+        .dropzone-previews .preview .success-mark:before {
+            /*background-position: -268px -163px;*/
+            font-family: FontAwesome;
+            font-size: 15px;
+            color: #6DA552;
+            content: "\f00c";
+        }
+
+
+    .dropzone .preview .progress .upload,
+    .dropzone-previews .preview .progress .upload {
+        -webkit-animation: loading 0.4s linear infinite;
+        -moz-animation: loading 0.4s linear infinite;
+        -o-animation: loading 0.4s linear infinite;
+        -ms-animation: loading 0.4s linear infinite;
+        animation: loading 0.4s linear infinite;
+        -webkit-transition: width 0.3s ease-in-out;
+        -moz-transition: width 0.3s ease-in-out;
+        -o-transition: width 0.3s ease-in-out;
+        -ms-transition: width 0.3s ease-in-out;
+        transition: width 0.3s ease-in-out;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-image: url("../images/spritemapEN.png");
+        background-repeat: repeat-x;
+        background-position: 0px -400px;
     }
-
-.dropzone .preview .success-mark:before,
-.dropzone-previews .preview .success-mark:before {
-    /*background-position: -268px -163px;*/
-    font-family: FontAwesome;
-    font-size: 15px;
-    color: #6DA552;
-    content: "\f00c";
-}
-
-
-.dropzone .preview .progress .upload,
-.dropzone-previews .preview .progress .upload {
-    -webkit-animation: loading 0.4s linear infinite;
-    -moz-animation: loading 0.4s linear infinite;
-    -o-animation: loading 0.4s linear infinite;
-    -ms-animation: loading 0.4s linear infinite;
-    animation: loading 0.4s linear infinite;
-    -webkit-transition: width 0.3s ease-in-out;
-    -moz-transition: width 0.3s ease-in-out;
-    -o-transition: width 0.3s ease-in-out;
-    -ms-transition: width 0.3s ease-in-out;
-    transition: width 0.3s ease-in-out;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 100%;
-    background-image: url("../images/spritemapEN.png");
-    background-repeat: repeat-x;
-    background-position: 0px -400px;
-}
 
 @media all and (-webkit-min-device-pixel-ratio: 1.5) {
     .dropzone .preview .progress .upload,
