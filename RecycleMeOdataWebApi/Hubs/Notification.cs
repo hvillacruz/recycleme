@@ -49,7 +49,7 @@ namespace RecycleMeOdataWebApi.Hubs
                 var user = userManager.Users.Where(a => a.Id == id).Select(a=>a.UserName).FirstOrDefault();
 
                 var excerpt = message.Length <= 30 ? message : message.Substring(0, 30) + "...";
-                Clients.User(user).MessageNotification(excerpt);
+                Clients.User(user).MessageNotification(excerpt,user);
 
             }
         }

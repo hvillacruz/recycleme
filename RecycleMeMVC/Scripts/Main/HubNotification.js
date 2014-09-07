@@ -51,9 +51,10 @@ var HubWrapper = function () {
 
         }
 
-        theHub.client.messageNotification = function (res) {
+        theHub.client.messageNotification = function (res,user) {
 
             //global.AddMsgCount();
+            console.log(user);
             global.GetMessage();
             global.Notification(res, "Message");
 
