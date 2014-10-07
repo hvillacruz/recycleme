@@ -231,7 +231,7 @@ ul.timeline > li > .timeline-panel {
 
 .metro-1 {
     width: 100% !important;
-    height: 300px !important;
+    height: 100% !important;
 }
 
 .metro-2 {
@@ -241,7 +241,7 @@ ul.timeline > li > .timeline-panel {
 
 .metro-social .box0 {
     width: 140px;
-    height: 141px;
+    height: 149px;
 }
 
 .metro-social .box1 {
