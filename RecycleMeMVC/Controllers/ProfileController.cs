@@ -25,6 +25,7 @@ namespace RecycleMeMVC.Controllers
         {
 
             ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            ViewBag.IsUser = User.Identity.GetUserId() == id ? 1 : 0;
             return View();
         }
 
@@ -219,7 +220,7 @@ namespace RecycleMeMVC.Controllers
             Stream stream = response.GetResponseStream();
 
 
-          
+
 
             var media = new FacebookMediaObject
             {
