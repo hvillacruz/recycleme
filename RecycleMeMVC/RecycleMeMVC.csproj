@@ -396,6 +396,7 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\dropzone.js" />
+    <Content Include="Scripts\Home\ItemModalImage.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\Main\HubNotification.js" />
     <Content Include="Scripts\Main\Hub.js" />
@@ -609,6 +610,8 @@
     <Content Include="Views\Profile\Exchange.cshtml" />
     <Content Include="Views\Profile\TradeOld.cshtml" />
     <Content Include="Views\Profile\_BarterCommentPartial.cshtml" />
+    <Content Include="Views\Home\_UserImagePartial.cshtml" />
+    <Content Include="Views\Home\MyMethod.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

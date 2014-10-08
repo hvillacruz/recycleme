@@ -1,0 +1,25 @@
+﻿<div id="itemModalImageContainer">
+    <div class="modal-header">
+
+    </div>
+
+    <div class="modal-body">
+        
+        <div data-bind="foreach: global.SelectedModalImage().ItemImages">
+            <img data-bind="attr:{src: Path}" />
+            @*     @Html.Partial("_TradeTagPartial")
+                <!-- ko if: $parent.TradeTag.length > 0 -->
+                <div class="tags tagExchange" data-bind="foreach : $parent.ExchangeTag.split(' ')">
+                    @Html.Partial("_ExchangeTagPartial")
+                </div>
+                <!-- /ko -->*@
+
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+    </div>
+</div>
+<script src="~/Scripts/Home/ItemModalImage.js"></script>

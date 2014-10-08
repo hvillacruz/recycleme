@@ -28,5 +28,14 @@ namespace RecycleMeMVC.Controllers
         }
 
 
+        public ActionResult UserImage(string id)
+        {
+            return PartialView("_UserImagePartial");
+        }
+
+        public ActionResult MyMethod(int id)
+        {
+            return PartialView();
+        }
     }
 }

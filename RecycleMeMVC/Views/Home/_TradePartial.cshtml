@@ -19,15 +19,16 @@
 
         <li>
             <div class="widget">
+
                 <div class="cover">
-                    <img data-bind="attr:{src: ItemImages[0].Path}" />
-                 
-                       
+                    <a class="modal-link" href="Home/UserImage/1" data-bind="click: $root.SelectedImage.bind($data, $parent)">
+                        <img data-bind="attr:{src: ItemImages[0].Path}" />
+                    </a>
                 </div>
                 <img data-bind="attr:{src: Owner.Avatar},click: $root.SelectedUser.bind($data, $parent)" src="~/Content/Assets/images/avatar.jpg" class="userList" />
                 <h1><span data-bind="text:Name"></span></h1>
 
-               
+
 
 
                 <div class="stat-stat">
@@ -42,6 +43,11 @@
 
         <!-- /ko -->
     </ul>
+
+    <div id="modal-container" class="userImageModal modal fade" tabindex="-1" role="dialog">
+        <div class="modal-content">
+        </div>
+    </div>
 </div>
 <script src="~/Scripts/Home/TradeItems.js"></script>
 
@@ -53,3 +59,34 @@
 
 
 <script src="~/Scripts/AnimOnScroll.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        // Initialize numeric spinner input boxes
+        //$(".numeric-spinner").spinedit();
+
+        // Initalize modal dialog
+        // attach modal-container bootstrap attributes to links with .modal-link class.
+        // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+        $('body').on('click', '.modal-link', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-container').modal('hide');
+        });
+
+        //clear modal cache, so that new content can be loaded
+        $('#modal-container').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+</script>

@@ -1,9 +1,8 @@
-﻿
-var TradeItemsViewModel = function () {
+﻿var TradeItemsViewModel = function () {
 
     var self = this;
     this.Items = ko.observableArray();
-   
+    this.SelectedItem = ko.observableArray();
     this.TradeItem = function () {
 
         AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner", "GET", {}, function (data) {
@@ -43,6 +42,12 @@ var TradeItemsViewModel = function () {
 
     }
 
+
+    this.SelectedImage = function (parent, selectedImage) {
+       
+        global.SelectedModalImage(selectedImage);
+
+    }
  
 
 }

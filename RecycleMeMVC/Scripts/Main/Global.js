@@ -36,7 +36,7 @@
     self.MessageCount = ko.observable(0).extend({ numeric: 0 });
     self.NotificationCount = ko.observable(0).extend({ numeric: 0 });
     self.WasNotified = ko.observable(false);
-
+    self.SelectedModalImage = ko.observableArray();
     this.User = function (UserId, UserName) {
 
         this.User.UserId = ko.observable(UserId);

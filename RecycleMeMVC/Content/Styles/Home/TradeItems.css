@@ -15,11 +15,19 @@ body {
     position: fixed;
     margin-top: 5px;
     /*margin-right: 300px;*/
-    margin-left:50px;
+    margin-left: 50px;
     z-index: 9999;
 }
 
-
+.userImageModal {
+    z-index: 1050;
+    width: auto;
+    padding-left:10%;
+     padding-right:10%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top:100px;
+}
 
 ::-webkit-input-placeholder { /* WebKit browsers */
     color: #FFFFFF;
@@ -75,7 +83,7 @@ body {
             opacity: 1;
             z-index: 3;
             color: #FFFFFF;
-            margin-right:-60px !important;
+            margin-right: -60px !important;
         }
 
 .search-box .icon {
@@ -189,7 +197,7 @@ body {
         top: -50px;
         width: 100px;
         height: 100px;
-        margin:auto;
+        margin: auto;
         border: 3px solid #FFF;
         border-radius: 50%;
     }
