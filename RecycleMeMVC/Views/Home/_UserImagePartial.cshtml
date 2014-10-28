@@ -1,11 +1,13 @@
-﻿<div id="itemModalImageContainer">
+﻿<link rel="stylesheet" href="~/Content/Assets/css/nerveSlider.min.css" type="text/css" media="screen" />
+<div id="itemModalImageContainer">
     <div class="modal-header">
 
     </div>
 
     <div class="modal-body">
-        
-        <div data-bind="foreach: global.SelectedModalImage().ItemImages">
+
+        <div class="iAmTest" data-bind="foreach: global.SelectedModalImage().ItemImages">
+
             <img data-bind="attr:{src: Path}" />
             @*     @Html.Partial("_TradeTagPartial")
                 <!-- ko if: $parent.TradeTag.length > 0 -->
@@ -22,4 +24,11 @@
 
     </div>
 </div>
+<script src="~/Scripts/jquery-ui-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.nerveSlider.min.js"></script>
 <script src="~/Scripts/Home/ItemModalImage.js"></script>
+
+
+
+
+

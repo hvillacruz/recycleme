@@ -22,11 +22,11 @@ body {
 .userImageModal {
     z-index: 1050;
     width: auto;
-    padding-left:10%;
-     padding-right:10%;
+    padding-left: 5%;
+    padding-right: 5%;
     margin-right: auto;
     margin-left: auto;
-    padding-top:100px;
+    padding-top: 55px;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */

@@ -174,6 +174,7 @@
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -245,6 +246,8 @@
     <Content Include="Content\Assets\css\recycleme-fonts.css" />
     <Content Include="Content\Assets\css\bootstrap-editable.css" />
     <Content Include="Content\Assets\css\font-awesome.min.css" />
+    <Content Include="Content\Assets\css\supersized.css" />
+    <Content Include="Content\Assets\css\supersized.shutter.css" />
     <Content Include="Content\Assets\font\fontawesome-webfont.svg" />
     <Content Include="Content\Assets\font\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Assets\images\Default\editor.png" />
@@ -259,6 +262,22 @@
     <Content Include="Content\Assets\images\Default\sprite_2x.png" />
     <Content Include="Content\Assets\images\spritemap%402x.png" />
     <Content Include="Content\Assets\images\spritemap.png" />
+    <Content Include="Content\Assets\images\supersized\back.png" />
+    <Content Include="Content\Assets\images\supersized\bg-black.png" />
+    <Content Include="Content\Assets\images\supersized\bg-hover.png" />
+    <Content Include="Content\Assets\images\supersized\button-tray-down.png" />
+    <Content Include="Content\Assets\images\supersized\button-tray-up.png" />
+    <Content Include="Content\Assets\images\supersized\forward.png" />
+    <Content Include="Content\Assets\images\supersized\nav-bg.png" />
+    <Content Include="Content\Assets\images\supersized\nav-dot.png" />
+    <Content Include="Content\Assets\images\supersized\pause.png" />
+    <Content Include="Content\Assets\images\supersized\play.png" />
+    <Content Include="Content\Assets\images\supersized\progress-back.png" />
+    <Content Include="Content\Assets\images\supersized\progress-bar.png" />
+    <Content Include="Content\Assets\images\supersized\progress.gif" />
+    <Content Include="Content\Assets\images\supersized\supersized-logo.png" />
+    <Content Include="Content\Assets\images\supersized\thumb-back.png" />
+    <Content Include="Content\Assets\images\supersized\thumb-forward.png" />
     <Content Include="Content\Assets\images\test2.jpg" />
     <Content Include="Content\Assets\images\test.jpg" />
     <Content Include="Content\Assets\images\avatar.jpg" />
@@ -273,6 +292,19 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Assets\css\icons\caption-gradient.png" />
+    <Content Include="Content\Assets\css\icons\dummy.png" />
+    <Content Include="Content\Assets\css\icons\loading.gif" />
+    <Content Include="Content\Assets\css\icons\next-dark.png" />
+    <Content Include="Content\Assets\css\icons\next-light.png" />
+    <Content Include="Content\Assets\css\icons\play-pause-dark.png" />
+    <Content Include="Content\Assets\css\icons\play-pause-light.png" />
+    <Content Include="Content\Assets\css\icons\prev-dark.png" />
+    <Content Include="Content\Assets\css\icons\prev-light.png" />
+    <Content Include="Content\Assets\css\icons\swatches\0,0,0,20.png" />
+    <Content Include="Content\Assets\css\icons\swatches\0,0,0,30.png" />
+    <Content Include="Content\Assets\css\icons\swatches\255,255,255,40.png" />
+    <Content Include="Content\Assets\css\nerveSlider.min.css" />
     <Content Include="Content\Styles\Home\TradeItems.css" />
     <Content Include="Content\Assets\images\colorboxTemplate3\controls.png" />
     <Content Include="Content\Assets\images\colorboxTemplate3\loading.gif" />
@@ -397,7 +429,10 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\dropzone.js" />
     <Content Include="Scripts\Home\ItemModalImage.js" />
+    <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\jquery.nerveSlider.min.js" />
     <Content Include="Scripts\Main\HubNotification.js" />
     <Content Include="Scripts\Main\Hub.js" />
     <Content Include="Content\chart.css" />
@@ -409,6 +444,8 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\Profile\Chart.js" />
     <Content Include="Scripts\Profile\Exchange.js" />
+    <Content Include="Scripts\supersized.3.2.7.min.js" />
+    <Content Include="Scripts\supersized.shutter.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="SignalR.html" />
