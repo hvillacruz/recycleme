@@ -1,28 +1,48 @@
 ﻿<link rel="stylesheet" href="~/Content/Assets/css/nerveSlider.min.css" type="text/css" media="screen" />
+<link href="~/Content/Styles/Home/UserImage.css" rel="stylesheet" />
 <div id="itemModalImageContainer">
     <div class="modal-header">
-
+        <h3><span data-bind="text:global.SelectedModalImage().Name"></span></h3>
     </div>
 
-    <div class="modal-body">
+    <div class="modal-body modalGallery">
 
-        <div class="iAmTest" data-bind="foreach: global.SelectedModalImage().ItemImages">
+        <div class="imgGallery" data-bind="foreach: global.SelectedModalImage().ItemImages">
 
-            <img data-bind="attr:{src: Path}" />
+            <img class="img-gallery" data-bind="attr:{src: Path}" />
             @*     @Html.Partial("_TradeTagPartial")
                 <!-- ko if: $parent.TradeTag.length > 0 -->
                 <div class="tags tagExchange" data-bind="foreach : $parent.ExchangeTag.split(' ')">
                     @Html.Partial("_ExchangeTagPartial")
                 </div>
                 <!-- /ko -->*@
+        </div>
 
+
+
+
+    </div>
+    <div class="modal-footer">
+
+        <div>
+            <ul class="row list-ul" data-bind="foreach: global.SelectedModalImage().ItemCommented">
+                <li class="row list-li">
+                    <div class="col-xs-3">
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: global.SelectedModalImage().Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                    </div>
+                    <div class="col-xs-4 txtComment">
+                        <span data-bind="text:Comment"></span>
+                    </div>
+                    <div class="col-xs-3">
+                    </div>
+                </li>
+            </ul>
         </div>
 
     </div>
 
-    <div class="modal-footer">
-
-    </div>
 </div>
 <script src="~/Scripts/jquery-ui-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.nerveSlider.min.js"></script>

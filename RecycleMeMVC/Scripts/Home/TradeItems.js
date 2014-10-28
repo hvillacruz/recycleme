@@ -5,8 +5,14 @@
     this.SelectedItem = ko.observableArray();
     this.TradeItem = function () {
 
-        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner", "GET", {}, function (data) {
-            self.Items(data.value);
+        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented", "GET", {}, function (data) {
+
+            var result = [];
+            $(data.value).each(function (index, value) {
+                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
+                result.push(res);
+            });
+            self.Items(result);
             self.Refresh();
           
         });

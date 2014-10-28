@@ -1,0 +1,28 @@
+﻿.modalGallery{
+
+    text-align:center;
+
+}
+
+p {
+    color: white !important;
+}
+
+.img {
+    background: #b1a598;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,.6);
+    z-index: 10;
+}
+
+.imgComment {
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.txtComment{
+    text-align:left;
+}

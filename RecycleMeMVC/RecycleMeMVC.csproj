@@ -420,6 +420,7 @@
     <Content Include="Content\Assets\images\spritemap%402xFA.png" />
     <Content Include="Content\Assets\images\spritemapEN.png" />
     <Content Include="Content\Assets\images\spritemapFA.png" />
+    <Content Include="Content\Styles\Home\UserImage.css" />
     <Content Include="Content\Styles\Profile\Exchange.css" />
     <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Content\Styles\Profile\Trade.css" />

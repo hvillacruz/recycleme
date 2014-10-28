@@ -11,17 +11,18 @@
 
     this.BindImages = function () {
 
+        console.log(global.SelectedModalImage());
 
         setTimeout(function () {
 
-            $(".iAmTest").nerveSlider({
-                slideTransitionSpeed: 1000,
+            $(".imgGallery").nerveSlider({
+                slideTransitionSpeed: 500,
                 slideTransitionEasing: "easeOutExpo",
                 sliderFullscreen: false,
                 sliderKeepAspectRatio: true,
                 sliderResizable: true,
-                //sliderWidth: "1024px",
-                //sliderHeight: "768px",
+                sliderWidth: "640px",
+                sliderHeight: "480px",
                 sliderHeightAdaptable:true
             });
 
