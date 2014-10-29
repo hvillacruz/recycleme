@@ -2,7 +2,44 @@
 <link href="~/Content/Styles/Home/UserImage.css" rel="stylesheet" />
 <div id="itemModalImageContainer">
     <div class="modal-header">
-        <h3><span data-bind="text:global.SelectedModalImage().Name"></span></h3>
+        <div>
+            <ul class="list img-list">
+                <li>
+                    <div>
+                        <div class="inner">
+                            <div class="li-img">
+                                <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: global.SelectedModalImage().Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+
+                            </div>
+                            <div class="li-text">
+                                <h2 class="li-head"><span data-bind="text:global.SelectedModalImage().Owner.FirstName"></span></h2>
+                                <div data-bind="text:global.SelectedModalImage().Name"></div>
+
+                                @*<span class="msg-time momentComment">
+                                    <i class="ace-icon fa fa-clock-o"></i>
+
+                                </span>*@
+
+                            </div>
+                            <div class="li-summary">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+
+
+        </div>
+
+
+
+
+
+
+
     </div>
 
     <div class="modal-body modalGallery">
@@ -25,20 +62,31 @@
     <div class="modal-footer">
 
         <div>
-            <ul class="row list-ul" data-bind="foreach: global.SelectedModalImage().ItemCommented">
-                <li class="row list-li">
-                    <div class="col-xs-3">
+            <ul class="list img-list" data-bind="foreach: global.SelectedModalImage().ItemCommented">
+                <li>
+                    <div>
+                        <div class="inner">
+                            <div class="li-img">
+                                <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                            </div>
+                            <div class="li-text">
+                                <h2 class="li-head"><span data-bind="text:Commenter.FirstName"></span></h2>
+                                <div data-bind="text:Comment"></div>
+
+                                <span class="msg-time momentComment">
+                                    <i class="ace-icon fa fa-clock-o"></i>
+                                    about <span class="momentComment" data-bind="text:$root.ConvertMoment($data)"></span>
+                                </span>
+
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="col-xs-2">
-                        <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: global.SelectedModalImage().Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
-                    </div>
-                    <div class="col-xs-4 txtComment">
-                        <span data-bind="text:Comment"></span>
-                    </div>
-                    <div class="col-xs-3">
-                    </div>
+                    <hr>
                 </li>
             </ul>
+
+
         </div>
 
     </div>

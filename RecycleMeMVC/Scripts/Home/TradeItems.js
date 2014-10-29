@@ -5,13 +5,16 @@
     this.SelectedItem = ko.observableArray();
     this.TradeItem = function () {
 
-        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented", "GET", {}, function (data) {
+
+        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {
-                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
+
+                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length});
                 result.push(res);
             });
+
             self.Items(result);
             self.Refresh();
           
@@ -19,6 +22,9 @@
 
         
     }
+
+
+   
 
     this.Search = function (item, data) {
         var result = [];
@@ -52,7 +58,7 @@
     this.SelectedImage = function (parent, selectedImage) {
        
         global.SelectedModalImage(selectedImage);
-
+        $(".search-box").hide();
     }
  
 

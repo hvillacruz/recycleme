@@ -32,6 +32,12 @@
     }
 
 
+    this.ConvertMoment = function (date) {
+        
+        return formatMoment(date);
+    }
+
+
 }
 var itemModalImage = new ItemModalImageViewModel();
 

@@ -1,7 +1,5 @@
-﻿.modalGallery{
-
-    text-align:center;
-
+﻿.modalGallery {
+    text-align: center;
 }
 
 p {
@@ -19,10 +17,55 @@ p {
 }
 
 .imgComment {
-    height: 30px !important;
-    width: 30px !important;
+    height: 50px !important;
+    width: 50px !important;
 }
 
-.txtComment{
-    text-align:left;
+.txtComment {
+    text-align: left;
+}
+
+
+.list li {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inner {
+    display: table-row;
+    overflow: hidden;
+}
+
+.li-img {
+    display: table-cell;
+    vertical-align: middle;
+    
+    padding-right: 1em;
+}
+
+    .li-img img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+.li-text {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.li-head {
+    margin: 0;
+}
+
+
+.momentComment {
+    color: rgba(0,0,0,.4);
+    font-size: 13px;
 }

@@ -20,13 +20,15 @@ body {
 }
 
 .userImageModal {
-    z-index: 1050;
+    margin-top:49px;
     width: auto;
-    padding-left: 5%;
-    padding-right: 5%;
+    /*padding-left: 5%;
+    padding-right: 5%;*/
     margin-right: auto;
     margin-left: auto;
-    padding-top: 55px;
+    /*padding-top: 55px;*/
+    height:100%;
+
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
