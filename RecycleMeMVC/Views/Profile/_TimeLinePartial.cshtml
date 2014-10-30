@@ -96,7 +96,7 @@
                         <!-- ko if: IsDeleted == false -->
                         <li class="row list-li">
                             <div class="col-xs-2">
-                                <div class="img imgComment"><img data-bind="attr:{src: $parent.Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                <div class="img imgComment"><img data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                             </div>
                             <div class="col-xs-9 txtComment">
                                 <span class="editable" data-bind="text:Comment ,attr:{'data-pk': Id }"></span>
@@ -116,7 +116,7 @@
                 @*<div data-bind="clickToEdit : $parent.message"> </div>*@
                 <div class="row">
                     <div class="col-xs-2">
-                        <div class="img imgComment"><img data-bind="attr:{src: Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                        <div class="img imgComment"><img data-bind="attr:{src: global.Login().Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                     </div>
                     <div class="col-xs-9 txtComment">
                         <div class="right-inner-addon ">

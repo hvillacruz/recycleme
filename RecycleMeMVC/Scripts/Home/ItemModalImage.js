@@ -23,7 +23,7 @@
                 sliderResizable: true,
                 sliderWidth: "640px",
                 sliderHeight: "480px",
-                sliderHeightAdaptable:true
+                sliderHeightAdaptable: true
             });
 
 
@@ -33,12 +33,43 @@
 
 
     this.ConvertMoment = function (date) {
-        
+
         return formatMoment(date);
     }
 
 
+    this.RecycleComment = function() {
+        
+        console.log(global.SelectedModalImage());
+        var item = global.SelectedModalImage();
+        var data = {
+
+            CommenterId: $("#loginUser").data("text"),
+            CommentedItemId: item.Id.toString(),
+            Comment: item.CommentText,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.ItemComment, "POST", JSON.stringify(data), function (result) {
+            AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commeter,ItemUserFollowers", "GET", {}, function (current) {
+
+                var res = $.extend(current, { CommentText: "" });
+                $(current).push(res);
+
+            
+                global.SelectedModalImage(current);
+
+                recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
+            });
+        });
+
+    }
+
+
 }
+
+
 var itemModalImage = new ItemModalImageViewModel();
 
 

@@ -69,3 +69,27 @@ p {
     color: rgba(0,0,0,.4);
     font-size: 13px;
 }
+
+
+.commentRow{
+    margin-bottom:100px;
+
+}
+
+.commentForm{
+
+    width:30%;
+    height:100px;
+    max-width:500px !important;
+}
+
+.avatarAlign{
+    vertical-align:top;
+}
+
+.button-right{
+
+    text-align:right;
+    width:30%;
+    
+}

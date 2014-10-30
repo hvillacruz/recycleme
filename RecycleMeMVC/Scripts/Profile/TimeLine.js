@@ -6,7 +6,7 @@
     this.message = ko.observable("Welcome to camp!");
     this.ItemTimeline = function () {
 
-        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {
@@ -65,7 +65,7 @@
     this.ModifyComment = function (item) {
 
         var data = {
-            CommenterId: $("#currentUser").data("text"),
+            CommenterId: $("#loginUser").data("text"),
             Comment: item.CommentText,
             ModifiedDate: Helper.time()
 
@@ -79,7 +79,7 @@
     this.DeleteComment = function (item) {
 
         var data = {
-            CommenterId: $("#currentUser").data("text"),
+            CommenterId: $("#loginUser").data("text"),
             IsDeleted: true,
             ModifiedDate: Helper.time()
 
@@ -108,7 +108,7 @@
     this.PostFb = function (item) {
 
         var data = {
-            UserId: $("#currentUser").data("text")
+            UserId: $("#loginUser").data("text")
         }
 
         AjaxNinja.Invoke(ODataApi.Item + "PostFacebook", "POST", JSON.stringify(data), function (result) {
@@ -122,7 +122,7 @@
 
         var data = {
 
-            CommenterId: $("#currentUser").data("text"),
+            CommenterId: $("#loginUser").data("text"),
             CommentedItemId: item.Id.toString(),
             Comment: item.CommentText,
             ModifiedDate: Helper.time()

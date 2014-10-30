@@ -26,6 +26,8 @@ namespace RecycleMeMVC.Controllers
 
             ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
             ViewBag.IsUser = User.Identity.GetUserId() == id ? 1 : 0;
+            ViewBag.LoginUserId = User.Identity.GetUserId();
+
             return View();
         }
 
