@@ -40,11 +40,11 @@
 
     this.RecycleComment = function() {
         
-        console.log(global.SelectedModalImage());
+       
         var item = global.SelectedModalImage();
         var data = {
 
-            CommenterId: $("#loginUser").data("text"),
+            CommenterId: global.Login().UserId,
             CommentedItemId: item.Id.toString(),
             Comment: item.CommentText,
             ModifiedDate: Helper.time()
@@ -52,7 +52,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.ItemComment, "POST", JSON.stringify(data), function (result) {
-            AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commeter,ItemUserFollowers", "GET", {}, function (current) {
+            AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (current) {
 
                 var res = $.extend(current, { CommentText: "" });
                 $(current).push(res);

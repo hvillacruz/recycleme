@@ -25,7 +25,7 @@
                             <span data-bind="text: $root.NotificationCount"></span>  Notification
                         </li>
                         <!-- /ko -->
-
+                        <!-- ko if: SenderId != null -->
                         <li>
                             <!-- ko if: Type == 2 -->
                             <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + UrlId }">
@@ -100,7 +100,7 @@
                             </a>
                             <!-- /ko -->
                         </li>
-
+                        <!-- /ko -->
 
                         <li class="dropdown-footer">
                             <!-- ko if: $index() >= 3  -->
@@ -129,6 +129,7 @@
                             <span data-bind="text: $root.MessageCount"></span>  Messages
                         </li>
                         <!-- /ko -->
+                        <!-- ko if: Sender != null -->
                         <li>
                             <a href="#">
                                 <span class="avatar-face">
@@ -147,7 +148,7 @@
                                 </span>
                             </a>
                         </li>
-
+                        <!-- /ko -->
                         <li class="dropdown-footer">
                             <!-- ko if: $index() >= 3  -->
                             <a href="@Url.Action("Message", "Profile")">
