@@ -1,5 +1,6 @@
 ﻿<link rel="stylesheet" href="~/Content/Assets/css/nerveSlider.min.css" type="text/css" media="screen" />
 <link href="~/Content/Styles/Home/UserImage.css" rel="stylesheet" />
+<!-- ko if: global.SelectedModalImage().Owner.Avatar != null -->
 <div id="itemModalImageContainer">
     <div class="modal-header">
         <div>
@@ -12,7 +13,7 @@
 
                             </div>
                             <div class="li-text">
-                                <h2 class="li-head"><span data-bind="text:global.SelectedModalImage().Owner.FirstName"></span></h2>
+                                <h2 class="li-head"><span @*data-bind="text:global.SelectedModalImage().Owner.FirstName"*@></span></h2>
                                 <div data-bind="text:global.SelectedModalImage().Name"></div>
 
                                 @*<span class="msg-time momentComment">
@@ -92,7 +93,7 @@
         </div>
 
         <div class="commentRow">
-          
+
             <ul class="list img-list">
                 <li>
                     <div>
@@ -102,9 +103,9 @@
                             </div>
                             <div class="li-text">
                                 <div class="right-inner-addon">
-                                    
+
                                     <textarea class="form-control commentForm" cols="50" rows="4" data-bind="value:global.SelectedModalImage().CommentText " placeholder=" write a comment..." />
-                                    
+
 
                                 </div>
                                 <hr />
@@ -114,11 +115,11 @@
                                     </button>
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
                     </div>
-                   
+
                 </li>
             </ul>
 
@@ -129,6 +130,7 @@
     </div>
 
 </div>
+<!-- /ko -->
 <script src="~/Scripts/jquery-ui-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.nerveSlider.min.js"></script>
 <script src="~/Scripts/Home/ItemModalImage.js"></script>

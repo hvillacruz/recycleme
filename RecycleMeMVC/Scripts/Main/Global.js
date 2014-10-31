@@ -155,6 +155,21 @@
         var total = self.NotificationCount() + 1;
         self.NotificationCount(total);
     }
+
+
+    this.GetModalItem = function (Id) {
+        console.log(Id.UrlId);
+        AjaxNinja.Invoke(ODataApi.Item + "(" + Id.UrlId + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (current) {
+
+            var res = $.extend(current, { CommentText: "" });
+            $(current).push(res);
+            global.SelectedModalImage(current);
+            console.log('GetModalItem');
+            console.log(global.SelectedModalImage().Owner.Avatar);
+            console.log(global.SelectedModalImage());
+
+        });
+    }
 }
 
 

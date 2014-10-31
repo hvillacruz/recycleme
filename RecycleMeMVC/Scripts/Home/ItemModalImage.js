@@ -38,9 +38,9 @@
     }
 
 
-    this.RecycleComment = function() {
-        
-       
+    this.RecycleComment = function () {
+
+
         var item = global.SelectedModalImage();
         var data = {
 
@@ -57,7 +57,7 @@
                 var res = $.extend(current, { CommentText: "" });
                 $(current).push(res);
 
-            
+
                 global.SelectedModalImage(current);
 
                 recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
@@ -69,11 +69,9 @@
 
 }
 
-
-var itemModalImage = new ItemModalImageViewModel();
-
-
-
-ko.applyBindings(itemModalImage, document.getElementById("itemModalImageContainer"));
-itemModalImage.ItemImage();
-itemModalImage.BindImages();
+setTimeout(function () {
+    var itemModalImage = new ItemModalImageViewModel();
+    ko.applyBindings(itemModalImage, document.getElementById("itemModalImageContainer"));
+    itemModalImage.ItemImage();
+    itemModalImage.BindImages();
+}, 500);

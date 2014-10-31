@@ -650,6 +650,7 @@
     <Content Include="Views\Profile\_BarterCommentPartial.cshtml" />
     <Content Include="Views\Home\_UserImagePartial.cshtml" />
     <Content Include="Views\Home\MyMethod.cshtml" />
+    <Content Include="Views\Shared\_ModalPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -46,7 +46,7 @@
                             </a>
                             <!-- /ko -->
                             <!-- ko if: Type == 3 -->
-                            <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + UrlId }">
+                            <a class="modal-link" data-bind="click: global.GetModalItem.bind(UrlId),attr: { 'href': '@Url.Action("UserImage", "Home")/' + UrlId }">
                                 <span class="avatar-face">
                                     <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
                                 </span>
@@ -222,6 +222,7 @@
                 </li>
             </ul>
         </div>
+     
     }
 
 
