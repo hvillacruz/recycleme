@@ -6,7 +6,7 @@
     this.TradeItem = function () {
 
 
-        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {
@@ -58,6 +58,24 @@
        
         global.SelectedModalImage(selectedImage);
         $(".search-box").hide();
+    }
+
+
+    this.LikeImage = function (data) {
+
+        console.log(data.OwnerId);
+        var obj = {
+            FollowerId: global.User.UserId(),
+            FollowedItemId: data.Id,
+            ModifiedDate: Helper.time()
+        }
+
+       
+
+        AjaxNinja.Invoke(ODataApi.ItemFollower, "POST", JSON.stringify(obj), function (result) {
+            recycleHub.sendNotification("", global.User.UserName() + " Likes your item.", data.OwnerId, 6);
+        });
+
     }
  
 

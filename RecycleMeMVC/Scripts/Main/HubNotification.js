@@ -36,7 +36,7 @@ var HubWrapper = function () {
                         exchange.TradeItem();
                 }
                     break;
-                case 6:
+                case 6: trade.TradeItem();
                     break;
                 default:
                     break;
