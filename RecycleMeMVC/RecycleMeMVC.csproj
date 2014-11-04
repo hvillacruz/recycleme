@@ -425,6 +425,7 @@
     <Content Include="Content\Styles\Profile\Message.css" />
     <Content Include="Content\Styles\Profile\Trade.css" />
     <Content Include="Content\Styles\Profile\TradeComment.css" />
+    <Content Include="Content\Styles\Profile\BidItems.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -445,6 +446,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\Profile\Chart.js" />
     <Content Include="Scripts\Profile\Exchange.js" />
+    <Content Include="Scripts\Profile\BidItems.js" />
     <Content Include="Scripts\supersized.3.2.7.min.js" />
     <Content Include="Scripts\supersized.shutter.min.js" />
     <Content Include="Scripts\toastr.js" />
@@ -650,6 +652,7 @@
     <Content Include="Views\Home\_UserImagePartial.cshtml" />
     <Content Include="Views\Home\MyMethod.cshtml" />
     <Content Include="Views\Shared\_ModalPartial.cshtml" />
+    <Content Include="Views\Profile\Bid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,6 +40,27 @@ namespace RecycleMeMVC.Controllers
         }
 
 
+
+        [Route("Bid/{id?}")]
+        public ActionResult Bid(string id)
+        {
+
+            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            ViewBag.IsUser = User.Identity.GetUserId() == id ? 1 : 0;
+            ViewBag.LoginUserId = User.Identity.GetUserId();
+
+            return View();
+        }
+
+        [Route("Bid")]
+        public ActionResult Bid()
+        {
+
+            ViewBag.UserId = User.Identity.GetUserId();
+            return View();
+        }
+
+
         [Route("Message")]
         public ActionResult Message()
         {

@@ -38,6 +38,18 @@
         window.location.href = '/Profile/Trade/' + global.SelectedModalImage().Id;
     }
 
+
+
+    this.ShowBidOffer = function () {
+
+        console.log(global.SelectedModalImage());
+        window.location.href = '/Profile/Bid/' + global.SelectedModalImage().Id;
+    }
+
+
+
+
+
     this.ConvertMoment = function (date) {
 
         return formatMoment(date);
