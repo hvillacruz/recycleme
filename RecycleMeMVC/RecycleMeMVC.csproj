@@ -450,7 +450,6 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="SignalR.html" />
-    <Content Include="index.html" />
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-editable.min.js" />
     <Content Include="Scripts\External\ace-elements.min.js" />

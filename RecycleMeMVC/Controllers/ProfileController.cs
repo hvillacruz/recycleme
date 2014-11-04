@@ -66,6 +66,15 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
+
+        [Route("Trade")]
+        public ActionResult Trade()
+        {
+            
+            return View();
+        }
+
+
         [Route("Trade/{id?}")]
         public ActionResult Trade(string id)
         {
@@ -73,6 +82,13 @@ namespace RecycleMeMVC.Controllers
             return View();
         }
 
+
+        [Route("Exchange")]
+        public ActionResult Exchange()
+        {
+
+            return View();
+        }
 
         [Route("Exchange/{id?}")]
         public ActionResult Exchange(string id)
@@ -82,7 +98,7 @@ namespace RecycleMeMVC.Controllers
         }
 
 
-
+      
         [Route("Followers/{id?}")]
         public ActionResult Followers(string id)
         {
