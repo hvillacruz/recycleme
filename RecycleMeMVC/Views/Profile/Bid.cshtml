@@ -5,7 +5,7 @@
 <script src="~/Scripts/modernizr.custom.js"></script>
 
 
-
+<span id="ItemId" data-text="@ViewBag.ItemId"></span>
 <div id="bidContainer" class="containerBid">
 
     <div class="col-lg-9">
@@ -17,21 +17,14 @@
                 <div class="widget">
 
                     <div class="cover">
-                        <a class="modal-link" href="Home/UserImage/1" data-bind="click: $root.SelectedImage.bind($data, $parent)">
+                        <a data-bind="attr: { 'href': '@Url.Action("Exchange", "Profile")/' + Id }">
                             <img src="~/Content/Assets/images/avatar.jpg" />
                         </a>
                     </div>
                     <img data-bind="attr:{src: Buyer.Avatar},click: $root.SelectedUser.bind($data, $parent)" src="~/Content/Assets/images/avatar.jpg" class="userList" />
-                    <h1><span data-bind="text:Buyer.FirstName"></span></h1>
-
-
-
-
-                    <div class="stat-stat">
-                        <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="fa icon-2xx fa-heart "><span class="box-stat-icon-text">0</span></i></div>
-                        <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-comments"><span class="box-stat-icon-text">0</span></i></div>
-                        <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-share-alt"><span class="box-stat-icon-text"></span></i></div>
-                    </div>
+                    <h5><span data-bind="text:Buyer.FirstName"></span></h5>
+                  
+                    <div class="commentBid">I wan to buy this item which i cannot test idiot of my admiration</div>
 
                 </div>
 

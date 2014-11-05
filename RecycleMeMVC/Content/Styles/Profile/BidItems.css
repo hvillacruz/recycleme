@@ -27,20 +27,20 @@ body {
     margin-right: auto;
     margin-left: auto;
     /*padding-top: 55px;*/
-    height:100%;
-
+    height: 100%;
 }
 
 
 .containerBid {
     padding-right: 15px;
     padding-left: 15px;
-    margin-left:-40px;
-    
+    margin-left: -40px;
 }
 
 .ad-top {
-    margin-top:60px;
+    margin-top: 60px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -208,12 +208,12 @@ body {
 
     .widget > .userList {
         position: relative;
-        top: -50px;
-        width: 100px;
-        height: 100px;
-        margin: auto;
-        border: 3px solid #FFF;
+        top: -30px;
+        width: 50px;
+        height: 50px;
+        border: 2px solid #FFF;
         border-radius: 50%;
+        margin-left: 5px;
     }
 
     .widget:hover .userList {
@@ -230,10 +230,11 @@ body {
         color: #999;
     }
 
-    .widget > h1 {
-        margin: -40px 0 20px;
-        font-size: 26px;
-        color: #000;
+    .widget > h5 {
+        margin: -50px 55px 20px;
+        /* font-size: 26px; */
+        /*color: #000;*/
+        padding-bottom: 10px;
     }
 
     .widget > h3 {
@@ -270,3 +271,13 @@ body {
             border: none;
             border-radius: 0 0 3px 0;
         }
+
+.commentBid {
+    margin-left:55px;
+    margin-right:30px;
+    margin-top:-30px;
+    font-size:13px;
+    padding-bottom: 10px;
+    color:black;
+    word-wrap: break-word;
+}
