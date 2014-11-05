@@ -194,11 +194,24 @@
             <div class="panel-body">
                 <div class="align-right">
                     <div class="align-right">
+
                         <button type="button" class="btn btn-white" data-bind="click: $root.TradeItemPost">Trade</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="panel panel-default" data-bind="visible: $root.HasNotTraded != true">
+            <div class="panel-body">
+                <div class="align-right">
+                    <div class="align-right">
+
+                        <button type="button" class="btn btn-white" data-bind="click: $root.TradeItemPatch.bind($data)">Update Trade</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

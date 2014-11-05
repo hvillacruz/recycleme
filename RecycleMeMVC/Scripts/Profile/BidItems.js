@@ -5,8 +5,8 @@
     this.SelectedItem = ko.observableArray();
     this.BidItem = function () {
 
-        //?$filter=ItemId%20eq%207&$expand=Trades/Item,Buyer
-        AjaxNinja.Invoke(ODataApi.Trade + "?$filter=ItemId eq " + $("#ItemId").text() + "&$expand=Trades/Item,Buyer,Item,Item/ItemImages", "GET", {}, function (data) {
+        
+        AjaxNinja.Invoke(ODataApi.Trade + "?$filter=ItemId eq " + $("#ItemId").attr("data-text") + "&$expand=Trades/Item,Buyer,Item,Item/ItemImages", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {
