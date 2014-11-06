@@ -140,6 +140,7 @@
                 }
                 else if (info.step == 3) {
                     pill.Recycle();
+                    $('#fuelux-wizard').ace_wizard('selectItem', { step: 1 });
                 }
             }
             else {
@@ -158,8 +159,10 @@
         }).on('finished', function (e) {
             pill.RemoveFiles();
             pill.Recycle();
+          
+            $('[data-target=#step1]').trigger("click");
             bootbox.dialog({
-                message: "Thank you! Your information was successfully saved!",
+                message: "Trade Item is Uploaded",
                 buttons: {
                     "success": {
                         "label": "OK",

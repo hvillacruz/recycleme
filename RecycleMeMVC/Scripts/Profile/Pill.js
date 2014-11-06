@@ -62,6 +62,8 @@ pill.Pill();
 
 var myDropzoneInput = null;
 function clearFiles() {
+    var form = { Name: "", ExchangeTag: "Exchange", TradeTag: "Trade", OwnerId: 0, ModifiedDate: Helper.time(), ItemCategoryId: 0 };
+    pill.PillView(form);
     myDropzoneInput.removeAllFiles();
 }
 jQuery(function ($) {
@@ -86,9 +88,14 @@ jQuery(function ($) {
         init: function () {
             var that = this;
             myDropzoneInput = this;
+            this.on("addedfile", function (file) {
+                console.log('file added');
+                //$('[data-target=#step2]').trigger("click");
+                $('.btn btn-success btn-next btn-xs').click();
+            });
         },
         success: function (file, result) {
-
+           
             $.each(result, function (key, value) {
 
                 ImageIdResult.push(value);

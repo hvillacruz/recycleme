@@ -190,6 +190,8 @@
 
 
         </div>
+
+        <!-- ko if: $root.isApprove -->
         <div class="panel panel-default" data-bind="visible: $root.HasNotTraded">
             <div class="panel-body">
                 <div class="align-right">
@@ -200,7 +202,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="panel panel-default" data-bind="visible: $root.HasNotTraded != true">
             <div class="panel-body">
                 <div class="align-right">
@@ -211,7 +213,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- /ko -->
     </div>
 </div>
 

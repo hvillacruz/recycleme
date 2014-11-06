@@ -61,6 +61,9 @@ var TradeViewModel = function () {
 
     }
 
+    this.isApprove = ko.computed(function () {
+        return self.Status() != "Approve" ? true :false;
+    });
 
     this.TradeCommentPost = function (data, item) {
 
