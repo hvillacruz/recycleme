@@ -47,6 +47,7 @@ namespace RecycleMeOdataWebApi
             //ItemController
             builder.EntitySet<Item>("Item");
             builder.Entity<Item>().Collection.Action("UploadFile");
+            
             ActionConfiguration action = builder.Entity<Item>().Collection.Action("DownloadFile");
             action.Parameter<string>("name");
 
@@ -80,7 +81,10 @@ namespace RecycleMeOdataWebApi
             builder.EntitySet<TradeComment>("TradeComment");
 
             //TradeBuyerItem
-            builder.EntitySet<TradeBuyerItem>("TradeBuyerItem"); 
+            builder.EntitySet<TradeBuyerItem>("TradeBuyerItem");
+            ActionConfiguration TradeBuyerItemDelete = builder.Entity<TradeBuyerItem>().Collection.Action("TradeBuyerItemDelete");
+            TradeBuyerItemDelete.Parameter<string>("TradeId");
+
 
             //Notifications
             builder.EntitySet<Notification>("Notification"); 

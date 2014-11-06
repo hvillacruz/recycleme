@@ -26,7 +26,7 @@ namespace RecycleMeOdataWebApi.Controllers
     builder.EntitySet<Trade>("Trade"); 
     config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class TradeBuyerItemController : ODataController
+    public partial class TradeBuyerItemController : ODataController
     {
         private RecycleMeContext db = new RecycleMeContext();
 

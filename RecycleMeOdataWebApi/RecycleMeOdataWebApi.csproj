@@ -218,6 +218,7 @@
     </Compile>
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\TradeBuyerItemPartialController.cs" />
     <Compile Include="Controllers\TradeBuyerItemController.cs" />
     <Compile Include="Controllers\TradeCommentController.cs" />
     <Compile Include="Controllers\TradeController.cs" />

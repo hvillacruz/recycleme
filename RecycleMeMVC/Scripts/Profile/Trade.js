@@ -46,7 +46,7 @@ var TradeViewModel = function () {
     this.SelectedItem = function () {
 
         var result = [];
-        AjaxNinja.Invoke(ODataApi.Item + "('" + $("#currentItem").data("text") + "')?$expand=Owner,ItemImages", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "('" + $("#currentItem").data("text") + "')?$expand=Owner,ItemImages,ItemTrades", "GET", {}, function (data) {
             var res = $.extend(data, { CommentText: "" });
             result.push(res);
             self.Selected(result);
@@ -94,7 +94,13 @@ var TradeViewModel = function () {
 
     this.TradeItemBuyer = function () {
 
+        self.BuyersItem([]);
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'Deleted'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
+            
+            $(data.value[0].Trades).each(function (index, value) {
+                self.currentItems.push(value.ItemId);
+            });
+
             self.BuyersItem(data.value);
         });
     }
@@ -163,29 +169,31 @@ var TradeViewModel = function () {
     this.TradeItemPatch = function (obj) {
 
 
+        var TradeId = {
+            TradeId: obj.Selected()[0].ItemTrades[0].Id.toString()
+        }
 
-        $(self.currentItems).each(function (index, value) {
+        AjaxNinja.Invoke(ODataApi.TadeBuyerItem + "/TradeBuyerItemDelete", "POST", JSON.stringify(TradeId), function (data) {
+            $(self.currentItems).each(function (index, value) {
 
 
-            var item = {
-                ItemId: value,
-                TradeId: obj.Selected()[0].Id,
-                ModifiedDate: Helper.time()
+                var item = {
+                    ItemId: value,
+                    TradeId: obj.Selected()[0].ItemTrades[0].Id,
+                    ModifiedDate: Helper.time()
 
-            }
+                }
 
-            AjaxNinja.Invoke(ODataApi.TadeBuyerItem + "/(" + obj.Selected()[0].Id + ")", "DELETE", {}, function (data) {
-            
                 AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(item), function (data) {
-                    items.TradeItemBuyer();
+                    //items.TradeItemBuyer();
                     recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
                 });
 
+
+
             });
 
-            
         });
-
     }
 }
 
