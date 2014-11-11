@@ -125,8 +125,6 @@
         $("#tagTrade").tagging();
         $("#tagExchange").tagging();
 
-
-
         var $validation = false;
         var wiz = $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
             if (info.direction == "next") {
@@ -157,10 +155,12 @@
             }
            
         }).on('finished', function (e) {
-            pill.RemoveFiles();
+            
             pill.Recycle();
-          
+            pill.RemoveFiles();
+
             $('[data-target=#step1]').trigger("click");
+
             bootbox.dialog({
                 message: "Trade Item is Uploaded",
                 buttons: {

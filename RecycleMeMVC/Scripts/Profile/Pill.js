@@ -64,6 +64,10 @@ var myDropzoneInput = null;
 function clearFiles() {
     var form = { Name: "", ExchangeTag: "Exchange", TradeTag: "Trade", OwnerId: 0, ModifiedDate: Helper.time(), ItemCategoryId: 0 };
     pill.PillView(form);
+
+    $("#tagTrade").tagging();
+    $("#tagExchange").tagging();
+
     myDropzoneInput.removeAllFiles();
 }
 jQuery(function ($) {
@@ -87,6 +91,7 @@ jQuery(function ($) {
                  
         init: function () {
             var that = this;
+            myDropzoneInput = that;
            
         },
         accept: function (file, done) {
