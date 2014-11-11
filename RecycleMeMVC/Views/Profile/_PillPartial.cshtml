@@ -25,7 +25,7 @@
                         <div class="space-4"></div>
                         <div class="right-inner-addon ">
                             <i class="fa fa-user"></i>
-                            <input type="text" class="form-control" id="itemName" data-bind="value: PillView().Name" value="" placeholder="Item Name" />
+                            <input type="text" class="form-control" id="itemName" data-bind="value: PillView().Name" placeholder="Item Name" />
                         </div>
                         <div class="space-2"></div>
                         <span class="badge badge-info">Trade Tag</span>
@@ -140,7 +140,7 @@
                 }
                 else if (info.step == 3) {
                     pill.Recycle();
-                    $('#fuelux-wizard').ace_wizard('selectItem', { step: 1 });
+                  
                 }
             }
             else {

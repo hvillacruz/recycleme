@@ -36,6 +36,7 @@ namespace RecycleMeMVC.Controllers
         {
 
             ViewBag.UserId = User.Identity.GetUserId();
+            ViewBag.LoginUserId = User.Identity.GetUserId();
             return View();
         }
 

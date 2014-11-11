@@ -6,7 +6,7 @@
     this.TradeItem = function () {
 
 
-        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "?$filter=IsDeleted eq false&$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {

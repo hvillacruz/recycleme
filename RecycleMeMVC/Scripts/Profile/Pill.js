@@ -18,11 +18,11 @@
 
     this.Recycle = function () {
 
+     
         self.PillView().OwnerId = global.User.UserId();
         self.PillView().ModifiedDate = Helper.time();
         self.PillView().ItemCategoryId = this.SelectedChoice()[0];
         self.PillView().TradeTag = S($("#tagTrade").text()).replaceAll('×', '').replaceAll('#', '').s;
-
         self.PillView().ExchangeTag = S($("#tagExchange").text()).replaceAll('×', '').replaceAll('#', '').s;
 
         AjaxNinja.Invoke(ODataApi.Item, "POST", JSON.stringify(this.PillView()), function (data) {
@@ -87,12 +87,20 @@ jQuery(function ($) {
                  
         init: function () {
             var that = this;
-            myDropzoneInput = this;
-            this.on("addedfile", function (file) {
-                console.log('file added');
-                //$('[data-target=#step2]').trigger("click");
-                $('.btn btn-success btn-next btn-xs').click();
-            });
+           
+        },
+        accept: function (file, done) {
+            if (file.name == "justinbieber.jpg") {
+                done("Naha, you don't.");
+            }
+            else {
+
+                if (this.files.length < 2)
+                    $('#fuelux-wizard').wizard('next');
+
+                done();
+            }
+
         },
         success: function (file, result) {
            
