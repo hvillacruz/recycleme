@@ -2,13 +2,14 @@ var TradeViewModel = function () {
     var self = this;
     this.Status = ko.observable("Pending");
     this.HasNotTraded = ko.observable(false);
+    this.NoItem = ko.observable(false);
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
     this.SortedTrade = ko.observableArray();
     this.currentItems = [];
     this.CurrentItems = function () {
-
+        self.NoItem(false);
         AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
@@ -17,6 +18,7 @@ var TradeViewModel = function () {
 
                 result.push(res);
             });
+            self.NoItem(false);
             self.Items(result);
 
 
@@ -62,8 +64,10 @@ var TradeViewModel = function () {
     }
 
     this.isApprove = ko.computed(function () {
-        return self.Status() != "Approve" ? true :false;
+        return self.Status() != "Approve"  ? true : false;
     });
+
+
 
     this.TradeCommentPost = function (data, item) {
 
@@ -98,15 +102,19 @@ var TradeViewModel = function () {
     this.TradeItemBuyer = function () {
 
         self.BuyersItem([]);
+       
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'Deleted'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
             
             $(data.value[0].Trades).each(function (index, value) {
                 self.currentItems.push(value.ItemId);
             });
-
+         
             self.BuyersItem(data.value);
+
         });
     }
+
+   
 
     this.Trade = ko.observableArray();
     this.TradeItem = function () {
@@ -202,7 +210,8 @@ var TradeViewModel = function () {
 
 var items = new TradeViewModel();
 ko.applyBindings(items, document.getElementById("panelContainer"));
+items.TradeItemBuyer();
 items.CurrentItems();
 items.SelectedItem();
-items.TradeItemBuyer();
+
 items.TradeItem();
