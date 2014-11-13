@@ -9,7 +9,7 @@ var TradeViewModel = function () {
     this.SortedTrade = ko.observableArray();
     this.currentItems = [];
     this.CurrentItems = function () {
-        self.NoItem(false);
+       
         AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
@@ -18,7 +18,10 @@ var TradeViewModel = function () {
 
                 result.push(res);
             });
-            self.NoItem(false);
+            if(data.value.length > 0)
+                self.NoItem(false);
+            else
+                self.NoItem(true);
             self.Items(result);
 
 
@@ -63,7 +66,7 @@ var TradeViewModel = function () {
 
     }
 
-    this.isApprove = ko.computed(function () {
+    this.IsNotApprove = ko.computed(function () {
         return self.Status() != "Approve"  ? true : false;
     });
 
