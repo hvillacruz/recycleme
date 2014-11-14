@@ -135,8 +135,10 @@ var TradeViewModel = function () {
                     items.SortedTrade(item);
                 }
             }
-            else
-                self.HasNotTraded(true);
+            else {
+                self.TradeItemPost(null);
+                self.HasNotTraded(false);
+            }
         });
 
     }
@@ -161,7 +163,7 @@ var TradeViewModel = function () {
         }
 
         AjaxNinja.Invoke(ODataApi.Trade, "POST", JSON.stringify(data), function (data) {
-
+            items.TradeItemBuyer();
             $(self.currentItems).each(function (index, value) {
 
 
@@ -173,7 +175,7 @@ var TradeViewModel = function () {
                 }
 
                 AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(item), function (data) {
-                    items.TradeItemBuyer();
+                  
                     recycleHub.sendNotification("", global.User.UserName() + " Wants to trade", self.Selected()[0].OwnerId, 4);
                 });
             });
@@ -216,5 +218,4 @@ ko.applyBindings(items, document.getElementById("panelContainer"));
 items.TradeItemBuyer();
 items.CurrentItems();
 items.SelectedItem();
-
 items.TradeItem();
