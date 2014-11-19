@@ -191,10 +191,10 @@
 
         </div>
         <span data-bind="text:$root.IsNotApprove"></span>
-        <span data-bind="text:$root.NoItem()"></span>
+        <span data-bind="text:$root.HasItem()"></span>
         <span data-bind="text:$root.HasNotTraded"></span>
-
-        <!-- ko if: $root.IsNotApprove && $root.NoItem() == false  -->
+    
+        <!-- ko if: $root.IsNotApprove || $root.HasItem() -->
         <!-- ko if: $root.HasNotTraded -->
         <div class="panel panel-default">
             <div class="panel-body">
@@ -221,7 +221,7 @@
         <!-- /ko -->
         <!-- /ko -->
 
-        <div class="alert alert-danger" data-bind="visible:$root.NoItem()">
+        <div class="alert alert-danger" data-bind="visible:!$root.HasItem()">
             <button type="button" class="close" data-dismiss="alert">
                 <i class="ace-icon fa fa-times"></i>
             </button>

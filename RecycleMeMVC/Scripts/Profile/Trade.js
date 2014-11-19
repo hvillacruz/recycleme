@@ -2,7 +2,7 @@ var TradeViewModel = function () {
     var self = this;
     this.Status = ko.observable("Pending");
     this.HasNotTraded = ko.observable(false);
-    this.NoItem = ko.observable(false);
+    this.HasItem = ko.observable(false);
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
@@ -19,9 +19,9 @@ var TradeViewModel = function () {
                 result.push(res);
             });
             if(data.value.length > 0)
-                self.NoItem(false);
+                self.HasItem(true);
             else
-                self.NoItem(true);
+                self.HasItem(false);
             self.Items(result);
 
 
@@ -67,7 +67,7 @@ var TradeViewModel = function () {
     }
 
     this.IsNotApprove = ko.computed(function () {
-        return self.Status() != "Approve"  ? true : false;
+        return self.Status() != "Approve" && self.Status() != "Reject" ? true : false;
     });
 
 
