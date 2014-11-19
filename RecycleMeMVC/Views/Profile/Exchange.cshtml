@@ -193,7 +193,7 @@
             <div class="panel-body">
                 <div class="align-right">
                     <div class="btn-group align-left">
-                        <button class="status btn btn-info btn-white" data-bind="click: $root.ChangeStatus"><span data-bind="text: $root.Status"></span></button>
+                        <button class="status btn btn-info btn-white" data-bind="click: $root.ChangeStatus.bind($data, null)"><span data-bind="text: $root.Status"></span></button>
 
                         <button data-toggle="dropdown" class="btn btn-info btn-white dropdown-toggle">
                             <span class="ace-icon fa fa-caret-down icon-only"></span>
