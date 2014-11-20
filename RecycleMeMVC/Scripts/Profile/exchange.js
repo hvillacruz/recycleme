@@ -6,11 +6,13 @@
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
     this.SortedTrade = ko.observableArray();
+    this.ItemId = ko.observable(0);
     this.TradeItem = function () {
 
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=Id eq " + $("#currentItem").data("text") + "&$expand=Seller,Buyer,TradeItem/TradeCommenter,Item/ItemImages", "GET", {}, function (data) {
             self.Trade(data.value);
             self.SelectedItem(data.value[0].ItemId);
+            self.ItemId(data.value[0].ItemId);
             self.Status(data.value[0].Status);
             var item = exchange.Trade()[0].TradeItem.sort(function (left, right) {
                 return left.Id == right.Id ? 0 : (left.Id > right.Id ? -1 : 1);
@@ -73,10 +75,27 @@
         }
 
         var status = self.Status() == 'Approve' ? "Approved" : "Rejected";
+        self.UpdateItem(1);//0-OPEN;1-CLOSED
         AjaxNinja.Invoke(ODataApi.Trade + "(" + $("#currentItem").data("text") + ")", "PATCH", JSON.stringify(data), function (result) {
             recycleHub.sendNotification("", global.User.UserName() + " " + status + " your offer!", self.Trade()[0].BuyerId, 6);
         });
     }
+
+
+
+    this.UpdateItem = function (status) {
+
+        var data = {
+            Status: status,
+            ModifiedDate: Helper.time()
+
+        }
+
+        AjaxNinja.Invoke(ODataApi.Item + "(" + self.ItemId() + ")", "PATCH", JSON.stringify(data), function (result) {
+            
+        });
+    }
+
 
     $("#status.dropdown-menu li a").click(function () {
 
