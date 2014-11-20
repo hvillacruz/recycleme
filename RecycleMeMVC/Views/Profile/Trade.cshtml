@@ -213,14 +213,23 @@
                 <div class="align-right">
                     <div class="align-right">
 
-                        <button type="button" class="btn btn-white" data-bind="click: $root.TradeItemPatch.bind($data)">Update Trade</button>
+                        <button type="button" class="btn btn-white" data-bind="click: $root.CheckItemStatus.bind($data)">Update Trade</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /ko -->
         <!-- /ko -->
-
+        <div class="alert alert-danger" data-bind="visible:$root.IsClosed()">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+            <strong>
+                <i class="ace-icon fa fa-times"></i>
+                Notice
+            </strong>
+           This item is Closed!
+        </div>
         <div class="alert alert-danger" data-bind="visible:!$root.HasItem()">
             <button type="button" class="close" data-dismiss="alert">
                 <i class="ace-icon fa fa-times"></i>

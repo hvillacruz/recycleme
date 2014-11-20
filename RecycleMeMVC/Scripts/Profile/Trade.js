@@ -3,6 +3,7 @@ var TradeViewModel = function () {
     this.Status = ko.observable("Pending");
     this.HasNotTraded = ko.observable(false);
     this.HasItem = ko.observable(false);
+    this.IsClosed = ko.observable(false);
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
     this.Selected = ko.observableArray();
@@ -181,6 +182,22 @@ var TradeViewModel = function () {
             });
         });
     }
+
+
+
+    this.CheckItemStatus = function (obj) {
+
+        AjaxNinja.Invoke(ODataApi.Item + "(" + obj.Selected()[0].ItemTrades[0].ItemId.toString() + ")", "GET", {}, function (data) {
+            if (data.Status != 1) {
+                self.TradeItemPatch(obj);
+            }
+            else {
+                self.IsClosed(true);
+            }
+        });
+    }
+
+
 
     this.TradeItemPatch = function (obj) {
 

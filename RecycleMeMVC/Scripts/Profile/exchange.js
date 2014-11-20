@@ -68,6 +68,7 @@
 
     this.ChangeStatus = function () {
 
+      
         var data = {
             Status: self.Status(),
             ModifiedDate: Helper.time()
