@@ -451,6 +451,8 @@
     <Content Include="Scripts\supersized.shutter.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="SignalR.html" />
     <Content Include="Scripts\bootstrap-editable.js" />
     <Content Include="Scripts\bootstrap-editable.min.js" />
@@ -576,6 +578,7 @@
     <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Scripts\Profile\jquery.nanoscroller.js.map" />
     <Content Include="Scripts\toastr.min.js.map" />
+    <Content Include="Scripts\underscore.min.map" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\Profile\Wall2.js" />
     <Content Include="Scripts\Profile\Wall.js" />

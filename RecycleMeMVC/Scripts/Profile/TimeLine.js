@@ -1,6 +1,7 @@
 ﻿var TimeLineViewModel = function () {
 
     var self = this;
+    var feed = [];
     this.Items = ko.observableArray();
     this.SelectedItem = ko.observableArray();
     this.message = ko.observable("Welcome to camp!");
@@ -8,18 +9,42 @@
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
 
-            var result = [];
+
             $(data.value).each(function (index, value) {
                 var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
                 // $.extend(res.ItemImages, { Class: "metro" - value.ItemImages.length });
 
-                result.push(res);
+                feed.push(res);
             });
-            self.Items(result);
-            setEditable();
+            //self.Items(result);
+
+            timeline.Feed();
         });
 
     }
+
+    this.Feed = function () {
+
+
+        AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/UserFollowers?$expand=FollowedUser,FollowedUser/Items,FollowedUser/Items/ItemImages,FollowedUser/Items/ItemCommented,FollowedUser/Items/ItemUserFollowers,FollowedUser/Items/Owner,FollowedUser/Items/Category", "GET", {}, function (data) {
+            _.each(data.value, function (item) {
+
+                _.each(item.FollowedUser.Items, function (obj) {
+
+                    var res = $.extend(obj, { CommentText: "", ImageClass: "metro-" + obj.ItemImages.length });
+                    feed.push(res);
+                });
+
+
+            });
+
+
+
+            self.Items(feed);
+            setEditable();
+        });
+    }
+
 
     function setEditable() {
         $.fn.editable.defaults.mode = 'inline';
@@ -86,7 +111,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.ItemComment + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
-           // alert('success');
+            // alert('success');
         });
     }
 
@@ -101,7 +126,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
-             alert('success');
+            alert('success');
         });
     }
 
@@ -112,7 +137,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.Item + "PostFacebook", "POST", JSON.stringify(data), function (result) {
-             alert('success');
+            alert('success');
         });
     }
 
@@ -131,13 +156,13 @@
 
         AjaxNinja.Invoke(ODataApi.ItemComment, "POST", JSON.stringify(data), function (result) {
 
-         
+
 
             if (type == 1) {
 
                 AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
 
-                    recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId,3);
+                    recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
                 });
 
                 timeline.ItemTimeline();
@@ -156,7 +181,7 @@
 
                     self.SelectedItem(current);
 
-                    recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId,3);
+                    recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
                 });
             }
         });

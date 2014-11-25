@@ -209,7 +209,7 @@ namespace RecycleMeOdataWebApi.Controllers
         }
 
         // GET odata/User(5)/UserFollowers
-        [Queryable]
+        [Queryable(MaxExpansionDepth = 3)]
         public IQueryable<UserFollower> GetUserFollowers([FromODataUri] string key)
         {
             return db.Users.Where(m => m.UserId == key).SelectMany(m => m.UserFollowers);
