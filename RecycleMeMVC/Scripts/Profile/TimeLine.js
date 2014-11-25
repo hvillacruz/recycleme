@@ -27,18 +27,20 @@
 
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/UserFollowers?$expand=FollowedUser,FollowedUser/Items,FollowedUser/Items/ItemImages,FollowedUser/Items/ItemCommented,FollowedUser/Items/ItemUserFollowers,FollowedUser/Items/Owner,FollowedUser/Items/Category", "GET", {}, function (data) {
-            _.each(data.value, function (item) {
+     
+            if (global.User.UserId() == $("#currentUser").data("text")) {
+                _.each(data.value, function (item) {
 
-                _.each(item.FollowedUser.Items, function (obj) {
+                    _.each(item.FollowedUser.Items, function (obj) {
 
-                    var res = $.extend(obj, { CommentText: "", ImageClass: "metro-" + obj.ItemImages.length });
-                    feed.push(res);
+                        var res = $.extend(obj, { CommentText: "", ImageClass: "metro-" + obj.ItemImages.length });
+                        feed.push(res);
+                    });
+
+
                 });
 
-
-            });
-
-
+            }
 
             self.Items(feed);
             setEditable();
