@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[Items] (
+﻿CREATE TABLE [dbo].[Items] (
     [Id]             BIGINT         IDENTITY (1, 1) NOT NULL,
     [OwnerId]        NVARCHAR (128) NULL,
     [Name]           NVARCHAR (MAX) NULL,
@@ -9,10 +9,13 @@ CREATE TABLE [dbo].[Items] (
     [IsDeleted]      BIT            NOT NULL,
     [ModifiedDate]   DATETIME       NOT NULL,
     [ItemCategoryId] INT            NOT NULL,
+    [Status]         INT            NULL,
     CONSTRAINT [PK_dbo.Items] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_dbo.Items_dbo.ItemCategories_ItemCategoryId] FOREIGN KEY ([ItemCategoryId]) REFERENCES [dbo].[ItemCategories] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_dbo.Items_dbo.Users_OwnerId] FOREIGN KEY ([OwnerId]) REFERENCES [dbo].[Users] ([UserId])
 );
+
+
 
 
 

@@ -153,7 +153,7 @@ namespace RecycleMeOdataWebApi.Controllers
 
 
                                 Encoding encoding = Encoding.UTF8;
-                                string fromBase64 = encoding.GetString(dataStream).Replace("data:image/jpeg;base64,", "");
+                                string fromBase64 = encoding.GetString(dataStream).Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
                                 byte[] data = System.Convert.FromBase64String(fromBase64);
                                 MemoryStream ms = new MemoryStream(data);
 
