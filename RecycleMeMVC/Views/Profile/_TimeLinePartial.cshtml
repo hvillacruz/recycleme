@@ -29,21 +29,26 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline-badge"><i class="fa fa-picture-o"></i></div>
+            <img class="timeline-badge timelineBorder" data-bind="attr:{src: Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" />
             <div class="timeline-panel">
                 <div class="timeline-heading">
                     <div class="row">
                         <div class="col-xs-11">
-                            <h4 class="timeline-title">
-                                <span data-bind="text:Name"></span>
 
-                            </h4>
+                            <div>
+                                <h3 data-bind="text:Name"></h3>
+                            </div>
+
+                            <span class="timeline-title text-muted">
+                                <span data-bind="text:Owner.FirstName"></span>
+
+                            </span>
                         </div>
                         <div class="col-xs-1">
                             @Html.Partial("~/Views/Home/_SettingItemPartial.cshtml")
                         </div>
                         <div class="col-xs-12">
-                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <span data-bind="text:ModifiedDate"></span></small></p>
+                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <span data-bind="text:global.ChangeDate(ModifiedDate)"></span></small></p>
                         </div>
                     </div>
                 </div>

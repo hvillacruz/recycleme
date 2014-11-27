@@ -397,3 +397,6 @@ ul.timeline > li > .timeline-panel {
 }
 
 
+.timelineBorder{
+    border:1px solid white;
+}

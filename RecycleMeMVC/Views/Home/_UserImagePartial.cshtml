@@ -13,16 +13,16 @@
 
                             </div>
                             <div class="li-text">
-                                <h2 class="li-head"><span data-bind="text:global.SelectedModalImage().Name"></span></h2>
+                                <h2 class="li-head"><span data-bind="text:global.SelectedModalImage().Owner.FirstName"></span></h2>
+
+                                <div data-bind="text:global.SelectedModalImage().Name"></div>
 
 
-                                @*<span class="msg-time momentComment">
-                                        <i class="ace-icon fa fa-clock-o"></i>
-
-                                    </span>*@
                                 <!-- ko if: global.SelectedModalImage().OwnerId != global.Login().UserId -->
                                 <button class="btn btn-primary btn-xs" data-bind="click: $root.ShowItemTrade">
-                                    <i class="fa fa-random bigger-110">&nbsp;Trade</i>
+                                    <span class="msg-time momentComment">
+                                        <i class="ace-icon fa fa-clock-o"><span data-bind="text:global.ChangeDate(global.SelectedModalImage().ModifiedDate)"></span></i>
+                                    </span>&nbsp;   <i class="fa fa-random bigger-110">&nbsp;Trade</i>
                                 </button>
 
                                 <!-- /ko -->

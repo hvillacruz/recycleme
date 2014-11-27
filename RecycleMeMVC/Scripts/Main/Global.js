@@ -108,6 +108,13 @@
 
     }
 
+    this.ChangeDate = function (d) {
+        var date = new Date(Date.parse(d.replace("T", " ")));
+        return formatMoment(date)
+    }
+
+
+
     this.Notification = function (msg, title, type) {
 
 
