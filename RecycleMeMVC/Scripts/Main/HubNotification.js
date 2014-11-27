@@ -44,6 +44,8 @@ var HubWrapper = function () {
                 }
                 case 7:
                     break;
+                case 8:
+                    break;
                 default:
                     break;
             }
@@ -57,7 +59,7 @@ var HubWrapper = function () {
 
         }
 
-        theHub.client.messageNotification = function (res,user) {
+        theHub.client.messageNotification = function (res, user) {
 
             //global.AddMsgCount();
             console.log(user);
