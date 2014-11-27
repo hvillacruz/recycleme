@@ -42,6 +42,8 @@ var HubWrapper = function () {
                     if (window.location.href.toUpperCase().indexOf("EXCHANGE") > 0)
                         exchange.TradeItem();
                 }
+                case 7:
+                    break;
                 default:
                     break;
             }

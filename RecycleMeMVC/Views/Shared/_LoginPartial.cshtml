@@ -100,6 +100,24 @@
                                 </span>
                             </a>
                             <!-- /ko -->
+                            <!-- ko if: Type == 7 -->
+                            <a class="modal-link" data-bind="click: global.GetModalItem.bind(UrlId),attr: { 'href': '@Url.Action("UserImage", "Home")/' + UrlId }">
+                                <span class="avatar-face">
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+                                </span>
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue" data-bind="text:Sender.FirstName"></span>
+                                        <span>Like your item</span>
+                                    </span>
+
+                                    <span class="msg-time">
+                                        <i class="ace-icon fa fa-clock-o"></i>
+                                        <span data-bind="text:Time"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- /ko -->
                         </li>
                         <!-- /ko -->
 

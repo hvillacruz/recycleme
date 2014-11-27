@@ -166,6 +166,7 @@
 
     this.GetModalItem = function (Id) {
         console.log(Id.UrlId);
+        $(".search-box").hide();
         AjaxNinja.Invoke(ODataApi.Item + "(" + Id.UrlId + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (current) {
 
             var res = $.extend(current, { CommentText: "" });
