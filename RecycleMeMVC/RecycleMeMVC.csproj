@@ -430,6 +430,7 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\dropzone.js" />
+    <Content Include="Scripts\External\bootstrap-datepicker.js" />
     <Content Include="Scripts\Home\ItemModalImage.js" />
     <Content Include="Scripts\jquery-ui-1.10.2.min.js" />
     <Content Include="Scripts\jquery-ui.js" />

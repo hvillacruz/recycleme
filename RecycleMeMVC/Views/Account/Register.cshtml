@@ -92,23 +92,30 @@
                     <label class="block clearfix">
                         <label for="LastName">Gender</label>
                         <span class="block input-icon input-icon-left">
-                            <input type="text" id="LastName" name="Gender" class="form-control" placeholder="Gender">
-                            <i class="fa fa-group reg-icon"></i>
-                            <span class="editable-clear-x"></span>
+
+                            <select class="form-control" id="Gender" name="Gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+
+                            </select>
+                            <i class="fa fa-male reg-icon"></i>
                             @Html.ValidationMessageFor(m => m.Gender)
                         </span>
+
                     </label>
+
                 </div>
                 <div class="form-group">
                     <label class="block clearfix">
                         <label for="BirthDate">Birthday</label>
                         <span class="block input-icon input-icon-left">
-                            <input type="text" id="BirthDate" name="BirthDate" class="form-control" placeholder="BirthDate">
+                            <input type="text" id="BirthDate" name="BirthDate" class="form-control date-picker" placeholder="BirthDate" data-date-format="dd/mm/yyyy">
                             <i class="fa fa-calendar reg-icon"></i>
                             <span class="editable-clear-x"></span>
                             @Html.ValidationMessageFor(m => m.BirthDate)
                         </span>
                     </label>
+
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="icon-circle-arrow-right"></i>Sign up</button>
@@ -123,3 +130,9 @@
     @Scripts.Render("~/bundles/init")
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script>
+    $('.date-picker').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    })
+</script>
