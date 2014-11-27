@@ -5,7 +5,7 @@
 
 .reg-content {
     margin: 100px auto 100px auto;
-      max-width: 600px;
+    max-width: 600px;
 }
 
 body {
@@ -49,11 +49,10 @@ a {
     background-color: #f5da72;
     width: 100%;
     height: 50px;
-
 }
 
-.btn-reg{
-    background-color:#f5da72 !important;
+.btn-reg {
+    background-color: #f5da72 !important;
 }
 
 .login-fb {
@@ -72,41 +71,47 @@ a {
     padding: 5px;
 }
 
-.btn{
-    background-color:none;
-    border:none;
+.btn {
+    background-color: none;
+    border: none;
 }
 
-.inputReg{
-    max-width:500px !important;
+.inputReg {
+    max-width: 500px !important;
 }
 
 
 .left-inner-addon {
     position: relative;
 }
-.left-inner-addon input {
-    padding-left: 30px;    
-}
-.left-inner-addon i {
-    position: absolute;
-    padding: 10px 12px;
-    pointer-events: none;
-}
+
+    .left-inner-addon input {
+        padding-left: 30px;
+    }
+
+    .left-inner-addon i {
+        position: absolute;
+        padding: 10px 12px;
+        pointer-events: none;
+    }
 
 .right-inner-addon {
     position: relative;
 }
-.right-inner-addon input {
-    padding-right: 30px;    
-}
-.right-inner-addon i {
-    position: absolute;
-    right: 0px;
-    padding: 10px 12px;
-    pointer-events: none;
-}
 
-.reg-icon{
-    top:-19px;
+    .right-inner-addon input {
+        padding-right: 30px;
+    }
+
+    .right-inner-addon i {
+        position: absolute;
+        right: 0px;
+        padding: 10px 12px;
+        pointer-events: none;
+    }
+
+.reg-icon {
+    position: relative;
+    top: -25px;
+    left: 5px;
 }
