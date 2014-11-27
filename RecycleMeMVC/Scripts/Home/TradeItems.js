@@ -6,7 +6,7 @@
     this.TradeItem = function () {
 
 
-        AjaxNinja.Invoke(ODataApi.Item + "?$filter=IsDeleted eq false&$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "?$filter=IsDeleted eq false and Status ne 1&$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
             $(data.value).each(function (index, value) {
@@ -27,7 +27,7 @@
 
     this.Search = function (item, data) {
         var result = [];
-        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner   &$filter=substringof('" + item + "',Name) or substringof('" + item + "',TradeTag)", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner   &$filter=IsDeleted eq false and Status ne 1 and substringof('" + item + "',Name) or substringof('" + item + "',TradeTag)", "GET", {}, function (data) {
 
             self.Items(data.value);
             self.Refresh();
