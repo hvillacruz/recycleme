@@ -9,9 +9,11 @@
                     <div>
                         <div class="inner">
                             <div class="li-img avatarAlign">
-                                <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: global.SelectedModalImage().Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
-
+                                <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + global.SelectedModalImage().Owner.UserId }">
+                                    <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: global.SelectedModalImage().Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                </a>
                             </div>
+
                             <div class="li-text">
                                 <h2 class="li-head"><span data-bind="text:global.SelectedModalImage().Owner.FirstName"></span></h2>
 
@@ -80,7 +82,11 @@
                     <div>
                         <div class="inner">
                             <div class="li-img avatarAlign">
-                                <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                <div class="img imgComment">
+                                    <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + Commenter.UserId }">
+                                        <img class="imgComment" data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" />
+                                    </a>
+                                </div>
                             </div>
                             <div class="li-text">
                                 <h2 class="li-head"><span data-bind="text:Commenter.FirstName"></span></h2>
@@ -110,7 +116,12 @@
                     <div>
                         <div class="inner">
                             <div class="li-img avatarAlign">
-                                <div class="img imgComment"><img class="imgComment" data-bind="attr:{src: global.Login().Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + global.Login().UserId }">
+                                    <div class="img imgComment">
+                                        <img class="imgComment" data-bind="attr:{src: global.Login().Avatar}" src="/Content/Assets/Images/avatar.jpg" />
+
+                                    </div>
+                                </a>
                             </div>
                             <div class="li-text">
                                 <div class="right-inner-addon">
