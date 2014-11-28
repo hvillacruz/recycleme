@@ -33,7 +33,9 @@
                     </div>
                 </div>
             </div>
-            <img class="timeline-badge timelineBorder" data-bind="attr:{src: Owner.Avatar}" src="/Content/Assets/Images/avatar.jpg" />
+
+            <img class="timeline-badge timelineBorder" data-bind="attr:{src: Owner.Avatar},click: $root.ShowUser.bind(Owner)" src="/Content/Assets/Images/avatar.jpg" />
+
             <div class="timeline-panel">
                 <div class="timeline-heading">
                     <div class="row">
@@ -41,7 +43,7 @@
 
                             <div>
                                 <h3 data-bind="text:Name"></h3>
-                                
+
                             </div>
 
                             <span class="timeline-title text-muted">
@@ -50,18 +52,19 @@
                             </span>
                         </div>
                         @*<div class="col-xs-1">
-                            <span class="label label-warning">
-                                <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
-                                Sold
-                            </span>
-                        </div>*@
+                                <span class="label label-warning">
+                                    <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                                    Sold
+                                </span>
+                            </div>*@
                         <div class="col-xs-1">
                             @Html.Partial("~/Views/Home/_SettingItemPartial.cshtml")
                         </div>
                         <div class="col-xs-12">
                             <!-- ko if: Status != 1 -->
-                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <span data-bind="text:global.ChangeDate(ModifiedDate)"></span></small>
-                                
+                            <p>
+                                <small class="text-muted"><i class="fa fa-clock-o"></i> <span data-bind="text:global.ChangeDate(ModifiedDate)"></span></small>
+
                             </p>
                             <!-- /ko -->
                             <!-- ko if: Status == 1 -->
@@ -123,7 +126,9 @@
                         <!-- ko if: CommenterId != null -->
                         <li class="row list-li">
                             <div class="col-xs-2">
-                                <div class="img imgComment"><img data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + Commenter.UserId }">
+                                    <div class="img imgComment"><img data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                </a>
                             </div>
                             <div class="col-xs-9 txtComment">
                                 <span class="editable" data-bind="text:Comment ,attr:{'data-pk': Id }"></span>
@@ -144,8 +149,11 @@
                 @*<div data-bind="clickToEdit : $parent.message"> </div>*@
                 <div class="row">
                     <div class="col-xs-2">
-                        <div class="img imgComment"><img data-bind="attr:{src: global.Login().Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                        <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + global.Login().UserId }">
+                            <div class="img imgComment"><img data-bind="attr:{src: global.Login().Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                        </a>
                     </div>
+
                     <div class="col-xs-9 txtComment">
                         <div class="right-inner-addon ">
                             <i class="fa fa-comments "></i>

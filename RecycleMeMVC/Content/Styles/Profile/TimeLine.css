@@ -399,4 +399,5 @@ ul.timeline > li > .timeline-panel {
 
 .timelineBorder{
     border:1px solid white;
+    border-radius:50%;
 }

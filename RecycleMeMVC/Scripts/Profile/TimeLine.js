@@ -78,6 +78,13 @@
     }
 
 
+    this.ShowUser = function (data) {
+
+        
+        window.location.href = '/Profile/Dashboard/' + data.OwnerId;
+    }
+
+
     this.SelectedRecycleComment = function (item, selectedImage) {
 
         PostComment(item, 0);
