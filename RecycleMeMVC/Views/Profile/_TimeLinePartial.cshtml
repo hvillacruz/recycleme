@@ -18,6 +18,10 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myImageModalLabel"><span data-bind="text:Name"></span></h4>
+                            <span class="label label-warning">
+                                <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                                Sold
+                            </span>
                         </div>
                         <div class="modal-body">
                             @Html.Partial("_ItemImagePartial")
@@ -37,6 +41,7 @@
 
                             <div>
                                 <h3 data-bind="text:Name"></h3>
+                                
                             </div>
 
                             <span class="timeline-title text-muted">
@@ -44,11 +49,27 @@
 
                             </span>
                         </div>
+                        @*<div class="col-xs-1">
+                            <span class="label label-warning">
+                                <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                                Sold
+                            </span>
+                        </div>*@
                         <div class="col-xs-1">
                             @Html.Partial("~/Views/Home/_SettingItemPartial.cshtml")
                         </div>
                         <div class="col-xs-12">
-                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <span data-bind="text:global.ChangeDate(ModifiedDate)"></span></small></p>
+                            <!-- ko if: Status != 1 -->
+                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <span data-bind="text:global.ChangeDate(ModifiedDate)"></span></small>
+                                
+                            </p>
+                            <!-- /ko -->
+                            <!-- ko if: Status == 1 -->
+                            <span class="label label-warning">
+                                <i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+                                Sold
+                            </span>
+                            <!-- /ko -->
                         </div>
                     </div>
                 </div>
