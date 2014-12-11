@@ -24,10 +24,10 @@
             <menu class="menu-segment">
                 <ul>
                     <li class="active"><a class="a" href="#">Inbox <span data-bind="text:MessageCount"> </span></a></li>
-                    <li><a class="a" href="#">Important</a></li>
-                    <li><a class="a" href="#">Sent</a></li>
-                    @*<li><a class="a" href="#">Drafts</a></li>
-                        <li><a class="a" href="#">Trash</a></li>*@
+                    @*<li><a class="a" href="#">Important</a></li>
+                         <li><a class="a" href="#">Sent</a></li>
+                        <li><a class="a" href="#">Drafts</a></li>
+                             <li><a class="a" href="#">Trash</a></li>*@
                 </ul>
             </menu>
             @*<div class="separator"></div>
@@ -66,9 +66,9 @@
             <ul>
                 <li><a class="icons circle-icon action-icon fa fa-chevron-down"></a></li>
                 <li><a class="icons circle-icon action-icon fa fa-refresh"></a></li>
-                <li><a class="icons circle-icon  action-icon fa fa-share-alt"></a></li>
-                <li><a class="icons circle-icon action-icon  red fa fa-times"></a></li>
-                <li><a class="icons circle-icon  action-icon red fa fa-flag"></a></li>
+                @*<li><a class="icons circle-icon  action-icon fa fa-share-alt"></a></li>
+                    <li><a class="icons circle-icon action-icon  red fa fa-times"></a></li>
+                    <li><a class="icons circle-icon  action-icon red fa fa-flag"></a></li>*@
             </ul>
         </div>
         <div id="main-nano-wrapper" class="nano">
@@ -385,9 +385,9 @@
                                 <p><span data-bind="text:Body"></span></p>
                             </div>
                             <div class="tool-box">
-                                <a href="#" class="b circle-icon small fa fa-share-alt"></a>
+                                <a href="#" class="b circle-icon small red-hover fa fa-reply a compose-button" data-toggle="modal" data-target="#myMessageModal" data-bind="click: $root.SelectedMessage.bind($data, $parent)"></a>
                                 <a href="#" class="b circle-icon small red-hover fa fa-times"></a>
-                                <a href="#" class="b circle-icon small red-hover fa fa-flag"></a>
+                                
                             </div>
                         </li>
                         @*<li class="received">

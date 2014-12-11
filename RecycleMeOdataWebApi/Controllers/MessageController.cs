@@ -142,6 +142,13 @@ namespace RecycleMeOdataWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // GET odata/Message(5)/Parent
+        [Queryable]
+        public SingleResult<Message> GetParent([FromODataUri] long key)
+        {
+            return SingleResult.Create(db.Message.Where(m => m.Id == key).Select(m => m.Parent));
+        }
+
         // GET odata/Message(5)/Receiver
         [Queryable]
         public SingleResult<User> GetReceiver([FromODataUri] long key)
@@ -154,6 +161,13 @@ namespace RecycleMeOdataWebApi.Controllers
         public SingleResult<User> GetSender([FromODataUri] long key)
         {
             return SingleResult.Create(db.Message.Where(m => m.Id == key).Select(m => m.Sender));
+        }
+
+        // GET odata/Message(5)/SubMessage
+        [Queryable]
+        public IQueryable<Message> GetSubMessage([FromODataUri] long key)
+        {
+            return db.Message.Where(m => m.Id == key).SelectMany(m => m.SubMessage);
         }
 
         protected override void Dispose(bool disposing)

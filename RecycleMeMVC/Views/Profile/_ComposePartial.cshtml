@@ -1,6 +1,6 @@
 ﻿<form id="form1">
     <div class="col-xs-12 txtComment">
-        <input type="text" data-placeholder="Recipients" data-bind="kendoMultiSelect: {  data: RecipientList, dataTextField:'FirstName', dataValueField:'UserId', value : SelectedChoice  }" />
+        <input id="userMultiSelect" type="text" data-placeholder="Recipients" data-bind="kendoMultiSelect: {  data: RecipientList, dataTextField:'FirstName', dataValueField:'UserId', value : SelectedChoice, valueAllowUnset:false  }" />
 
     </div>
     <div class="splitter"></div>

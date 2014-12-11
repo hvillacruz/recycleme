@@ -32,6 +32,40 @@
 
     }
 
+    this.SelectedMessage = function (item, selectedImage) {
+
+      
+        self.SelectedChoice(selectedImage.Sender.UserId);
+       
+
+    }
+
+    this.ReplyMessage = function() {
+
+
+        var data = {
+
+            SenderId: global.User.UserId(),
+            ReceiverId: this.SelectedChoice()[0],
+            Subject: item.Subject(),
+            Body: item.Body(),
+            DateSent: Helper.time(),
+            ParentId: 1
+
+        }
+
+        recycleHub.sendNotification("MSG", item.Subject(), this.SelectedChoice()[0], 1);
+
+        AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
+            self.GetMessage();
+            $('#myMessageModal').modal('hide')
+        });
+
+
+
+    }
+
+
     this.GetMessage = function () {
 
 

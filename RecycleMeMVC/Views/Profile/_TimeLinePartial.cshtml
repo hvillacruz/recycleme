@@ -124,9 +124,11 @@
                     <ul class="row list-ul" data-bind="foreach: ItemCommented">
                         <!-- ko if: IsDeleted == false -->
                         <!-- ko if: CommenterId != null -->
+                       
                         <li class="row list-li">
                             <div class="col-xs-2">
-                                <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + Commenter.UserId }">
+                               
+                                <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + CommenterId }">
                                     <div class="img imgComment"><img data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                                 </a>
                             </div>
@@ -140,6 +142,7 @@
                                 @Html.Partial("_ModifyItemPartial")
                             </div>
                         </li>
+                       
                         <!-- /ko -->
                         <!-- /ko -->
                     </ul>

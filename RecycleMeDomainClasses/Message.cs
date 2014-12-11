@@ -15,14 +15,13 @@ namespace RecycleMeDomainClasses
         public long Id { get; set; }
 
         [Column(Order = 1)]
-        public string SenderId { get; set; }
+        public long? ParentId { get; set; }
 
         [Column(Order = 2)]
+        public string SenderId { get; set; }
+
+        [Column(Order = 3)]
         public string ReceiverId { get; set; }
-
-        public virtual User Sender { get; set; }
-
-        public virtual User Receiver { get; set; }
 
         public string Subject { get; set; }
 
@@ -33,6 +32,15 @@ namespace RecycleMeDomainClasses
         public DateTime? DateReceived { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public virtual User Sender { get; set; }
+
+        public virtual User Receiver { get; set; }
+
+        public virtual Message Parent { get; set; }
+
+        public virtual ICollection<Message> SubMessage { get; set; }
+      
 
     }
 }

@@ -148,6 +148,14 @@ namespace RecycleMeDataAccessLayer
             .WillCascadeOnDelete(false);
 
 
+            modelBuilder.Entity<Message>()
+           .HasOptional(b => b.Parent)
+           .WithMany(a => a.SubMessage)
+           .HasForeignKey(k => k.ParentId)
+           .WillCascadeOnDelete(false);
+
+
+
             modelBuilder.Entity<Trade>()
            .HasOptional(b => b.Buyer)
            .WithMany(a => a.UserBuyer)
