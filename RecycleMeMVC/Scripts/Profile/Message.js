@@ -9,61 +9,54 @@
     this.Recipient = ko.observable("");
     this.RecipientList = ko.observableArray();
     this.SelectedChoice = ko.observable();
+    this.SelectedParent = ko.observable();
     this.SendMessage = function (item, selectedImage) {
 
 
         var data = {
 
             SenderId: global.User.UserId(),
-            ReceiverId: this.SelectedChoice()[0],
+            ReceiverId: self.SelectedParent() != null ? this.SelectedChoice() : this.SelectedChoice()[0],
             Subject: item.Subject(),
             Body: item.Body(),
-            DateSent: Helper.time()
+            DateSent: Helper.time(),
+            ParentId: self.SelectedParent()
 
         }
-
-        recycleHub.sendNotification("MSG", item.Subject(), this.SelectedChoice()[0],1);
-
+        recycleHub.sendNotification("MSG", item.Subject(), self.SelectedParent() != null ? this.SelectedChoice() : this.SelectedChoice()[0], 1);
+        $('#myMessageModal').modal('hide')
+      
         AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
+   
+            
+            self.Clear();
             self.GetMessage();
-            $('#myMessageModal').modal('hide')
+         
         });
 
 
     }
+
+    this.Clear = function () {
+
+        self.Subject = ko.observable("");
+        self.Body = ko.observable("");
+        self.Recipient = ko.observable("");
+        self.SelectedChoice = ko.observable();
+        self.SelectedParent = ko.observable();
+
+    }
+
 
     this.SelectedMessage = function (item, selectedImage) {
 
       
         self.SelectedChoice(selectedImage.Sender.UserId);
-       
+        self.SelectedParent(selectedImage.Id);
 
     }
 
-    this.ReplyMessage = function() {
-
-
-        var data = {
-
-            SenderId: global.User.UserId(),
-            ReceiverId: this.SelectedChoice()[0],
-            Subject: item.Subject(),
-            Body: item.Body(),
-            DateSent: Helper.time(),
-            ParentId: 1
-
-        }
-
-        recycleHub.sendNotification("MSG", item.Subject(), this.SelectedChoice()[0], 1);
-
-        AjaxNinja.Invoke(ODataApi.Message, "POST", JSON.stringify(data), function (result) {
-            self.GetMessage();
-            $('#myMessageModal').modal('hide')
-        });
-
-
-
-    }
+   
 
 
     this.GetMessage = function () {
