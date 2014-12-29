@@ -170,9 +170,9 @@
                         <!-- /ko -->
                         <!-- ko if: Sender != null -->
                         <li>
-                            <a href="#">
+                            <a data-bind="attr: { 'href': '@Url.Action("Message", "Profile")/' + Id }">
                                 <span class="avatar-face">
-                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" alt="Alex's Avatar" />
+                                    <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
                                 </span>
                                 <span class="msg-body">
                                     <span class="msg-title">

@@ -75,7 +75,7 @@ namespace RecycleMeMVC.Controllers
         public ActionResult Message(string id)
         {
 
-            ViewBag.UserId = id == null ? User.Identity.GetUserId() : id;
+            ViewBag.UserId = User.Identity.GetUserId();
             return View();
         }
 
