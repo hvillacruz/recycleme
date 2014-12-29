@@ -273,7 +273,8 @@ namespace RecycleMeMVC.Controllers
             var postparameters = new Dictionary<string, object>();
 
             postparameters["source"] = media;
-            postparameters["message"] = itemImage.Name;
+            postparameters["message"] = "Think Recycle Me - " + itemImage.Name;
+            postparameters["link"] = "http://recycleme.azurewebsites.net/";
             var res = fb.Post("/me/photos", postparameters);
             // Set the auth cookie
             //FormsAuthentication.SetAuthCookie(email, false);
