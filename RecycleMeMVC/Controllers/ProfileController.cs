@@ -16,6 +16,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace RecycleMeMVC.Controllers
 {
     [RoutePrefix("Profile")]
+    [Authorize]
     public class ProfileController : Controller
     {
         //

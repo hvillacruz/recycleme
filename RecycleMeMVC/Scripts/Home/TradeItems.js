@@ -11,19 +11,19 @@
             var result = [];
             $(data.value).each(function (index, value) {
 
-                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length});
+                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
                 result.push(res);
             });
 
             self.Items(result);
             self.Refresh();
-          
+
         });
-        
+
     }
 
 
-   
+
 
     this.Search = function (item, data) {
         var result = [];
@@ -55,9 +55,15 @@
 
 
     this.SelectedImage = function (parent, selectedImage) {
-       
-        global.SelectedModalImage(selectedImage);
-        $(".search-box").hide();
+
+        if (typeof global === 'undefined') {
+            window.location.href = '/Account/Login';
+            return false;
+        }
+        else {
+            global.SelectedModalImage(selectedImage);
+            $(".search-box").hide();
+        }
     }
 
 
@@ -70,14 +76,14 @@
             ModifiedDate: Helper.time()
         }
 
-       
+
 
         AjaxNinja.Invoke(ODataApi.ItemFollower, "POST", JSON.stringify(obj), function (result) {
             recycleHub.sendNotification("", global.User.UserName() + " Likes your item.", data.OwnerId, 6);
         });
 
     }
- 
+
 
 }
 var trade = new TradeItemsViewModel();
