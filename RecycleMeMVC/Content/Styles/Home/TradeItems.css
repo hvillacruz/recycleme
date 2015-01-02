@@ -11,6 +11,9 @@ body {
     cursor: pointer;
 }
 
+.shareIcon {
+    margin-top: -2px;
+}
 
 .search-box {
     float: right;
