@@ -208,6 +208,9 @@ var TradeViewModel = function () {
             TradeId: obj.Selected()[0].ItemTrades[0].Id.toString()
         }
 
+
+     
+
         AjaxNinja.Invoke(ODataApi.TadeBuyerItem + "/TradeBuyerItemDelete", "POST", JSON.stringify(TradeId), function (data) {
             $(self.currentItems).each(function (index, value) {
 
@@ -221,12 +224,23 @@ var TradeViewModel = function () {
 
                 AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(item), function (data) {
                     //items.TradeItemBuyer();
-                    recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
+                   //recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
                 });
 
 
 
             });
+
+            var dataUp = {
+                Status: 'Open',
+                ModifiedDate: Helper.time()
+
+            }
+
+            AjaxNinja.Invoke(ODataApi.Trade + "(" + $("#currentItem").data("text") + ")", "PATCH", JSON.stringify(dataUp), function (result) {
+                recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
+            });
+
 
         });
     }
