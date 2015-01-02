@@ -90,6 +90,7 @@
 setTimeout(function () {
     var itemModalImage = new ItemModalImageViewModel();
     ko.applyBindings(itemModalImage, document.getElementById("itemModalImageContainer"));
-    itemModalImage.ItemImage();
+     itemModalImage.ItemImage();
     itemModalImage.BindImages();
+    $("#itemModalImageContainer").show();
 }, 500);

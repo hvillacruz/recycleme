@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[Messages] (
+﻿CREATE TABLE [dbo].[Messages] (
     [Id]           BIGINT         IDENTITY (1, 1) NOT NULL,
     [SenderId]     NVARCHAR (128) NULL,
     [ReceiverId]   NVARCHAR (128) NULL,
@@ -7,10 +7,14 @@ CREATE TABLE [dbo].[Messages] (
     [DateSent]     DATETIME       NULL,
     [DateReceived] DATETIME       NULL,
     [IsDeleted]    BIT            NOT NULL,
+    [ParentId]     BIGINT         NULL,
     CONSTRAINT [PK_dbo.Messages] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_dbo.Messages_dbo.Messages_ParentId] FOREIGN KEY ([ParentId]) REFERENCES [dbo].[Messages] ([Id]),
     CONSTRAINT [FK_dbo.Messages_dbo.Users_ReceiverId] FOREIGN KEY ([ReceiverId]) REFERENCES [dbo].[Users] ([UserId]),
     CONSTRAINT [FK_dbo.Messages_dbo.Users_SenderId] FOREIGN KEY ([SenderId]) REFERENCES [dbo].[Users] ([UserId])
 );
+
+
 
 
 
@@ -39,3 +43,7 @@ INSERT INTO NOTIFICATIONS
     SELECT
         ReceiverId,SENDERID,1,SUBJECT,ID,0,0,DateSent
         FROM INSERTED
+GO
+CREATE NONCLUSTERED INDEX [IX_ParentId]
+    ON [dbo].[Messages]([ParentId] ASC);
+

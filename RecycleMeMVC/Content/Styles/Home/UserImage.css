@@ -1,4 +1,7 @@
-﻿.modalGallery {
+﻿#itemModalImageContainer{
+    display:none;
+}
+.modalGallery {
     text-align: center;
 }
 

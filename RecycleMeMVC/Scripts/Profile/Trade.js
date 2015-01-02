@@ -45,6 +45,8 @@ var TradeViewModel = function () {
                 new Sortable(el, { group: 'photo' });
             });
 
+
+            $("#panelContainer").show(); 
         });
 
     }

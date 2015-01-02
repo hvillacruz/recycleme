@@ -19,7 +19,7 @@
             });
 
             exchange.SortedTrade(item);
-
+            $("#panelContainer").show();
         });
 
     }
