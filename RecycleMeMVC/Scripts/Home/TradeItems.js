@@ -26,6 +26,8 @@
 
 
     this.Search = function (item, data) {
+
+      
         var result = [];
         AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner   &$filter=IsDeleted eq false and Status ne 1 and substringof('" + item + "',Name) or substringof('" + item + "',TradeTag)", "GET", {}, function (data) {
 
