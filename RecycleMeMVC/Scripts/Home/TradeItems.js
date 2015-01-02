@@ -29,9 +29,17 @@
 
       
         var result = [];
-        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner   &$filter=IsDeleted eq false and Status ne 1 and substringof('" + item + "',Name) or substringof('" + item + "',TradeTag)", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "?$orderby=ModifiedDate desc&$expand=ItemImages,Owner,ItemCommented,ItemCommented/Commenter,ItemUserFollowers   &$filter=IsDeleted eq false and Status ne 1 and substringof('" + item + "',Name) or substringof('" + item + "',TradeTag)", "GET", {}, function (data) {
 
-            self.Items(data.value);
+            var result = [];
+            $(data.value).each(function (index, value) {
+
+                var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
+                result.push(res);
+            });
+
+
+            self.Items(result);
             self.Refresh();
 
         });
