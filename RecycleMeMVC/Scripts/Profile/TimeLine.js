@@ -4,7 +4,7 @@
     var feed = [];
     this.Items = ko.observableArray();
     this.SelectedItem = ko.observableArray();
-    this.message = ko.observable("Welcome to camp!");
+    this.message = ko.observable("WTF!");
     this.ItemTimeline = function () {
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
