@@ -76,7 +76,8 @@
         }
 
         var status = self.Status() == 'Approve' ? "Approved" : "Rejected";
-        self.UpdateItem(1);//0-OPEN;1-CLOSED
+        var stat = status == 'Approve' ? 1 : 0;
+        self.UpdateItem(stat);//0-OPEN;1-CLOSED
         AjaxNinja.Invoke(ODataApi.Trade + "(" + $("#currentItem").data("text") + ")", "PATCH", JSON.stringify(data), function (result) {
             recycleHub.sendNotification("", global.User.UserName() + " " + status + " your offer!", self.Trade()[0].BuyerId, 6);
         });
