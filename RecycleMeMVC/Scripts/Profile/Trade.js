@@ -70,7 +70,8 @@ var TradeViewModel = function () {
     }
 
     this.IsNotApprove = ko.computed(function () {
-        return self.Status() != "Approve" && self.Status() != "Reject" ? true : false;
+        //&& self.Status() != "Reject"
+        return self.Status() != "Approve"  ? true : false;
     });
 
 
