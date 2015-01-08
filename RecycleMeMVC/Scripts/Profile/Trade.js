@@ -189,7 +189,7 @@ var TradeViewModel = function () {
 
     this.CheckItemStatus = function (obj) {
 
-        AjaxNinja.Invoke(ODataApi.Item + "(" + obj.Selected()[0].ItemTrades[0].ItemId.toString() + ")", "GET", {}, function (data) {
+        AjaxNinja.Invoke(ODataApi.Item + "(" + obj.Selected()[0].Id + ")", "GET", {}, function (data) {
             if (data.Status != 1) {
                 self.TradeItemPatch(obj);
             }
@@ -237,7 +237,7 @@ var TradeViewModel = function () {
 
             }
 
-            AjaxNinja.Invoke(ODataApi.Trade + "(" + $("#currentItem").data("text") + ")", "PATCH", JSON.stringify(dataUp), function (result) {
+            AjaxNinja.Invoke(ODataApi.Trade + "(" + TradeId.TradeId + ")", "PATCH", JSON.stringify(dataUp), function (result) {
                 recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
             });
 
