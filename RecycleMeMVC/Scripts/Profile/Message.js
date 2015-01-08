@@ -68,7 +68,7 @@
             var result = [];
             $(data.value).each(function (i, value) {
                 //var date = new Date(Date.parse(value.DateSent.replace("T", " ")));
-                var date = BrowserDetect.browser != "Firefox" ? new Date(Date.parse(value.DateSent.replace("T", " "))) : new Date(Date.parse(value.DateSent));
+                var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(value.DateSent.replace("T", " "))) : new Date(Date.parse(value.DateSent));
                 value.DateSent = date;
                 if (date != null)
                     var res = $.extend(value, { Time: formatMoment(date) });

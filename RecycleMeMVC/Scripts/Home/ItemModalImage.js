@@ -3,11 +3,6 @@
     var self = this;
     this.Items = ko.observableArray();
     this.SelectedItem = ko.observableArray();
-    this.ItemImage = function () {
-
-
-
-    }
 
     this.BindImages = function () {
 
@@ -90,7 +85,6 @@
 setTimeout(function () {
     var itemModalImage = new ItemModalImageViewModel();
     ko.applyBindings(itemModalImage, document.getElementById("itemModalImageContainer"));
-     itemModalImage.ItemImage();
     itemModalImage.BindImages();
     $("#itemModalImageContainer").show();
-}, 500);
+}, 50);

@@ -68,7 +68,7 @@
             var result = [];
             $(data.value).each(function (i, value) {
                 //var date = new Date(Date.parse(value.DateSent.replace("T", " ")));
-                var date = BrowserDetect.browser != "Firefox" ? new Date(Date.parse(value.DateSent.replace("T", " "))) : new Date(Date.parse(value.DateSent));
+                var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(value.DateSent.replace("T", " "))) : new Date(Date.parse(value.DateSent));
                 value.DateSent = date;
                 if (date != null)
                     var res = $.extend(value, { Time: formatMoment(date) });
@@ -89,7 +89,7 @@
             var result = [];
             $(data.value).each(function (i, value) {
                 //var date = new Date(Date.parse(value.ModifiedDate.replace("T", " ")));
-                var date = BrowserDetect.browser != "Firefox" ? new Date(Date.parse(value.ModifiedDate.replace("T", " "))) : new Date(Date.parse(value.ModifiedDate));
+                var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(value.ModifiedDate.replace("T", " "))) : new Date(Date.parse(value.ModifiedDate));
                 value.ModifiedDate = date;
                 if (date != null)
                     var res = $.extend(value, { Time: formatMoment(date)  });
@@ -111,7 +111,7 @@
     }
 
     this.ChangeDate = function (d) {
-        var date = BrowserDetect.browser != "Firefox" ? new Date(Date.parse(d.replace("T", " "))) : new Date(Date.parse(d));
+        var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(d.replace("T", " "))) : new Date(Date.parse(d));
         return formatMoment(date)
     }
 
