@@ -17,10 +17,10 @@
                     <img src="~/Content/Assets/images/userBg.jpg" />
                 </div>
 
-                <h1><span data-bind="text: FollowedUser.FirstName"></span></h1>
+              
                 @*<h2><span data-bind="text: FollowedUser.Birthdate"></span></h2>*@
                 <img data-bind="attr:{src: FollowedUser.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
-
+                <h1><span data-bind="text: FollowedUser.FirstName"></span></h1>
                 <div class="stat-stat">
                     <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom"><i class="fa icon-2xx fa-bullseye"><span class="box-stat-icon-text">0</span></i></div>
                     <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-comments"><span class="box-stat-icon-text" @*data-bind="text:UserCommenter.length"*@>0</span></i></div>
@@ -41,10 +41,10 @@
                     <img src="~/Content/Assets/images/userBg.jpg" />
                 </div>
 
-                <h1><span data-bind="text: Follower.FirstName"></span></h1>
+               
                 @*<h2><span data-bind="text: Follower.Birthdate"></span></h2>*@
                 <img data-bind="attr:{src: Follower.Avatar}" src="~/Content/Assets/images/avatar.jpg" class="userList" />
-
+                <h1><span data-bind="text: Follower.FirstName"></span></h1>
                 <div class="stat-stat">
                     <div class="col-xs-4 box-stat  box-stat-first center radius-round-bottom " @*data-bind="click:  $parent.likeUser"*@><i class="fa icon-2xx fa-heart "><span class="box-stat-icon-text" @*data-bind="text:UserFollowerUsers.length"*@>0</span></i></div>
 
