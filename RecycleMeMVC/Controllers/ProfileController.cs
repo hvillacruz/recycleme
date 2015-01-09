@@ -19,6 +19,7 @@ namespace RecycleMeMVC.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
+
         //
         // GET: /Profile/
         [Route("Dashboard/{id?}")]

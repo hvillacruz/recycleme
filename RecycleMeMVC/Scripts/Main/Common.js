@@ -261,6 +261,17 @@ function formatAMPM(date) {
 }
 
 
+
+function checkforlocalstorage() {
+
+    if (!Modernizr.localstorage) {
+        
+        if (window.location.href.indexOf('About') === -1)
+            window.location.href = 'Home/About';
+    }
+}
+
+
 function formatMoment(date) {
 
     var cd = moment(date);
@@ -269,4 +280,5 @@ function formatMoment(date) {
 
 }
 
+checkforlocalstorage();
 BrowserDetect.init();
