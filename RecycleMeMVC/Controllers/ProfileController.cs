@@ -43,6 +43,18 @@ namespace RecycleMeMVC.Controllers
 
 
 
+        [Route("Notification")]
+        public ActionResult Notification()
+        {
+
+            ViewBag.UserId = User.Identity.GetUserId();
+            ViewBag.LoginUserId = User.Identity.GetUserId();
+            return View();
+        }
+
+
+
+
         [Route("Bid/{id?}")]
         public ActionResult Bid(string id)
         {

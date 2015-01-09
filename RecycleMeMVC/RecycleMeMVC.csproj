@@ -423,6 +423,7 @@
     <Content Include="Content\Styles\Home\UserImage.css" />
     <Content Include="Content\Styles\Profile\Exchange.css" />
     <Content Include="Content\Styles\Profile\Message.css" />
+    <Content Include="Content\Styles\Profile\Notification.css" />
     <Content Include="Content\Styles\Profile\Trade.css" />
     <Content Include="Content\Styles\Profile\TradeComment.css" />
     <Content Include="Content\Styles\Profile\BidItems.css" />
@@ -448,6 +449,7 @@
     <Content Include="Scripts\Profile\Chart.js" />
     <Content Include="Scripts\Profile\Exchange.js" />
     <Content Include="Scripts\Profile\BidItems.js" />
+    <Content Include="Scripts\Profile\Notification.js" />
     <Content Include="Scripts\supersized.3.2.7.min.js" />
     <Content Include="Scripts\supersized.shutter.min.js" />
     <Content Include="Scripts\toastr.js" />
@@ -603,6 +605,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Profile\Dashboard.cshtml" />
     <Content Include="Views\Profile\dummy.html" />
+    <Content Include="Views\Profile\_NotificationPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -655,6 +660,7 @@
     <Content Include="Views\Home\MyMethod.cshtml" />
     <Content Include="Views\Shared\_ModalPartial.cshtml" />
     <Content Include="Views\Profile\Bid.cshtml" />
+    <Content Include="Views\Profile\Notification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
