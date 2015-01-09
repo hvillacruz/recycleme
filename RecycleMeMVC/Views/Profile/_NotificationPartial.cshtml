@@ -2,18 +2,84 @@
 <div id="notificationContainer">
     <section id="cd-timeline" class="cd-container" data-bind="foreach: $root.NotificationsList">
         <div class="cd-timeline-block">
-            <div class="cd-timeline-img cd-picture">
-                <img data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
-            </div> <!-- cd-timeline-img -->
+            <!-- ko if: Type == 2 -->
 
+            <div class="cd-timeline-img notification-2">
+                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+            </div> <!-- cd-timeline-img -->
             <div class="cd-timeline-content">
-                <h2 data-bind="text:Sender.FirstName">Title of section 1</h2>
-                @*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-                    <a href="#0" class="cd-read-more">Read more</a>*@
+                <h2 data-bind="text:Sender.FirstName"></h2>
+                <p>Started following you</p>
+                <a class="cd-read-more" data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + UrlId }">Read more</a>
                 <span class="cd-date" data-bind="text:Time"></span>
             </div> <!-- cd-timeline-content -->
-        </div> <!-- cd-timeline-block -->
+            <!-- cd-timeline-block -->
+            <!-- /ko -->
+            <!-- ko if: Type == 3 -->
 
+
+            <div class="cd-timeline-img notification-3">
+                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+            </div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2 data-bind="text:Sender.FirstName"></h2>
+                <p>Commented on your post</p>
+                <a class="modal-link cd-read-more" data-bind="click: global.GetModalItem.bind(UrlId),attr: { 'href': '@Url.Action("UserImage", "Home")/' + UrlId }">Read more</a>
+                <span class="cd-date" data-bind="text:Time"></span>
+            </div> <!-- cd-timeline-content -->
+            <!-- /ko -->
+            <!-- ko if: Type == 4 -->
+
+            <div class="cd-timeline-img notification-4">
+                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+            </div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2 data-bind="text:Sender.FirstName"></h2>
+                <p>Wants to trade with you</p>
+                <a class="cd-read-more" data-bind="attr: { 'href': '@Url.Action("Exchange", "Profile")/' + UrlId }">Read more</a>
+                <span class="cd-date" data-bind="text:Time"></span>
+            </div> <!-- cd-timeline-content -->
+            <!-- /ko -->
+            <!-- ko if: Type == 5 -->
+
+            <div class="cd-timeline-img notification-5">
+                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+            </div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2 data-bind="text:Sender.FirstName"></h2>
+                <p>Commented on the trade item</p>
+                <a class="cd-read-more" data-bind="attr: { 'href': '@Url.Action("Exchange", new RouteValueDictionary() { { "Controller", "Profile" } })/' + UrlId }">Read more</a>
+                <span class="cd-date" data-bind="text:Time"></span>
+            </div> <!-- cd-timeline-content -->
+            <!-- /ko -->
+            <!-- ko if: Type == 7 -->
+
+
+            <div class="cd-timeline-img notification-7">
+                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+            </div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2 data-bind="text:Sender.FirstName"></h2>
+                <p>Like your item!</p>
+                <a class="modal-link cd-read-more" data-bind="click: global.GetModalItem.bind(UrlId),attr: { 'href': '@Url.Action("UserImage", "Home")/' + UrlId }">Read more</a>
+                <span class="cd-date" data-bind="text:Time"></span>
+            </div> <!-- cd-timeline-content -->
+            <!-- /ko -->
+            <!-- ko if: Type == 8 -->
+
+
+            <div class="cd-timeline-img notification-8">
+                <img class="nav-user-photo img-circle" data-bind="attr:{src: Sender.Avatar}" src="/Content/Assets/images/avatar.jpg" />
+            </div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2 data-bind="text:Sender.FirstName"></h2>
+                <p><span data-bind="text:Title"></span>s&nbsp;your item!</p>
+                <a class="cd-read-more" data-bind="attr: { 'href': '@Url.Action("Trade", "Profile")/' + UrlId }">Read more</a>
+                <span class="cd-date" data-bind="text:Time"></span>
+            </div> <!-- cd-timeline-content -->
+            <!-- /ko -->
+        </div>
     </section> <!-- cd-timeline -->
 </div>
+@Html.Partial("_ModalPartial")
 <script src="~/Scripts/Profile/Notification.js"></script>
