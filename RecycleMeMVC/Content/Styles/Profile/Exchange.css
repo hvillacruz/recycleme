@@ -371,3 +371,14 @@ img {
 .imgborder{
     border:1px solid #000;
 }
+
+
+.rowTradeRight {
+    margin-right: 5px;
+    margin-left: -15px;
+}
+
+.rowTradeLeft {
+    margin-right: -15px;
+    margin-left: -10px;
+}

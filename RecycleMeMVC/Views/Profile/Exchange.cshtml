@@ -70,7 +70,7 @@
     <div class="col-xs-9">
         <div class="widget-box widget-color-dark">
             <div class="widget-header">
-                <h5 class="widget-title smaller"></h5>
+                <h5 class="widget-title smaller">Exchange Box</h5>
 
                 <div class="widget-toolbar">
                     <span class="badge badge-danger" data-bind="text: $root.Status">Pending</span>
@@ -79,7 +79,7 @@
 
             <div class="widget-body">
                 <div class="widget-main padding-6">
-                    <div class="row">
+                    <div class="row rowTradeLeft">
                         <div class="col-xs-6">
                             <div class="widget-box">
                                 <div class="widget-header widget-header-small">
@@ -101,31 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-box">
-                                <div class="widget-header widget-header-small">
-                                    <h5 class="widget-title lighter">Comment</h5>
-                                </div>
 
-                                <div class="widget-body">
-                                    <div class="widget-main">
-                                        <form class="form-search" data-bind="foreach: Selected">
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control search-query" data-bind="value:CommentText " placeholder="Write your comment" />
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-purple btn-sm" data-bind="click: $root.TradeCommentPost.bind($data, $parent)">
-                                                                <i class=" ace-icon fa fa-comments icon-on-right bigger-110">
-                                                                </i>
-                                                            </button>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="widget-box">
                                 <div class="widget-header widget-header-small">
                                     <h5 class="widget-title lighter"></h5>
@@ -166,21 +142,60 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="widget-box">
+                                <div class="widget-header widget-header-small">
+                                    <h5 class="widget-title lighter">Comment</h5>
+                                </div>
 
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <form class="form-search" data-bind="foreach: Selected">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control search-query" data-bind="value:CommentText " placeholder="Write your comment" />
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-purple btn-sm" data-bind="click: $root.TradeCommentPost.bind($data, $parent)">
+                                                                <i class=" ace-icon fa fa-comments icon-on-right bigger-110">
+                                                                </i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xs-6">
+                            <div class="rowTradeRight">
 
-                            <span>Bidder's Item</span>
-                            <div data-bind="foreach: BuyersItem">
+                                <div class="widget-box">
+                                    <div class="widget-header widget-header-small">
+                                        <h5 class="widget-title lighter">Bidder(s) Item</h5>
+                                    </div>
 
-                                <!-- ko foreach:Trades -->
-                                <!-- ko foreach:Item.ItemImages  -->
-                                <!-- ko if: $index() < 1 -->
-                                <img class="buyerImg imgborder" data-bind="attr:{src: Path}" />
-                                <!-- /ko -->
-                                <!-- /ko -->
-                                <!-- /ko -->
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+
+
+                                            <div data-bind="foreach: BuyersItem">
+
+                                                <!-- ko foreach:Trades -->
+                                                <!-- ko foreach:Item.ItemImages  -->
+                                                <!-- ko if: $index() < 1 -->
+                                                <img class="buyerImg imgborder" data-bind="attr:{src: Path}" />
+                                                <!-- /ko -->
+                                                <!-- /ko -->
+                                                <!-- /ko -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+
                         </div>
                     </div>
 
