@@ -306,7 +306,7 @@
 
     .section #comments {
         height: 100%;
-        max-height: 202px;
+        max-height: 285px;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
     }
@@ -361,8 +361,7 @@ img {
 }
 
 .buyerImg {
-    margin-top:5px;
-    margin-left:-10px;
+   
     max-height:490px;
     width: 100% !important;
     height: 100% !important;
@@ -381,4 +380,7 @@ img {
 .rowTradeLeft {
     margin-right: -15px;
     margin-left: -10px;
+}
+.commentBox {
+    height: 300px;
 }
