@@ -244,3 +244,11 @@ img {
     margin-right: -15px;
     margin-left: -10px;
 }
+
+.widgetToolbarLeft {
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 37px;
+    float: left;
+    position: relative;
+}
