@@ -6,7 +6,6 @@
 #tradeItemContainer {
     margin: auto;
     position: relative;
-    
 }
 
 .containers {
@@ -92,8 +91,8 @@ img {
 }
 
 .tile__list {
-    height:200px;
-    overflow:auto;
+    height: 200px;
+    overflow: auto;
 }
 
     .tile__list:last-child {
@@ -175,7 +174,7 @@ img {
     background: url(http://wallpaperdreams.com/wallpapers/macro_of_ice_melting_in_a_street_at_dusk_with_blurred_lights_in_the_background.1920x1200.b3af0ae7.jpg) #249ed7;
     background-size: 280px 200px;
     box-shadow: 0 4px 15px -4px #000;
-    border-radius:3px;
+    border-radius: 3px;
 }
 
 .divs {
@@ -184,8 +183,8 @@ img {
     height: 200px;
     float: right;
     padding: 0 10px 0 20px;
-    border-bottom-right-radius:3px;
-    border-top-right-radius:3px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 /*h1 {
@@ -228,10 +227,20 @@ img {
         color: #fff;
     }
 
-.commentBox{
-    height:300px;
+.commentBox {
+    height: 300px;
 }
 
-.itemimg{
-    border-radius:100%;
+.itemimg {
+    border-radius: 100%;
+}
+
+.rowTradeRight {
+    margin-right: 5px;
+    margin-left: -15px;
+}
+
+.rowTradeLeft {
+    margin-right: -15px;
+    margin-left: -10px;
 }

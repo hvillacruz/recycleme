@@ -82,104 +82,124 @@
 
             <div class="widget-body">
                 <div class="widget-main padding-6">
-                    <div class="row">
+                    <div class="row rowTradeLeft">
                         <div class="col-xs-6">
-                            <div class="widget-box">
-                                <div class="widget-header widget-header-small">
-                                    <h5 class="widget-title lighter">Seller's Item</h5>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="widget-main" data-bind="foreach: Selected">
-                                        <div class="">
-                                            <span>
-                                                <!-- ko foreach:ItemImages  -->
-                                                <!-- ko if: $index() < 1 -->
-                                                <img class="itemimg" data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" src="~/Content/Assets/images/avatar.jpg" />
+                            <div>
+                                <div class="widget-box">
+                                    <div class="widget-header widget-header-small">
+                                        <h5 class="widget-title lighter">Seller's Item</h5>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div class="widget-main" data-bind="foreach: Selected">
+                                            <div class="">
+                                                <span>
+                                                    <!-- ko foreach:ItemImages  -->
+                                                    <!-- ko if: $index() < 1 -->
+                                                    <img class="itemimg" data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" src="~/Content/Assets/images/avatar.jpg" />
 
-                                                <!-- /ko -->
-                                                <!-- /ko -->
-                                                &nbsp;<span class="bigger-150" data-bind="text: Name"></span>
-                                            </span>
+                                                    <!-- /ko -->
+                                                    <!-- /ko -->
+                                                    &nbsp;<span class="bigger-150" data-bind="text: Name"></span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="widget-box">
-                                <div class="widget-header widget-header-small">
-                                    <h5 class="widget-title lighter">Comment</h5>
-                                </div>
-                                <div class="widget-body">
-                                    <div class="widget-main">
-                                        <form class="form-search" data-bind="foreach: Selected">
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control search-query" data-bind="value:CommentText " placeholder="Write your comment" />
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-purple btn-sm" data-bind="click: $root.TradeCommentPost.bind($data, $parent)">
-                                                                <i class=" ace-icon fa fa-comments icon-on-right bigger-110">
-                                                                </i>
-                                                            </button>
-                                                        </span>
-                                                    </div>
+                                <div class="widget-box">
+                                    <div class="widget-header widget-header-small">
+                                        <h5 class="widget-title lighter">Comment Box</h5>
+                                    </div>
+
+                                    <div class="widget-body commentBox">
+                                        <div class="widget-main">
+                                            <div class="section">
+
+                                                <div id="comments">
+                                                    @Html.Partial("_BarterCommentPartial")
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="widget-box">
-                                <div class="widget-header widget-header-small">
-                                    <h5 class="widget-title lighter"></h5>
-                                </div>
-
-                                <div class="widget-body commentBox">
-                                    <div class="widget-main">
-                                        <div class="section">
-
-                                            <div id="comments">
-                                                @Html.Partial("_BarterCommentPartial")
-                                            </div>
+                                <div class="widget-box">
+                                    <div class="widget-header widget-header-small">
+                                        <h5 class="widget-title lighter">Comment</h5>
+                                    </div>
+                                    <div class="widget-body">
+                                        <div class="widget-main">
+                                            <form class="form-search" data-bind="foreach: Selected">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control search-query" data-bind="value:CommentText " placeholder="Write your comment" />
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-purple btn-sm" data-bind="click: $root.TradeCommentPost.bind($data, $parent)">
+                                                                    <i class=" ace-icon fa fa-comments icon-on-right bigger-110">
+                                                                    </i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
+
                         <div class="col-xs-6" id="tradeItemContainer">
-                            <div id="multi">
+                            <div id="multi" class="rowTradeRight">
                                 <div id="destination" class="layer tile destination" data-force="25">
-                                    <div class="tile__name destination_name">
-                                        Drag Items Here
 
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-small">
+                                            <h5 class="widget-title lighter">Drag Items Here</h5>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+                                                <div class="tile__list" data-bind="foreach: BuyersItem">
+                                                    <!-- ko foreach:Trades -->
+                                                    <!-- ko foreach:Item.ItemImages  -->
+                                                    <!-- ko if: $index() < 1 -->
+                                                    <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
+                                                    <!-- /ko -->
+                                                    <!-- /ko -->
+                                                    <!-- /ko -->
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <hr />
-                                    <div class="tile__list" data-bind="foreach: BuyersItem">
-                                        <!-- ko foreach:Trades -->
-                                        <!-- ko foreach:Item.ItemImages  -->
-                                        <!-- ko if: $index() < 1 -->
-                                        <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path}" />
-                                        <!-- /ko -->
-                                        <!-- /ko -->
-                                        <!-- /ko -->
-                                    </div>
-
 
 
 
                                 </div>
-
+                                <br />
                                 <div id="source" class="layer tile source" data-force="20">
-                                    <div class="tile__name source_name">Your Current Items</div>
-                                    <hr />
-                                    <div class="tile__list" data-bind="foreach: Items">
-                                        @*<span data-bind="text:Id">Test</span>*@
-                                        <!-- ko foreach:ItemImages  -->
-                                        <!-- ko if: $index() < 1 -->
-                                        <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,id:$parent.Id}" />
-                                        <!-- /ko -->
-                                        <!-- /ko -->
+
+                                    <div class="widget-box">
+                                        <div class="widget-header widget-header-small">
+                                            <h5 class="widget-title lighter">Your Item(s)</h5>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+
+
+                                                <div class="tile__list" data-bind="foreach: Items">
+                                                    @*<span data-bind="text:Id">Test</span>*@
+                                                    <!-- ko foreach:ItemImages  -->
+                                                    <!-- ko if: $index() < 1 -->
+                                                    <img data-toggle="modal" data-target="#myImageModal" data-bind="attr:{src: Path,id:$parent.Id}" />
+                                                    <!-- /ko -->
+                                                    <!-- /ko -->
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -193,7 +213,7 @@
         <span data-bind="text:$root.IsNotApprove"></span>
         <span data-bind="text:$root.HasItem()"></span>
         <span data-bind="text:$root.HasNotTraded"></span>
-    
+
         <!-- ko if: $root.IsNotApprove || $root.HasItem() -->
         <!-- ko if: $root.HasNotTraded -->
         <div class="panel panel-default">
@@ -228,7 +248,7 @@
                 <i class="ace-icon fa fa-times"></i>
                 Notice
             </strong>
-           This item is Closed!
+            This item is Closed!
         </div>
         <div class="alert alert-danger" data-bind="visible:!$root.HasItem()">
             <button type="button" class="close" data-dismiss="alert">
