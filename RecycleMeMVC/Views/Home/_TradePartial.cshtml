@@ -1,60 +1,33 @@
 ﻿
-<link href="~/Content/Styles/Home/default.css" rel="stylesheet" />
-<link href="~/Content/Styles/Home/component.css" rel="stylesheet" />
-<link href="~/Content/Styles/Home/TradeItems.css" rel="stylesheet" />
-<script src="~/Scripts/modernizr.custom.js"></script>
-
-
-
+@Styles.Render("~/Content/Styles/Trade")
+@Scripts.Render("~/bundles/modernizr-custom")
 <div id="tradeContainer" class="container">
-
     <div class="search-box">
         <input id="seachTxtBox" placeholder="Search..."><span class="fa fa-search icon searchIcon" data-bind="click: Search.bind($data, $('#seachTxtBox').val())"></span>
-
     </div>
-
-
     <ul class="grid effect-2" id="grid" data-bind="foreach: Items">
         <!-- ko if: ItemImages.length > 0 -->
-
         <li>
             <div class="widget">
-
                 <div class="cover">
+                    @*<a class="modal-link " data-bind="click: global.GetModalItem.bind($data.Id,'main'),attr: { 'href': '@Url.Action("UserImage", "Home")/' + $data.Id }">*@
                     <a class="modal-link" href="Home/UserImage/" data-bind="click: $root.SelectedImage.bind($data, $parent)">
                         <img data-bind="attr:{src: ItemImages[0].Path}" />
                     </a>
                 </div>
                 <img data-bind="attr:{src: Owner.Avatar},click: $root.SelectedUser.bind($data, $parent)" src="~/Content/Assets/images/avatar.jpg" class="userList" />
                 <h1><span data-bind="text:Name"></span></h1>
-
-
-
-
                 <div class="stat-stat">
                     <div class="col-xs-4 box-stat box-stat-first center radius-round-bottom recyleCursor" data-bind="click:  $root.LikeImage.bind($data)"><i class="fa icon-2xx fa-heart "><span class="box-stat-icon-text" data-bind="text:ItemUserFollowers.length">0</span></i></div>
                     <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-comments"><span class="box-stat-icon-text" data-bind="text:ItemCommented.length">0</span></i></div>
                     <div class="col-xs-4 box-stat center radius-round-bottom"><a class="box-stat-icon-text" data-bind="attr: { 'href': '@Url.Action("Facebook", "Profile")/' + Id }"><i class="fa icon-2xx fa-share-alt recyleCursor shareIcon"></i></a></div>
                 </div>
-
             </div>
-
         </li>
-
         <!-- /ko -->
     </ul>
-
     @Html.Partial("_ModalPartial")
 </div>
-<script src="~/Scripts/Home/TradeItems.js"></script>
-
-
-
-<script src="~/Scripts/masonry.pkgd.min.js"></script>
-<script src="~/Scripts/imagesloaded.js"></script>
-<script src="~/Scripts/classie.js"></script>
-
-
-<script src="~/Scripts/AnimOnScroll.js"></script>
+@Scripts.Render("~/bundles/trade")
 
 

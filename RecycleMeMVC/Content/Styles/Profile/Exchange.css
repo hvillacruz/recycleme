@@ -384,3 +384,6 @@ img {
 .commentBox {
     height: 300px;
 }
+.widget-header{
+        color:gray;
+}

@@ -21,6 +21,7 @@
                 sliderHeightAdaptable: true
             });
 
+            
 
         }, 50);
 
@@ -72,7 +73,7 @@
 
 
                 global.SelectedModalImage(current);
-
+                itemModalImage.BindImages();
                 recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
             });
         });
@@ -87,4 +88,4 @@ setTimeout(function () {
     ko.applyBindings(itemModalImage, document.getElementById("itemModalImageContainer"));
     itemModalImage.BindImages();
     $("#itemModalImageContainer").show();
-}, 50);
+}, 500);

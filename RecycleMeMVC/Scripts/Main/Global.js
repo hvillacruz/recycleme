@@ -92,7 +92,7 @@
                 var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(value.ModifiedDate.replace("T", " "))) : new Date(Date.parse(value.ModifiedDate));
                 value.ModifiedDate = date;
                 if (date != null)
-                    var res = $.extend(value, { Time: formatMoment(date)  });
+                    var res = $.extend(value, { Time: formatMoment(date) });
 
                 result.push(res);
 
@@ -166,11 +166,18 @@
     }
 
 
-    this.GetModalItem = function (Id) {
-        console.log(Id.UrlId);
-        $(".search-box").hide();
-        AjaxNinja.Invoke(ODataApi.Item + "(" + Id.UrlId + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (current) {
+    this.GetModalItem = function (type, datum) {
+      
+        var ItemId = 0;
+        if (type == 'main')
+            ItemId = datum.Id;
+        else
+            ItemId = datum.UrlId;
 
+        $(".search-box").hide();
+
+        AjaxNinja.Invoke(ODataApi.Item + "(" + ItemId + ")" + "?$expand=Owner,ItemImages,Owner,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (current) {
+            //global.SelectedModalImage({});
             var res = $.extend(current, { CommentText: "" });
             $(current).push(res);
             global.SelectedModalImage(current);

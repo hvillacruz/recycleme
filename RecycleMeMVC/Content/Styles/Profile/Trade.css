@@ -252,3 +252,6 @@ img {
     float: left;
     position: relative;
 }
+.widget-header{
+    color:gray;
+}

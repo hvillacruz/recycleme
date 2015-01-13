@@ -29,7 +29,9 @@ h1, h2 {
     font-weight: bold;
 }
 
-
+p{
+    color:gray !important;
+}
 /* -------------------------------- 
 
 Modules - reusable parts of our design

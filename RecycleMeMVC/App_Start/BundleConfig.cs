@@ -38,6 +38,41 @@ namespace RecycleMeMVC
                        "~/Scripts/External/bootstrap-datepicker.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/layout").Include(
+              "~/Scripts/string.min.js",
+              "~/Scripts/datajs-1.1.2.js",
+               "~/Scripts/Main/Global.js",
+              "~/Scripts/Main/Common.js",
+              "~/Scripts/Main/Config.js",
+              "~/Scripts/Main/Helper.js",
+              "~/Scripts/External/Sortable.min.js",
+              "~/Scripts/bootstrap-editable.min.js",
+              "~/Scripts/knockout.x-editable.min.js",
+              "~/Scripts/toastr.min.js",
+              "~/Scripts/Chart.min.js",
+              "~/Scripts/toastr.min.js",
+              "~/Scripts/moment.min.js",
+              "~/Scripts/underscore.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/azure").Include(
+                       "~/Scripts/Main/azure.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/modal").Include(
+           "~/Scripts/Main/modal.js"));
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/modernizr-custom").Include(
+                        "~/Scripts/modernizr.custom.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/trade").Include(
+             "~/Scripts/Home/TradeItems.js",
+             "~/Scripts/masonry.pkgd.min.js",
+             "~/Scripts/imagesloaded.js",
+             "~/Scripts/classie.js",
+             "~/Scripts/AnimOnScroll.js"));
+
+
             bundles.Add(new StyleBundle("~/Content/Assets/Recycle").Include(
                       "~/Content/Styles/Main/bootstrap.css",
                         "~/Content/Assets/css/bootstrap-editable.css",
@@ -58,6 +93,15 @@ namespace RecycleMeMVC
                    "~/Content/kendo.common.min.css",
                    "~/Content/kendo.default.min.css",
                    "~/Content/kendo.dataviz.min.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Styles/Trade").Include(
+                      "~/Content/Styles/Home/default.css",
+                      "~/Content/Styles/Home/component.css",
+                      "~/Content/Styles/Home/TradeItems.css"));
+
+
+            
+
 
             //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
             //         "~/Content/Assets/js/ace-extra.min.js"));

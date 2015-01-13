@@ -2,49 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Recycle Me</title>
+    <title>Think Recycle Me</title>
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @Styles.Render("~/Content/Assets/Recycle")
     @Styles.Render("~/Content/Styles/Recycle")
     @Scripts.Render("~/bundles/modernizr")
-
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @*@Scripts.Render("~/bundles/knockout-kendo")*@
     @Scripts.Render("~/bundles/knockout")
-
-    <script src="@Url.Content("~/Scripts/string.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/datajs-1.1.2.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Main/Global.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Main/Common.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Main/Config.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Main/Helper.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/External/Sortable.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap-editable.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/knockout.x-editable.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/toastr.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Chart.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/moment.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/moment.min.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/underscore.js")" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/layout")
     <script src="http://recyclemeapi.azurewebsites.net/Scripts/jquery.signalR-2.1.0.min.js"></script>
     <script src="http://recyclemeapi.azurewebsites.net/signalr/hubs"></script>
-    
-    
-    <!-- fonts -->
     @Styles.Render("~/Content/Assets/Fonts")
     @Styles.Render("~/Content/Assets/MainFonts")
-    @*<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Ubuntu:500' type='text/css' media='all' />*@
-    @*@Styles.Render("~/Content/Styles/RecycleMe")*@
     @Styles.Render("~/Content/knockout-kendo")
-    <script type="text/javascript">
-        window.appInsights = { queue: [], applicationInsightsId: null, accountId: null, appUserId: null, configUrl: null, start: function (n) { function u(n) { t[n] = function () { var i = arguments; t.queue.push(function () { t[n].apply(t, i) }) } } function f(n, t) { if (n) { var u = r.createElement(i); u.type = "text/javascript"; u.src = n; u.async = !0; u.onload = t; u.onerror = t; r.getElementsByTagName(i)[0].parentNode.appendChild(u) } else t() } var r = document, t = this, i; t.applicationInsightsId = n; u("logEvent"); u("logPageView"); i = "script"; f(t.configUrl, function () { f("//az416426.vo.msecnd.net/scripts/a/ai.0.7.js") }); t.start = function () { } } };
-        appInsights.start("5534b4ef-5e1c-4eb0-9b61-223449c2df68");
-        appInsights.logPageView();
-    </script>
+    @Scripts.Render("~/bundles/azure")
 </head>
 
 <body>
@@ -58,54 +32,13 @@
                     </small>
                 </a>
             </div>
-
             <div class="navbar-header pull-right" role="navigation">
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-       
     </div>
     @RenderBody()
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        $(function () {
-            // Initialize numeric spinner input boxes
-            //$(".numeric-spinner").spinedit();
-
-            // Initalize modal dialog
-            // attach modal-container bootstrap attributes to links with .modal-link class.
-            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
-            $('body').on('click', '.modal-link', function (e) {
-
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-container');
-                $(this).attr('data-toggle', 'modal');
-            });
-
-            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
-            $('body').on('click', '.modal-close-btn', function () {
-                $('#modal-container').modal('hide');
-            });
-
-            $('#modal-container').bind('hidden.bs.modal', function () {
-                $("html").css("margin-right", "0px");
-            });
-
-            //clear modal cache, so that new content can be loaded
-            $('#modal-container').on('hidden.bs.modal', function () {
-                $("html").css("margin-right", "0px");
-                $('.search-box').show();
-                $(this).removeData('bs.modal');
-            });
-
-            $('#CancelModal').on('click', function () {
-
-                return false;
-            });
-        });
-    </script>
-
-   
-
+    @Scripts.Render("~/bundles/modal")
 </body>
 </html>
