@@ -437,11 +437,14 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.nerveSlider.min.js" />
+    <Content Include="Scripts\Main\access.js" />
     <Content Include="Scripts\Main\azure.js" />
     <Content Include="Scripts\Main\HubNotification.js" />
     <Content Include="Scripts\Main\Hub.js" />
     <Content Include="Content\chart.css" />
     <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\Main\login-forgery.js" />
+    <Content Include="Scripts\Main\login-post.js" />
     <Content Include="Scripts\Main\modal.js" />
     <Content Include="Scripts\MJZ.dropzone.js" />
     <Content Include="Scripts\moment-with-locales.js" />

@@ -2,62 +2,24 @@
 @model RecycleMeMVC.Models.LoginViewModel
 
 @using Microsoft.AspNet.Identity
-
-<link rel="stylesheet" href="@Url.Content("~/Content/Assets/css/bootstrap-editable.css")" />
-<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Account/LoginReg.css")" />
-
-
+@Styles.Render("~/Content/Login")
 @if (!Request.IsAuthenticated)
 {
 
     <div class="login-content ">
-
-
         <div class="text-center ">
             <h1 class="text-center login-padding white smaller dark">Login to your account</h1>
         </div>
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
         {
-            @*@Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)*@
-            @*<form id="__AjaxAntiForgeryForm" action="#" method="post">
-                @Html.AntiForgeryToken()*@
-
             <div class="well well-lg login-shadow">
                 <div class="form-group">
                     <div class="left-inner-addon">
                         <i class="fa fa-user"></i>
                         <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
                     </div>
-                    @*@Html.ValidationMessageFor(m => m.UserName)*@
-                    @*<label class="block clearfix">
-                            <label for="UserName">Email</label>
-                            <span class="block input-icon input-icon-left">
-
-                                  <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Hello@email.com">
-                                <i class="fa fa-user"></i>
-                                <span class="editable-clear-x"></span>
-                                @Html.ValidationMessageFor(m => m.UserName)
-                            </span>
-
-
-                        </label>*@
-                    @*<div class="input-group add-on">
-                            <input type="text" class="form-control" placeholder="" name="srch-term" id="srch-term">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit" disabled="disabled"><i class="fa fa-user"></i></button>
-                            </div>
-                        </div>*@
                 </div>
                 <div class="form-group">
-                    @*<label class="block clearfix">
-                            <label for="Password">Password</label>
-                            <span class="block input-icon input-icon-left">
-                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                                <i class="fa fa-lock"></i>
-                                @Html.ValidationMessageFor(m => m.Password)
-                            </span>
-                        </label>*@
                     <div class="left-inner-addon">
                         <i class="fa fa-lock"></i>
                         <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
@@ -74,7 +36,7 @@
                 <h6 class="text-center login-top-padding"><a>Forgot Username or Password</a></h6>
             </div>
         }
-        @*</form>*@
+
         @{
         var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
         if (loginProviders.Count() == 0)
@@ -121,28 +83,12 @@
             data.__RequestVerificationToken = $('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]').val();
             return data;
         };
-
-        $("#signInRecycle").click(function () {
-            //SignIn($("#UserName").val(), $("#Password").val(), "login");
-        });
-
-        $("#Facebook").click(function () {
-            //ExternalLogin("Facebook");
-        });
-
-        $("#Twitter").click(function () {
-            //ExternalLogin("Twitter");
-        });
     </script>
 }
 else
 {
-
-
     <script>
         toastr.info("@User.Identity.GetUserName()", "You are already logged in");
-        //alert(getCookie("RecycleAccessToken"));
         InvokeHub(getCookie("RecycleAccessToken"));
-        
     </script>
 }

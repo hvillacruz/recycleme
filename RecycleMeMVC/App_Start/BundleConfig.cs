@@ -73,6 +73,15 @@ namespace RecycleMeMVC
              "~/Scripts/AnimOnScroll.js"));
 
 
+            bundles.Add(new ScriptBundle("~/bundles/hubnotification").Include(
+             "~/Scripts/Main/HubNotification.js"));
+
+            //bundles.Add(new ScriptBundle("~/bundles/login-forgery").Include(
+            //          "~/Scripts/Main/login-forgery.js"));
+
+            //bundles.Add(new ScriptBundle("~/bundles/login-post").Include(
+            //           "~/Scripts/Main/login-post.js"));
+
             bundles.Add(new StyleBundle("~/Content/Assets/Recycle").Include(
                       "~/Content/Styles/Main/bootstrap.css",
                         "~/Content/Assets/css/bootstrap-editable.css",
@@ -99,7 +108,9 @@ namespace RecycleMeMVC
                       "~/Content/Styles/Home/component.css",
                       "~/Content/Styles/Home/TradeItems.css"));
 
-
+            bundles.Add(new StyleBundle("~/Content/Login").Include(
+                      "~/Content/Assets/css/bootstrap-editable.css",
+                      "~/Content/Styles/Account/LoginReg.css"));
             
 
 

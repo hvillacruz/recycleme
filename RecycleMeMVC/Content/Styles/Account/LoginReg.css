@@ -9,7 +9,7 @@
 }
 
 body {
-    background: url(../../Assets/images/mushroom.jpg) no-repeat center 0px;
+    background: url(/Content/Assets/images/mushroom.jpg) no-repeat center 0px;
     min-height: 662px;
     background-size: 100% 100%;
 }
