@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/ProfileBar.css")" />
+@Styles.Render("~/Content/ProfileBar")
 <div id="profileBarDiv" data-bind="foreach: Bar">
     <div class="face">
         <div class="img-circle">
@@ -15,18 +15,14 @@
         <div class="stat-stat">
             <div class="col-xs-4 box-stat center radius-round-bottom" data-bind="click:  $parent.likeUser"><i class="fa icon-2xx fa-heart redLike"><span class="box-stat-icon-text" data-bind="text:UserFollowerUsers.length">0</span></i></div>
             <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-comments"><span class="box-stat-icon-text" data-bind="text:UserCommenter.length">0</span></i></div>
-            
+
             <div class="col-xs-4 box-stat center radius-round-bottom"><i class="fa icon-2xx fa-bullseye"><span class="box-stat-icon-text">0</span></i></div>
         </div>
     </div>
     <script>
         jQuery(document).ready(function ($) {
             profileBar.ViewUser("@ViewBag.UserId");
-            
         });
-
     </script>
 </div>
-
-
-<script src="@Url.Content("~/Scripts/Profile/ProfileBar.js")" type="text/javascript"></script>
+@Scripts.Render("~/bundles/profilebar")

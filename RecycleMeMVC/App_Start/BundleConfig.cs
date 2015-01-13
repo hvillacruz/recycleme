@@ -76,6 +76,9 @@ namespace RecycleMeMVC
             bundles.Add(new ScriptBundle("~/bundles/hubnotification").Include(
              "~/Scripts/Main/HubNotification.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/profilebar").Include(
+            "~/Scripts/Profile/ProfileBar.js"));
+
             //bundles.Add(new ScriptBundle("~/bundles/login-forgery").Include(
             //          "~/Scripts/Main/login-forgery.js"));
 
@@ -111,8 +114,12 @@ namespace RecycleMeMVC
             bundles.Add(new StyleBundle("~/Content/Login").Include(
                       "~/Content/Assets/css/bootstrap-editable.css",
                       "~/Content/Styles/Account/LoginReg.css"));
-            
 
+            bundles.Add(new StyleBundle("~/Content/Dashboard").Include(
+                     "~/Content/Styles/Profile/Dashboard.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ProfileBar").Include(
+                   "~/Content/Styles/Profile/ProfileBar.css"));
 
             //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
             //         "~/Content/Assets/js/ace-extra.min.js"));
