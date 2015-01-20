@@ -87,7 +87,7 @@ namespace RecycleMeOdataWebApi
 
 
             //Notifications
-            builder.EntitySet<Notification>("Notification"); 
+            builder.EntitySet<Notification>("Notification");
 
             config.Routes.MapODataRoute("odata", "odata", builder.GetEdmModel());
 

@@ -129,7 +129,7 @@
                             <div class="col-xs-2">
                                
                                 <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + CommenterId }">
-                                    <div class="img imgComment"><img data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
+                                    <div class="img imgComment"><img @*data-bind="attr:{src: Commenter.Avatar}"*@ src="/Content/Assets/Images/avatar.jpg" /></div>
                                 </a>
                             </div>
                             <div class="col-xs-9 txtComment">
