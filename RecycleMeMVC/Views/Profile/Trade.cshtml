@@ -81,6 +81,16 @@
             </strong>
             You Have No Item(s) To Trade!
         </div>
+        <div class="alert alert-success" data-bind="visible:$root.IsSaved()">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+            <strong>
+                <i class="ace-icon fa fa-times"></i>
+                Notice
+            </strong>
+            Item is saved.
+        </div>
         <div class="widget-box">
             <div class="widget-header">
                 <h5 class="widget-title smaller align-right">Trade Box</h5>

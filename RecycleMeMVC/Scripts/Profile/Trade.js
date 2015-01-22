@@ -3,6 +3,7 @@ var TradeViewModel = function () {
     this.Status = ko.observable("Pending");
     this.HasNotTraded = ko.observable(false);
     this.HasItem = ko.observable(false);
+    this.IsSaved = ko.observable(false);
     this.IsClosed = ko.observable(false);
     this.Items = ko.observableArray();
     this.BuyersItem = ko.observableArray();
@@ -10,7 +11,7 @@ var TradeViewModel = function () {
     this.SortedTrade = ko.observableArray();
     this.currentItems = [];
     this.CurrentItems = function () {
-       
+
         AjaxNinja.Invoke(ODataApi.User + "('" + global.User.UserId() + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (data) {
 
             var result = [];
@@ -19,7 +20,7 @@ var TradeViewModel = function () {
 
                 result.push(res);
             });
-            if(data.value.length > 0)
+            if (data.value.length > 0)
                 self.HasItem(true);
             else
                 self.HasItem(false);
@@ -46,7 +47,7 @@ var TradeViewModel = function () {
             });
 
 
-            $("#panelContainer").show(); 
+            $("#panelContainer").show();
         });
 
     }
@@ -71,7 +72,7 @@ var TradeViewModel = function () {
 
     this.IsNotApprove = ko.computed(function () {
         //&& self.Status() != "Reject"
-        return self.Status() != "Approve"  ? true : false;
+        return self.Status() != "Approve" ? true : false;
     });
 
 
@@ -109,19 +110,19 @@ var TradeViewModel = function () {
     this.TradeItemBuyer = function () {
 
         self.BuyersItem([]);
-       
+
         AjaxNinja.Invoke(ODataApi.Trade + "?$orderby=ModifiedDate desc&$filter=ItemId eq " + $("#currentItem").data("text") + " and BuyerId eq '" + global.User.UserId() + "' and Status ne 'Deleted'&$expand=Trades/Item/ItemImages,TradeItem/TradeCommenter", "GET", {}, function (data) {
-            
+
             $(data.value[0].Trades).each(function (index, value) {
                 self.currentItems.push(value.ItemId);
             });
-         
+
             self.BuyersItem(data.value);
 
         });
     }
 
-   
+
 
     this.Trade = ko.observableArray();
     this.TradeItem = function () {
@@ -179,7 +180,7 @@ var TradeViewModel = function () {
                 }
 
                 AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(item), function (data) {
-                  
+
                     recycleHub.sendNotification("", global.User.UserName() + " Wants to trade", self.Selected()[0].OwnerId, 4);
                 });
             });
@@ -193,6 +194,10 @@ var TradeViewModel = function () {
         AjaxNinja.Invoke(ODataApi.Item + "(" + obj.Selected()[0].Id + ")", "GET", {}, function (data) {
             if (data.Status != 1) {
                 self.TradeItemPatch(obj);
+                self.IsSaved(true);
+                setTimeout(function () {
+                    self.IsSaved(false);
+                }, 2000);
             }
             else {
                 self.IsClosed(true);
@@ -210,7 +215,7 @@ var TradeViewModel = function () {
         }
 
 
-     
+
 
         AjaxNinja.Invoke(ODataApi.TadeBuyerItem + "/TradeBuyerItemDelete", "POST", JSON.stringify(TradeId), function (data) {
             $(self.currentItems).each(function (index, value) {
@@ -225,7 +230,7 @@ var TradeViewModel = function () {
 
                 AjaxNinja.Invoke(ODataApi.TadeBuyerItem, "POST", JSON.stringify(item), function (data) {
                     //items.TradeItemBuyer();
-                   //recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
+                    //recycleHub.sendNotification("", global.User.UserName() + " Wants to trade a new item", self.Selected()[0].OwnerId, 4);
                 });
 
 
