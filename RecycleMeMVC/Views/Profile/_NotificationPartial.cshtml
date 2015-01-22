@@ -1,6 +1,7 @@
 ﻿<link href="~/Content/Styles/Profile/Notification.css" rel="stylesheet" />
 <div id="notificationContainer">
     <section id="cd-timeline" class="cd-container" data-bind="foreach: $root.NotificationsList">
+        <!-- ko if: SenderId != null -->
         <div class="cd-timeline-block">
             <!-- ko if: Type == 2 -->
 
@@ -79,6 +80,7 @@
             </div> <!-- cd-timeline-content -->
             <!-- /ko -->
         </div>
+        <!-- /ko -->
     </section> <!-- cd-timeline -->
 </div>
 @Html.Partial("_ModalPartial")

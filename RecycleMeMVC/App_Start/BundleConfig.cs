@@ -123,12 +123,9 @@ namespace RecycleMeMVC
             bundles.Add(new ScriptBundle("~/bundles/messagepartial").Include(
             "~/Scripts/Profile/Message.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/notification").Include(
+            "~/Scripts/Profile/Notification.js"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/login-forgery").Include(
-            //          "~/Scripts/Main/login-forgery.js"));
-
-            //bundles.Add(new ScriptBundle("~/bundles/login-post").Include(
-            //           "~/Scripts/Main/login-post.js"));
 
             bundles.Add(new StyleBundle("~/Content/Assets/Recycle").Include(
                       "~/Content/Styles/Main/bootstrap.css",
@@ -194,18 +191,13 @@ namespace RecycleMeMVC
            "~/Content/Styles/Home/component.css",
            "~/Content/Styles/Profile/BidItems.css"));
 
-
-
             bundles.Add(new StyleBundle("~/Content/message").Include(
            "~/Content/Styles/Profile/Message.css"));
 
-            //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
-            //         "~/Content/Assets/js/ace-extra.min.js"));
+            bundles.Add(new StyleBundle("~/Content/notfication").Include(
+            "~/Content/Styles/Profile/Notification.css"));
 
-
-            //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/js").Include(
-            //         "~/Content/Assets/js/ace-elements.min.js",
-            //         "~/Content/Assets/js/ace.min.js"));
+       
 
             BundleTable.EnableOptimizations = true;
 
