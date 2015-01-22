@@ -79,6 +79,39 @@ namespace RecycleMeMVC
             bundles.Add(new ScriptBundle("~/bundles/profilebar").Include(
             "~/Scripts/Profile/ProfileBar.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/userspartial").Include(
+            "~/Scripts/Profile/Users.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/pillpartial").Include(
+             "~/Scripts/Profile/Pill.js",
+             "~/Scripts/Profile/tagging.js",
+             "~/Scripts/External/fuelux.wizard.min.js",
+             "~/Scripts/External/ace-elements.min.js",
+             "~/Scripts/External/bootbox.min.js",
+             "~/Scripts/Profile/TagDrop.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/timeline").Include(
+           "~/Scripts/Profile/TimeLine.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/dropzone").Include(
+            "~/Scripts/MJZ.dropzone.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tradeexchange").Include(
+           "~/Scripts/modernizr.custom.js",
+           "~/Scripts/External/Sortable.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/tradepartial").Include(
+           "~/Scripts/Profile/Trade.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/exchangepartial").Include(
+           "~/Scripts/Profile/Exchange.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/tradeexchangepartial").Include(
+            "~/Scripts/jquery-ui.js",
+            "~/Scripts/Profile/Chart.js"));
+
             //bundles.Add(new ScriptBundle("~/bundles/login-forgery").Include(
             //          "~/Scripts/Main/login-forgery.js"));
 
@@ -120,6 +153,29 @@ namespace RecycleMeMVC
 
             bundles.Add(new StyleBundle("~/Content/ProfileBar").Include(
                    "~/Content/Styles/Profile/ProfileBar.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Statistics").Include(
+                 "~/Content/Styles/Profile/Statistics.css"));
+
+            bundles.Add(new StyleBundle("~/Content/UsersPartial").Include(
+                "~/Content/Styles/Profile/Users.css"));
+
+            bundles.Add(new StyleBundle("~/Content/PillPartial").Include(
+               "~/Content/Styles/Profile/Pill.css",
+               "~/Content/Styles/Profile/tag-basic-style.css"));
+
+            bundles.Add(new StyleBundle("~/Content/timeline").Include(
+              "~/Content/Styles/Profile/TimeLine.css"));
+
+            bundles.Add(new StyleBundle("~/Content/dropzone").Include(
+            "~/Content/Assets/css/dropzoneMJZ.css"));
+
+            bundles.Add(new StyleBundle("~/Content/tradeexchage").Include(
+           "~/Content/Styles/Profile/Exchange.css",
+           "~/Content/Chart.css"));
+
+            bundles.Add(new StyleBundle("~/Content/trade").Include(
+           "~/Content/Styles/Profile/Trade.css"));
 
             //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
             //         "~/Content/Assets/js/ace-extra.min.js"));

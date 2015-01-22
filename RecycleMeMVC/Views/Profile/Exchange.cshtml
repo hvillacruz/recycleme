@@ -1,5 +1,4 @@
-﻿<link href="~/Content/Styles/Profile/Exchange.css" rel="stylesheet" />
-<link href="~/Content/Chart.css" rel="stylesheet" />
+﻿@Styles.Render("~/Content/tradeexchage")
 <span id="currentItem" data-text="@ViewBag.ItemId"></span>
 <div id="panelContainer" class="container">
     <div class="col-xs-3">
@@ -230,6 +229,5 @@
     </div>
 </div>
 
-<script src="@Url.Content("~/Scripts/jquery-ui.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/Profile/Chart.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/Profile/Exchange.js")" type="text/javascript"></script>
+@Scripts.Render("~/bundles/exchangepartial")
+@Scripts.Render("~/bundles/tradeexchangepartial")

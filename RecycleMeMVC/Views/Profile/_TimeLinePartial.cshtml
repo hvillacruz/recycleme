@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/TimeLine.css")" />
+﻿@Styles.Render("~/Content/timeline")
 
 <!-- Modal -->
 
@@ -127,7 +127,7 @@
                         <!-- ko if: Commenter != null -->
                         <li class="row list-li">
                             <div class="col-xs-2">
-                               
+
                                 <a data-bind="attr: { 'href': '@Url.Action("Dashboard", "Profile")/' + CommenterId }">
                                     <div class="img imgComment"><img data-bind="attr:{src: Commenter.Avatar}" src="/Content/Assets/Images/avatar.jpg" /></div>
                                 </a>
@@ -178,5 +178,4 @@
     </ul>
 </div>
 @Html.Partial("_ModalPartial")
-
-<script src="@Url.Content("~/Scripts/Profile/TimeLine.js")" type="text/javascript"></script>
+@Scripts.Render("~/bundles/timeline")

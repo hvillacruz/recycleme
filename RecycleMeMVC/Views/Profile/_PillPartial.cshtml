@@ -1,8 +1,4 @@
-﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Pill.css")" />
-<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/tag-basic-style.css")" />
-
-
-
+﻿@Styles.Render("~/Content/PillPartial")
 <div class="panel panel-primary " id="pillbox">
 
     <div class="panel-body">
@@ -88,21 +84,21 @@
                 </li>
 
                 @*<li data-target="#step4">
-                    <span class="step">4</span>
-                    <span class="title">Finish</span>
-                </li>*@
+                        <span class="step">4</span>
+                        <span class="title">Finish</span>
+                    </li>*@
             </ul>
         </div>
 
         <hr />
         <div class="row-fluid wizard-actions">
             <button class="btn btn-prev btn-xs">
-               
+
                 <i class="fa fa-arrow-circle-o-left icon-2xx"></i>
                 Previous
             </button>
 
-            <button class="btn btn-success btn-next btn-xs" data-last="Finish" >
+            <button class="btn btn-success btn-next btn-xs" data-last="Finish">
                 Next
                 <i class="fa fa-arrow-circle-o-right icon-2xx"></i>
             </button>
@@ -112,80 +108,4 @@
 
     </div>
 </div>
-
-<script src="@Url.Content("~/Scripts/Profile/Pill.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/Profile/tagging.js")" type="text/javascript"></script>
-<script src="~/Scripts/External/fuelux.wizard.min.js"></script>
-<script src="~/Scripts/External/ace-elements.min.js"></script>
-<script src="~/Scripts/External/bootbox.min.js"></script>
-<script>
-
-
-    $(document).ready(function () {
-        $("#tagTrade").tagging();
-        $("#tagExchange").tagging();
-
-        var $validation = false;
-        var wiz = $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
-            if (info.direction == "next") {
-                if (info.step == 1) {
-                    $('.dropzone').click();
-
-                }
-                else if (info.step == 2) {
-                    $('#myModal').modal('show');
-                    //    if (!$('#validation-form').valid()) return false;
-                }
-                else if (info.step == 3) {
-                    pill.Recycle();
-                  
-                }
-            }
-            else {
-                if (info.step == 2) {
-                    $('.dropzone').click();
-
-                }
-                else if (info.step == 3) {
-                    $('#myModal').modal('show');
-                  
-                }
-               
-
-            }
-           
-        }).on('finished', function (e) {
-            
-            pill.Recycle();
-            pill.RemoveFiles();
-
-            $('[data-target=#step1]').trigger("click");
-
-            bootbox.dialog({
-                message: "Trade Item is Uploaded",
-                buttons: {
-                    "success": {
-                        "label": "OK",
-                        "className": "btn-sm btn-primary"
-                    }
-                }
-            });
-            // optionally navigate back to 2nd step
-            //$('#btnStep2').on('click', function (e, data) {
-             //   $('[data-target=#step1]').trigger("click");
-            //});
-            //$('#fuelux-wizard').wizard('previous');
-            //$('[data-target=#step1]').trigger("click");
-           
-        }).on('stepclick', function (e) {
-            //return false;
-            
-            
-        });
-
-    });
-
-
-
-</script>
-
+@Scripts.Render("~/bundles/pillpartial")
