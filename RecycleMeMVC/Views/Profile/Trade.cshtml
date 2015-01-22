@@ -71,6 +71,16 @@
         </div>
     </div>
     <div class="col-xs-9">
+        <div class="alert alert-danger" data-bind="visible:!$root.HasItem()">
+            <button type="button" class="close" data-dismiss="alert">
+                <i class="ace-icon fa fa-times"></i>
+            </button>
+            <strong>
+                <i class="ace-icon fa fa-times"></i>
+                Notice
+            </strong>
+            You Have No Item(s) To Trade!
+        </div>
         <div class="widget-box">
             <div class="widget-header">
                 <h5 class="widget-title smaller align-right">Trade Box</h5>
@@ -227,7 +237,7 @@
             </div>
         </div>
         <!-- /ko -->
-        <!-- ko ifnot: $root.HasNotTraded -->
+        <!-- ko ifnot: $root.HasNotTraded && !$root.HasItem()  -->
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="align-right">
@@ -250,16 +260,7 @@
             </strong>
             This item is Closed!
         </div>
-        <div class="alert alert-danger" data-bind="visible:!$root.HasItem()">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
-            <strong>
-                <i class="ace-icon fa fa-times"></i>
-                Notice
-            </strong>
-            You Have No Item(s) To Trade!
-        </div>
+      
     </div>
 </div>
 
