@@ -6,17 +6,17 @@
     this.SelectedItem = ko.observableArray();
     this.message = ko.observable("WTF!");
     this.ItemTimeline = function () {
+        feed = [];
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/Items?$orderby=ModifiedDate desc&$expand=Owner,ItemImages,Category,ItemCommented,ItemCommented/Commenter,ItemUserFollowers", "GET", {}, function (data) {
 
 
             $(data.value).each(function (index, value) {
                 var res = $.extend(value, { CommentText: "", ImageClass: "metro-" + value.ItemImages.length });
-                // $.extend(res.ItemImages, { Class: "metro" - value.ItemImages.length });
 
                 feed.push(res);
             });
-            //self.Items(result);
+
 
             timeline.Feed();
         });
@@ -27,7 +27,7 @@
 
 
         AjaxNinja.Invoke(ODataApi.User + "('" + $("#currentUser").data("text") + "')/UserFollowers?$expand=FollowedUser,FollowedUser/Items,FollowedUser/Items/ItemImages,FollowedUser/Items/ItemCommented,FollowedUser/Items/ItemUserFollowers,FollowedUser/Items/Owner,FollowedUser/Items/Category", "GET", {}, function (data) {
-     
+
             if (global.User.UserId() == $("#currentUser").data("text")) {
                 _.each(data.value, function (item) {
 
@@ -80,7 +80,7 @@
 
     this.ShowUser = function (data) {
 
-        
+
         window.location.href = '/Profile/Dashboard/' + data.OwnerId;
     }
 
@@ -106,7 +106,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.ItemComment + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
-            //alert(result);
+
         });
     }
 
@@ -120,7 +120,7 @@
         }
 
         AjaxNinja.Invoke(ODataApi.ItemComment + "(" + item.Id + ")", "PATCH", JSON.stringify(data), function (result) {
-            // alert('success');
+
         });
     }
 
@@ -172,20 +172,18 @@
                 AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
 
                     recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
-                });
 
-                timeline.ItemTimeline();
+                    if (global.User.UserName() != current.OwnerId)
+                        timeline.ItemTimeline();
+                });
 
             }
             else {
 
-                //http://localhost:53481/odata/Item(3)?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers
-                // data.Id = result.Id;
+
                 AjaxNinja.Invoke(ODataApi.Item + "(" + item.Id + ")" + "?$expand=Owner,ItemImages,Category,ItemCommented,ItemUserFollowers", "GET", {}, function (current) {
 
                     var res = $.extend(current, { CommentText: "" });
-
-
                     $(current).push(res);
 
                     self.SelectedItem(current);
@@ -203,11 +201,3 @@
 var timeline = new TimeLineViewModel();
 ko.applyBindings(timeline, document.getElementById("timelineDiv"));
 timeline.ItemTimeline();
-
-
-
-
-jQuery(function ($) {
-
-
-});

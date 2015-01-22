@@ -23,7 +23,7 @@
 
             
 
-        }, 50);
+        },100);
 
     }
 
@@ -46,9 +46,10 @@
 
 
 
-    this.ConvertMoment = function (date) {
-
-        return formatMoment(date);
+    this.ConvertMoment = function (d) {
+        var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(d.replace("T", " "))) : new Date(Date.parse(d));
+        console.log('date:' + formatMoment(date));
+        return formatMoment(date)
     }
 
 
@@ -73,7 +74,7 @@
 
 
                 global.SelectedModalImage(current);
-                itemModalImage.BindImages();
+                self.BindImages();
                 recycleHub.sendNotification("", global.User.UserName() + " Commented on your item", current.OwnerId, 3);
             });
         });

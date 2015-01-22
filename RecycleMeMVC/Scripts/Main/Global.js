@@ -112,6 +112,7 @@
 
     this.ChangeDate = function (d) {
         var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(d.replace("T", " "))) : new Date(Date.parse(d));
+        console.log('date:' + formatMoment(date));
         return formatMoment(date)
     }
 
