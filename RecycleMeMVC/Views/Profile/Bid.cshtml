@@ -1,8 +1,6 @@
 ﻿
-<link href="~/Content/Styles/Home/default.css" rel="stylesheet" />
-<link href="~/Content/Styles/Home/component.css" rel="stylesheet" />
-<link href="~/Content/Styles/Profile/BidItems.css" rel="stylesheet" />
-<script src="~/Scripts/modernizr.custom.js"></script>
+@Styles.Render("~/Content/bid")
+@Scripts.Render("~/bundles/modernizr-custom")
 
 
 <span id="ItemId" data-text="@ViewBag.ItemId"></span>
@@ -38,15 +36,6 @@
         @Html.Partial("_AdPartial")
     </div>
 </div>
-<script src="~/Scripts/Profile/BidItems.js"></script>
-
-
-
-<script src="~/Scripts/masonry.pkgd.min.js"></script>
-<script src="~/Scripts/imagesloaded.js"></script>
-<script src="~/Scripts/classie.js"></script>
-
-
-<script src="~/Scripts/AnimOnScroll.js"></script>
+@Scripts.Render("~/bundles/bid")
 
 

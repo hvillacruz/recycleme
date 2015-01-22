@@ -112,6 +112,18 @@ namespace RecycleMeMVC
             "~/Scripts/jquery-ui.js",
             "~/Scripts/Profile/Chart.js"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/bid").Include(
+           "~/Scripts/Profile/BidItems.js",
+           "~/Scripts/masonry.pkgd.min.js",
+           "~/Scripts/imagesloaded.js",
+           "~/Scripts/classie.js",
+           "~/Scripts/AnimOnScroll.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/messagepartial").Include(
+            "~/Scripts/Profile/Message.js"));
+
+
             //bundles.Add(new ScriptBundle("~/bundles/login-forgery").Include(
             //          "~/Scripts/Main/login-forgery.js"));
 
@@ -176,6 +188,16 @@ namespace RecycleMeMVC
 
             bundles.Add(new StyleBundle("~/Content/trade").Include(
            "~/Content/Styles/Profile/Trade.css"));
+
+            bundles.Add(new StyleBundle("~/Content/bid").Include(
+           "~/Content/Styles/Home/default.css",
+           "~/Content/Styles/Home/component.css",
+           "~/Content/Styles/Profile/BidItems.css"));
+
+
+
+            bundles.Add(new StyleBundle("~/Content/message").Include(
+           "~/Content/Styles/Profile/Message.css"));
 
             //bundles.Add(new ScriptBundle("~/Content/Assets/Ace/extra").Include(
             //         "~/Content/Assets/js/ace-extra.min.js"));

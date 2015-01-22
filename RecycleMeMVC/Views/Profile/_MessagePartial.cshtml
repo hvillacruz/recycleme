@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="@Url.Content("~/Content/Styles/Profile/Message.css")" />
+﻿@Styles.Render("~/Content/message")
 <div class="body" id="messageInbox">
     <div class="modal fade" id="myMessageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -108,4 +108,4 @@
     </div>
 </div>
 
-<script src="@Url.Content("~/Scripts/Profile/Message.js")" type="text/javascript"></script>
+@Scripts.Render("~/bundles/messagepartial")
