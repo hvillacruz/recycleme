@@ -1,5 +1,4 @@
-﻿<link rel="stylesheet" href="~/Content/Assets/css/nerveSlider.min.css" type="text/css" media="screen" />
-<link href="~/Content/Styles/Home/UserImage.css" rel="stylesheet" />
+﻿@Styles.Render("~/Content/itemmodel")
 <!-- ko if: global.SelectedModalImage().Owner.Avatar != null -->
 <div id="itemModalImageContainer">
     <div class="modal-header">
@@ -146,9 +145,7 @@
 
 </div>
 <!-- /ko -->
-<script src="~/Scripts/jquery-ui-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.nerveSlider.min.js"></script>
-<script src="~/Scripts/Home/ItemModalImage.js"></script>
+@Scripts.Render("~/bundles/itemmodel")
 
 
 

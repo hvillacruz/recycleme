@@ -127,6 +127,12 @@ namespace RecycleMeMVC
             "~/Scripts/Profile/Notification.js"));
 
 
+            bundles.Add(new ScriptBundle("~/bundles/itemmodel").Include(
+            "~/Scripts/jquery-ui-1.10.2.min.js",
+            "~/Scripts/jquery.nerveSlider.min.js",
+            "~/Scripts/Home/ItemModalImage.js"));
+
+
             bundles.Add(new StyleBundle("~/Content/Assets/Recycle").Include(
                       "~/Content/Styles/Main/bootstrap.css",
                         "~/Content/Assets/css/bootstrap-editable.css",
@@ -196,6 +202,10 @@ namespace RecycleMeMVC
 
             bundles.Add(new StyleBundle("~/Content/notfication").Include(
             "~/Content/Styles/Profile/Notification.css"));
+
+            bundles.Add(new StyleBundle("~/Content/itemmodel").Include(
+           "~/Content/Assets/css/nerveSlider.min.css",
+           "~/Content/Styles/Home/UserImage.css"));
 
        
 
