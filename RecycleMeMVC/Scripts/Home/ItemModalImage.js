@@ -47,7 +47,9 @@
 
 
     this.ConvertMoment = function (d) {
-        var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" ? new Date(Date.parse(d.replace("T", " "))) : new Date(Date.parse(d));
+        console.log('convert: ' + BrowserDetect.browser);
+        var date = BrowserDetect.browser != "Firefox" && BrowserDetect.browser != "Safari" && BrowserDetect.browser != "IE 11" ? new Date(Date.parse(d.replace("T", " "))) : new Date(Date.parse(d));
+
         console.log('date:' + formatMoment(date));
         return formatMoment(date)
     }
